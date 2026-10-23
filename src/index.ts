@@ -34,3 +34,12 @@ export { createAiSdkTools } from './adapters/ai-sdk.js'
 export { retrieve, type Evidence, type RetrieveOptions, type RetrieveResult } from './retrieve.js'
 export { createMcpServer } from './adapters/mcp.js'
 export { resolveSummaryModel, ProviderError } from './llm/provider.js'
+export {
+  parseQuestions,
+  QuestionFileError,
+  type EvalQuestion,
+  type Gold,
+  type QuestionIssue,
+} from './eval/questions.js'
+export { matchesGold, firstHitRank, aggregate, type EvidenceRef, type QuestionResult, type Summary, type Aggregate } from './eval/score.js'
+export { runEval, checkGold, type EvalMode, type RunEvalOptions, type EvalReport } from './eval/run.js'

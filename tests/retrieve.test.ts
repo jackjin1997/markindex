@@ -62,6 +62,7 @@ describe('retrieve', () => {
     expect(e.text).toBe(lib.store.getLines(docPath, node.startLine, node.endLine).join('\n'))
     expect(e.text).not.toContain('FAKE MODEL TEXT')
     expect(r.usage).toEqual({ inputTokens: 150, outputTokens: 4 })
+    expect(r.steps).toBe(2)
     expect(r.dropped).toBe(0)
     expect(r.selectedBy).toBe('model')
     expect(r.invalidSelection).toBe(false)

@@ -1,9 +1,12 @@
 #!/usr/bin/env node
-import { existsSync } from 'node:fs'
+import { existsSync, readFileSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js'
 import { Command } from 'commander'
 import { createMcpServer, packageVersion } from './adapters/mcp.js'
+import { parseQuestions, QuestionFileError } from './eval/questions.js'
+import { checkGold, runEval, type EvalMode, type EvalReport } from './eval/run.js'
+import type { Aggregate, Summary } from './eval/score.js'
 import { indexLibrary, type IndexReport } from './library/indexer.js'
 import { defaultDbFile, openLibrary } from './library.js'
 import { estimateSummaryCost } from './llm/summarize.js'
@@ -116,6 +119,89 @@ async function mcpCommand(root: string, o: { db?: string; reindexOnStart?: boole
   err(`markindex MCP server ready (stdio), library: ${root}`)
 }
 
+const EVAL_MODES: Record<string, EvalMode> = { bm25: 'bm25', agent: 'agent', tools: 'agent', retrieve: 'agent' }
+
+const int = (v: string, name: string, min = 1) => {
+  const n = Number(v)
+  if (!Number.isInteger(n) || n < min) throw new Error(`${name} must be an integer >= ${min}, got "${v}"`)
+  return n
+}
+
+function printSummary(report: EvalReport) {
+  const pct = (x: number) => `${(x * 100).toFixed(1)}%`
+  const row = (label: string, s: Summary | undefined) =>
+    s &&
+    out(
+      `${label.padEnd(10)}${String(s.questions).padStart(5)}${String(s.hits).padStart(6)}${pct(s.hitRate).padStart(9)}` +
+        `${pct(s.hitAt1).padStart(9)}${s.mrr.toFixed(3).padStart(8)}${String(Math.round(s.avgTokens)).padStart(11)}` +
+        `${s.avgSteps.toFixed(1).padStart(7)}${String(s.errors).padStart(7)}`,
+    )
+  const table = (title: string, a: Aggregate) => {
+    out(title)
+    out(`${'set'.padEnd(10)}${'n'.padStart(5)}${'hits'.padStart(6)}${'hit'.padStart(9)}${'hit@1'.padStart(9)}${'mrr'.padStart(8)}${'avg tok'.padStart(11)}${'steps'.padStart(7)}${'errors'.padStart(7)}`)
+    row('overall', a.overall)
+    for (const lang of ['zh', 'en', 'mixed'] as const) row(lang, a.byLang[lang])
+  }
+  table(`mode ${report.mode}${report.model ? ` (${report.model})` : ''}${report.options.topK ? `, top-${report.options.topK}` : ''}`, report.summary)
+  if (report.baseline) {
+    out('')
+    table(`baseline bm25 top-${report.baseline.topK}`, report.baseline.summary)
+  }
+}
+
+async function evalCommand(
+  root: string,
+  o: {
+    questions: string
+    mode: string
+    model?: string
+    topK: string
+    maxSteps: string
+    maxInputTokens: string
+    concurrency: string
+    baseline: boolean
+    db?: string
+    out?: string
+    json?: boolean
+  },
+) {
+  const mode = EVAL_MODES[o.mode]
+  if (!mode) throw new Error(`--mode must be bm25 or agent (aliases: tools, retrieve), got "${o.mode}"`)
+  if (mode === 'agent' && !o.model) throw new Error('agent mode needs --model <provider:model>, e.g. --model anthropic:claude-sonnet-5-5')
+  const questions = parseQuestions(readFileSync(o.questions, 'utf8'), o.questions)
+  const lib = openLibrary({ root, dbFile: o.db })
+  try {
+    const goldIssues = checkGold(lib, questions)
+    if (goldIssues.length > 0) throw new QuestionFileError(goldIssues, o.questions)
+    const model =
+      mode === 'agent'
+        ? await resolveSummaryModel(o.model!).catch((e: unknown) => {
+            throw e instanceof ProviderError ? new ProviderError(e.message.replace('--summary-model', '--model')) : e
+          })
+        : undefined
+    const report = await runEval(lib, questions, {
+      mode,
+      topK: int(o.topK, '--top-k'),
+      maxSteps: int(o.maxSteps, '--max-steps'),
+      maxInputTokens: int(o.maxInputTokens, '--max-input-tokens'),
+      concurrency: int(o.concurrency, '--concurrency'),
+      baseline: o.baseline,
+      ...(model ? { model, modelId: o.model } : {}),
+      onProgress: o.json
+        ? undefined
+        : (done, total, r) => err(`[${done}/${total}] ${r.id} ${r.hit ? 'HIT' : 'miss'}${r.error ? ` (error: ${r.error})` : ''}`),
+    })
+    if (o.out) writeFileSync(o.out, `${JSON.stringify(report, null, 2)}\n`)
+    if (o.json) json(report)
+    else {
+      printSummary(report)
+      if (o.out) out(`\nFull report: ${resolve(o.out)}`)
+    }
+  } finally {
+    lib.close()
+  }
+}
+
 export function buildProgram(): Command {
   const program = new Command('markindex').description('Section-tree index of Markdown libraries for agent retrieval').version(packageVersion())
   program
@@ -149,12 +235,20 @@ export function buildProgram(): Command {
     .option('--reindex-on-start', 'update the index before serving')
     .action(mcpCommand)
   program
-    .command('eval [args...]')
-    .description('Evaluate retrieval on a question file (not implemented yet)')
-    .allowUnknownOption()
-    .action(() => {
-      out('eval: not implemented yet')
-    })
+    .command('eval <root>')
+    .description('Measure retrieval quality on a JSONL question file (see eval/README.md for the format)')
+    .requiredOption('--questions <file>', 'JSONL question file: {"id","question","lang":"zh|en|mixed","gold":[{"doc_path","start_line"?,"end_line"?,"title_path"?}]}')
+    .option('--mode <mode>', 'bm25 (keyword baseline, no LLM) or agent (built-in retrieve() loop over the agent tools; "tools" and "retrieve" are aliases)', 'bm25')
+    .option('--model <provider:model>', 'agent mode: model, e.g. anthropic:claude-sonnet-5-5 (needs @ai-sdk/<provider> installed)')
+    .option('--top-k <n>', 'bm25: hits per question', '5')
+    .option('--max-steps <n>', 'agent: model steps per question', '12')
+    .option('--max-input-tokens <n>', 'agent: input-token budget per question', '200000')
+    .option('--concurrency <n>', 'agent: questions run in parallel', '1')
+    .option('--no-baseline', 'agent: skip the bm25 baseline')
+    .option('--db <file>', 'index database file')
+    .option('--out <file>', 'write the full JSON report (per-question results) to this file')
+    .option('--json', 'print the full JSON report instead of the summary table')
+    .action(evalCommand)
   return program
 }
 

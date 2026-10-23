@@ -1,5 +1,5 @@
 import { execFile } from 'node:child_process'
-import { mkdtempSync, rmSync } from 'node:fs'
+import { mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { promisify } from 'node:util'
@@ -79,10 +79,66 @@ describe('cli', () => {
     expect(r.stderr).toContain('markindex index')
   })
 
-  it('eval is a placeholder', async () => {
-    const r = await tsx('eval')
-    expect(r.code).toBe(0)
-    expect(r.stdout).toContain('not implemented yet')
+  it('eval bm25 writes a report and prints the summary', async () => {
+    const dir = mkdtempSync(join(tmpdir(), 'markindex-evalq-'))
+    try {
+      const qfile = join(dir, 'q.jsonl')
+      const out = join(dir, 'report.json')
+      writeFileSync(
+        qfile,
+        [
+          { id: 'a', question: 'npm install acme', lang: 'en', gold: [{ doc_path: 'en-guide.md', start_line: 12, end_line: 16 }] },
+          { id: 'b', question: '系统要求', lang: 'zh', gold: [{ doc_path: 'zh-manual.md' }] },
+        ]
+          .map((x) => JSON.stringify(x))
+          .join('\n'),
+      )
+      const r = await tsx('eval', fixture.root, '--questions', qfile, '--mode', 'bm25', '--out', out)
+      expect(r.code).toBe(0)
+      expect(r.stdout).toMatch(/overall\s+2\s+2\s+100\.0%/)
+      expect(r.stdout).toMatch(/zh\s+1/)
+      const report = JSON.parse(readFileSync(out, 'utf8'))
+      expect(report.mode).toBe('bm25')
+      expect(report.summary.overall.hits).toBe(2)
+      expect(report.results).toHaveLength(2)
+    } finally {
+      rmSync(dir, { recursive: true, force: true })
+    }
+  })
+
+  it('eval rejects a malformed question file with line numbers', async () => {
+    const dir = mkdtempSync(join(tmpdir(), 'markindex-evalq-'))
+    try {
+      const qfile = join(dir, 'q.jsonl')
+      writeFileSync(qfile, `${JSON.stringify({ id: 'a', question: 'x', lang: 'en', gold: [{ doc_path: 'nope.md' }] })}\n{bad\n`)
+      const r = await tsx('eval', fixture.root, '--questions', qfile)
+      expect(r.code).toBe(1)
+      expect(r.stderr).toMatch(/q\.jsonl:2: invalid JSON/)
+      writeFileSync(qfile, JSON.stringify({ id: 'a', question: 'x', lang: 'en', gold: [{ doc_path: 'nope.md' }] }))
+      const g = await tsx('eval', fixture.root, '--questions', qfile)
+      expect(g.code).toBe(1)
+      expect(g.stderr).toMatch(/q\.jsonl:1: .*nope\.md.*not in the index/)
+    } finally {
+      rmSync(dir, { recursive: true, force: true })
+    }
+  })
+
+  it('eval agent mode needs --model; tools/retrieve are aliases of agent', async () => {
+    const dir = mkdtempSync(join(tmpdir(), 'markindex-evalq-'))
+    try {
+      const qfile = join(dir, 'q.jsonl')
+      writeFileSync(qfile, JSON.stringify({ id: 'a', question: 'x', lang: 'en', gold: [{ doc_path: 'en-guide.md' }] }))
+      for (const mode of ['agent', 'tools', 'retrieve']) {
+        const r = await tsx('eval', fixture.root, '--questions', qfile, '--mode', mode)
+        expect(r.code).toBe(1)
+        expect(r.stderr).toContain('--model')
+      }
+      const bad = await tsx('eval', fixture.root, '--questions', qfile, '--mode', 'vector')
+      expect(bad.code).toBe(1)
+      expect(bad.stderr).toMatch(/--mode/)
+    } finally {
+      rmSync(dir, { recursive: true, force: true })
+    }
   })
 })
 

@@ -29,6 +29,8 @@ export interface RetrieveOptions {
 export interface RetrieveResult {
   evidence: Evidence[]
   usage: { inputTokens: number; outputTokens: number }
+  /** Number of model steps (generateText round trips) taken. */
+  steps: number
   /** 'done': the model finished (selected evidence, or answered without selecting). */
   stopReason: 'done' | 'budget' | 'max_steps'
   /** Number of selected items dropped because the doc / node / range was invalid. */
@@ -147,6 +149,7 @@ export async function retrieve(lib: Library, question: string, opts: RetrieveOpt
       inputTokens: res.totalUsage.inputTokens ?? 0,
       outputTokens: res.totalUsage.outputTokens ?? 0,
     },
+    steps: res.steps.length,
     stopReason,
     dropped,
     selectedBy: useFallback ? 'fallback' : 'model',
