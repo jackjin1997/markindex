@@ -6,7 +6,7 @@ MarkIndex parses every Markdown file into a tree of its own sections, stores the
 mixed Chinese/English BM25 index in one SQLite file, and gives an agent five read-only tools to walk
 "library → folder → document → section" and read the original text with line numbers. No embeddings, no vector
 database, no chunking guesswork: the document's own structure is the index, and every piece of evidence can be
-cited back to `path:L<start>-<end>`.
+cited back as `[doc_path, L<start>-<end>]`.
 
 > Inspired by [VectifyAI/PageIndex](https://github.com/VectifyAI/PageIndex), MarkIndex is an independent,
 > unofficial TypeScript implementation focused on Markdown. It is not affiliated with or endorsed by VectifyAI.
@@ -32,13 +32,17 @@ cited back to `path:L<start>-<end>`.
 ## Install
 
 ```bash
-npm install markindex          # library + CLI (Node.js >= 20)
+npm install markindex          # library + CLI (Node.js >= 22.12)
 npx markindex --help
 ```
 
 Optional, only for LLM features (summaries, `retrieve()`, agent-mode evaluation): install the
 [AI SDK provider](https://ai-sdk.dev/providers) you want, e.g. `npm install @ai-sdk/anthropic`, and set its API key
-(`ANTHROPIC_API_KEY`, …).
+(`ANTHROPIC_API_KEY`, …). With `npx` and no local install, put the provider in the same temporary environment:
+
+```bash
+npx -p markindex -p @ai-sdk/anthropic markindex index ./docs --summary-model anthropic:claude-sonnet-5-5
+```
 
 ## CLI
 
@@ -67,11 +71,18 @@ markindex eval ./docs --questions questions.jsonl --mode agent --model anthropic
 
 `--summary-model` / `--model` take `<provider>:<model>`; MarkIndex imports `@ai-sdk/<provider>` dynamically, so
 only the provider you use needs to be installed. Every command accepts `--db <file>` to use a different index file.
+Put the index on a local disk: the writer lock uses hard links and SQLite runs in WAL mode, neither of which works
+reliably on exFAT, SMB / NFS shares or other network volumes. If the documents live there, keep them in place and
+point `--db` at a local path (e.g. `--db ~/.cache/markindex/docs.db`).
 
 Indexing is incremental: files are compared by content hash, only new or changed documents are rebuilt (one
 transaction per document), deleted files are removed, and summaries are cached by node content hash. Scanned files
-are `.md` and `.markdown` (not `.mdx`); `.gitignore` is respected and symlinks are not followed. One writer at a
-time (a second `index` fails fast); readers such as the MCP server are never blocked.
+are `.md` and `.markdown` (not `.mdx`). The ignore list is the library's own `.gitignore` files (at any level under
+the root; global git excludes and `.git/info/exclude` are not read); dot-directories such as `.git` and
+`.markindex` are skipped and symlinks are not followed. One writer at a time (a second `index` fails fast); readers
+such as the MCP server are never blocked. When the index was built by an older MarkIndex version or with different
+tree parameters, the next `index` run rebuilds every document (`full rebuild: …` in the output, `rebuilt` in the
+report); cached summaries are reused.
 
 ## Library usage
 
@@ -163,7 +174,21 @@ The server sends `AGENT_INSTRUCTIONS` as its MCP instructions and marks all tool
 
 All tools return `{ success: true, data, next_steps }` or `{ success: false, error, code, details, next_steps }` as a JSON string
 and never throw — unknown document paths come back with similar-name suggestions, stale node ids with a
-"re-fetch the structure" hint.
+"re-fetch the structure" hint. Arguments that do not match the schema (wrong type, unknown field, a string over
+1 024 characters) get an `INVALID_INPUT` envelope from `lib.callTool`; over MCP and the AI SDK, however, the
+transport validates arguments against the same schema before the tool runs, so there such errors come back as the
+transport's own error (an MCP tool error / an AI SDK invalid-tool-input error), not as the JSON envelope.
+
+## Security and trust
+
+- **Read-only, library-scoped.** The tools only read the index of the library you pointed them at; they never read
+  files outside it, never write, and never fetch URLs. Paths and node ids are looked up in the index, not on disk.
+- **Documents are untrusted input.** Tool output is raw document text, and LLM summaries / descriptions are
+  generated from it. A document can contain text written to steer an agent (prompt injection). Treat everything
+  the tools return as data, not instructions — especially when the library holds third-party or user-supplied
+  files, and when the agent also has tools that act (send, write, execute).
+- Summaries and `retrieve()` send document text to the model provider you configure; indexing alone makes no
+  network calls.
 
 ## Design notes
 
@@ -187,7 +212,8 @@ and never throw — unknown document paths come back with similar-name suggestio
 
 `markindex eval` measures whether retrieval lands on the right section: give it a library folder and a JSONL
 question file with gold locations (document path + line range, or a title path), and it reports hit rate, token
-cost and steps overall and per language, for the BM25 baseline and for the LLM agent. The question-file format,
+cost, steps and evidence size / precision overall and per language, for the BM25 baseline and for the LLM agent
+(`--max-evidence-lines <n>` additionally requires hits to be at most `n` lines long). The question-file format,
 the hit rule, the development corpus (329 public documents, ~38 M tokens, English filings and guidelines plus
 Chinese laws and encyclopedia articles), baseline results and scale benchmarks are in
 [eval/README.md](eval/README.md).
@@ -206,4 +232,5 @@ npx tsx eval/bench.ts          # scale benchmark
 ## License
 
 [MIT](LICENSE). PageIndex is also MIT-licensed; MarkIndex contains no PageIndex code, but ports its tree cost
-model and adapts its agent-tool descriptions and instructions, with thanks.
+model and adapts its agent-tool descriptions, instructions and prompts, with thanks — see
+[THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) for its copyright and license notice.

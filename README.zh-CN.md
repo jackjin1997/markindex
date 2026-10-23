@@ -4,7 +4,7 @@
 
 MarkIndex 把每篇 Markdown 按其自身章节解析成树，把树、原文行和中英混排 BM25 索引存进一个 SQLite 文件，
 再给 Agent 提供 5 个只读工具，沿"库 → 文件夹 → 文档 → 章节"逐层导航，并带行号读取原文。
-不用 embedding、不用向量库、不靠猜测切块；文档自身的结构就是索引，每条证据都能回溯到 `路径:L起-止`。
+不用 embedding、不用向量库、不靠猜测切块；文档自身的结构就是索引，每条证据都能以 `[doc_path, L起-止]` 的格式引用回原文。
 
 > 受 [VectifyAI/PageIndex](https://github.com/VectifyAI/PageIndex) 启发，MarkIndex 是一个独立、非官方的
 > TypeScript 实现，专注 Markdown；与 VectifyAI 无隶属或背书关系。
@@ -22,10 +22,15 @@ English: [README.md](README.md)
 ## 安装
 
 ```bash
-npm install markindex          # 库 + CLI（Node.js >= 20）
+npm install markindex          # 库 + CLI（Node.js >= 22.12）
 ```
 
 只有用到 LLM 功能（摘要、`retrieve()`、agent 模式评测）时才需要安装对应的 AI SDK provider，例如 `npm install @ai-sdk/anthropic`，并设置 `ANTHROPIC_API_KEY`。
+不在本地安装、直接用 `npx` 时，把 provider 放进同一个临时环境：
+
+```bash
+npx -p markindex -p @ai-sdk/anthropic markindex index ./docs --summary-model anthropic:claude-sonnet-5-5
+```
 
 ## CLI
 
@@ -38,6 +43,16 @@ markindex mcp ./docs                                                         # �
 markindex eval ./docs --questions questions.jsonl --mode bm25 --out report.json
 markindex eval ./docs --questions questions.jsonl --mode agent --model anthropic:claude-sonnet-5-5 --out report.json
 ```
+
+所有命令都接受 `--db <file>` 指定索引文件。索引请放在本地磁盘：写锁依赖硬链接，SQLite 使用 WAL 模式，二者在 exFAT、
+SMB / NFS 共享或其他网络卷上都不可靠；文档放在这类卷上时，文档原地不动，用 `--db` 指向本地路径
+（如 `--db ~/.cache/markindex/docs.db`）。
+
+索引是增量的：按内容哈希比较，只重建新增或改动的文档，删除的文件会被清理，摘要按节点内容哈希缓存。扫描 `.md` 与
+`.markdown`（不含 `.mdx`）；忽略列表就是文档库自身各级目录下的 `.gitignore` 文件（不读取全局 git excludes 与
+`.git/info/exclude`），跳过 `.git`、`.markindex` 等点目录，不跟随符号链接。同一时间只允许一个写进程（第二个 `index`
+立即失败），MCP server 等读取方不受阻塞。索引由旧版本 MarkIndex 或不同的建树参数生成时，下一次 `index` 会重建全部文档
+（输出 `full rebuild: …`，报告中带 `rebuilt`），已缓存的摘要会被复用。
 
 ## 库用法
 
@@ -77,6 +92,16 @@ const { evidence } = await retrieve(lib, '员工辞职需要提前多久通知�
 `get_document_structure`（不含正文的章节树，默认 2 层，可只展开某节点）、`get_node_content`（带行号原文，长节点分段）、
 `search_documents`（BM25 + trigram 兜底，可限定文件夹或文档）。
 
+工具从不抛异常，返回 `{ success, data | error, code, details, next_steps }` JSON 信封。参数不符合 schema（类型错误、未知字段、
+字符串超过 1 024 字符）时，`lib.callTool` 返回 `INVALID_INPUT` 信封；但经 MCP 与 AI SDK 调用时，传输层会先按同一 schema
+校验参数，此类错误以传输层自身的错误返回（MCP 工具错误 / AI SDK 的 invalid tool input 错误），而不是 JSON 信封。
+
+## 安全与信任
+
+- **只读、限定在文档库内**：工具只读取你指定的那个文档库的索引，从不读取库外文件、不写入、不访问网络；路径与节点 id 都在索引中查找，而不是直接访问磁盘。
+- **文档是不可信输入**：工具输出是文档原文，LLM 摘要 / 描述也由原文生成。文档中可能含有试图操纵 Agent 的文字（提示词注入）。请把工具返回的一切当作数据而非指令——尤其当文档库包含第三方或用户提交的文件，且 Agent 同时拥有发送、写入、执行等有副作用的工具时。
+- 摘要与 `retrieve()` 会把文档内容发送给你配置的模型服务商；单纯建索引不产生任何网络请求。
+
 ## 设计要点
 
 - 树优化移植 PageIndex `tree_optimize.py` 的成本模型（页 → token）：读整棵子树不比路由更贵就合并（`S(v) <= tree_cost(v)`，路由成本 150 token），被合并的标题保留为 `keyItems`；自身正文超过 8 000 token 的节点按块边界拆成 `chunk`。成本模型归功于 PageIndex。
@@ -92,9 +117,11 @@ const { evidence } = await retrieve(lib, '员工辞职需要提前多久通知�
 ```
 
 `gold` 中任一位置与返回证据的行区间有交集即算命中；没有行号时按 `title_path`（从顶层章节到答案节点的标题链）前缀匹配；
-只有 `doc_path` 时命中该文档任意位置即可。完整格式、命中规则、开发期语料、BM25 基线结果与规模基准见
+只有 `doc_path` 时命中该文档任意位置即可。报告还给出每题的证据规模（行数、近似 token）与精度（证据行落在 gold 行区间内的比例），
+并按语言汇总；`--max-evidence-lines <n>` 要求命中的证据条目不超过 `n` 行。完整格式、命中规则、开发期语料、BM25 基线结果与规模基准见
 [eval/README.md](eval/README.md)。
 
 ## 许可
 
-[MIT](LICENSE)。PageIndex 同为 MIT；MarkIndex 不含其代码，但移植了其树成本模型、改写了其 Agent 工具描述与指令，特此致谢。
+[MIT](LICENSE)。PageIndex 同为 MIT；MarkIndex 不含其代码，但移植了其树成本模型、改写了其 Agent 工具描述、指令与提示词，特此致谢；
+其版权与许可声明见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。
