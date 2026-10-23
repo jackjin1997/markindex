@@ -30,3 +30,6 @@ export {
 } from './tools/contract.js'
 export { splitByBudget, type Envelope, type ErrorCode, type NextSteps } from './tools/envelope.js'
 export { openLibrary, defaultDbFile, type Library, type OpenLibraryOptions } from './library.js'
+export { createAiSdkTools } from './adapters/ai-sdk.js'
+export { createMcpServer } from './adapters/mcp.js'
+export { resolveSummaryModel, ProviderError } from './llm/provider.js'
