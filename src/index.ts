@@ -9,6 +9,8 @@ export { openStore, StoreLockedError, type Store } from './store/db.js'
 export { scanLibrary, type ScanOptions, type ScannedFile } from './library/scan.js'
 export {
   indexLibrary,
+  indexFormat,
+  type IndexFormatOptions,
   type IndexEvent,
   type IndexOptions,
   type IndexReport,

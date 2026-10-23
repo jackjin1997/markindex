@@ -21,6 +21,7 @@ const err = (s: string) => process.stderr.write(`${s}\n`)
 const json = (v: unknown) => out(JSON.stringify(v, null, 2))
 
 function printReport(r: IndexReport) {
+  if (r.rebuilt) out(`full rebuild: ${r.rebuilt.reason}`)
   out(`added ${r.added.length}, updated ${r.updated.length}, removed ${r.removed.length}, unchanged ${r.unchanged.length}, skipped ${r.skipped.length}`)
   for (const s of r.skipped) out(`  skipped ${s.path}: ${s.reason}`)
   for (const s of r.summaryErrors) out(`  summary failed ${s.path}${s.nodeId ? ` [${s.nodeId}]` : ''}: ${s.message}`)

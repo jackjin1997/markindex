@@ -2,7 +2,9 @@ import { chmodSync, copyFileSync, mkdirSync, mkdtempSync, renameSync, rmSync, sy
 import { tmpdir } from 'node:os'
 import { dirname, join } from 'node:path'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { indexLibrary, type IndexEvent } from '../../src/library/indexer.js'
+import { INDEX_FORMAT_VERSION, MAX_NODE_TOKENS, ROUTING_COST_TOKENS } from '../../src/config.js'
+import { indexFormat, indexLibrary, type IndexEvent } from '../../src/library/indexer.js'
+import { approxTokens } from '../../src/text/tokens.js'
 import { scanLibrary } from '../../src/library/scan.js'
 import { openStore, type Store } from '../../src/store/db.js'
 import { searchNodes } from '../../src/store/search.js'
@@ -159,6 +161,62 @@ describe('indexLibrary', () => {
     })
     expect(spy).not.toHaveBeenCalled()
     expect(store.getDoc('en-guide.md')).toEqual(before)
+  })
+
+  describe('index format fingerprint', () => {
+    const all = ['en-guide.md', 'zh/headless.md', 'zh/manual.md']
+
+    it('stores the fingerprint; same parameters stay incremental', async () => {
+      seed()
+      const first = await indexLibrary({ root, store })
+      expect(first.rebuilt).toBeUndefined()
+      expect(store.getMeta('index_format')).toBe(indexFormat({}))
+      const again = await indexLibrary({ root, store, maxNodeTokens: MAX_NODE_TOKENS })
+      expect(again.rebuilt).toBeUndefined()
+      expect(again.unchanged).toEqual(all)
+    })
+
+    it.each([
+      ['maxNodeTokens', { maxNodeTokens: 500 }],
+      ['routingCost', { routingCost: 10 }],
+      ['a custom token counter', { countTokens: (t: string) => t.length }],
+      ['a named token counter', { countTokens: (t: string) => t.length, tokenCounterId: 'chars' }],
+    ])('changing %s re-indexes every document', async (_label, opts) => {
+      seed()
+      await indexLibrary({ root, store })
+      const spy = vi.spyOn(store, 'replaceDoc')
+      const r = await indexLibrary({ root, store, ...opts })
+      expect(r.rebuilt?.reason).toMatch(/index format changed/)
+      expect(r.updated).toEqual(all)
+      expect(r.unchanged).toEqual([])
+      expect(spy).toHaveBeenCalledTimes(3)
+      expect(store.getMeta('index_format')).toBe(indexFormat(opts))
+      const next = await indexLibrary({ root, store, ...opts })
+      expect(next.rebuilt).toBeUndefined()
+      expect(next.unchanged).toEqual(all)
+    })
+
+    it('a stale or missing stored format (older code) triggers a full rebuild', async () => {
+      seed()
+      await indexLibrary({ root, store })
+      store.setMeta('index_format', JSON.stringify({ version: 0 }))
+      expect((await indexLibrary({ root, store })).updated).toEqual(all)
+      store.db.prepare('DELETE FROM meta').run()
+      const r = await indexLibrary({ root, store })
+      expect(r.rebuilt?.reason).toMatch(/index format changed/)
+      expect(r.updated).toEqual(all)
+    })
+
+    it('the fingerprint includes INDEX_FORMAT_VERSION and the tree parameters', () => {
+      expect(JSON.parse(indexFormat({}))).toEqual({
+        version: INDEX_FORMAT_VERSION,
+        maxNodeTokens: MAX_NODE_TOKENS,
+        routingCost: ROUTING_COST_TOKENS,
+        tokens: 'approx',
+      })
+      expect(indexFormat({ countTokens: approxTokens })).toBe(indexFormat({}))
+      expect(indexFormat({ countTokens: (t) => t.length })).not.toBe(indexFormat({}))
+    })
   })
 
   it('incremental: modify / delete / rename', async () => {

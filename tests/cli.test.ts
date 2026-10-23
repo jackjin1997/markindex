@@ -7,6 +7,8 @@ import { Client } from '@modelcontextprotocol/sdk/client/index.js'
 import { StdioClientTransport } from '@modelcontextprotocol/sdk/client/stdio.js'
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 import { resolveSummaryModel, ProviderError } from '../src/llm/provider.js'
+import { defaultDbFile } from '../src/library.js'
+import { openStore } from '../src/store/db.js'
 import { indexedFixtureRoot } from './adapters/helpers.js'
 
 const exec = promisify(execFile)
@@ -42,6 +44,12 @@ describe('cli', () => {
       expect(res.stdout).toContain('en-guide.md')
       const js = await tsx('search', root, 'npm install', '--json')
       expect(JSON.parse(js.stdout)[0].docPath).toBe('en-guide.md')
+      const st = openStore(defaultDbFile(root))
+      st.setMeta('index_format', 'stale')
+      st.close()
+      const re = await tsx('index', root)
+      expect(re.stdout).toMatch(/^full rebuild: index format changed/m)
+      expect(re.stdout).toMatch(/unchanged 0/)
     } finally {
       rmSync(root, { recursive: true, force: true })
     }

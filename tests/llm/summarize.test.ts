@@ -105,6 +105,18 @@ async function indexed(content = doc()) {
 }
 
 describe('summarizeDocument', () => {
+  it('a format-change rebuild reuses node summaries from the content-hash cache', async () => {
+    put('a.md', doc())
+    await indexLibrary({ root, store, summary: { model: mockModel().model } })
+    store.setMeta('index_format', 'stale')
+    const m = mockModel()
+    const r = await indexLibrary({ root, store, summary: { model: m.model, describe: false } })
+    expect(r.rebuilt).toBeDefined()
+    expect(r.updated).toEqual(['a.md'])
+    expect(m.prompts).toEqual([])
+    expect(byTitle('a.md', 'Beta').summary).toBe('SUM[betatext]')
+  })
+
   it('short nodes use own text, no LLM call', async () => {
     await indexed()
     const m = mockModel()

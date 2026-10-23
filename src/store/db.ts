@@ -28,6 +28,9 @@ export interface Store {
   /** Summary cache keyed by sha256 of a node's own text. */
   getCachedSummary(contentHash: string): string | undefined
   putCachedSummary(contentHash: string, summary: string): void
+  /** Index-wide key/value settings (e.g. `index_format`). Undefined when unset or the store predates the table. */
+  getMeta(key: string): string | undefined
+  setMeta(key: string, value: string): void
   close(): void
 }
 
@@ -44,7 +47,7 @@ export class StoreLockedError extends Error {
   }
 }
 
-const SCHEMA_VERSION = 1
+const SCHEMA_VERSION = 2
 const LINE_CHUNK = 200
 
 const MIGRATIONS: Record<number, string> = {
@@ -85,6 +88,12 @@ const MIGRATIONS: Record<number, string> = {
     CREATE VIRTUAL TABLE fts_tri USING fts5(
       title, body, doc_path UNINDEXED, node_id UNINDEXED,
       tokenize = 'trigram'
+    );
+  `,
+  2: `
+    CREATE TABLE meta (
+      key TEXT PRIMARY KEY,
+      value TEXT NOT NULL
     );
   `,
 }
@@ -462,6 +471,16 @@ function createStore(db: DB, unlock: () => void): Store {
 
     putCachedSummary(contentHash, summary) {
       stmt('INSERT OR REPLACE INTO summaries (content_hash, summary) VALUES (?, ?)').run(contentHash, summary)
+    },
+
+    getMeta(key) {
+      // a read-only store opened on an index written before schema v2 has no meta table
+      if (!stmt("SELECT 1 FROM sqlite_master WHERE type = 'table' AND name = 'meta'").get()) return undefined
+      return (stmt('SELECT value FROM meta WHERE key = ?').get(key) as { value: string } | undefined)?.value
+    },
+
+    setMeta(key, value) {
+      stmt('INSERT OR REPLACE INTO meta (key, value) VALUES (?, ?)').run(key, value)
     },
 
     close() {

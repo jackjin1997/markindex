@@ -11,3 +11,8 @@ export const STRUCTURE_FIRST_TOKEN_THRESHOLD = 15_000
 export const SIMILAR_NAMES_LIMIT = 3
 /** Node titles longer than this many code points are cut and end with an ellipsis; the body keeps the full heading. */
 export const MAX_TITLE_CHARS = 300
+/**
+ * Bump whenever parsing, tree building or segmentation changes what gets stored, so existing indexes are rebuilt.
+ * 2: CR / CRLF / LF line endings, NFKC segmentation, capped heading titles.
+ */
+export const INDEX_FORMAT_VERSION = 2

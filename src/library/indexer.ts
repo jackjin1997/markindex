@@ -1,4 +1,5 @@
 import { createHash } from 'node:crypto'
+import { INDEX_FORMAT_VERSION, MAX_NODE_TOKENS, ROUTING_COST_TOKENS } from '../config.js'
 import { readFileSync } from 'node:fs'
 import { basename, extname } from 'node:path'
 import { parseMarkdown, type ParsedDoc } from '../parse/markdown.js'
@@ -27,6 +28,15 @@ export interface IndexOptions {
   store: Store
   /** Used for both buildTree and optimizeTree. Defaults to approxTokens. */
   countTokens?: TokenCounter
+  /**
+   * Names a custom `countTokens` in the index format fingerprint, so swapping one custom counter for another
+   * also triggers a rebuild. Without it every custom counter is recorded as `custom`.
+   */
+  tokenCounterId?: string
+  /** optimizeTree `maxNodeTokens` (default MAX_NODE_TOKENS). */
+  maxNodeTokens?: number
+  /** optimizeTree `routingCost` (default ROUTING_COST_TOKENS). */
+  routingCost?: number
   onProgress?: (e: IndexEvent) => void
   /** When set, every document (including unchanged ones, so earlier failures are retried) is summarized; omitted = no LLM calls at all. */
   summary?: SummaryOptions
@@ -44,6 +54,23 @@ export interface IndexReport {
    * `summarizeDocument` call.
    */
   summaryErrors: { path: string; nodeId: string | null; message: string }[]
+  /** Present when the stored index format differed from this run's, so every document was re-indexed. */
+  rebuilt?: { reason: string }
+}
+
+export type IndexFormatOptions = Pick<IndexOptions, 'countTokens' | 'tokenCounterId' | 'maxNodeTokens' | 'routingCost'>
+
+const FORMAT_KEY = 'index_format'
+
+/** Fingerprint of everything besides file content that shapes the stored trees (INDEX_FORMAT_VERSION + build parameters). */
+export function indexFormat(opts: IndexFormatOptions): string {
+  const custom = opts.countTokens !== undefined && opts.countTokens !== approxTokens
+  return JSON.stringify({
+    version: INDEX_FORMAT_VERSION,
+    maxNodeTokens: opts.maxNodeTokens ?? MAX_NODE_TOKENS,
+    routingCost: opts.routingCost ?? ROUTING_COST_TOKENS,
+    tokens: custom ? `custom${opts.tokenCounterId === undefined ? '' : `:${opts.tokenCounterId}`}` : 'approx',
+  })
 }
 
 const utf8 = new TextDecoder('utf-8', { fatal: true })
@@ -54,11 +81,21 @@ const utf8 = new TextDecoder('utf-8', { fatal: true })
  * A file that cannot be read, decoded or indexed is reported in `skipped`; any previous version of it is
  * dropped so the index never serves content that no longer matches the disk. An unreadable subdirectory is
  * reported in `skipped` (path with trailing `/`) and the documents previously indexed under it are kept.
+ * When the stored index format (see `indexFormat`) differs from this run's, every document is re-indexed
+ * (summaries are reused through the content-hash cache) and the report carries `rebuilt`.
  */
 export async function indexLibrary(opts: IndexOptions): Promise<IndexReport> {
   const { store } = opts
   const countTokens = opts.countTokens ?? approxTokens
   const report: IndexReport = { added: [], updated: [], removed: [], unchanged: [], skipped: [], summaryErrors: [] }
+  const format = indexFormat(opts)
+  const storedFormat = store.getMeta(FORMAT_KEY)
+  const rebuild = storedFormat !== format && store.allDocPaths().length > 0
+  if (rebuild) {
+    report.rebuilt = {
+      reason: `index format changed (stored ${storedFormat ?? 'none'}, now ${format}): re-indexing every document`,
+    }
+  }
   const unreadableDirs: string[] = []
   const files = scanLibrary(opts.root, {
     onError: (dir, error) => {
@@ -87,7 +124,7 @@ export async function indexLibrary(opts: IndexOptions): Promise<IndexReport> {
     try {
       const bytes = readFileSync(file.abs)
       const hash = createHash('sha256').update(bytes).digest('hex')
-      if (existing?.contentHash === hash) {
+      if (!rebuild && existing?.contentHash === hash) {
         report.unchanged.push(file.path)
         emit(file.path, 'unchanged')
         await summarize(file.path) // enables summaries on an existing index and retries earlier failures (cache-assisted)
@@ -101,7 +138,11 @@ export async function indexLibrary(opts: IndexOptions): Promise<IndexReport> {
       }
       const doc = parseMarkdown(src)
       const title = docTitle(doc, file.path)
-      const tree = optimizeTree(buildTree(doc, { fileTitle: title, countTokens }), doc, { countTokens })
+      const tree = optimizeTree(buildTree(doc, { fileTitle: title, countTokens }), doc, {
+        countTokens,
+        maxNodeTokens: opts.maxNodeTokens,
+        routingCost: opts.routingCost,
+      })
       const record: DocumentRecord = {
         docId: '',
         path: file.path,
@@ -147,6 +188,8 @@ export async function indexLibrary(opts: IndexOptions): Promise<IndexReport> {
     report.removed.push(path)
     emit(path, 'removed')
   }
+  // Written last: an interrupted rebuild keeps the old fingerprint and is redone in full next time.
+  if (storedFormat !== format) store.setMeta(FORMAT_KEY, format)
   return report
 }
 

@@ -154,6 +154,21 @@ describe('store', () => {
     expect(s.db.pragma('user_version', { simple: true })).toBeGreaterThan(0)
   })
 
+  it('meta key/value round-trips; a pre-v2 read-only store reports no meta', () => {
+    const file = join(dir, 'meta.db')
+    const s = open(file)
+    expect(s.getMeta('index_format')).toBeUndefined()
+    s.setMeta('index_format', 'x')
+    s.setMeta('index_format', 'y')
+    expect(s.getMeta('index_format')).toBe('y')
+    s.db.exec('DROP TABLE meta')
+    s.db.pragma('user_version = 1')
+    s.close()
+    const ro = openStore(file, { readonly: true })
+    expect(ro.getMeta('index_format')).toBeUndefined()
+    ro.close()
+  })
+
   it('creates the parent directory', () => {
     const file = join(dir, 'nested', 'deeper', 'lib.db')
     open(file)
