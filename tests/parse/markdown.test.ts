@@ -77,6 +77,17 @@ describe('parseMarkdown', () => {
     expect(doc.lines).toEqual(['# A', 'x', '# B'])
   })
 
+  it('lone CR and CR CR LF are line endings, matching mdast line numbers', () => {
+    const crcrlf = parseMarkdown('para one\r\r\n# A\r\r\nbody of A\r\r\n# B\r\r\nbody of B')
+    expect(crcrlf.headings.map((h) => [h.title, h.line])).toEqual([['A', 3], ['B', 7]])
+    expect(crcrlf.lines[2]).toBe('# A')
+    expect(crcrlf.lines[6]).toBe('# B')
+    expect(crcrlf.lines).toHaveLength(9)
+    const cr = parseMarkdown('# A\rx\r# B\ry')
+    expect(cr.headings.map((h) => [h.title, h.line])).toEqual([['A', 1], ['B', 3]])
+    expect(cr.lines).toEqual(['# A', 'x', '# B', 'y'])
+  })
+
   it('exposes top-level non-heading blocks with line ranges', () => {
     const src = ['---', 'a: 1', '---', '# H', '', 'para', '', '```js', 'x', '```', '', '| a | b |', '| - | - |', '| 1 | 2 |'].join('\n')
     expect(parseMarkdown(src).blocks).toEqual([

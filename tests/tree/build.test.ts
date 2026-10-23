@@ -11,6 +11,16 @@ const build = (src: string, fileTitle = 'doc') => {
 }
 const fixture = (name: string) => readFileSync(join(FIX, name), 'utf8')
 
+/** Every heading section's own text starts (after leading blanks) with its heading line. */
+function assertHeadingsAlign(doc: ReturnType<typeof parseMarkdown>, roots: ReturnType<typeof buildTree>): void {
+  for (const { node } of walk(roots)) {
+    if (node.kind !== 'section' || node.level === 0) continue
+    const own = doc.lines.slice(node.startLine - 1, node.ownEndLine)
+    const head = own.find((l) => l.trim() !== '')
+    expect(head, `node "${node.title}" own text ${node.startLine}-${node.ownEndLine}`).toContain(node.title)
+  }
+}
+
 describe('buildTree', () => {
   it('preface node for text before first heading', () => {
     const { roots } = build('Intro text\n\n# A\n\nbody\n')
@@ -80,7 +90,9 @@ describe('buildTree', () => {
     expect(files.length).toBeGreaterThanOrEqual(6)
     for (const f of files) {
       const doc = parseMarkdown(fixture(f))
-      expect(() => assertCoverage(doc, buildTree(doc, { fileTitle: f }))).not.toThrow()
+      const roots = buildTree(doc, { fileTitle: f })
+      expect(() => assertCoverage(doc, roots)).not.toThrow()
+      assertHeadingsAlign(doc, roots)
     }
   })
 
@@ -150,5 +162,23 @@ describe('buildTree', () => {
     const { doc, roots } = build(fixture('crlf.md'))
     expect(roots[0]!.children[0]!.title).toBe('Sub')
     assertCoverage(doc, roots)
+  })
+
+  it('lone CR and CR CR LF files: sections hold their own text', () => {
+    for (const src of [
+      'para one\r\r\n# A\r\r\nbody of A\r\r\n# B\r\r\nbody of B',
+      'para one\r# A\rbody of A\r## A2\ra2\r# B\rbody of B\r',
+    ]) {
+      const { doc, roots } = build(src)
+      assertCoverage(doc, roots)
+      assertHeadingsAlign(doc, roots)
+      for (const { node } of walk(roots)) {
+        const own = doc.lines.slice(node.startLine - 1, node.ownEndLine).join('\n')
+        if (node.title === 'A') expect(own).not.toContain('# B')
+        expect(node.startLine).toBeLessThanOrEqual(node.ownEndLine)
+      }
+      const b = [...walk(roots)].find((e) => e.node.title === 'B')!.node
+      expect(doc.lines[b.startLine - 1]).toBe('# B')
+    }
   })
 })

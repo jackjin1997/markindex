@@ -22,7 +22,7 @@ export interface Block {
 }
 
 export interface ParsedDoc {
-  /** BOM stripped, split on /\r?\n/ */
+  /** BOM stripped, split on \r\n, \r or \n (the same line endings mdast counts) */
   lines: string[]
   frontmatter?: { startLine: number; endLine: number; data: Record<string, unknown> }
   /** direct children of the mdast root only */
@@ -37,7 +37,7 @@ const FM: ('yaml' | 'toml')[] = ['yaml', 'toml']
 
 export function parseMarkdown(src: string): ParsedDoc {
   const text = src.charCodeAt(0) === 0xfeff ? src.slice(1) : src
-  const lines = text.split(/\r?\n/)
+  const lines = text.split(/\r\n|\r|\n/)
   const root = fromMarkdown(text, {
     extensions: [gfm(), frontmatter(FM)],
     mdastExtensions: [gfmFromMarkdown(), frontmatterFromMarkdown(FM)],
