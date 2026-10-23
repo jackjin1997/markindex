@@ -1,4 +1,5 @@
-import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
+import { existsSync, mkdtempSync, readdirSync, readFileSync, rmSync, utimesSync, writeFileSync } from 'node:fs'
+import { execFile } from 'node:child_process'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { afterEach, beforeEach, describe, expect, it } from 'vitest'
@@ -182,10 +183,50 @@ describe('store lock', () => {
     open(file)
   })
 
-  it('takes over a stale lock', () => {
+  it('takes over a dead-pid lock and leaves no temp files', () => {
     const file = join(dir, 'lib.db')
     writeFileSync(`${file}.lock`, '2147483646\n') // no such pid
     open(file)
     expect(readFileSync(`${file}.lock`, 'utf8').trim()).toBe(String(process.pid))
+    expect(readdirSync(dir).filter((f) => f.startsWith('lib.db.lock'))).toEqual(['lib.db.lock'])
+  })
+
+  it('an empty lock with a fresh mtime is treated as held', () => {
+    const file = join(dir, 'lib.db')
+    writeFileSync(`${file}.lock`, '')
+    expect(() => openStore(file)).toThrow(StoreLockedError)
+    expect(readFileSync(`${file}.lock`, 'utf8')).toBe('')
+  })
+
+  it('an empty lock with an old mtime is taken over', () => {
+    const file = join(dir, 'lib.db')
+    writeFileSync(`${file}.lock`, '')
+    const old = new Date(Date.now() - 60_000)
+    utimesSync(`${file}.lock`, old, old)
+    open(file)
+    expect(readFileSync(`${file}.lock`, 'utf8').trim()).toBe(String(process.pid))
+  })
+
+  it('concurrent writers racing a dead-pid lock: exactly one wins', async () => {
+    const file = join(dir, 'lib.db')
+    openStore(file).close() // create schema up front so children only race for the lock
+    writeFileSync(`${file}.lock`, '2147483646\n')
+    const child = join(import.meta.dirname, 'helpers', 'lock-child.ts')
+    const run = () =>
+      new Promise<string>((resolve, reject) => {
+        execFile(process.execPath, ['--import', 'tsx', child, file], (err, stdout) =>
+          err ? reject(err) : resolve(stdout),
+        )
+      })
+    const results = await Promise.all(Array.from({ length: 6 }, run))
+    expect(results.filter((r) => r === 'acquired')).toHaveLength(1)
+    expect(results.filter((r) => r === 'locked')).toHaveLength(5)
+  }, 30_000)
+
+  it('releases the lock when the database cannot be opened', () => {
+    const file = join(dir, 'lib.db')
+    writeFileSync(file, 'this is not a sqlite database, just enough bytes to fail the header check'.repeat(10))
+    expect(() => openStore(file)).toThrow()
+    expect(existsSync(`${file}.lock`)).toBe(false)
   })
 })

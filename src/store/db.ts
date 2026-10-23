@@ -1,8 +1,7 @@
-import { createHash } from 'node:crypto'
-import { closeSync, mkdirSync, openSync, readFileSync, unlinkSync, writeSync } from 'node:fs'
+import { createHash, randomBytes } from 'node:crypto'
+import { linkSync, mkdirSync, readFileSync, renameSync, rmSync, statSync, unlinkSync, writeFileSync } from 'node:fs'
 import { dirname } from 'node:path'
 import Database from 'better-sqlite3'
-import { walk } from '../tree/build.js'
 import { segmentForIndex } from '../text/segment.js'
 import type { DocumentRecord, TreeNode } from '../types.js'
 
@@ -103,37 +102,90 @@ function pidAlive(pid: number): boolean {
   }
 }
 
+/** An empty / unparsable lock younger than this is assumed to be held (its writer may be mid-takeover). */
+const UNREADABLE_LOCK_GRACE_MS = 10_000
+const MAX_LOCK_ATTEMPTS = 5
+
+const uniqueSuffix = () => `${process.pid}.${randomBytes(6).toString('hex')}`
+
+function parsePid(content: string): number | undefined {
+  const t = content.trim()
+  if (!/^\d+$/.test(t)) return undefined
+  const n = Number(t)
+  return Number.isSafeInteger(n) && n > 0 ? n : undefined
+}
+
+/** Atomically creates `lockFile` with our pid: the lock never exists without its content. */
+function tryLink(lockFile: string): boolean {
+  const tmp = `${lockFile}.${uniqueSuffix()}.tmp`
+  writeFileSync(tmp, `${process.pid}\n`)
+  try {
+    linkSync(tmp, lockFile)
+    return true
+  } catch (e) {
+    if ((e as NodeJS.ErrnoException).code === 'EEXIST') return false
+    throw e
+  } finally {
+    rmSync(tmp, { force: true })
+  }
+}
+
+function holdLock(lockFile: string): void {
+  heldLocks.add(lockFile)
+  if (!exitHookInstalled) {
+    exitHookInstalled = true
+    process.on('exit', () => {
+      for (const f of [...heldLocks]) releaseLock(f)
+    })
+  }
+}
+
 function acquireLock(lockFile: string): void {
-  for (let attempt = 0; attempt < 2; attempt++) {
-    try {
-      const fd = openSync(lockFile, 'wx')
-      writeSync(fd, `${process.pid}\n`)
-      closeSync(fd)
-      heldLocks.add(lockFile)
-      if (!exitHookInstalled) {
-        exitHookInstalled = true
-        process.on('exit', () => {
-          for (const f of [...heldLocks]) releaseLock(f)
-        })
-      }
+  for (let attempt = 0; attempt < MAX_LOCK_ATTEMPTS; attempt++) {
+    if (tryLink(lockFile)) {
+      holdLock(lockFile)
       return
+    }
+    let content: string
+    let mtimeMs: number
+    try {
+      content = readFileSync(lockFile, 'utf8')
+      mtimeMs = statSync(lockFile).mtimeMs
     } catch (e) {
-      if ((e as NodeJS.ErrnoException).code !== 'EEXIST') throw e
+      if ((e as NodeJS.ErrnoException).code === 'ENOENT') continue // released meanwhile: retry
+      throw e
     }
-    let pid: number | undefined
+    const pid = parsePid(content)
+    if (pid === undefined) {
+      if (Date.now() - mtimeMs < UNREADABLE_LOCK_GRACE_MS) throw new StoreLockedError(lockFile, undefined)
+    } else if (pidAlive(pid)) {
+      throw new StoreLockedError(lockFile, pid)
+    }
+    // Stale: move it aside atomically, then confirm we moved the lock we judged (not a fresh one).
+    const aside = `${lockFile}.stale.${uniqueSuffix()}`
     try {
-      const n = Number.parseInt(readFileSync(lockFile, 'utf8').trim(), 10)
-      pid = Number.isInteger(n) && n > 0 ? n : undefined
-    } catch {
-      continue // removed between open and read: retry
+      renameSync(lockFile, aside)
+    } catch (e) {
+      if ((e as NodeJS.ErrnoException).code === 'ENOENT') continue // someone else took it over
+      throw e
     }
-    if (pid !== undefined && pidAlive(pid)) throw new StoreLockedError(lockFile, pid)
-    // stale (dead pid or unreadable content): take over
+    let movedContent: string | undefined
     try {
-      unlinkSync(lockFile)
+      movedContent = readFileSync(aside, 'utf8')
     } catch {
-      // another process took it over first; the retry decides
+      movedContent = undefined
     }
+    if (movedContent !== content) {
+      // We displaced a lock created after our read: put it back (unless a newer one exists) and back off.
+      try {
+        linkSync(aside, lockFile)
+      } catch {
+        // a newer lock is already in place
+      }
+      rmSync(aside, { force: true })
+      throw new StoreLockedError(lockFile, movedContent === undefined ? undefined : parsePid(movedContent))
+    }
+    rmSync(aside, { force: true })
   }
   throw new StoreLockedError(lockFile, undefined)
 }
@@ -149,8 +201,8 @@ function migrate(db: DB): void {
 }
 
 /**
- * Opens (creating if needed) a store file. Write mode takes an exclusive `${file}.lock` (O_EXCL, holds the pid);
- * a lock whose pid is no longer alive is taken over. Read-only opens take no lock and never block on a writer (WAL).
+ * Opens (creating if needed) a store file. Write mode takes an exclusive `${file}.lock` holding the pid, created
+ * atomically (temp file + link). A lock whose pid is dead, or an empty / unparsable lock older than 10 s, is taken over. Read-only opens take no lock and never block on a writer (WAL).
  */
 export function openStore(file: string, opts: { readonly?: boolean } = {}): Store {
   if (opts.readonly) {
@@ -160,14 +212,18 @@ export function openStore(file: string, opts: { readonly?: boolean } = {}): Stor
   mkdirSync(dirname(file), { recursive: true })
   const lockFile = `${file}.lock`
   acquireLock(lockFile)
-  let db: DB
+  let db: DB | undefined
   try {
     db = new Database(file)
     db.pragma('journal_mode = WAL')
     db.pragma('synchronous = NORMAL')
     migrate(db)
   } catch (e) {
-    releaseLock(lockFile)
+    try {
+      db?.close()
+    } finally {
+      releaseLock(lockFile)
+    }
     throw e
   }
   return createStore(db, () => releaseLock(lockFile))

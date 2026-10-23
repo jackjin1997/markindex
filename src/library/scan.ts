@@ -1,4 +1,4 @@
-import { readdirSync, readFileSync } from 'node:fs'
+import { type Dirent, readdirSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import ignore, { type Ignore } from 'ignore'
 
@@ -12,6 +12,11 @@ const EXTENSIONS = ['.md', '.markdown']
 /** Holds the index database. */
 const STORE_DIR = '.markindex'
 
+export interface ScanOptions {
+  /** Called for a subdirectory that cannot be read (e.g. EACCES); it is skipped and the scan continues. */
+  onError?: (path: string, error: Error) => void
+}
+
 interface Rules {
   /** posix path of the directory the .gitignore lives in ('' = root) */
   base: string
@@ -21,9 +26,10 @@ interface Rules {
 /**
  * Lists `.md` / `.markdown` files under `root` (spec §6), sorted by path.
  * Skips `.mdx`, symbolic links (files and directories), dot-directories (`.git`, `.markindex`, ...)
- * and anything matched by `.gitignore` files at any level.
+ * and anything matched by `.gitignore` files at any level. An unreadable root throws; an unreadable
+ * subdirectory is skipped and reported through `opts.onError` with its posix path plus a trailing `/`.
  */
-export function scanLibrary(root: string): ScannedFile[] {
+export function scanLibrary(root: string, opts: ScanOptions = {}): ScannedFile[] {
   const out: ScannedFile[] = []
 
   const ignored = (rel: string, isDir: boolean, rules: Rules[]) =>
@@ -34,13 +40,21 @@ export function scanLibrary(root: string): ScannedFile[] {
 
   const visit = (dirRel: string, inherited: Rules[]) => {
     const abs = dirRel === '' ? root : join(root, dirRel)
+    let entries: Dirent[]
+    try {
+      entries = readdirSync(abs, { withFileTypes: true })
+    } catch (e) {
+      if (dirRel === '') throw e
+      opts.onError?.(`${dirRel}/`, e as Error)
+      return
+    }
     const rules = [...inherited]
     try {
       rules.push({ base: dirRel, ig: ignore().add(readFileSync(join(abs, '.gitignore'), 'utf8')) })
     } catch {
       // no .gitignore here
     }
-    for (const entry of readdirSync(abs, { withFileTypes: true })) {
+    for (const entry of entries) {
       if (entry.isSymbolicLink()) continue
       const rel = dirRel === '' ? entry.name : `${dirRel}/${entry.name}`
       if (entry.isDirectory()) {

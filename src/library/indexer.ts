@@ -43,13 +43,20 @@ const utf8 = new TextDecoder('utf-8', { fatal: true })
  * Incrementally indexes the Markdown files under `root` (spec §6): unchanged content hashes are skipped,
  * new / changed files are rebuilt one transaction per document, and documents missing on disk are deleted.
  * A file that cannot be read, decoded or indexed is reported in `skipped`; any previous version of it is
- * dropped so the index never serves content that no longer matches the disk.
+ * dropped so the index never serves content that no longer matches the disk. An unreadable subdirectory is
+ * reported in `skipped` (path with trailing `/`) and the documents previously indexed under it are kept.
  */
 export async function indexLibrary(opts: IndexOptions): Promise<IndexReport> {
   const { store } = opts
   const countTokens = opts.countTokens ?? approxTokens
   const report: IndexReport = { added: [], updated: [], removed: [], unchanged: [], skipped: [] }
-  const files = scanLibrary(opts.root)
+  const unreadableDirs: string[] = []
+  const files = scanLibrary(opts.root, {
+    onError: (dir, error) => {
+      unreadableDirs.push(dir)
+      report.skipped.push({ path: dir, reason: `directory not readable: ${error.message}` })
+    },
+  })
   const total = files.length
   let done = 0
   const emit = (path: string, status: IndexStatus, reason?: string) =>
@@ -90,8 +97,14 @@ export async function indexLibrary(opts: IndexOptions): Promise<IndexReport> {
       report[status].push(file.path)
       emit(file.path, status)
     } catch (e) {
-      const reason = e instanceof Error ? e.message : String(e)
-      if (existing) store.deleteDoc(file.path)
+      let reason = errorMessage(e)
+      if (existing) {
+        try {
+          store.deleteDoc(file.path)
+        } catch (e2) {
+          reason += `; previous version could not be removed: ${errorMessage(e2)}`
+        }
+      }
       report.skipped.push({ path: file.path, reason })
       emit(file.path, 'skipped', reason)
     }
@@ -100,12 +113,23 @@ export async function indexLibrary(opts: IndexOptions): Promise<IndexReport> {
   const onDisk = new Set(files.map((f) => f.path))
   for (const path of store.allDocPaths()) {
     if (onDisk.has(path)) continue
-    store.deleteDoc(path)
+    // Contents of an unreadable directory are unknown: keep their previous versions.
+    if (unreadableDirs.some((dir) => path.startsWith(dir))) continue
+    try {
+      store.deleteDoc(path)
+    } catch (e) {
+      const reason = `could not remove deleted document: ${errorMessage(e)}`
+      report.skipped.push({ path, reason })
+      emit(path, 'skipped', reason)
+      continue
+    }
     report.removed.push(path)
     emit(path, 'removed')
   }
   return report
 }
+
+const errorMessage = (e: unknown) => (e instanceof Error ? e.message : String(e))
 
 /** frontmatter `title` > first h1 > file name without extension. */
 function docTitle(doc: ParsedDoc, path: string): string {

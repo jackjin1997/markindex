@@ -1,4 +1,4 @@
-import { copyFileSync, mkdirSync, mkdtempSync, renameSync, rmSync, symlinkSync, unlinkSync, writeFileSync } from 'node:fs'
+import { chmodSync, copyFileSync, mkdirSync, mkdtempSync, renameSync, rmSync, symlinkSync, unlinkSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { dirname, join } from 'node:path'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
@@ -56,7 +56,46 @@ describe('scanLibrary', () => {
   })
 })
 
+const isRoot = process.getuid?.() === 0
+
 describe('indexLibrary', () => {
+  it.skipIf(isRoot)('skips an unreadable subdirectory, reports it, and keeps its old documents', async () => {
+    put('a.md', '# A\n')
+    put('locked/b.md', '# B\n')
+    await indexLibrary({ root, store })
+    const locked = join(root, 'locked')
+    chmodSync(locked, 0o000)
+    try {
+      put('c.md', '# C\n')
+      const r = await indexLibrary({ root, store })
+      expect(r.added).toEqual(['c.md'])
+      expect(r.removed).toEqual([])
+      expect(r.skipped).toHaveLength(1)
+      expect(r.skipped[0]!.path).toBe('locked/')
+      expect(r.skipped[0]!.reason).toMatch(/not readable.*EACCES/)
+      expect(store.getDoc('locked/b.md')).toBeDefined()
+    } finally {
+      chmodSync(locked, 0o755)
+    }
+  })
+
+  it('a failing deleteDoc is reported in skipped instead of rejecting', async () => {
+    put('a.md', '# A\n')
+    put('gone.md', '# G\n')
+    await indexLibrary({ root, store })
+    put('a.md', Buffer.from([0xff, 0xfe]))
+    unlinkSync(join(root, 'gone.md'))
+    vi.spyOn(store, 'deleteDoc').mockImplementation(() => {
+      throw new Error('disk I/O error')
+    })
+    const r = await indexLibrary({ root, store })
+    expect(r.removed).toEqual([])
+    expect(r.skipped).toEqual([
+      { path: 'a.md', reason: expect.stringMatching(/utf-8.*previous version could not be removed: disk I\/O error/) },
+      { path: 'gone.md', reason: expect.stringContaining('disk I/O error') },
+    ])
+  })
+
   const seed = () => {
     copyFileSync(join(FIX, 'en-guide.md'), join(root, 'en-guide.md'))
     mkdirSync(join(root, 'zh'))
