@@ -6,7 +6,7 @@
 
 **Architecture:** 确定性流水线 parse(mdast) → build tree → optimize（token 成本模型）→ 可选 LLM 摘要 → SQLite（树 + 原文 + FTS5）。一份 zod 工具契约，库函数、AI SDK `tool()`、MCP server、`retrieve()` 都只消费它。
 
-**Tech Stack:** TypeScript 5（ESM，`"module": "nodenext"`），Node ≥ 20，vitest，`mdast-util-from-markdown@2` + `micromark-extension-gfm@3` + `mdast-util-gfm` + `micromark-extension-frontmatter` + `mdast-util-frontmatter@2` + `yaml`，`better-sqlite3@13`，`zod@4`，`ai@7`（测试用 `ai/test` 的 `MockLanguageModelV4`），`@modelcontextprotocol/sdk@1.32`（`McpServer.registerTool`），`ignore`（.gitignore），`commander`（CLI）。
+**Tech Stack:** TypeScript 5（ESM，`"module": "nodenext"`），Node ≥ 22.12，vitest，`mdast-util-from-markdown@2` + `micromark-extension-gfm@3` + `mdast-util-gfm` + `micromark-extension-frontmatter` + `mdast-util-frontmatter@2` + `yaml`，`better-sqlite3@13`，`zod@4`，`ai@7`（测试用 `ai/test` 的 `MockLanguageModelV4`），`@modelcontextprotocol/sdk@1.32`（`McpServer.registerTool`），`ignore`（.gitignore），`commander`（CLI）。
 
 **Spec:** `docs/superpowers/specs/2026-10-23-markindex-design.md`（下称"spec"，§ 编号指它）。PageIndex 参考源码：`git clone https://github.com/VectifyAI/PageIndex` 于 `b3422f9`。
 
@@ -78,7 +78,7 @@ tests/                   与 src 同构的 *.test.ts，fixtures/ 放 MD 样例
   - `src/types.ts` 中 spec §5.2 的 `TreeNode`、`DocumentRecord`（字段名逐字照抄 spec），外加 `NodeKind = 'preface'|'section'|'chunk'`
   - `src/config.ts`：`RESPONSE_CHAR_BUDGET = 95_000`、`DEFAULT_STRUCTURE_DEPTH = 2`、`SUMMARY_TOKEN_THRESHOLD = 200`（PageIndex `--summary-token-threshold` 默认）、`MAX_NODE_TOKENS = 8_000`、`ROUTING_COST_TOKENS = 150`、`STRUCTURE_FIRST_TOKEN_THRESHOLD = 15_000`（PageIndex 20 页 × ~750 token 的换算，待 Task 12 标定）、`SIMILAR_NAMES_LIMIT = 3`
 
-- [ ] **Step 1:** `npm init`，安装 Tech Stack 中依赖与 `typescript vitest @types/node @types/better-sqlite3 tsx`；`package.json` 设 `"type":"module"`、`"engines":{"node":">=20"}`、`"bin":{"markindex":"dist/cli.js"}`、scripts `build`/`test`/`typecheck`。
+- [ ] **Step 1:** `npm init`，安装 Tech Stack 中依赖与 `typescript vitest @types/node @types/better-sqlite3 tsx`；`package.json` 设 `"type":"module"`、`"engines":{"node":">=22.12"}`、`"bin":{"markindex":"dist/cli.js"}`、scripts `build`/`test`/`typecheck`。
 - [ ] **Step 2: 写失败测试** `tests/text/tokens.test.ts`
 ```ts
 expect(approxTokens('')).toBe(0)

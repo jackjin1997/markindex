@@ -5,23 +5,33 @@
   "license": "MIT",
   "type": "module",
   "engines": {
-    "node": ">=20"
+    "node": ">=22.12"
   },
   "bin": {
     "markindex": "dist/cli.js"
   },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
   "files": [
-    "dist"
+    "dist",
+    "THIRD_PARTY_NOTICES.md"
   ],
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
     "test": "vitest run",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "rm -rf dist && npm run build && npm test"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "1.32",
+    "@modelcontextprotocol/sdk": "^1.32.0",
+    "@types/better-sqlite3": "^9.6.0",
     "ai": "^7.0.150",
     "better-sqlite3": "^13.0.3",
     "commander": "^15.0.0",
@@ -36,7 +46,6 @@
     "zod": "^4.6.7"
   },
   "devDependencies": {
-    "@types/better-sqlite3": "^9.6.0",
     "@types/node": "^26.6.5",
     "@types/turndown": "^5.0.6",
     "tsx": "^4.23.15",

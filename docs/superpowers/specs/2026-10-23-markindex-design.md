@@ -47,7 +47,7 @@
 
 ## 3. 约束
 
-- 语言：TypeScript，ESM，发布为 npm 包；运行时 Node.js ≥ 20（Bun/Deno 不作为本期验收目标）。
+- 语言：TypeScript，ESM，发布为 npm 包；运行时 Node.js ≥ 22.12（运行时依赖 better-sqlite3@13、commander@15、ai@7 要求 Node ≥ 22；Node 20 已于 2026-04-30 EOL；Bun/Deno 不作为本期验收目标）。
 - 已验证（本机 Node 24.5）：`Intl.Segmenter('zh', {granularity:'word'})` 可正确切分中英混排（"劳动 | 合同 | 解除""React | Server | Components""v2.1"保持完整）；SQLite 3.50 的 FTS5 支持 `unicode61`、`trigram` 分词器与 `bm25()`。
 - LLM 只用于：节点摘要、文档描述、内置 `retrieve()`。三者都可关闭；关闭后建树、工具模式、关键词检索全部可用。
 
