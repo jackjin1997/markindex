@@ -68,6 +68,18 @@ describe('optimizeTree', () => {
     assertTokens(doc, out)
   })
 
+  it('keeps children when S <= maxNodeTokens but S > tree_cost (cost clause alone)', () => {
+    const src = `# P\n\nshort intro\n\n## C1\n\n${words(3000)}\n\n## C2\n\n${words(3000)}\n`
+    const { doc, roots } = prepare(src)
+    const s = roots[0]!.tokens
+    expect(s).toBeLessThanOrEqual(8000)
+    expect(s).toBeGreaterThan(150 + 3000)
+    const out = optimizeTree(roots, doc)
+    expect(out[0]!.children.map((c) => c.title)).toEqual(['C1', 'C2'])
+    expect(out[0]!.keyItems).toBeUndefined()
+    assertCoverage(doc, out)
+  })
+
   it('never merges into a node larger than maxNodeTokens', () => {
     // S = ~8050 <= tree_cost = 150 + 8000, but merging would create an oversized node.
     const src = `# P\n${words(40)}\n## C\n${words(7990)}\n`
@@ -90,7 +102,7 @@ describe('optimizeTree', () => {
       expect(c.nodeId).toBe(`${root.nodeId}-c${i + 1}`)
       expect(c.level).toBe(root.level + 1)
       expect(c.title).toMatch(/^Paragraph \d+ lorem/)
-      expect(c.title.length).toBeLessThanOrEqual(60)
+      expect([...c.title].length).toBeLessThanOrEqual(60)
     })
     expect(root.tokens).toBe(roots[0]!.tokens)
     assertCoverage(doc, out)
@@ -179,7 +191,7 @@ describe('optimizeTree', () => {
     const out = optimizeTree(roots, doc, { maxNodeTokens: 100 })
     const c = out[0]!.children[0]!
     expect(c.title.startsWith('Note 1: see the docs and code lorem')).toBe(true)
-    expect(c.title.length).toBeLessThanOrEqual(60)
+    expect([...c.title].length).toBeLessThanOrEqual(60)
   })
 
   it('does not mutate its input', () => {
