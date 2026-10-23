@@ -101,7 +101,7 @@ export function buildOutline(tree: TreeNode[], maxChars = OUTLINE_MAX_CHARS): st
   const walk = (nodes: TreeNode[], depth: number): boolean => {
     for (const n of nodes) {
       const s = (n.summary ?? n.prefixSummary ?? '').replace(/\s+/g, ' ').trim()
-      const line = `${'  '.repeat(depth)}- ${n.title}${s ? `: ${s.slice(0, OUTLINE_SUMMARY_CHARS)}` : ''}`
+      const line = `${'  '.repeat(depth)}- ${n.title}${s ? `: ${Array.from(s).slice(0, OUTLINE_SUMMARY_CHARS).join('')}` : ''}`
       if (size + line.length + 1 > maxChars) return false
       lines.push(line)
       size += line.length + 1
@@ -180,9 +180,16 @@ export async function summarizeDocument(store: Store, docPath: string, opts: Sum
     }
   })
 
-  if (updates.length > 0) store.updateNodeSummaries(docPath, updates)
+  if (updates.length > 0) {
+    try {
+      store.updateNodeSummaries(docPath, updates)
+    } catch (e) {
+      result.failures.push({ nodeId: null, message: `could not save summaries: ${errorMessage(e)}` })
+    }
+  }
 
-  if (opts.describe !== false && doc.description === undefined) {
+  // No description from an incomplete outline: it would never be regenerated once stored.
+  if (opts.describe !== false && doc.description === undefined && result.failures.length === 0) {
     try {
       const description = await ask(docDescriptionPrompt(buildOutline(store.getTree(docPath)!)))
       store.setDocDescription(docPath, description)

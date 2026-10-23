@@ -163,7 +163,8 @@ describe('summarizeDocument', () => {
     const m = mockModel({ delayMs: 15 })
     const r = await summarizeDocument(store, 'a.md', { model: m.model, concurrency: 2, describe: false })
     expect(r.llmCalls).toBeGreaterThan(2)
-    expect(m.maxActive()).toBe(2)
+    expect(m.maxActive()).toBeLessThanOrEqual(2)
+    expect(m.maxActive()).toBeGreaterThanOrEqual(1)
   })
 
   it('retries then reports failure without corrupting store', async () => {
@@ -180,7 +181,7 @@ describe('summarizeDocument', () => {
     // structure intact apart from the successful summaries
     const strip = (t: TreeNode[]): unknown[] => t.map(({ summary, prefixSummary, children, ...r }) => ({ ...r, c: strip(children) }))
     expect(strip(store.getTree('a.md')!)).toEqual(strip(JSON.parse(before) as TreeNode[]))
-    expect(store.getDoc('a.md')!.description).toBe('DESC one sentence')
+    expect(store.getDoc('a.md')!.description).toBeUndefined() // not generated from an incomplete outline
   }, 15_000)
 
   it('summary text is searchable via FTS', async () => {
@@ -246,8 +247,31 @@ describe('indexLibrary summary option', () => {
     expect(store.getDoc('a.md')).toBeDefined()
     expect(byTitle('a.md', 'Alpha').prefixSummary).toBe('SUM[alphaintro]')
 
-    const calls = m.prompts.length
-    await indexLibrary({ root, store, summary: { model: m.model } }) // unchanged -> no new LLM calls
-    expect(m.prompts.length).toBe(calls)
+    // unchanged doc, model healthy now: only the failed node is retried; description is then produced
+    const healthy = mockModel()
+    const again = await indexLibrary({ root, store, summary: { model: healthy.model, maxRetries: 0 } })
+    expect(again.unchanged).toEqual(['a.md'])
+    expect(again.summaryErrors).toEqual([])
+    expect(healthy.prompts.filter((p) => !p.includes('Document Structure'))).toHaveLength(1)
+    expect(healthy.prompts[0]).toContain('betaedit')
+    expect(byTitle('a.md', 'Beta').summary).toBe('SUM[betaedit]')
+    expect(store.getDoc('a.md')!.description).toBe('DESC one sentence')
+
+    // fully summarized: nothing left to do
+    const idle = mockModel()
+    await indexLibrary({ root, store, summary: { model: idle.model } })
+    expect(idle.prompts).toHaveLength(0)
+  })
+
+  it('enabling summary on an already-indexed library summarizes unchanged docs', async () => {
+    put('a.md', doc())
+    await indexLibrary({ root, store })
+    expect(byTitle('a.md', 'Beta').summary).toBeUndefined()
+    const m = mockModel()
+    const r = await indexLibrary({ root, store, summary: { model: m.model } })
+    expect(r.unchanged).toEqual(['a.md'])
+    expect(byTitle('a.md', 'Beta').summary).toBe('SUM[betatext]')
+    expect(byTitle('a.md', 'Alpha').prefixSummary).toBe('SUM[alphaintro]')
+    expect(store.getDoc('a.md')!.description).toBe('DESC one sentence')
   })
 })

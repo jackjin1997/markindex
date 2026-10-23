@@ -28,7 +28,7 @@ export interface IndexOptions {
   /** Used for both buildTree and optimizeTree. Defaults to approxTokens. */
   countTokens?: TokenCounter
   onProgress?: (e: IndexEvent) => void
-  /** When set, (re)indexed documents are summarized afterwards; omitted = no LLM calls at all. */
+  /** When set, every document (including unchanged ones, so earlier failures are retried) is summarized; omitted = no LLM calls at all. */
   summary?: SummaryOptions
 }
 
@@ -71,6 +71,16 @@ export async function indexLibrary(opts: IndexOptions): Promise<IndexReport> {
   const emit = (path: string, status: IndexStatus, reason?: string) =>
     opts.onProgress?.(reason === undefined ? { path, status, done, total } : { path, status, reason, done, total })
 
+  const summarize = async (path: string) => {
+    if (!opts.summary) return
+    try {
+      const res = await summarizeDocument(store, path, opts.summary)
+      for (const f of res.failures) report.summaryErrors.push({ path, ...f })
+    } catch (e) {
+      report.summaryErrors.push({ path, nodeId: null, message: errorMessage(e) })
+    }
+  }
+
   for (const file of files) {
     done++
     const existing = store.getDoc(file.path)
@@ -80,6 +90,7 @@ export async function indexLibrary(opts: IndexOptions): Promise<IndexReport> {
       if (existing?.contentHash === hash) {
         report.unchanged.push(file.path)
         emit(file.path, 'unchanged')
+        await summarize(file.path) // enables summaries on an existing index and retries earlier failures (cache-assisted)
         continue
       }
       let src: string
@@ -105,14 +116,7 @@ export async function indexLibrary(opts: IndexOptions): Promise<IndexReport> {
       const status = existing ? 'updated' : 'added'
       report[status].push(file.path)
       emit(file.path, status)
-      if (opts.summary) {
-        try {
-          const res = await summarizeDocument(store, file.path, opts.summary)
-          for (const f of res.failures) report.summaryErrors.push({ path: file.path, ...f })
-        } catch (e) {
-          report.summaryErrors.push({ path: file.path, nodeId: null, message: errorMessage(e) })
-        }
-      }
+      await summarize(file.path)
     } catch (e) {
       let reason = errorMessage(e)
       if (existing) {
