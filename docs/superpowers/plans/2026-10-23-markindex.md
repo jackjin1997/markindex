@@ -1,4 +1,4 @@
-# mdindex Implementation Plan
+# markindex Implementation Plan
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
@@ -8,7 +8,7 @@
 
 **Tech Stack:** TypeScript 5（ESM，`"module": "nodenext"`），Node ≥ 20，vitest，`mdast-util-from-markdown@2` + `micromark-extension-gfm@3` + `mdast-util-gfm` + `micromark-extension-frontmatter` + `mdast-util-frontmatter@2` + `yaml`，`better-sqlite3@13`，`zod@4`，`ai@7`（测试用 `ai/test` 的 `MockLanguageModelV4`），`@modelcontextprotocol/sdk@1.32`（`McpServer.registerTool`），`ignore`（.gitignore），`commander`（CLI）。
 
-**Spec:** `docs/superpowers/specs/2026-10-23-mdindex-design.md`（下称"spec"，§ 编号指它）。PageIndex 参考源码：`git clone https://github.com/VectifyAI/PageIndex` 于 `b3422f9`。
+**Spec:** `docs/superpowers/specs/2026-10-23-markindex-design.md`（下称"spec"，§ 编号指它）。PageIndex 参考源码：`git clone https://github.com/VectifyAI/PageIndex` 于 `b3422f9`。
 
 ## Global Constraints
 
@@ -78,7 +78,7 @@ tests/                   与 src 同构的 *.test.ts，fixtures/ 放 MD 样例
   - `src/types.ts` 中 spec §5.2 的 `TreeNode`、`DocumentRecord`（字段名逐字照抄 spec），外加 `NodeKind = 'preface'|'section'|'chunk'`
   - `src/config.ts`：`RESPONSE_CHAR_BUDGET = 95_000`、`DEFAULT_STRUCTURE_DEPTH = 2`、`SUMMARY_TOKEN_THRESHOLD = 200`（PageIndex `--summary-token-threshold` 默认）、`MAX_NODE_TOKENS = 8_000`、`ROUTING_COST_TOKENS = 150`、`STRUCTURE_FIRST_TOKEN_THRESHOLD = 15_000`（PageIndex 20 页 × ~750 token 的换算，待 Task 12 标定）、`SIMILAR_NAMES_LIMIT = 3`
 
-- [ ] **Step 1:** `npm init`，安装 Tech Stack 中依赖与 `typescript vitest @types/node @types/better-sqlite3 tsx`；`package.json` 设 `"type":"module"`、`"engines":{"node":">=20"}`、`"bin":{"mdindex":"dist/cli.js"}`、scripts `build`/`test`/`typecheck`。
+- [ ] **Step 1:** `npm init`，安装 Tech Stack 中依赖与 `typescript vitest @types/node @types/better-sqlite3 tsx`；`package.json` 设 `"type":"module"`、`"engines":{"node":">=20"}`、`"bin":{"markindex":"dist/cli.js"}`、scripts `build`/`test`/`typecheck`。
 - [ ] **Step 2: 写失败测试** `tests/text/tokens.test.ts`
 ```ts
 expect(approxTokens('')).toBe(0)
@@ -303,7 +303,7 @@ type Envelope = { success: true; data: unknown; next_steps?: unknown } | { succe
 const TOOL_CONTRACT: Record<ToolName, { description: string; input: z.ZodObject<any> }>
 type ToolName = 'browse_documents'|'get_document'|'get_document_structure'|'get_node_content'|'search_documents'
 interface Library { store: Store; root: string; callTool(name: ToolName, args: unknown): Promise<string>; close(): void }
-openLibrary(opts: { root: string; dbFile?: string /* 默认 `${root}/.mdindex/index.db` */; readonly?: boolean }): Library
+openLibrary(opts: { root: string; dbFile?: string /* 默认 `${root}/.markindex/index.db` */; readonly?: boolean }): Library
 splitByBudget<T>(items: T[], budget: number): T[][]   // 移植 PageIndex _split_structure / _split_oversized_node
 AGENT_INSTRUCTIONS: string                             // 移植 PageIndex agent_tools.py 的 _DISCOVERY/_DECISION/_PERSISTENCE/_TOOL_USAGE_RULES，页 → 节点/行区间，去掉云端专属内容
 ```
@@ -335,15 +335,15 @@ AGENT_INSTRUCTIONS: string                             // 移植 PageIndex agent
 - Consumes: `Library`、`TOOL_CONTRACT`、`AGENT_INSTRUCTIONS`
 - Produces:
   - `createAiSdkTools(lib: Library): Record<ToolName, Tool>` —— 每个 `tool({ description, inputSchema: contract.input, execute: args => lib.callTool(name, args) })`
-  - `createMcpServer(lib: Library): McpServer` —— `new McpServer({name:'mdindex', version}, {instructions: AGENT_INSTRUCTIONS})`，每个工具 `registerTool(name, {description, inputSchema: contract.input.shape, annotations:{readOnlyHint:true}}, ...)`，结果为 `{content:[{type:'text', text}], isError: !success}`
-  - CLI（commander）：`mdindex index <root> [--db] [--summary-model <provider:model>] [--estimate]`、`mdindex tree <root> <doc> [--depth]`、`mdindex search <root> <query>`、`mdindex mcp <root> [--reindex-on-start]`（stdio）、`mdindex eval ...`（Task 12 填充）。`--summary-model` 只支持已安装的 `@ai-sdk/*` provider，动态 import，缺失时给出安装提示。
+  - `createMcpServer(lib: Library): McpServer` —— `new McpServer({name:'markindex', version}, {instructions: AGENT_INSTRUCTIONS})`，每个工具 `registerTool(name, {description, inputSchema: contract.input.shape, annotations:{readOnlyHint:true}}, ...)`，结果为 `{content:[{type:'text', text}], isError: !success}`
+  - CLI（commander）：`markindex index <root> [--db] [--summary-model <provider:model>] [--estimate]`、`markindex tree <root> <doc> [--depth]`、`markindex search <root> <query>`、`markindex mcp <root> [--reindex-on-start]`（stdio）、`markindex eval ...`（Task 12 填充）。`--summary-model` 只支持已安装的 `@ai-sdk/*` provider，动态 import，缺失时给出安装提示。
 
 - [ ] **Step 1: 写失败测试**
   - `ai-sdk tools execute via generateText`：`MockLanguageModelV4` 第一步发起 `search_documents` 调用、第二步结束 → `steps[0].toolResults[0].output` 为成功信封
   - `mcp lists five tools and calls one`：用 SDK 的 `InMemoryTransport` 连 `Client` → `listTools` 5 个；`callTool('browse_documents')` 返回文本信封
   - `cli index then search`：用 `tsx src/cli.ts` 对 fixture 目录执行 → 退出码 0，输出含命中路径
 - [ ] **Step 2:** FAIL。 **Step 3:** 实现。 **Step 4:** PASS。
-- [ ] **Step 5:** 手动验收：`claude mcp add mdindex -- node dist/cli.js mcp <fixture-root>`，在 Claude Code 中跑一次跨文档检索，记录结果到 PR 描述。
+- [ ] **Step 5:** 手动验收：`claude mcp add markindex -- node dist/cli.js mcp <fixture-root>`，在 Claude Code 中跑一次跨文档检索，记录结果到 PR 描述。
 - [ ] **Step 6:** `git commit -m "feat: ai-sdk tools, mcp server and cli"`
 
 ### Task 11: 内置 retrieve()
@@ -375,7 +375,7 @@ retrieve(lib: Library, question: string, opts: { model: LanguageModel; maxSteps?
 **Interfaces:**
 - Produces:
   - 问题文件格式（JSONL，每行）：`{ "id": string, "question": string, "lang": "zh"|"en"|"mixed", "gold": [{ "doc_path": string, "title_path"?: string[], "start_line"?: number, "end_line"?: number }] }`。命中判定：返回证据与任一 gold 的行区间有交集（无行号时按 `title_path` 前缀匹配）。
-  - `mdindex eval <root> --questions q.jsonl --mode tools|retrieve|bm25 --model <provider:model> --out report.json`：输出每题命中、token、步数，以及汇总（hit@证据、平均 token、按 lang 分组）。`bm25` 模式 = `searchNodes` top-5 作基线。
+  - `markindex eval <root> --questions q.jsonl --mode tools|retrieve|bm25 --model <provider:model> --out report.json`：输出每题命中、token、步数，以及汇总（hit@证据、平均 token、按 lang 分组）。`bm25` 模式 = `searchNodes` top-5 作基线。
 
 语料（下载到 `eval/corpus/`，加入 `.gitignore`，不提交）：
 

@@ -1,6 +1,8 @@
-# mdindex 设计文档
+# MarkIndex 设计文档
 
-> 日期：2026-10-23 · 状态：用户已同意按此推进，最终以用户内部验收为准 · 名称 `mdindex` 为暂定名（Claude 的选择，可改）
+> 日期：2026-10-23 · 状态：用户已同意按此推进，最终以用户内部验收为准 · 名称 **MarkIndex**（用户选定；npm 包名 `markindex`，CLI `markindex`）
+>
+> 开源：MIT 许可（与 PageIndex 相同）。README 明确致敬并链接 VectifyAI/PageIndex，说明是独立实现、非官方项目，不使用其商标作为产品名。
 
 ## 1. 意图
 
