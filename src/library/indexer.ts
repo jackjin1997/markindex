@@ -7,6 +7,7 @@ import { approxTokens, type TokenCounter } from '../text/tokens.js'
 import { buildTree } from '../tree/build.js'
 import { optimizeTree } from '../tree/optimize.js'
 import type { DocumentRecord } from '../types.js'
+import { summarizeDocument, type SummaryOptions } from '../llm/summarize.js'
 import { scanLibrary } from './scan.js'
 
 export type IndexStatus = 'added' | 'updated' | 'unchanged' | 'removed' | 'skipped'
@@ -27,6 +28,8 @@ export interface IndexOptions {
   /** Used for both buildTree and optimizeTree. Defaults to approxTokens. */
   countTokens?: TokenCounter
   onProgress?: (e: IndexEvent) => void
+  /** When set, (re)indexed documents are summarized afterwards; omitted = no LLM calls at all. */
+  summary?: SummaryOptions
 }
 
 export interface IndexReport {
@@ -35,6 +38,12 @@ export interface IndexReport {
   removed: string[]
   unchanged: string[]
   skipped: { path: string; reason: string }[]
+  /**
+   * Only with `summary`: documents whose summarization failed (in whole or in part). The document itself stays
+   * indexed and searchable; whatever succeeded was saved, the rest is retried (cache-assisted) on the next
+   * `summarizeDocument` call.
+   */
+  summaryErrors: { path: string; nodeId: string | null; message: string }[]
 }
 
 const utf8 = new TextDecoder('utf-8', { fatal: true })
@@ -49,7 +58,7 @@ const utf8 = new TextDecoder('utf-8', { fatal: true })
 export async function indexLibrary(opts: IndexOptions): Promise<IndexReport> {
   const { store } = opts
   const countTokens = opts.countTokens ?? approxTokens
-  const report: IndexReport = { added: [], updated: [], removed: [], unchanged: [], skipped: [] }
+  const report: IndexReport = { added: [], updated: [], removed: [], unchanged: [], skipped: [], summaryErrors: [] }
   const unreadableDirs: string[] = []
   const files = scanLibrary(opts.root, {
     onError: (dir, error) => {
@@ -96,6 +105,14 @@ export async function indexLibrary(opts: IndexOptions): Promise<IndexReport> {
       const status = existing ? 'updated' : 'added'
       report[status].push(file.path)
       emit(file.path, status)
+      if (opts.summary) {
+        try {
+          const res = await summarizeDocument(store, file.path, opts.summary)
+          for (const f of res.failures) report.summaryErrors.push({ path: file.path, ...f })
+        } catch (e) {
+          report.summaryErrors.push({ path: file.path, nodeId: null, message: errorMessage(e) })
+        }
+      }
     } catch (e) {
       let reason = errorMessage(e)
       if (existing) {

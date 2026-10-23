@@ -145,6 +145,7 @@ describe('indexLibrary', () => {
       removed: [],
       unchanged: ['en-guide.md', 'zh/headless.md', 'zh/manual.md'],
       skipped: [],
+      summaryErrors: [],
     })
     expect(spy).not.toHaveBeenCalled()
     expect(store.getDoc('en-guide.md')).toEqual(before)
@@ -165,6 +166,7 @@ describe('indexLibrary', () => {
       removed: ['zh/headless.md', 'zh/manual.md'],
       unchanged: [],
       skipped: [],
+      summaryErrors: [],
     })
     expect(store.allDocPaths()).toEqual(['en-guide.md', 'new.md', 'zh/manual-v2.md'])
     expect(store.getDoc('en-guide.md')!.title).toBe('Rewritten')

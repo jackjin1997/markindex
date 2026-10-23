@@ -19,6 +19,15 @@ export interface Store {
   /** Replaces every row of `doc.path` (docs, nodes, lines, FTS) in a single transaction. */
   replaceDoc(doc: DocumentRecord, tree: TreeNode[], lines: string[]): void
   deleteDoc(path: string): void
+  /**
+   * Writes summaries into the stored node JSON and the `summary` FTS column (segmented; fts_tri is untouched),
+   * in one transaction. Throws (and changes nothing) if a node id does not exist in `docPath`.
+   */
+  updateNodeSummaries(docPath: string, updates: { nodeId: string; summary?: string; prefixSummary?: string }[]): void
+  setDocDescription(docPath: string, description: string): void
+  /** Summary cache keyed by sha256 of a node's own text. */
+  getCachedSummary(contentHash: string): string | undefined
+  putCachedSummary(contentHash: string, summary: string): void
   close(): void
 }
 
@@ -334,6 +343,30 @@ function createStore(db: DB, unlock: () => void): Store {
     insertNodes(tree, null)
   })
 
+  const updateSummariesTx = db.transaction(
+    (docPath: string, updates: { nodeId: string; summary?: string; prefixSummary?: string }[]) => {
+      for (const u of updates) {
+        const row = stmt('SELECT json, fts_rowid FROM nodes WHERE doc_path = ? AND node_id = ?').get(
+          docPath,
+          u.nodeId,
+        ) as { json: string; fts_rowid: number } | undefined
+        if (!row) throw new Error(`node ${u.nodeId} not found in ${docPath}`)
+        const node = JSON.parse(row.json) as Omit<TreeNode, 'children'>
+        if (u.summary !== undefined) node.summary = u.summary
+        if (u.prefixSummary !== undefined) node.prefixSummary = u.prefixSummary
+        stmt('UPDATE nodes SET json = ? WHERE doc_path = ? AND node_id = ?').run(
+          JSON.stringify(node),
+          docPath,
+          u.nodeId,
+        )
+        stmt('UPDATE fts_words SET summary = ? WHERE rowid = ?').run(
+          segmentForIndex(node.summary ?? node.prefixSummary ?? ''),
+          row.fts_rowid,
+        )
+      }
+    },
+  )
+
   const deleteTx = db.transaction((path: string) => deleteRows(path))
 
   const getDoc = (path: string) => {
@@ -411,6 +444,24 @@ function createStore(db: DB, unlock: () => void): Store {
 
     deleteDoc(path) {
       deleteTx(path)
+    },
+
+    updateNodeSummaries(docPath, updates) {
+      updateSummariesTx(docPath, updates)
+    },
+
+    setDocDescription(docPath, description) {
+      stmt('UPDATE docs SET description = ? WHERE path = ?').run(description, docPath)
+    },
+
+    getCachedSummary(contentHash) {
+      return (stmt('SELECT summary FROM summaries WHERE content_hash = ?').get(contentHash) as
+        | { summary: string }
+        | undefined)?.summary
+    },
+
+    putCachedSummary(contentHash, summary) {
+      stmt('INSERT OR REPLACE INTO summaries (content_hash, summary) VALUES (?, ?)').run(contentHash, summary)
     },
 
     close() {

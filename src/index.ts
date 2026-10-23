@@ -15,3 +15,10 @@ export {
   type IndexStatus,
 } from './library/indexer.js'
 export { searchNodes, type SearchHit, type SearchOptions } from './store/search.js'
+export {
+  summarizeDocument,
+  estimateSummaryCost,
+  type SummaryOptions,
+  type SummarizeResult,
+  type SummaryFailure,
+} from './llm/summarize.js'
