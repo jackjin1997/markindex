@@ -181,4 +181,20 @@ describe('buildTree', () => {
       expect(doc.lines[b.startLine - 1]).toBe('# B')
     }
   })
+
+  it('caps a 2000-char setext heading title at 300 code points; body keeps the full text', () => {
+    const long = '长'.repeat(1000) + 'x'.repeat(1000)
+    const { doc, roots } = build(`${long}\n===\n\nbody\n`)
+    const title = roots[0]!.title
+    expect([...title]).toHaveLength(300)
+    expect(title.endsWith('…')).toBe(true)
+    expect(title.startsWith('长'.repeat(299))).toBe(true)
+    expect(doc.lines[0]).toBe(long)
+    assertCoverage(doc, roots)
+  })
+
+  it('titles up to 300 code points are kept verbatim', () => {
+    const t = '😀'.repeat(300)
+    expect(build(`# ${t}\n`).roots[0]!.title).toBe(t)
+  })
 })

@@ -5,8 +5,10 @@ import { frontmatter } from 'micromark-extension-frontmatter'
 import { frontmatterFromMarkdown } from 'mdast-util-frontmatter'
 import { toString } from 'mdast-util-to-string'
 import { parse as parseYaml } from 'yaml'
+import { MAX_TITLE_CHARS } from '../config.js'
 
 export interface Heading {
+  /** plain heading text, capped at MAX_TITLE_CHARS code points */
   title: string
   level: number
   /** 1-based, original file line */
@@ -57,12 +59,17 @@ export function parseMarkdown(src: string): ParsedDoc {
         doc.firstContentLine = endLine + 1
       }
     } else if (node.type === 'heading') {
-      doc.headings.push({ title: toString(node).trim(), level: node.depth, line: startLine, endLine })
+      doc.headings.push({ title: capTitle(toString(node).trim()), level: node.depth, line: startLine, endLine })
     } else {
       doc.blocks.push({ type: node.type, startLine, endLine })
     }
   }
   return doc
+}
+
+function capTitle(title: string): string {
+  const cps = Array.from(title)
+  return cps.length <= MAX_TITLE_CHARS ? title : cps.slice(0, MAX_TITLE_CHARS - 1).join('') + '…'
 }
 
 function parseFrontmatter(kind: 'yaml' | 'toml', value: string): Record<string, unknown> {

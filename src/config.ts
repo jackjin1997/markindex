@@ -9,3 +9,5 @@ export const ROUTING_COST_TOKENS = 150
 export const STRUCTURE_FIRST_TOKEN_THRESHOLD = 15_000
 /** PageIndex `_SIMILAR_NAMES_LIMIT`. */
 export const SIMILAR_NAMES_LIMIT = 3
+/** Node titles longer than this many code points are cut and end with an ellipsis; the body keeps the full heading. */
+export const MAX_TITLE_CHARS = 300
