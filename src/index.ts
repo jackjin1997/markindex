@@ -22,3 +22,11 @@ export {
   type SummarizeResult,
   type SummaryFailure,
 } from './llm/summarize.js'
+export {
+  TOOL_CONTRACT,
+  AGENT_INSTRUCTIONS,
+  type ToolName,
+  type ToolInput,
+} from './tools/contract.js'
+export { splitByBudget, type Envelope, type ErrorCode, type NextSteps } from './tools/envelope.js'
+export { openLibrary, defaultDbFile, type Library, type OpenLibraryOptions } from './library.js'

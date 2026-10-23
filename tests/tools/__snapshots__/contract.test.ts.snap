@@ -1,0 +1,195 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`TOOL_CONTRACT > contract snapshot 1`] = `
+{
+  "browse_documents": {
+    "description": "Primary discovery tool for the Markdown library. The bare call lists the library root: its sub-folders and the documents directly inside it (path, title, description, tokens). Pass \`folder\` to drill into a sub-folder level by level, and \`offset: next_offset\` to page through long listings. Browse first — do NOT jump to \`search_documents()\`: keyword search is an escalation path for when browsing and reading document structures have failed to locate the answer.",
+    "input": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": false,
+      "properties": {
+        "folder": {
+          "default": "",
+          "description": "Folder to list (default "", the library root). Library-relative folder path, copied verbatim from a \`folders\` entry of a browse_documents() response ("" = library root). Never construct one.",
+          "type": "string",
+        },
+        "limit": {
+          "default": 10,
+          "description": "Number of documents to return per page (1-50, default 10).",
+          "maximum": 50,
+          "minimum": 1,
+          "type": "integer",
+        },
+        "offset": {
+          "default": 0,
+          "description": "Zero-based pagination offset. Pass the value of \`next_offset\` from the previous response to fetch the next page.",
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "type": "integer",
+        },
+      },
+      "type": "object",
+    },
+  },
+  "get_document": {
+    "description": "Get one document's metadata: title, description, frontmatter, size (lines, tokens) and \`read_structure_first\` (true for documents over 15000 tokens). Use it to decide how to read the document: small documents can be read directly from their top-level nodes, large ones need \`get_document_structure()\` first.",
+    "input": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": false,
+      "properties": {
+        "doc_path": {
+          "description": "Library-relative path of the document, copied verbatim from a browse_documents() or search_documents() result (case-sensitive, include the extension). Example: "guides/setup.md". Never construct one.",
+          "minLength": 1,
+          "type": "string",
+        },
+      },
+      "required": [
+        "doc_path",
+      ],
+      "type": "object",
+    },
+  },
+  "get_document_structure": {
+    "description": "Get a document's section outline — node_id, title, line range, tokens, summary — without body text. REQUIRED for documents over 15000 tokens: call this first to locate the relevant sections, then read them with \`get_node_content()\`. Returns \`depth\` levels (default 2); nodes below the cut show \`child_count\` — pass their \`node_id\` to expand that subtree. Large outlines are split into parts: increment \`part\` until \`pagination.has_more\` is false.",
+    "input": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": false,
+      "properties": {
+        "depth": {
+          "default": 2,
+          "description": "Number of outline levels to return (1-10, default 2). Deeper nodes are summarized by \`child_count\`.",
+          "maximum": 10,
+          "minimum": 1,
+          "type": "integer",
+        },
+        "doc_path": {
+          "description": "Library-relative path of the document, copied verbatim from a browse_documents() or search_documents() result (case-sensitive, include the extension). Example: "guides/setup.md". Never construct one.",
+          "minLength": 1,
+          "type": "string",
+        },
+        "node_id": {
+          "description": "Expand only the subtree of this node (depth counts from it). Copy it verbatim from a get_document_structure() or search_documents() result; omit for the whole document.",
+          "minLength": 1,
+          "type": "string",
+        },
+        "part": {
+          "default": 1,
+          "description": "Part number for pagination (1-based, default 1). Increment until the response's \`pagination.has_more\` becomes false.",
+          "maximum": 9007199254740991,
+          "minimum": 1,
+          "type": "integer",
+        },
+      },
+      "required": [
+        "doc_path",
+      ],
+      "type": "object",
+    },
+  },
+  "get_node_content": {
+    "description": "Read the original Markdown of one or more nodes, every line prefixed with its line number in the file ("123│ "). Reading a node returns its whole line range INCLUDING all of its subsections, so prefer the most specific (leaf) nodes for precision and read a parent only when you need the entire section. Copy each \`node_id\` verbatim from \`get_document_structure()\` or \`search_documents()\`; never construct one. Long content is split into parts: increment \`part\` until \`pagination.has_more\` is false. Cite what you use as [doc_path, L<start>-<end>] with the line numbers shown.",
+    "input": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": false,
+      "properties": {
+        "doc_path": {
+          "description": "Library-relative path of the document, copied verbatim from a browse_documents() or search_documents() result (case-sensitive, include the extension). Example: "guides/setup.md". Never construct one.",
+          "minLength": 1,
+          "type": "string",
+        },
+        "node_ids": {
+          "description": "Ids of the nodes to read (1-20), each copied verbatim from a get_document_structure() or search_documents() result. Never construct one.",
+          "items": {
+            "minLength": 1,
+            "type": "string",
+          },
+          "maxItems": 20,
+          "minItems": 1,
+          "type": "array",
+        },
+        "part": {
+          "default": 1,
+          "description": "Part number for pagination (1-based, default 1). Increment until the response's \`pagination.has_more\` becomes false.",
+          "maximum": 9007199254740991,
+          "minimum": 1,
+          "type": "integer",
+        },
+      },
+      "required": [
+        "doc_path",
+        "node_ids",
+      ],
+      "type": "object",
+    },
+  },
+  "search_documents": {
+    "description": "Keyword (BM25) search over section titles, summaries and text, with a substring fallback; handles mixed Chinese/English text and identifiers such as "C++" or "ISO-27001". Returns matching nodes (doc_path, node_id, title_path, line range, snippet). Escalation path: use it when browsing folders and reading structures has not located the answer, or to find an exact term; scope it with \`folder\` or \`doc_path\`. Then read the hits with \`get_node_content()\`.",
+    "input": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": false,
+      "properties": {
+        "doc_path": {
+          "description": "Restrict the search to this document (takes precedence over \`folder\`). Copy it verbatim from a browse_documents() or search_documents() result.",
+          "minLength": 1,
+          "type": "string",
+        },
+        "folder": {
+          "description": "Restrict the search to documents under this folder. Library-relative folder path, copied verbatim from a \`folders\` entry of a browse_documents() response ("" = library root). Never construct one.",
+          "type": "string",
+        },
+        "limit": {
+          "default": 10,
+          "description": "Maximum number of matching nodes to return (1-50, default 10).",
+          "maximum": 50,
+          "minimum": 1,
+          "type": "integer",
+        },
+        "query": {
+          "description": "Keywords to look for: distinctive terms, names or identifiers as they appear in the text (e.g. "ISO-27001 audit", "离职 补偿"). Not a natural-language question.",
+          "minLength": 1,
+          "type": "string",
+        },
+      },
+      "required": [
+        "query",
+      ],
+      "type": "object",
+    },
+  },
+}
+`;
+
+exports[`TOOL_CONTRACT > instructions snapshot 1`] = `
+"MarkIndex manages the user's library of long Markdown documents (manuals, specs, notes, knowledge bases). Every document is indexed as a tree of sections (nodes) addressed by line ranges in the original file.
+
+DOCUMENT DISCOVERY:
+- browse_documents() — DEFAULT discovery tool, first choice for any document-related question. The bare call returns the library root's folders and documents with titles and descriptions; drill into folders whose names match the user's intent.
+- search_documents() — escalation path: use it when browsing and reading structures stalls, or to locate an exact term, name or identifier.
+
+DECISION:
+- "What do I have / list / what's in folder X" → browse_documents()
+- ANY question that needs a document to answer → browse_documents(), pick the documents whose path/title/description matches, then read them
+- Reading a document: call get_document() first. If read_structure_first is true (over 15000 tokens), call get_document_structure() and read only the relevant nodes with get_node_content(); otherwise you may read its top-level nodes directly.
+- Prefer the most specific (leaf) nodes: reading a parent returns all of its subsections.
+
+- Skip discovery ONLY for questions with NO possible document connection (e.g., "capital of France").
+- After discovery: 1 match or 1 clearly best match → proceed to read and answer without asking. Multiple equally relevant → ask user to pick.
+
+PERSISTENCE (before concluding the answer is not in the library):
+Applies both when results are empty AND when returned results do not clearly match the user's intent — treat a mismatch as "not found". Do NOT give up after a single attempt. Follow these steps in order:
+1. browse_documents() level by level and compare every folder and document against the user's intent
+2. Read the structure of the most plausible documents and follow promising sections
+3. search_documents() with the key terms, then again with synonyms, alternative terms or the other language (Chinese/English)
+4. Page through the ENTIRE folder with \`limit: 50\` and \`offset: next_offset\` until has_more is false — MANDATORY before concluding "not found"
+Only after ALL steps have been tried may you conclude the answer is not in the library. Do NOT fall back to general knowledge — if the user's question references their own documents, exhaust every discovery path first.
+
+GROUNDING AND CITATIONS:
+- Answer only from content read with get_node_content(); never fill a gap from general knowledge. When the documents do not answer the question, say so.
+- Cite every supported claim right after it as [doc_path, L<start>-<end>], using the line numbers shown in the content (e.g. [guides/setup.md, L120-134]). Cite the narrowest range that supports the claim; use separate references for separate ranges.
+
+TOOL USAGE RULES:
+- Invoke a tool only when all required parameters are present or clearly inferable. Never invent placeholder values.
+- Copy doc_path, folder and node_id values verbatim from earlier tool results; never construct or guess them.
+- If a node_id is reported unknown, the document was re-indexed: call get_document_structure() again and use the new ids.
+- If a tool returns an error, follow the provided next_steps/options (or present them to the user) instead of retrying blindly."
+`;
