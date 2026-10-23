@@ -1,7 +1,7 @@
 const segmenter = new Intl.Segmenter(undefined, { granularity: 'word' })
 
 /** Terms like v2.1, C++, ISO-27001 that the word segmenter would split or truncate. */
-const COMPOUND = /[A-Za-z0-9]+(?:[.+#-][A-Za-z0-9+#]*)+/g
+const COMPOUND = /[A-Za-z0-9]+(?:[.\-_][A-Za-z0-9]+|[+#]+)+/g
 
 function words(text: string): string[] {
   const out: string[] = []

@@ -10,3 +10,17 @@ test('segments symbol-bearing terms consistently', () => {
 test('query is escaped for FTS5', () =>
   expect(segmentQuery('"合同" OR x')).toBe('"合同" OR "or" OR "x"'))
 test('empty / punctuation-only query', () => expect(segmentQuery('，。！')).toBe(''))
+
+test('symbol-bearing terms have exact tokens', () => {
+  expect(segmentForIndex('见 C++ 规定')).toBe('见 c++ 规定')
+  expect(segmentForIndex('ISO-27001')).toBe('iso-27001')
+  expect(segmentForIndex('v2.1')).toBe('v2.1')
+  expect(segmentForIndex('C#')).toBe('c#')
+})
+test('trailing punctuation is not glued to tokens', () => {
+  expect(segmentForIndex('use React.')).toBe('use react')
+  expect(segmentForIndex('v2.')).toBe('v2')
+  expect(segmentForIndex('foo- bar')).toBe('foo bar')
+})
+test('drops emoji and full-width punctuation', () =>
+  expect(segmentForIndex('合同，解除。😀')).toBe('合同 解除'))
