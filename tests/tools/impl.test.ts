@@ -80,8 +80,7 @@ function node(nodeId: string, title: string, start: number, end: number, childre
     level: 1,
     startLine: start,
     endLine: end,
-    // own text = first line only: keeps the FTS body tiny (these tests exercise paging, not indexing)
-    ownEndLine: start,
+    ownEndLine: children.length ? start : end,
     tokens: end - start + 1,
     ownTokens: 1,
     children,
@@ -162,6 +161,22 @@ describe('tools', () => {
     const unknown = await call('delete_everything', {})
     expect(unknown).toMatchObject({ success: false, code: 'INVALID_INPUT' })
     expect(unknown.next_steps.options.join(' ')).toContain('browse_documents')
+    const big = await call(10n as unknown as string, {})
+    expect(big).toMatchObject({ success: false, code: 'INVALID_INPUT', details: { tool: 'bigint' } })
+    const hostile = {
+      toString() {
+        throw new Error('boom')
+      },
+    }
+    const h = await call(hostile as unknown as string, {})
+    expect(h).toMatchObject({ success: false, code: 'INVALID_INPUT', details: { tool: 'object' } })
+    const bigArg = await call('get_document', { doc_path: 'guide.md', extra: 10n })
+    expect(bigArg.success).toBe(false)
+
+    const typo = await call('get_document', { path: 'guide.md' })
+    expect(typo).toMatchObject({ success: false, code: 'INVALID_INPUT' })
+    expect(JSON.stringify(typo.details)).toContain('path')
+    expect(typo.details.issues.some((i: { message: string }) => i.message.includes('"path"'))).toBe(true)
 
     lib!.close()
     const closed = await call('get_document', { doc_path: 'guide.md' })
@@ -198,6 +213,7 @@ describe('tools', () => {
     expect(big.data.line_count).toBe(GUIDE.split('\n').length)
     const small = await call('get_document', { doc_path: 'small.md' })
     expect(small.data.metadata).toEqual({ title: 'Small One' })
+    expect(small.next_steps.options[0]).toMatch(/top-level nodes .*depth: 1/)
 
     putSynthetic('huge.md', [node('h1', 'H', 1, 3)], ['a', 'b', 'c'])
     const store = openStore(dbFile)

@@ -46,7 +46,7 @@ export function openLibrary(opts: OpenLibraryOptions): Library {
     store,
     root,
     async callTool(name, args) {
-      return JSON.stringify(runTool(store, name, args))
+      return runTool(store, name, args)
     },
     async index(indexOpts = {}) {
       if (!readonly) return indexLibrary({ ...indexOpts, root, store })

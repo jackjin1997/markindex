@@ -14,44 +14,61 @@ const MAX_PART = 999_999
 /** Minimum room for one content segment, even if a huge title path eats the budget (best effort). */
 const MIN_SEGMENT = 256
 
-/**
- * Runs one tool against `store`. Never throws: invalid input, unknown names and internal failures all come back
- * as error envelopes. Every returned envelope serializes to at most RESPONSE_CHAR_BUDGET characters.
- */
-export function runTool(store: Store, name: unknown, args: unknown): Envelope {
-  let env: Envelope
+/** A label for an untrusted tool name that cannot throw (no String() on arbitrary objects). */
+const nameLabel = (name: unknown): string => (typeof name === 'string' ? name : typeof name)
+
+/** `String(e)` / `e.message` can run user code (getters, toString); never let that escape. */
+function describeError(e: unknown): string {
   try {
-    env = dispatch(store, name, args)
+    if (e instanceof Error && typeof e.message === 'string') return e.message
+    return typeof e === 'string' ? e : typeof e
+  } catch {
+    return 'unknown error'
+  }
+}
+
+const internalError = (name: unknown, message: string): Envelope =>
+  failure(
+    'INTERNAL_ERROR',
+    `Tool failed: ${message}`,
+    {
+      summary: 'The library could not be read.',
+      options: [
+        'Try the request again',
+        'If it keeps failing, the index may be closed, missing or corrupt: ask the user to re-run `markindex index`',
+      ],
+    },
+    { tool: nameLabel(name) },
+  )
+
+const TOO_LARGE: Envelope = failure('INTERNAL_ERROR', 'Response too large for the response budget', {
+  summary: 'The result does not fit in one response.',
+  options: ['Narrow the request: use a smaller `limit`, a deeper `folder`, or fewer `node_ids`'],
+})
+
+/**
+ * Runs one tool against `store` and returns its JSON envelope. Never throws: invalid input, unknown names,
+ * internal failures and unserializable values all come back as error envelopes. The result is at most
+ * RESPONSE_CHAR_BUDGET characters.
+ */
+export function runTool(store: Store, name: unknown, args: unknown): string {
+  let json: string
+  try {
+    json = JSON.stringify(dispatch(store, name, args))
   } catch (e) {
-    env = failure(
-      'INTERNAL_ERROR',
-      `Tool failed: ${e instanceof Error ? e.message : String(e)}`,
-      {
-        summary: 'The library could not be read.',
-        options: [
-          'Try the request again',
-          'If it keeps failing, the index may be closed, missing or corrupt: ask the user to re-run `markindex index`',
-        ],
-      },
-      { tool: String(name) },
-    )
+    // every value in an internal-error envelope is a plain string, so this stringify cannot throw
+    json = JSON.stringify(internalError(name, describeError(e).slice(0, 2_000)))
   }
-  if (jsonSize(env) > RESPONSE_CHAR_BUDGET) {
-    env = failure('INTERNAL_ERROR', 'Response too large for the response budget', {
-      summary: 'The result does not fit in one response.',
-      options: ['Narrow the request: use a smaller `limit`, a deeper `folder`, or fewer `node_ids`'],
-    })
-  }
-  return env
+  return json.length > RESPONSE_CHAR_BUDGET ? JSON.stringify(TOO_LARGE) : json
 }
 
 function dispatch(store: Store, name: unknown, args: unknown): Envelope {
   if (typeof name !== 'string' || !(TOOL_NAMES as string[]).includes(name)) {
     return failure(
       'INVALID_INPUT',
-      `Unknown tool: ${String(name)}`,
+      `Unknown tool: ${nameLabel(name)}`,
       { summary: 'No tool with this name exists.', options: [`Use one of: ${TOOL_NAMES.join(', ')}`] },
-      { tool: name === undefined ? null : name },
+      { tool: nameLabel(name) },
     )
   }
   const tool = name as ToolName
@@ -270,9 +287,9 @@ function getDocument(store: Store, input: ToolInput<'get_document'>): Envelope {
           ],
         }
       : {
-          summary: `Small document (${d.tokens} tokens): it can be read directly.`,
+          summary: `Small document (${d.tokens} tokens): it can be read directly, no outline needed.`,
           options: [
-            `Call get_document_structure({ doc_path: "${d.path}" }) and read its top-level nodes with get_node_content()`,
+            `Read its top-level nodes with get_node_content() (ids from get_document_structure({ doc_path: "${d.path}", depth: 1 }))`,
           ],
         },
   )
