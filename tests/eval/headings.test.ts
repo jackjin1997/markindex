@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { countAtxHeadings, reconstructSecHeadings, reconstructZhHeadings } from '../../eval/lib/headings.js'
+import { countAtxHeadings, neutralizePageBreaks, reconstructSecHeadings, reconstructZhHeadings } from '../../eval/lib/headings.js'
 
 describe('corpus heading reconstruction', () => {
   it('SEC: PART / Item lines become h1 / h2, table rows and long lines are untouched, line count kept', () => {
@@ -20,6 +20,10 @@ describe('corpus heading reconstruction', () => {
       '# PART II',
       '## Item 5. Market',
     ])
+  })
+
+  it('SEC: bare --- page breaks become *** so pages do not turn into setext headings', () => {
+    expect(neutralizePageBreaks('page text\n28\n---\n| a | b |\n| --- | --- |\n----  ')).toBe('page text\n28\n***\n| a | b |\n| --- | --- |\n***')
   })
 
   it('zh: 编/章/节/一、/（一） become headings, article lines do not', () => {

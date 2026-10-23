@@ -8,6 +8,15 @@ const ATX = /^ {0,3}#{1,6}\s/
 
 export const countAtxHeadings = (md: string) => md.split('\n').filter((l) => ATX.test(l)).length
 
+/**
+ * The SEC conversion separates pages with a bare `---` line and has no blank lines between paragraphs, so per
+ * CommonMark each `---` turns the whole preceding page into one giant setext heading. Rewriting those lines as
+ * `***` (also a thematic break, but never a setext underline) keeps the page break and the line count.
+ */
+export function neutralizePageBreaks(md: string): string {
+  return md.replace(/^ {0,3}-{3,}[ \t]*$/gm, '***')
+}
+
 const SEC_PART = /^\s*(?:\*\*)?\s*PART\s+(I{1,3}|IV)\b\.?/i
 const SEC_ITEM = /^\s*(?:\*\*)?\s*Item\s+(\d{1,2}[A-C]?)\s*[.:]/i
 

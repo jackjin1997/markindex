@@ -6,7 +6,8 @@
  * Idempotent: files already on disk are kept. Sources and licenses are documented in eval/README.md.
  *
  * - finance-en: SEC 10-K filings, HF dataset astr010/sec-10k-markdown-compressed (MIT). The converted Markdown has
- *   (almost) no `#` headings, so "PART I" / "Item 1A." lines are promoted to h1 / h2 (line count unchanged).
+ *   (almost) no `#` headings, so "PART I" / "Item 1A." lines are promoted to h1 / h2, and bare `---` page breaks
+ *   (which would make every page a setext heading) become `***` (line count unchanged).
  * - medical-en: clinical guidelines, HF dataset epfl-llm/guidelines, field `clean_text` (Common Crawl ToU; only
  *   the redistributable sources are in the open subset). The longest guidelines WITH heading structure are kept.
  * - zh: PRC laws / regulations / clinical norms from zh.wikisource (official texts, not copyright-protected per
@@ -23,7 +24,7 @@ import { createInterface } from 'node:readline'
 import { Readable } from 'node:stream'
 import TurndownService from 'turndown'
 import { approxTokens } from '../src/text/tokens.js'
-import { countAtxHeadings, reconstructSecHeadings, reconstructZhHeadings } from './lib/headings.js'
+import { countAtxHeadings, neutralizePageBreaks, reconstructSecHeadings, reconstructZhHeadings } from './lib/headings.js'
 
 const UA = 'markindex-eval/0.1 (https://github.com/jackjin1997/markindex; corpus fetch for local evaluation)'
 const HF_SEC = 'https://huggingface.co/datasets/astr010/sec-10k-markdown-compressed/resolve/main'
@@ -128,7 +129,8 @@ async function fetchFinance() {
           .slice(0, SEC_PER_COMPANY)
         for (const f of filings) {
           const raw = readFileSync(join(src, f), 'utf8')
-          const md = countAtxHeadings(raw) >= 5 ? raw : reconstructSecHeadings(raw)
+          const fixed = neutralizePageBreaks(raw)
+          const md = countAtxHeadings(fixed) >= 5 ? fixed : reconstructSecHeadings(fixed)
           write(join(dir, ticker, f), md)
           count++
         }
