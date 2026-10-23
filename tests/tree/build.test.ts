@@ -119,6 +119,13 @@ describe('buildTree', () => {
     expect(b.node.nodeId).toBe(a.node.nodeId)
   })
 
+  it('same-title children of same-title parents get distinct ids', () => {
+    const nodes = [...walk(build('# Conclusions\n## Harms\na\n# Conclusions\n## Harms\nb\n').roots)]
+    const ids = nodes.map((x) => x.node.nodeId)
+    expect(ids).toHaveLength(4)
+    expect(new Set(ids).size).toBe(4)
+  })
+
   it('deterministic', () => {
     const src = fixture('mixed-setext.md')
     expect(JSON.stringify(build(src).roots)).toBe(JSON.stringify(build(src).roots))

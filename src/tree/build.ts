@@ -79,10 +79,14 @@ export function buildTree(doc: ParsedDoc, opts: BuildTreeOptions): TreeNode[] {
   return roots
 }
 
-/** Fills ownEndLine, tokens and nodeId (needs titlePath + sibling ordinal). */
+/**
+ * Fills ownEndLine, tokens and nodeId. The id hashes the ancestor chain + the node's sibling ordinal; an ancestor
+ * that is not the first same-title sibling enters the chain with its ordinal (`title\u001e<n>`), so equal title
+ * paths under different same-title parents stay distinct while first-sibling chains hash as plain titles.
+ */
 function finalize(
   siblings: TreeNode[],
-  parentPath: string[],
+  parentKeys: string[],
   text: (from: number, to: number) => string,
   count: TokenCounter,
 ): void {
@@ -90,13 +94,12 @@ function finalize(
   for (const node of siblings) {
     const ordinal = seen.get(node.title) ?? 0
     seen.set(node.title, ordinal + 1)
-    const path = [...parentPath, node.title]
-    node.nodeId = makeId(path, ordinal)
+    node.nodeId = makeId([...parentKeys, node.title], ordinal)
     const firstChild = node.children[0]
     node.ownEndLine = firstChild ? firstChild.startLine - 1 : node.endLine
     node.ownTokens = count(text(node.startLine, node.ownEndLine))
     node.tokens = firstChild ? count(text(node.startLine, node.endLine)) : node.ownTokens
-    finalize(node.children, path, text, count)
+    finalize(node.children, [...parentKeys, ordinal === 0 ? node.title : `${node.title}\u001e${ordinal}`], text, count)
   }
 }
 
