@@ -14,7 +14,9 @@ function words(text: string, out: string[]): void {
   }
 }
 
-function tokenize(text: string): string[] {
+/** NFKC first, so full-width forms (ＡＢＣ, ２７００１) index and query like their ASCII forms. */
+function tokenize(raw: string): string[] {
+  const text = raw.normalize('NFKC')
   const out: string[] = []
   let last = 0
   for (const m of text.matchAll(COMPOUND)) {

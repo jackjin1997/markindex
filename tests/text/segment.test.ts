@@ -35,3 +35,8 @@ test('segments a 250k-char alphanumeric run in linear time', () => {
   expect(segmentForIndex(`x ${'L'.repeat(250_000)} y`)).toBe(`x ${'l'.repeat(250_000)} y`)
   expect(performance.now() - start).toBeLessThan(2_000)
 })
+
+test('NFKC: full-width letters/digits match their ASCII forms in index and query', () => {
+  expect(segmentForIndex('ＡＢＣ ＩＳＯ－２７００１')).toBe(segmentForIndex('ABC ISO-27001'))
+  expect(segmentQuery('ＡＢＣ')).toBe(segmentQuery('abc'))
+})
