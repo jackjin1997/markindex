@@ -183,6 +183,28 @@ describe('tools', () => {
     expect(closed).toMatchObject({ success: false, code: 'INTERNAL_ERROR' })
   })
 
+  it('oversized string arguments are rejected as INVALID_INPUT before any lookup', async () => {
+    await library({ 'guide.md': '# Guide\n' })
+    const huge = 'x'.repeat(1025)
+    const cases: [string, Record<string, unknown>, string][] = [
+      ['get_document', { doc_path: huge }, 'doc_path'],
+      ['browse_documents', { folder: huge }, 'folder'],
+      ['get_document_structure', { doc_path: 'guide.md', node_id: huge }, 'node_id'],
+      ['get_node_content', { doc_path: 'guide.md', node_ids: ['a', huge] }, 'node_ids'],
+      ['search_documents', { query: huge }, 'query'],
+      ['search_documents', { query: 'x', folder: huge }, 'folder'],
+    ]
+    for (const [tool, args, field] of cases) {
+      const t0 = performance.now()
+      const env = await call(tool, args)
+      expect(performance.now() - t0).toBeLessThan(200)
+      expect(env, `${tool} ${field}`).toMatchObject({ success: false, code: 'INVALID_INPUT' })
+      expect(JSON.stringify(env.details)).toContain(field)
+    }
+    const ok = await call('get_document', { doc_path: 'x'.repeat(1024) })
+    expect(ok).toMatchObject({ success: false, code: 'NOT_FOUND' })
+  })
+
   it('suggests similar doc names', async () => {
     await library({
       'report.md': '# Report\n',

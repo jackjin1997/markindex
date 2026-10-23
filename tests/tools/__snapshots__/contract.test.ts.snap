@@ -11,6 +11,7 @@ exports[`TOOL_CONTRACT > contract snapshot 1`] = `
         "folder": {
           "default": "",
           "description": "Folder to list (default "", the library root). Library-relative folder path, copied verbatim from a \`folders\` entry of a browse_documents() response ("" = library root). Never construct one.",
+          "maxLength": 1024,
           "type": "string",
         },
         "limit": {
@@ -39,6 +40,7 @@ exports[`TOOL_CONTRACT > contract snapshot 1`] = `
       "properties": {
         "doc_path": {
           "description": "Library-relative path of the document, copied verbatim from a browse_documents() or search_documents() result (case-sensitive, include the extension). Example: "guides/setup.md". Never construct one.",
+          "maxLength": 1024,
           "minLength": 1,
           "type": "string",
         },
@@ -64,11 +66,13 @@ exports[`TOOL_CONTRACT > contract snapshot 1`] = `
         },
         "doc_path": {
           "description": "Library-relative path of the document, copied verbatim from a browse_documents() or search_documents() result (case-sensitive, include the extension). Example: "guides/setup.md". Never construct one.",
+          "maxLength": 1024,
           "minLength": 1,
           "type": "string",
         },
         "node_id": {
           "description": "Expand only the subtree of this node (depth counts from it). Copy it verbatim from a get_document_structure() or search_documents() result; omit for the whole document.",
+          "maxLength": 1024,
           "minLength": 1,
           "type": "string",
         },
@@ -94,12 +98,14 @@ exports[`TOOL_CONTRACT > contract snapshot 1`] = `
       "properties": {
         "doc_path": {
           "description": "Library-relative path of the document, copied verbatim from a browse_documents() or search_documents() result (case-sensitive, include the extension). Example: "guides/setup.md". Never construct one.",
+          "maxLength": 1024,
           "minLength": 1,
           "type": "string",
         },
         "node_ids": {
           "description": "Ids of the nodes to read (1-20), each copied verbatim from a get_document_structure() or search_documents() result. Never construct one.",
           "items": {
+            "maxLength": 1024,
             "minLength": 1,
             "type": "string",
           },
@@ -130,11 +136,13 @@ exports[`TOOL_CONTRACT > contract snapshot 1`] = `
       "properties": {
         "doc_path": {
           "description": "Restrict the search to this document (takes precedence over \`folder\`). Copy it verbatim from a browse_documents() or search_documents() result.",
+          "maxLength": 1024,
           "minLength": 1,
           "type": "string",
         },
         "folder": {
           "description": "Restrict the search to documents under this folder. Library-relative folder path, copied verbatim from a \`folders\` entry of a browse_documents() response ("" = library root). Never construct one.",
+          "maxLength": 1024,
           "type": "string",
         },
         "limit": {
@@ -146,6 +154,7 @@ exports[`TOOL_CONTRACT > contract snapshot 1`] = `
         },
         "query": {
           "description": "Keywords to look for: distinctive terms, names or identifiers as they appear in the text (e.g. "ISO-27001 audit", "离职 补偿"). Not a natural-language question.",
+          "maxLength": 1024,
           "minLength": 1,
           "type": "string",
         },

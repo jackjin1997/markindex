@@ -9,11 +9,14 @@ export type ToolName =
   | 'search_documents'
 
 const T = STRUCTURE_FIRST_TOKEN_THRESHOLD
+/** Upper bound for every string argument: real paths, ids and keyword queries are far shorter. */
+const MAX_ARG_CHARS = 1024
 
 const docPath = () =>
   z
     .string()
     .min(1)
+    .max(MAX_ARG_CHARS)
     .describe(
       'Library-relative path of the document, copied verbatim from a browse_documents() or search_documents() ' +
         'result (case-sensitive, include the extension). Example: "guides/setup.md". Never construct one.',
@@ -32,6 +35,7 @@ const part = () =>
 const folder = (what: string) =>
   z
     .string()
+    .max(MAX_ARG_CHARS)
     .describe(
       `${what} Library-relative folder path, copied verbatim from a \`folders\` entry of a browse_documents() ` +
         'response ("" = library root). Never construct one.',
@@ -61,6 +65,7 @@ const structureInput = z.strictObject({
   node_id: z
     .string()
     .min(1)
+    .max(MAX_ARG_CHARS)
     .optional()
     .describe(
       'Expand only the subtree of this node (depth counts from it). Copy it verbatim from a ' +
@@ -81,7 +86,7 @@ const structureInput = z.strictObject({
 const contentInput = z.strictObject({
   doc_path: docPath(),
   node_ids: z
-    .array(z.string().min(1))
+    .array(z.string().min(1).max(MAX_ARG_CHARS))
     .min(1)
     .max(20)
     .describe(
@@ -95,6 +100,7 @@ const searchInput = z.strictObject({
   query: z
     .string()
     .min(1)
+    .max(MAX_ARG_CHARS)
     .describe(
       'Keywords to look for: distinctive terms, names or identifiers as they appear in the text ' +
         '(e.g. "ISO-27001 audit", "离职 补偿"). Not a natural-language question.',
