@@ -1,0 +1,5 @@
+node_modules
+dist
+eval/corpus
+.markindex
+.superpowers/
