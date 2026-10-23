@@ -152,8 +152,6 @@ function structureStats() {
     let chunks = 0
     let overMax = 0
     let leaves = 0
-    let structureParts = 0
-    let structureChars: number[] = []
     const byGroup: Record<string, { docs: number; nodes: number; chunks: number; tokens: number }> = {}
     for (const d of docs) {
       const doc = lib.store.getDoc(d)!
@@ -251,7 +249,7 @@ async function main() {
     seed: SEED,
     fullIndex: { ...index, skipped: index.skipped },
     noopReindex: noop,
-    singleDocUpdate: { ...update, targetTokens: undefined },
+    singleDocUpdate: update,
     dbSizeMB: dbAfterIndex,
     tools,
     structure,

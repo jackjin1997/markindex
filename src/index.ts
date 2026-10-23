@@ -31,7 +31,7 @@ export {
 export { splitByBudget, type Envelope, type ErrorCode, type NextSteps } from './tools/envelope.js'
 export { openLibrary, defaultDbFile, type Library, type OpenLibraryOptions } from './library.js'
 export { createAiSdkTools } from './adapters/ai-sdk.js'
-export { retrieve, type Evidence, type RetrieveOptions, type RetrieveResult } from './retrieve.js'
+export { retrieve, RETRIEVE_MAX_STEPS, RETRIEVE_MAX_INPUT_TOKENS, type Evidence, type RetrieveOptions, type RetrieveResult } from './retrieve.js'
 export { createMcpServer } from './adapters/mcp.js'
 export { resolveSummaryModel, ProviderError } from './llm/provider.js'
 export {

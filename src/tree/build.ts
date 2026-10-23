@@ -75,18 +75,23 @@ export function buildTree(doc: ParsedDoc, opts: BuildTreeOptions): TreeNode[] {
     })
   }
 
-  finalize(roots, [], text, count)
+  finalize(roots, [], [], new Set(), text, count)
   return roots
 }
 
 /**
- * Fills ownEndLine, tokens and nodeId. The id hashes the ancestor chain + the node's sibling ordinal; an ancestor
- * that is not the first same-title sibling enters the chain with its ordinal (`title\u001e<n>`), so equal title
- * paths under different same-title parents stay distinct while first-sibling chains hash as plain titles.
+ * Fills ownEndLine, tokens and nodeId, in document (pre-)order.
+ *
+ * Primary id = hash(title path + the node's ordinal among same-title siblings). Only when that id is already taken
+ * in the document (two same-title parents with same-title children) does the node fall back to a disambiguated key:
+ * the chain of (title, same-title ordinal) pairs of every ancestor, JSON-encoded (unambiguous for any title), plus
+ * a counter in the (practically impossible) case that this collides too. Unique ids therefore never change.
  */
 function finalize(
   siblings: TreeNode[],
-  parentKeys: string[],
+  parentPath: string[],
+  parentChain: [string, number][],
+  used: Set<string>,
   text: (from: number, to: number) => string,
   count: TokenCounter,
 ): void {
@@ -94,20 +99,24 @@ function finalize(
   for (const node of siblings) {
     const ordinal = seen.get(node.title) ?? 0
     seen.set(node.title, ordinal + 1)
-    node.nodeId = makeId([...parentKeys, node.title], ordinal)
+    const path = [...parentPath, node.title]
+    const chain: [string, number][] = [...parentChain, [node.title, ordinal]]
+    let id = makeId(path, ordinal)
+    for (let n = 0; used.has(id); n++) id = hashHex(JSON.stringify([chain, n]))
+    used.add(id)
+    node.nodeId = id
     const firstChild = node.children[0]
     node.ownEndLine = firstChild ? firstChild.startLine - 1 : node.endLine
     node.ownTokens = count(text(node.startLine, node.ownEndLine))
     node.tokens = firstChild ? count(text(node.startLine, node.endLine)) : node.ownTokens
-    finalize(node.children, [...parentKeys, ordinal === 0 ? node.title : `${node.title}\u001e${ordinal}`], text, count)
+    finalize(node.children, path, chain, used, text, count)
   }
 }
 
+const hashHex = (s: string) => createHash('sha1').update(s).digest('hex').slice(0, 10)
+
 function makeId(titlePath: string[], ordinal: number): string {
-  return createHash('sha1')
-    .update(titlePath.join(SEP) + SEP + ordinal)
-    .digest('hex')
-    .slice(0, 10)
+  return hashHex(titlePath.join(SEP) + SEP + ordinal)
 }
 
 /** Depth-first pre-order traversal with the title path of each node. */

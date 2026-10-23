@@ -1,6 +1,6 @@
 import type { LanguageModel } from 'ai'
 import type { Library } from '../library.js'
-import { retrieve } from '../retrieve.js'
+import { retrieve, RETRIEVE_MAX_INPUT_TOKENS, RETRIEVE_MAX_STEPS } from '../retrieve.js'
 import { searchNodes } from '../store/search.js'
 import { approxTokens } from '../text/tokens.js'
 import { walk } from '../tree/build.js'
@@ -23,9 +23,9 @@ export interface RunEvalOptions {
   model?: LanguageModel
   /** agent: label recorded in the report (e.g. "anthropic:claude-sonnet-5-5"). */
   modelId?: string
-  /** agent: retrieve() maxSteps (default 12). */
+  /** agent: retrieve() maxSteps (default RETRIEVE_MAX_STEPS). */
   maxSteps?: number
-  /** agent: retrieve() maxInputTokens per question (default 200_000). */
+  /** agent: retrieve() maxInputTokens per question (default RETRIEVE_MAX_INPUT_TOKENS). */
   maxInputTokens?: number
   /** agent: questions run in parallel (default 1). */
   concurrency?: number
@@ -161,7 +161,7 @@ export async function runEval(lib: Library, questions: EvalQuestion[], opts: Run
     mode: 'agent',
     ...(opts.modelId ? { model: opts.modelId } : {}),
     createdAt,
-    options: { maxSteps: opts.maxSteps ?? 12, maxInputTokens: opts.maxInputTokens ?? 200_000 },
+    options: { maxSteps: opts.maxSteps ?? RETRIEVE_MAX_STEPS, maxInputTokens: opts.maxInputTokens ?? RETRIEVE_MAX_INPUT_TOKENS },
     summary: aggregate(results),
     results,
   }

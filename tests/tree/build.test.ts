@@ -126,6 +126,21 @@ describe('buildTree', () => {
     expect(new Set(ids).size).toBe(4)
   })
 
+  it('descendants of a non-first same-title section keep the title-path id when it is unique', () => {
+    const y = [...walk(build('# A\n## X\nx\n# A\n## Y\ny\n').roots)].find((e) => e.node.title === 'Y')!
+    // old scheme: sha1("A\u001fY\u001f0") — the id must not depend on the parent's same-title ordinal
+    expect(y.node.nodeId).toBe('f412814879')
+  })
+
+  it('a colliding title-path id falls back deterministically and stays distinct', () => {
+    const src = '# A\n## X\na\n# A\n## X\nb\n# A\n## X\nc\n'
+    const ids = [...walk(build(src).roots)].map((e) => e.node.nodeId)
+    expect(new Set(ids).size).toBe(6)
+    expect(ids).toEqual([...walk(build(src).roots)].map((e) => e.node.nodeId))
+    // the first A > X keeps the plain title-path id
+    expect(ids[1]).toBe([...walk(build('# A\n## X\na\n').roots)][1]!.node.nodeId)
+  })
+
   it('deterministic', () => {
     const src = fixture('mixed-setext.md')
     expect(JSON.stringify(build(src).roots)).toBe(JSON.stringify(build(src).roots))

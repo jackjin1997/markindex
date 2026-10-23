@@ -41,6 +41,11 @@ export interface RetrieveResult {
   invalidSelection: boolean
 }
 
+/** Default `RetrieveOptions.maxSteps`. */
+export const RETRIEVE_MAX_STEPS = 12
+/** Default `RetrieveOptions.maxInputTokens`. */
+export const RETRIEVE_MAX_INPUT_TOKENS = 200_000
+
 const FALLBACK_CAP = 10
 
 const SELECT_EVIDENCE = 'select_evidence'
@@ -76,8 +81,8 @@ const EVIDENCE_INSTRUCTIONS = [
  * `folder` is a prompt-level scoping instruction only.
  */
 export async function retrieve(lib: Library, question: string, opts: RetrieveOptions): Promise<RetrieveResult> {
-  const maxSteps = opts.maxSteps ?? 12
-  const maxInputTokens = opts.maxInputTokens ?? 200_000
+  const maxSteps = opts.maxSteps ?? RETRIEVE_MAX_STEPS
+  const maxInputTokens = opts.maxInputTokens ?? RETRIEVE_MAX_INPUT_TOKENS
 
   const tools = {
     ...createAiSdkTools(lib),

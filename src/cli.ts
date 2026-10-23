@@ -11,6 +11,7 @@ import { indexLibrary, type IndexReport } from './library/indexer.js'
 import { defaultDbFile, openLibrary } from './library.js'
 import { estimateSummaryCost } from './llm/summarize.js'
 import { ProviderError, resolveSummaryModel } from './llm/provider.js'
+import { RETRIEVE_MAX_INPUT_TOKENS, RETRIEVE_MAX_STEPS } from './retrieve.js'
 import { searchNodes } from './store/search.js'
 import { openStore, StoreLockedError } from './store/db.js'
 import type { TreeNode } from './types.js'
@@ -241,8 +242,8 @@ export function buildProgram(): Command {
     .option('--mode <mode>', 'bm25 (keyword baseline, no LLM) or agent (built-in retrieve() loop over the agent tools; "tools" and "retrieve" are aliases)', 'bm25')
     .option('--model <provider:model>', 'agent mode: model, e.g. anthropic:claude-sonnet-5-5 (needs @ai-sdk/<provider> installed)')
     .option('--top-k <n>', 'bm25: hits per question', '5')
-    .option('--max-steps <n>', 'agent: model steps per question', '12')
-    .option('--max-input-tokens <n>', 'agent: input-token budget per question', '200000')
+    .option('--max-steps <n>', 'agent: model steps per question', String(RETRIEVE_MAX_STEPS))
+    .option('--max-input-tokens <n>', 'agent: input-token budget per question', String(RETRIEVE_MAX_INPUT_TOKENS))
     .option('--concurrency <n>', 'agent: questions run in parallel', '1')
     .option('--no-baseline', 'agent: skip the bm25 baseline')
     .option('--db <file>', 'index database file')

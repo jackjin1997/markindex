@@ -299,9 +299,12 @@ expanding outlines, try `DEFAULT_STRUCTURE_DEPTH` 3.
 
 - **Fixed: duplicate node ids** (5 guidelines failed to index with `UNIQUE constraint failed: nodes.doc_path,
   nodes.node_id`). Two same-title sections (e.g. two `# Conclusions`) with same-title children (`## Harms`)
-  produced identical ids for the children because the id hashed the title path without the ancestors' sibling
-  ordinals. Ids now include an ancestor's ordinal when it is not the first same-title sibling (ids of all other
-  nodes are unchanged). Regression test in `tests/tree/build.test.ts`.
+  produced identical ids for the children, because the id hashes the title path plus the node's own same-title
+  ordinal. Ids are now assigned in document order and only a node whose title-path id is **already taken** falls
+  back to a disambiguated key (the JSON-encoded chain of ancestor titles and their same-title ordinals). Every id
+  that was unique before is unchanged. Regression tests in `tests/tree/build.test.ts`. The question set and
+  results reference documents by path and line range only, so they are unaffected (the BM25 run reproduces
+  byte-identical results after re-indexing).
 - **Converter artifacts can create giant setext headings.** Markdown converted from HTML/PDF often has no blank
   lines between paragraphs and uses `---` as a page separator; CommonMark then makes each page a level-2 setext
   heading whose title is the whole page. MarkIndex follows CommonMark (spec §5.1), so such files get huge titles.
