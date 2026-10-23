@@ -33,7 +33,13 @@ export interface RetrieveResult {
   stopReason: 'done' | 'budget' | 'max_steps'
   /** Number of selected items dropped because the doc / node / range was invalid. */
   dropped: number
+  /** 'model': from the model's select_evidence call; 'fallback': nodes it read via get_node_content (budget / max_steps). */
+  selectedBy: 'model' | 'fallback'
+  /** True when the model called select_evidence with input that failed validation (no valid selection followed). */
+  invalidSelection: boolean
 }
+
+const FALLBACK_CAP = 10
 
 const SELECT_EVIDENCE = 'select_evidence'
 
@@ -59,7 +65,11 @@ const EVIDENCE_INSTRUCTIONS = [
  *
  * Termination: `select_evidence` is registered without `execute`; per the AI SDK, a step that calls a tool without
  * `execute` ends the loop on its own (no extra `hasToolCall` condition needed). Evidence is taken from the last
- * `select_evidence` call; if the model never calls it (budget / max_steps / plain text), evidence is [].
+ * `select_evidence` call. If it never calls it and the stop is 'budget' or 'max_steps', evidence falls back to the
+ * nodes it successfully read via `get_node_content` (full ranges, most recent first, max 10; selectedBy 'fallback').
+ * Plain-text finish without selecting: evidence []. A select_evidence call failing schema validation is
+ * rejected by the SDK (error fed back, loop continues); if no valid selection follows, `invalidSelection` is true
+ * and the normal budget / max_steps fallback applies.
  * Invalid refs (unknown doc, unknown node, empty clamped range) are dropped and counted in `dropped`.
  * `folder` is a prompt-level scoping instruction only.
  */
@@ -90,16 +100,34 @@ export async function retrieve(lib: Library, question: string, opts: RetrieveOpt
     stopWhen: [stepCountIs(maxSteps), overBudget],
   })
 
-  let selected: z.infer<typeof selectEvidenceInput>['items'] | undefined
+  type Items = z.infer<typeof selectEvidenceInput>['items']
+  let selected: Items | undefined
+  let invalidSelection = false
+  const read: Items = [] // successfully read nodes, first-read order
+  const readKeys = new Set<string>()
   for (const step of res.steps) {
     for (const call of step.toolCalls) {
-      if (call.toolName !== SELECT_EVIDENCE) continue
-      const parsed = selectEvidenceInput.safeParse(call.input)
-      if (parsed.success) selected = parsed.data.items
+      if (call.toolName === SELECT_EVIDENCE) {
+        const parsed = selectEvidenceInput.safeParse(call.input)
+        if (parsed.success) {
+          selected = parsed.data.items
+          invalidSelection = false
+        } else invalidSelection = true
+      } else if (call.toolName === 'get_node_content') {
+        const result = step.toolResults.find((r) => r.toolCallId === call.toolCallId)
+        if (!readSucceeded(result?.output)) continue
+        const input = call.input as { doc_path?: unknown; node_ids?: unknown }
+        if (typeof input.doc_path !== 'string' || !Array.isArray(input.node_ids)) continue
+        for (const id of input.node_ids) {
+          if (typeof id !== 'string') continue
+          const key = `${input.doc_path}\0${id}`
+          if (readKeys.has(key)) continue
+          readKeys.add(key)
+          read.push({ doc_path: input.doc_path, node_id: id })
+        }
+      }
     }
   }
-
-  const { evidence, dropped } = resolveEvidence(lib, selected ?? [])
 
   let stopReason: RetrieveResult['stopReason'] = 'done'
   if (selected === undefined) {
@@ -107,6 +135,11 @@ export async function retrieve(lib: Library, question: string, opts: RetrieveOpt
     if (input >= maxInputTokens) stopReason = 'budget'
     else if (res.steps.length >= maxSteps && res.steps.at(-1)?.finishReason === 'tool-calls') stopReason = 'max_steps'
   }
+
+  // Budget / max_steps without a selection: fall back to the nodes the model read (most recent first, capped).
+  const useFallback = selected === undefined && stopReason !== 'done'
+  const items = useFallback ? read.slice(-FALLBACK_CAP).reverse() : (selected ?? [])
+  const { evidence, dropped } = resolveEvidence(lib, items)
 
   return {
     evidence,
@@ -116,6 +149,16 @@ export async function retrieve(lib: Library, question: string, opts: RetrieveOpt
     },
     stopReason,
     dropped,
+    selectedBy: useFallback ? 'fallback' : 'model',
+    invalidSelection,
+  }
+}
+
+function readSucceeded(output: unknown): boolean {
+  try {
+    return (JSON.parse(String(output)) as { success?: unknown }).success === true
+  } catch {
+    return false
   }
 }
 

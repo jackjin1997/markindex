@@ -63,6 +63,8 @@ describe('retrieve', () => {
     expect(e.text).not.toContain('FAKE MODEL TEXT')
     expect(r.usage).toEqual({ inputTokens: 150, outputTokens: 4 })
     expect(r.dropped).toBe(0)
+    expect(r.selectedBy).toBe('model')
+    expect(r.invalidSelection).toBe(false)
   })
 
   it('clamps requested line ranges to the node', async () => {
@@ -83,7 +85,43 @@ describe('retrieve', () => {
     const r = await retrieve(lib, 'q', { model, maxInputTokens: 400, maxSteps: 10 })
     expect(r.stopReason).toBe('budget')
     expect(r.evidence).toEqual([])
+    expect(r.selectedBy).toBe('fallback')
     expect(r.usage.inputTokens).toBe(500)
+  })
+
+  it('budget stop falls back to nodes read via get_node_content', async () => {
+    const { docPath, node } = firstNode()
+    const model = scripted([toolStep([call('get_node_content', { doc_path: docPath, node_ids: [node.nodeId] })], 500)])
+    const r = await retrieve(lib, 'q', { model, maxInputTokens: 400 })
+    expect(r.stopReason).toBe('budget')
+    expect(r.selectedBy).toBe('fallback')
+    expect(r.evidence).toHaveLength(1)
+    expect(r.evidence[0]).toMatchObject({ docPath, nodeId: node.nodeId, startLine: node.startLine, endLine: node.endLine })
+    expect(r.evidence[0]!.text).toBe(lib.store.getLines(docPath, node.startLine, node.endLine).join('\n'))
+  })
+
+  it('max_steps stop falls back to nodes read via get_node_content', async () => {
+    const { docPath, node } = firstNode()
+    const model = scripted([toolStep([call('get_node_content', { doc_path: docPath, node_ids: [node.nodeId] })], 1)])
+    const r = await retrieve(lib, 'q', { model, maxSteps: 2 })
+    expect(r.stopReason).toBe('max_steps')
+    expect(r.selectedBy).toBe('fallback')
+    expect(r.evidence.map((e) => e.nodeId)).toEqual([node.nodeId])
+  })
+
+  it('failed reads are not used as fallback evidence', async () => {
+    const model = scripted([toolStep([call('get_node_content', { doc_path: 'missing.md', node_ids: ['x'] })], 1)])
+    const r = await retrieve(lib, 'q', { model, maxSteps: 2 })
+    expect(r.stopReason).toBe('max_steps')
+    expect(r.evidence).toEqual([])
+  })
+
+  it('flags a select_evidence input that fails validation', async () => {
+    const model = scripted([toolStep([call('select_evidence', { items: [{ doc_path: 1 }] })])])
+    const r = await retrieve(lib, 'q', { model, maxSteps: 2 })
+    expect(r.invalidSelection).toBe(true)
+    expect(r.evidence).toEqual([])
+    expect(r.stopReason).toBe('max_steps')
   })
 
   it('stops with max_steps', async () => {
