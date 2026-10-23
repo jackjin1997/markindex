@@ -1,6 +1,6 @@
 {
   "mode": "bm25",
-  "createdAt": "2026-10-23T09:40:47.647Z",
+  "createdAt": "2026-10-23T10:16:51.660Z",
   "options": {
     "topK": 10
   },
@@ -11,9 +11,13 @@
       "hitRate": 0.8874,
       "hitAt1": 0.6358,
       "mrr": 0.721,
-      "avgTokens": 2368.9735,
+      "avgTokens": 2368.9205,
       "avgSteps": 1,
-      "errors": 0
+      "errors": 0,
+      "meanEvidenceLines": 416.9073,
+      "medianEvidenceLines": 242,
+      "meanEvidenceTokens": 13479.2119,
+      "meanPrecision": 0.0683
     },
     "byLang": {
       "zh": {
@@ -22,9 +26,13 @@
         "hitRate": 0.9841,
         "hitAt1": 0.7937,
         "mrr": 0.8627,
-        "avgTokens": 3087.3016,
+        "avgTokens": 3087.127,
         "avgSteps": 1,
-        "errors": 0
+        "errors": 0,
+        "meanEvidenceLines": 485.0635,
+        "medianEvidenceLines": 498,
+        "meanEvidenceTokens": 13118.8254,
+        "meanPrecision": 0.0669
       },
       "en": {
         "questions": 54,
@@ -32,9 +40,13 @@
         "hitRate": 0.7778,
         "hitAt1": 0.3889,
         "mrr": 0.5248,
-        "avgTokens": 1286.3148,
+        "avgTokens": 1286.3333,
         "avgSteps": 1,
-        "errors": 0
+        "errors": 0,
+        "meanEvidenceLines": 393.8704,
+        "medianEvidenceLines": 123,
+        "meanEvidenceTokens": 16616.7778,
+        "meanPrecision": 0.056
       },
       "mixed": {
         "questions": 34,
@@ -42,9 +54,13 @@
         "hitRate": 0.8824,
         "hitAt1": 0.7353,
         "mrr": 0.7701,
-        "avgTokens": 2757.4706,
+        "avgTokens": 2757.5294,
         "avgSteps": 1,
-        "errors": 0
+        "errors": 0,
+        "meanEvidenceLines": 327.2059,
+        "medianEvidenceLines": 154.5,
+        "meanEvidenceTokens": 9163.7941,
+        "meanPrecision": 0.0903
       }
     }
   },
@@ -54,7 +70,10 @@
       "lang": "en",
       "hit": false,
       "rank": null,
-      "tokens": 1217,
+      "evidenceLines": 490,
+      "evidenceTokens": 10864,
+      "precision": 0,
+      "tokens": 1219,
       "steps": 1,
       "evidence": [
         {
@@ -144,6 +163,9 @@
       "lang": "en",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 460,
+      "evidenceTokens": 12999,
+      "precision": 0.0913,
       "tokens": 1264,
       "steps": 1,
       "evidence": [
@@ -244,7 +266,10 @@
       "lang": "en",
       "hit": true,
       "rank": 1,
-      "tokens": 1232,
+      "evidenceLines": 531,
+      "evidenceTokens": 8534,
+      "precision": 0.0753,
+      "tokens": 1231,
       "steps": 1,
       "evidence": [
         {
@@ -343,6 +368,9 @@
       "lang": "en",
       "hit": true,
       "rank": 9,
+      "evidenceLines": 2802,
+      "evidenceTokens": 64824,
+      "precision": 0.1049,
       "tokens": 1356,
       "steps": 1,
       "evidence": [
@@ -453,6 +481,9 @@
       "lang": "en",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 271,
+      "evidenceTokens": 9820,
+      "precision": 0.1292,
       "tokens": 1482,
       "steps": 1,
       "evidence": [
@@ -553,7 +584,10 @@
       "lang": "en",
       "hit": true,
       "rank": 2,
-      "tokens": 1306,
+      "evidenceLines": 864,
+      "evidenceTokens": 40110,
+      "precision": 0.0023,
+      "tokens": 1307,
       "steps": 1,
       "evidence": [
         {
@@ -656,6 +690,9 @@
       "lang": "en",
       "hit": true,
       "rank": 6,
+      "evidenceLines": 351,
+      "evidenceTokens": 10623,
+      "precision": 0.1197,
       "tokens": 1212,
       "steps": 1,
       "evidence": [
@@ -746,7 +783,10 @@
       "lang": "en",
       "hit": false,
       "rank": null,
-      "tokens": 1218,
+      "evidenceLines": 383,
+      "evidenceTokens": 9508,
+      "precision": 0,
+      "tokens": 1217,
       "steps": 1,
       "evidence": [
         {
@@ -836,6 +876,9 @@
       "lang": "en",
       "hit": true,
       "rank": 2,
+      "evidenceLines": 665,
+      "evidenceTokens": 23214,
+      "precision": 0.0586,
       "tokens": 1251,
       "steps": 1,
       "evidence": [
@@ -929,6 +972,9 @@
       "lang": "en",
       "hit": false,
       "rank": null,
+      "evidenceLines": 322,
+      "evidenceTokens": 12539,
+      "precision": 0,
       "tokens": 1480,
       "steps": 1,
       "evidence": [
@@ -1029,6 +1075,9 @@
       "lang": "en",
       "hit": false,
       "rank": null,
+      "evidenceLines": 1999,
+      "evidenceTokens": 71596,
+      "precision": 0,
       "tokens": 1250,
       "steps": 1,
       "evidence": [
@@ -1130,6 +1179,9 @@
       "lang": "en",
       "hit": false,
       "rank": null,
+      "evidenceLines": 1085,
+      "evidenceTokens": 44427,
+      "precision": 0,
       "tokens": 1234,
       "steps": 1,
       "evidence": [
@@ -1223,6 +1275,9 @@
       "lang": "en",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 1435,
+      "evidenceTokens": 45012,
+      "precision": 0.0091,
       "tokens": 1301,
       "steps": 1,
       "evidence": [
@@ -1324,7 +1379,10 @@
       "lang": "en",
       "hit": true,
       "rank": 7,
-      "tokens": 1352,
+      "evidenceLines": 37,
+      "evidenceTokens": 4455,
+      "precision": 0.1081,
+      "tokens": 1353,
       "steps": 1,
       "evidence": [
         {
@@ -1424,6 +1482,9 @@
       "lang": "en",
       "hit": true,
       "rank": 3,
+      "evidenceLines": 221,
+      "evidenceTokens": 15300,
+      "precision": 0.0317,
       "tokens": 1279,
       "steps": 1,
       "evidence": [
@@ -1526,7 +1587,10 @@
       "lang": "en",
       "hit": false,
       "rank": null,
-      "tokens": 1319,
+      "evidenceLines": 673,
+      "evidenceTokens": 46758,
+      "precision": 0,
+      "tokens": 1320,
       "steps": 1,
       "evidence": [
         {
@@ -1630,6 +1694,9 @@
       "lang": "en",
       "hit": true,
       "rank": 6,
+      "evidenceLines": 714,
+      "evidenceTokens": 41345,
+      "precision": 0.042,
       "tokens": 1348,
       "steps": 1,
       "evidence": [
@@ -1730,6 +1797,9 @@
       "lang": "en",
       "hit": false,
       "rank": null,
+      "evidenceLines": 1661,
+      "evidenceTokens": 68454,
+      "precision": 0,
       "tokens": 1428,
       "steps": 1,
       "evidence": [
@@ -1838,6 +1908,9 @@
       "lang": "en",
       "hit": true,
       "rank": 2,
+      "evidenceLines": 1278,
+      "evidenceTokens": 39284,
+      "precision": 0.0329,
       "tokens": 1361,
       "steps": 1,
       "evidence": [
@@ -1941,6 +2014,9 @@
       "lang": "en",
       "hit": true,
       "rank": 6,
+      "evidenceLines": 32,
+      "evidenceTokens": 1262,
+      "precision": 0.0938,
       "tokens": 1276,
       "steps": 1,
       "evidence": [
@@ -2041,7 +2117,10 @@
       "lang": "en",
       "hit": false,
       "rank": null,
-      "tokens": 1454,
+      "evidenceLines": 130,
+      "evidenceTokens": 4334,
+      "precision": 0,
+      "tokens": 1453,
       "steps": 1,
       "evidence": [
         {
@@ -2141,6 +2220,9 @@
       "lang": "en",
       "hit": true,
       "rank": 8,
+      "evidenceLines": 1815,
+      "evidenceTokens": 51878,
+      "precision": 0.0452,
       "tokens": 1290,
       "steps": 1,
       "evidence": [
@@ -2238,7 +2320,10 @@
       "lang": "en",
       "hit": true,
       "rank": 1,
-      "tokens": 1240,
+      "evidenceLines": 145,
+      "evidenceTokens": 11109,
+      "precision": 0.0483,
+      "tokens": 1239,
       "steps": 1,
       "evidence": [
         {
@@ -2328,6 +2413,9 @@
       "lang": "en",
       "hit": false,
       "rank": null,
+      "evidenceLines": 87,
+      "evidenceTokens": 5922,
+      "precision": 0,
       "tokens": 1257,
       "steps": 1,
       "evidence": [
@@ -2418,6 +2506,9 @@
       "lang": "en",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 52,
+      "evidenceTokens": 8948,
+      "precision": 0.0577,
       "tokens": 1277,
       "steps": 1,
       "evidence": [
@@ -2509,6 +2600,9 @@
       "lang": "en",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 125,
+      "evidenceTokens": 10158,
+      "precision": 0.032,
       "tokens": 1257,
       "steps": 1,
       "evidence": [
@@ -2599,7 +2693,10 @@
       "lang": "en",
       "hit": true,
       "rank": 1,
-      "tokens": 1281,
+      "evidenceLines": 87,
+      "evidenceTokens": 8586,
+      "precision": 0.0345,
+      "tokens": 1280,
       "steps": 1,
       "evidence": [
         {
@@ -2689,7 +2786,10 @@
       "lang": "en",
       "hit": true,
       "rank": 1,
-      "tokens": 1167,
+      "evidenceLines": 56,
+      "evidenceTokens": 5314,
+      "precision": 0.0714,
+      "tokens": 1166,
       "steps": 1,
       "evidence": [
         {
@@ -2779,6 +2879,9 @@
       "lang": "en",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 73,
+      "evidenceTokens": 6983,
+      "precision": 0.0685,
       "tokens": 1214,
       "steps": 1,
       "evidence": [
@@ -2869,6 +2972,9 @@
       "lang": "en",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 76,
+      "evidenceTokens": 13022,
+      "precision": 0.0526,
       "tokens": 1259,
       "steps": 1,
       "evidence": [
@@ -2960,7 +3066,10 @@
       "lang": "en",
       "hit": true,
       "rank": 8,
-      "tokens": 1340,
+      "evidenceLines": 112,
+      "evidenceTokens": 6335,
+      "precision": 0.0536,
+      "tokens": 1339,
       "steps": 1,
       "evidence": [
         {
@@ -3055,7 +3164,10 @@
       "lang": "en",
       "hit": true,
       "rank": 1,
-      "tokens": 1246,
+      "evidenceLines": 143,
+      "evidenceTokens": 5871,
+      "precision": 0.0559,
+      "tokens": 1245,
       "steps": 1,
       "evidence": [
         {
@@ -3145,6 +3257,9 @@
       "lang": "en",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 163,
+      "evidenceTokens": 5246,
+      "precision": 0.0368,
       "tokens": 1366,
       "steps": 1,
       "evidence": [
@@ -3243,6 +3358,9 @@
       "lang": "en",
       "hit": true,
       "rank": 2,
+      "evidenceLines": 85,
+      "evidenceTokens": 5208,
+      "precision": 0.0471,
       "tokens": 1288,
       "steps": 1,
       "evidence": [
@@ -3333,6 +3451,9 @@
       "lang": "en",
       "hit": true,
       "rank": 2,
+      "evidenceLines": 68,
+      "evidenceTokens": 7968,
+      "precision": 0.1765,
       "tokens": 1267,
       "steps": 1,
       "evidence": [
@@ -3423,7 +3544,10 @@
       "lang": "en",
       "hit": true,
       "rank": 2,
-      "tokens": 1259,
+      "evidenceLines": 138,
+      "evidenceTokens": 8285,
+      "precision": 0.1087,
+      "tokens": 1260,
       "steps": 1,
       "evidence": [
         {
@@ -3513,6 +3637,9 @@
       "lang": "en",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 90,
+      "evidenceTokens": 12915,
+      "precision": 0.0556,
       "tokens": 1294,
       "steps": 1,
       "evidence": [
@@ -3611,6 +3738,9 @@
       "lang": "en",
       "hit": true,
       "rank": 2,
+      "evidenceLines": 94,
+      "evidenceTokens": 8454,
+      "precision": 0.0532,
       "tokens": 1251,
       "steps": 1,
       "evidence": [
@@ -3701,6 +3831,9 @@
       "lang": "en",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 76,
+      "evidenceTokens": 5236,
+      "precision": 0.1184,
       "tokens": 1230,
       "steps": 1,
       "evidence": [
@@ -3791,7 +3924,10 @@
       "lang": "en",
       "hit": true,
       "rank": 1,
-      "tokens": 1276,
+      "evidenceLines": 154,
+      "evidenceTokens": 30875,
+      "precision": 0.0325,
+      "tokens": 1277,
       "steps": 1,
       "evidence": [
         {
@@ -3882,6 +4018,9 @@
       "lang": "en",
       "hit": true,
       "rank": 2,
+      "evidenceLines": 42,
+      "evidenceTokens": 4563,
+      "precision": 0.0952,
       "tokens": 1341,
       "steps": 1,
       "evidence": [
@@ -3982,7 +4121,10 @@
       "lang": "en",
       "hit": true,
       "rank": 4,
-      "tokens": 1283,
+      "evidenceLines": 121,
+      "evidenceTokens": 4742,
+      "precision": 0.0248,
+      "tokens": 1282,
       "steps": 1,
       "evidence": [
         {
@@ -4073,7 +4215,10 @@
       "lang": "en",
       "hit": true,
       "rank": 1,
-      "tokens": 1242,
+      "evidenceLines": 66,
+      "evidenceTokens": 6398,
+      "precision": 0.0606,
+      "tokens": 1243,
       "steps": 1,
       "evidence": [
         {
@@ -4163,6 +4308,9 @@
       "lang": "en",
       "hit": true,
       "rank": 2,
+      "evidenceLines": 62,
+      "evidenceTokens": 5661,
+      "precision": 0.0645,
       "tokens": 1298,
       "steps": 1,
       "evidence": [
@@ -4253,6 +4401,9 @@
       "lang": "en",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 61,
+      "evidenceTokens": 2391,
+      "precision": 0.082,
       "tokens": 1265,
       "steps": 1,
       "evidence": [
@@ -4343,6 +4494,9 @@
       "lang": "en",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 77,
+      "evidenceTokens": 6923,
+      "precision": 0.039,
       "tokens": 1244,
       "steps": 1,
       "evidence": [
@@ -4433,7 +4587,10 @@
       "lang": "en",
       "hit": true,
       "rank": 2,
-      "tokens": 1300,
+      "evidenceLines": 79,
+      "evidenceTokens": 9661,
+      "precision": 0.1772,
+      "tokens": 1301,
       "steps": 1,
       "evidence": [
         {
@@ -4528,6 +4685,9 @@
       "lang": "en",
       "hit": true,
       "rank": 2,
+      "evidenceLines": 70,
+      "evidenceTokens": 4932,
+      "precision": 0.0571,
       "tokens": 1250,
       "steps": 1,
       "evidence": [
@@ -4618,7 +4778,10 @@
       "lang": "en",
       "hit": false,
       "rank": null,
-      "tokens": 1258,
+      "evidenceLines": 72,
+      "evidenceTokens": 9822,
+      "precision": 0,
+      "tokens": 1260,
       "steps": 1,
       "evidence": [
         {
@@ -4708,6 +4871,9 @@
       "lang": "en",
       "hit": false,
       "rank": null,
+      "evidenceLines": 77,
+      "evidenceTokens": 7162,
+      "precision": 0,
       "tokens": 1226,
       "steps": 1,
       "evidence": [
@@ -4798,7 +4964,10 @@
       "lang": "en",
       "hit": true,
       "rank": 1,
-      "tokens": 1438,
+      "evidenceLines": 242,
+      "evidenceTokens": 7126,
+      "precision": 0.0372,
+      "tokens": 1437,
       "steps": 1,
       "evidence": [
         {
@@ -4893,6 +5062,9 @@
       "lang": "en",
       "hit": false,
       "rank": null,
+      "evidenceLines": 96,
+      "evidenceTokens": 9199,
+      "precision": 0,
       "tokens": 1238,
       "steps": 1,
       "evidence": [
@@ -4983,6 +5155,9 @@
       "lang": "en",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 57,
+      "evidenceTokens": 8813,
+      "precision": 0.0702,
       "tokens": 1242,
       "steps": 1,
       "evidence": [
@@ -5075,6 +5250,9 @@
       "lang": "en",
       "hit": true,
       "rank": 4,
+      "evidenceLines": 104,
+      "evidenceTokens": 6338,
+      "precision": 0.2692,
       "tokens": 1157,
       "steps": 1,
       "evidence": [
@@ -5165,6 +5343,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 596,
+      "evidenceTokens": 13526,
+      "precision": 0.0201,
       "tokens": 3236,
       "steps": 1,
       "evidence": [
@@ -5256,6 +5437,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 168,
+      "evidenceTokens": 5297,
+      "precision": 0.0476,
       "tokens": 2947,
       "steps": 1,
       "evidence": [
@@ -5352,6 +5536,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 1146,
+      "evidenceTokens": 42112,
+      "precision": 0.0314,
       "tokens": 3286,
       "steps": 1,
       "evidence": [
@@ -5442,7 +5629,10 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
-      "tokens": 3323,
+      "evidenceLines": 696,
+      "evidenceTokens": 20317,
+      "precision": 0.0632,
+      "tokens": 3322,
       "steps": 1,
       "evidence": [
         {
@@ -5537,6 +5727,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 936,
+      "evidenceTokens": 30680,
+      "precision": 0.1047,
       "tokens": 3319,
       "steps": 1,
       "evidence": [
@@ -5630,6 +5823,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 381,
+      "evidenceTokens": 13205,
+      "precision": 0.0105,
       "tokens": 2705,
       "steps": 1,
       "evidence": [
@@ -5722,6 +5918,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 682,
+      "evidenceTokens": 14460,
+      "precision": 0.0352,
       "tokens": 3250,
       "steps": 1,
       "evidence": [
@@ -5822,7 +6021,10 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
-      "tokens": 2738,
+      "evidenceLines": 118,
+      "evidenceTokens": 5425,
+      "precision": 0.0339,
+      "tokens": 2739,
       "steps": 1,
       "evidence": [
         {
@@ -5918,6 +6120,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 2,
+      "evidenceLines": 267,
+      "evidenceTokens": 8558,
+      "precision": 0.0674,
       "tokens": 2707,
       "steps": 1,
       "evidence": [
@@ -6009,6 +6214,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 726,
+      "evidenceTokens": 23675,
+      "precision": 0.0854,
       "tokens": 3314,
       "steps": 1,
       "evidence": [
@@ -6102,6 +6310,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 294,
+      "evidenceTokens": 9617,
+      "precision": 0.0272,
       "tokens": 3052,
       "steps": 1,
       "evidence": [
@@ -6196,6 +6407,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 372,
+      "evidenceTokens": 6642,
+      "precision": 0.0108,
       "tokens": 2912,
       "steps": 1,
       "evidence": [
@@ -6294,6 +6508,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 610,
+      "evidenceTokens": 13858,
+      "precision": 0.0361,
       "tokens": 3298,
       "steps": 1,
       "evidence": [
@@ -6391,6 +6608,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 6,
+      "evidenceLines": 146,
+      "evidenceTokens": 6245,
+      "precision": 0.0685,
       "tokens": 2848,
       "steps": 1,
       "evidence": [
@@ -6489,7 +6709,10 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
-      "tokens": 3227,
+      "evidenceLines": 520,
+      "evidenceTokens": 14335,
+      "precision": 0.0346,
+      "tokens": 3228,
       "steps": 1,
       "evidence": [
         {
@@ -6579,7 +6802,10 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
-      "tokens": 3269,
+      "evidenceLines": 388,
+      "evidenceTokens": 14618,
+      "precision": 0.0876,
+      "tokens": 3270,
       "steps": 1,
       "evidence": [
         {
@@ -6672,6 +6898,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 4,
+      "evidenceLines": 325,
+      "evidenceTokens": 6325,
+      "precision": 0.0123,
       "tokens": 2783,
       "steps": 1,
       "evidence": [
@@ -6767,6 +6996,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 1082,
+      "evidenceTokens": 43034,
+      "precision": 0.0388,
       "tokens": 3337,
       "steps": 1,
       "evidence": [
@@ -6859,6 +7091,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 416,
+      "evidenceTokens": 9761,
+      "precision": 0.1827,
       "tokens": 3294,
       "steps": 1,
       "evidence": [
@@ -6953,6 +7188,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 201,
+      "evidenceTokens": 9202,
+      "precision": 0.0299,
       "tokens": 2765,
       "steps": 1,
       "evidence": [
@@ -7049,7 +7287,10 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
-      "tokens": 3310,
+      "evidenceLines": 684,
+      "evidenceTokens": 18164,
+      "precision": 0.0673,
+      "tokens": 3309,
       "steps": 1,
       "evidence": [
         {
@@ -7141,6 +7382,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 3,
+      "evidenceLines": 123,
+      "evidenceTokens": 7579,
+      "precision": 0.0569,
       "tokens": 2767,
       "steps": 1,
       "evidence": [
@@ -7238,6 +7482,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 119,
+      "evidenceTokens": 4271,
+      "precision": 0.0504,
       "tokens": 2553,
       "steps": 1,
       "evidence": [
@@ -7335,7 +7582,10 @@
       "lang": "zh",
       "hit": true,
       "rank": 3,
-      "tokens": 2870,
+      "evidenceLines": 504,
+      "evidenceTokens": 10222,
+      "precision": 0.0437,
+      "tokens": 2869,
       "steps": 1,
       "evidence": [
         {
@@ -7430,7 +7680,10 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
-      "tokens": 3168,
+      "evidenceLines": 200,
+      "evidenceTokens": 6383,
+      "precision": 0.055,
+      "tokens": 3167,
       "steps": 1,
       "evidence": [
         {
@@ -7523,6 +7776,9 @@
       "lang": "zh",
       "hit": false,
       "rank": null,
+      "evidenceLines": 181,
+      "evidenceTokens": 5575,
+      "precision": 0,
       "tokens": 2935,
       "steps": 1,
       "evidence": [
@@ -7619,7 +7875,10 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
-      "tokens": 3314,
+      "evidenceLines": 788,
+      "evidenceTokens": 19934,
+      "precision": 0.0305,
+      "tokens": 3313,
       "steps": 1,
       "evidence": [
         {
@@ -7731,7 +7990,10 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
-      "tokens": 2841,
+      "evidenceLines": 133,
+      "evidenceTokens": 6068,
+      "precision": 0.0752,
+      "tokens": 2829,
       "steps": 1,
       "evidence": [
         {
@@ -7815,10 +8077,10 @@
           "docPath": "zh/wikipedia/结核病.md",
           "titlePath": [
             "病因",
-            "分枝杆菌属"
+            "危险因子"
           ],
-          "startLine": 42,
-          "endLine": 53
+          "startLine": 54,
+          "endLine": 57
         }
       ]
     },
@@ -7827,6 +8089,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 56,
+      "evidenceTokens": 2897,
+      "precision": 0.0714,
       "tokens": 2604,
       "steps": 1,
       "evidence": [
@@ -7928,6 +8193,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 448,
+      "evidenceTokens": 8842,
+      "precision": 0.2009,
       "tokens": 3130,
       "steps": 1,
       "evidence": [
@@ -8023,6 +8291,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 2,
+      "evidenceLines": 632,
+      "evidenceTokens": 16771,
+      "precision": 0.0601,
       "tokens": 3249,
       "steps": 1,
       "evidence": [
@@ -8113,7 +8384,10 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
-      "tokens": 2595,
+      "evidenceLines": 91,
+      "evidenceTokens": 3348,
+      "precision": 0.0659,
+      "tokens": 2596,
       "steps": 1,
       "evidence": [
         {
@@ -8208,6 +8482,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 1050,
+      "evidenceTokens": 22833,
+      "precision": 0.0743,
       "tokens": 3265,
       "steps": 1,
       "evidence": [
@@ -8303,6 +8580,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 498,
+      "evidenceTokens": 9864,
+      "precision": 0.0361,
       "tokens": 3273,
       "steps": 1,
       "evidence": [
@@ -8400,6 +8680,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 146,
+      "evidenceTokens": 5715,
+      "precision": 0.0548,
       "tokens": 2907,
       "steps": 1,
       "evidence": [
@@ -8495,7 +8778,10 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
-      "tokens": 3249,
+      "evidenceLines": 554,
+      "evidenceTokens": 12836,
+      "precision": 0.0433,
+      "tokens": 3248,
       "steps": 1,
       "evidence": [
         {
@@ -8586,7 +8872,10 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
-      "tokens": 2986,
+      "evidenceLines": 304,
+      "evidenceTokens": 7770,
+      "precision": 0.0329,
+      "tokens": 2985,
       "steps": 1,
       "evidence": [
         {
@@ -8678,6 +8967,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 2,
+      "evidenceLines": 428,
+      "evidenceTokens": 11019,
+      "precision": 0.0794,
       "tokens": 3127,
       "steps": 1,
       "evidence": [
@@ -8773,6 +9065,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 2,
+      "evidenceLines": 578,
+      "evidenceTokens": 16666,
+      "precision": 0.083,
       "tokens": 3295,
       "steps": 1,
       "evidence": [
@@ -8865,6 +9160,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 738,
+      "evidenceTokens": 24257,
+      "precision": 0.1301,
       "tokens": 3306,
       "steps": 1,
       "evidence": [
@@ -8958,7 +9256,10 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
-      "tokens": 2893,
+      "evidenceLines": 404,
+      "evidenceTokens": 8324,
+      "precision": 0.0198,
+      "tokens": 2894,
       "steps": 1,
       "evidence": [
         {
@@ -9055,7 +9356,10 @@
       "lang": "zh",
       "hit": true,
       "rank": 10,
-      "tokens": 3230,
+      "evidenceLines": 422,
+      "evidenceTokens": 11363,
+      "precision": 0.0521,
+      "tokens": 3231,
       "steps": 1,
       "evidence": [
         {
@@ -9145,6 +9449,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 1128,
+      "evidenceTokens": 23187,
+      "precision": 0.1472,
       "tokens": 3263,
       "steps": 1,
       "evidence": [
@@ -9237,7 +9544,10 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
-      "tokens": 2979,
+      "evidenceLines": 135,
+      "evidenceTokens": 5646,
+      "precision": 0.0296,
+      "tokens": 2978,
       "steps": 1,
       "evidence": [
         {
@@ -9334,7 +9644,10 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
-      "tokens": 3228,
+      "evidenceLines": 558,
+      "evidenceTokens": 14961,
+      "precision": 0.0179,
+      "tokens": 3227,
       "steps": 1,
       "evidence": [
         {
@@ -9426,7 +9739,10 @@
       "lang": "zh",
       "hit": true,
       "rank": 6,
-      "tokens": 3005,
+      "evidenceLines": 553,
+      "evidenceTokens": 19788,
+      "precision": 0.1627,
+      "tokens": 3004,
       "steps": 1,
       "evidence": [
         {
@@ -9522,6 +9838,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 468,
+      "evidenceTokens": 7618,
+      "precision": 0.1154,
       "tokens": 3149,
       "steps": 1,
       "evidence": [
@@ -9618,6 +9937,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 624,
+      "evidenceTokens": 14606,
+      "precision": 0.0737,
       "tokens": 3286,
       "steps": 1,
       "evidence": [
@@ -9713,6 +10035,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 2,
+      "evidenceLines": 764,
+      "evidenceTokens": 16537,
+      "precision": 0.1361,
       "tokens": 3259,
       "steps": 1,
       "evidence": [
@@ -9809,7 +10134,10 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
-      "tokens": 3311,
+      "evidenceLines": 500,
+      "evidenceTokens": 17622,
+      "precision": 0.1,
+      "tokens": 3312,
       "steps": 1,
       "evidence": [
         {
@@ -9906,6 +10234,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 674,
+      "evidenceTokens": 15035,
+      "precision": 0.089,
       "tokens": 3202,
       "steps": 1,
       "evidence": [
@@ -9997,6 +10328,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 696,
+      "evidenceTokens": 16264,
+      "precision": 0.0172,
       "tokens": 3237,
       "steps": 1,
       "evidence": [
@@ -10088,7 +10422,10 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
-      "tokens": 3244,
+      "evidenceLines": 542,
+      "evidenceTokens": 11178,
+      "precision": 0.0369,
+      "tokens": 3245,
       "steps": 1,
       "evidence": [
         {
@@ -10181,7 +10518,10 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
-      "tokens": 2755,
+      "evidenceLines": 180,
+      "evidenceTokens": 5447,
+      "precision": 0.2944,
+      "tokens": 2756,
       "steps": 1,
       "evidence": [
         {
@@ -10275,6 +10615,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 576,
+      "evidenceTokens": 11306,
+      "precision": 0.0764,
       "tokens": 3331,
       "steps": 1,
       "evidence": [
@@ -10372,6 +10715,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 99,
+      "evidenceTokens": 4757,
+      "precision": 0.0808,
       "tokens": 2754,
       "steps": 1,
       "evidence": [
@@ -10468,6 +10814,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 1006,
+      "evidenceTokens": 13531,
+      "precision": 0.006,
       "tokens": 3109,
       "steps": 1,
       "evidence": [
@@ -10570,6 +10919,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 2,
+      "evidenceLines": 954,
+      "evidenceTokens": 21578,
+      "precision": 0.0818,
       "tokens": 3214,
       "steps": 1,
       "evidence": [
@@ -10662,6 +11014,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 113,
+      "evidenceTokens": 5746,
+      "precision": 0.0531,
       "tokens": 2851,
       "steps": 1,
       "evidence": [
@@ -10758,6 +11113,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 460,
+      "evidenceTokens": 14798,
+      "precision": 0.0435,
       "tokens": 3268,
       "steps": 1,
       "evidence": [
@@ -10848,7 +11206,10 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
-      "tokens": 3355,
+      "evidenceLines": 754,
+      "evidenceTokens": 15161,
+      "precision": 0.0557,
+      "tokens": 3356,
       "steps": 1,
       "evidence": [
         {
@@ -10945,7 +11306,10 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
-      "tokens": 3214,
+      "evidenceLines": 530,
+      "evidenceTokens": 14332,
+      "precision": 0.0981,
+      "tokens": 3215,
       "steps": 1,
       "evidence": [
         {
@@ -11036,6 +11400,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 94,
+      "evidenceTokens": 5795,
+      "precision": 0.0851,
       "tokens": 3009,
       "steps": 1,
       "evidence": [
@@ -11134,6 +11501,9 @@
       "lang": "mixed",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 466,
+      "evidenceTokens": 6510,
+      "precision": 0.6803,
       "tokens": 2786,
       "steps": 1,
       "evidence": [
@@ -11193,15 +11563,6 @@
           "endLine": 287
         },
         {
-          "docPath": "zh/law-wikisource/新型冠状病毒肺炎诊疗方案（试行第八版）.md",
-          "titlePath": [
-            "十一、治疗",
-            "（六）重型、危重型病例的治疗。"
-          ],
-          "startLine": 312,
-          "endLine": 373
-        },
-        {
           "docPath": "zh/wikipedia/流行性感冒.md",
           "titlePath": [
             "预后"
@@ -11219,6 +11580,15 @@
           "endLine": 228
         },
         {
+          "docPath": "zh/law-wikisource/新型冠状病毒肺炎诊疗方案（试行第八版）.md",
+          "titlePath": [
+            "十一、治疗",
+            "（六）重型、危重型病例的治疗。"
+          ],
+          "startLine": 312,
+          "endLine": 373
+        },
+        {
           "docPath": "zh/wikipedia/高血压.md",
           "titlePath": [
             "治疗",
@@ -11234,6 +11604,9 @@
       "lang": "mixed",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 96,
+      "evidenceTokens": 5086,
+      "precision": 0.0417,
       "tokens": 2884,
       "steps": 1,
       "evidence": [
@@ -11331,7 +11704,10 @@
       "lang": "mixed",
       "hit": true,
       "rank": 1,
-      "tokens": 2798,
+      "evidenceLines": 493,
+      "evidenceTokens": 12055,
+      "precision": 0.0081,
+      "tokens": 2797,
       "steps": 1,
       "evidence": [
         {
@@ -11429,7 +11805,10 @@
       "lang": "mixed",
       "hit": true,
       "rank": 1,
-      "tokens": 2997,
+      "evidenceLines": 216,
+      "evidenceTokens": 8187,
+      "precision": 0.0278,
+      "tokens": 2998,
       "steps": 1,
       "evidence": [
         {
@@ -11526,6 +11905,9 @@
       "lang": "mixed",
       "hit": true,
       "rank": 6,
+      "evidenceLines": 149,
+      "evidenceTokens": 7321,
+      "precision": 0.0537,
       "tokens": 2752,
       "steps": 1,
       "evidence": [
@@ -11622,7 +12004,10 @@
       "lang": "mixed",
       "hit": true,
       "rank": 1,
-      "tokens": 2958,
+      "evidenceLines": 92,
+      "evidenceTokens": 6750,
+      "precision": 0.1739,
+      "tokens": 2957,
       "steps": 1,
       "evidence": [
         {
@@ -11720,7 +12105,10 @@
       "lang": "mixed",
       "hit": true,
       "rank": 1,
-      "tokens": 2985,
+      "evidenceLines": 143,
+      "evidenceTokens": 5399,
+      "precision": 0.1049,
+      "tokens": 2984,
       "steps": 1,
       "evidence": [
         {
@@ -11815,7 +12203,10 @@
       "lang": "mixed",
       "hit": true,
       "rank": 1,
-      "tokens": 2630,
+      "evidenceLines": 111,
+      "evidenceTokens": 5198,
+      "precision": 0.036,
+      "tokens": 2631,
       "steps": 1,
       "evidence": [
         {
@@ -11910,7 +12301,10 @@
       "lang": "mixed",
       "hit": true,
       "rank": 1,
-      "tokens": 3014,
+      "evidenceLines": 79,
+      "evidenceTokens": 4208,
+      "precision": 0.1013,
+      "tokens": 3015,
       "steps": 1,
       "evidence": [
         {
@@ -12009,6 +12403,9 @@
       "lang": "mixed",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 127,
+      "evidenceTokens": 5986,
+      "precision": 0.0472,
       "tokens": 2735,
       "steps": 1,
       "evidence": [
@@ -12108,6 +12505,9 @@
       "lang": "mixed",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 184,
+      "evidenceTokens": 8799,
+      "precision": 0.0326,
       "tokens": 2741,
       "steps": 1,
       "evidence": [
@@ -12202,7 +12602,10 @@
       "lang": "mixed",
       "hit": true,
       "rank": 2,
-      "tokens": 2959,
+      "evidenceLines": 1048,
+      "evidenceTokens": 12742,
+      "precision": 0.0076,
+      "tokens": 2960,
       "steps": 1,
       "evidence": [
         {
@@ -12305,7 +12708,10 @@
       "lang": "mixed",
       "hit": true,
       "rank": 1,
-      "tokens": 2794,
+      "evidenceLines": 98,
+      "evidenceTokens": 4912,
+      "precision": 0.1429,
+      "tokens": 2795,
       "steps": 1,
       "evidence": [
         {
@@ -12403,7 +12809,10 @@
       "lang": "mixed",
       "hit": true,
       "rank": 1,
-      "tokens": 2921,
+      "evidenceLines": 125,
+      "evidenceTokens": 5911,
+      "precision": 0.08,
+      "tokens": 2922,
       "steps": 1,
       "evidence": [
         {
@@ -12499,6 +12908,9 @@
       "lang": "mixed",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 149,
+      "evidenceTokens": 6542,
+      "precision": 0.0403,
       "tokens": 2785,
       "steps": 1,
       "evidence": [
@@ -12595,7 +13007,10 @@
       "lang": "mixed",
       "hit": true,
       "rank": 1,
-      "tokens": 2818,
+      "evidenceLines": 1178,
+      "evidenceTokens": 13893,
+      "precision": 0.0102,
+      "tokens": 2819,
       "steps": 1,
       "evidence": [
         {
@@ -12692,7 +13107,10 @@
       "lang": "mixed",
       "hit": true,
       "rank": 1,
-      "tokens": 2615,
+      "evidenceLines": 200,
+      "evidenceTokens": 4769,
+      "precision": 0.09,
+      "tokens": 2616,
       "steps": 1,
       "evidence": [
         {
@@ -12789,7 +13207,10 @@
       "lang": "mixed",
       "hit": true,
       "rank": 1,
-      "tokens": 2899,
+      "evidenceLines": 154,
+      "evidenceTokens": 6539,
+      "precision": 0.0649,
+      "tokens": 2900,
       "steps": 1,
       "evidence": [
         {
@@ -12884,7 +13305,10 @@
       "lang": "mixed",
       "hit": false,
       "rank": null,
-      "tokens": 2932,
+      "evidenceLines": 113,
+      "evidenceTokens": 6577,
+      "precision": 0,
+      "tokens": 2933,
       "steps": 1,
       "evidence": [
         {
@@ -12981,7 +13405,10 @@
       "lang": "mixed",
       "hit": true,
       "rank": 1,
-      "tokens": 2817,
+      "evidenceLines": 606,
+      "evidenceTokens": 11853,
+      "precision": 0.1023,
+      "tokens": 2813,
       "steps": 1,
       "evidence": [
         {
@@ -13037,6 +13464,15 @@
           "endLine": 70
         },
         {
+          "docPath": "zh/wikipedia/2019冠状病毒病.md",
+          "titlePath": [
+            "症状",
+            "临床分类"
+          ],
+          "startLine": 116,
+          "endLine": 127
+        },
+        {
           "docPath": "zh/wikipedia/高血压.md",
           "titlePath": [
             "Preface"
@@ -13059,16 +13495,6 @@
           ],
           "startLine": 541,
           "endLine": 544
-        },
-        {
-          "docPath": "zh/wikipedia/2019冠状病毒病.md",
-          "titlePath": [
-            "治疗",
-            "药物治疗",
-            "有争议"
-          ],
-          "startLine": 257,
-          "endLine": 269
         }
       ]
     },
@@ -13077,6 +13503,9 @@
       "lang": "mixed",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 79,
+      "evidenceTokens": 3920,
+      "precision": 0.0506,
       "tokens": 2521,
       "steps": 1,
       "evidence": [
@@ -13177,6 +13606,9 @@
       "lang": "mixed",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 439,
+      "evidenceTokens": 9359,
+      "precision": 0.0615,
       "tokens": 2934,
       "steps": 1,
       "evidence": [
@@ -13272,6 +13704,9 @@
       "lang": "mixed",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 64,
+      "evidenceTokens": 3989,
+      "precision": 0.125,
       "tokens": 2777,
       "steps": 1,
       "evidence": [
@@ -13374,7 +13809,10 @@
       "lang": "mixed",
       "hit": true,
       "rank": 1,
-      "tokens": 2932,
+      "evidenceLines": 103,
+      "evidenceTokens": 4563,
+      "precision": 0.3107,
+      "tokens": 2933,
       "steps": 1,
       "evidence": [
         {
@@ -13470,6 +13908,9 @@
       "lang": "mixed",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 285,
+      "evidenceTokens": 8762,
+      "precision": 0.0211,
       "tokens": 2846,
       "steps": 1,
       "evidence": [
@@ -13565,6 +14006,9 @@
       "lang": "mixed",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 468,
+      "evidenceTokens": 12334,
+      "precision": 0.0214,
       "tokens": 2941,
       "steps": 1,
       "evidence": [
@@ -13660,6 +14104,9 @@
       "lang": "mixed",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 155,
+      "evidenceTokens": 5629,
+      "precision": 0.0258,
       "tokens": 2886,
       "steps": 1,
       "evidence": [
@@ -13759,7 +14206,10 @@
       "lang": "mixed",
       "hit": true,
       "rank": 7,
-      "tokens": 2889,
+      "evidenceLines": 217,
+      "evidenceTokens": 7208,
+      "precision": 0.47,
+      "tokens": 2888,
       "steps": 1,
       "evidence": [
         {
@@ -13854,7 +14304,10 @@
       "lang": "mixed",
       "hit": true,
       "rank": 4,
-      "tokens": 1349,
+      "evidenceLines": 70,
+      "evidenceTokens": 16278,
+      "precision": 0.0429,
+      "tokens": 1348,
       "steps": 1,
       "evidence": [
         {
@@ -13954,7 +14407,10 @@
       "lang": "mixed",
       "hit": false,
       "rank": null,
-      "tokens": 3069,
+      "evidenceLines": 412,
+      "evidenceTokens": 13349,
+      "precision": 0,
+      "tokens": 3068,
       "steps": 1,
       "evidence": [
         {
@@ -14054,6 +14510,9 @@
       "lang": "mixed",
       "hit": false,
       "rank": null,
+      "evidenceLines": 167,
+      "evidenceTokens": 8276,
+      "precision": 0,
       "tokens": 3002,
       "steps": 1,
       "evidence": [
@@ -14150,6 +14609,9 @@
       "lang": "mixed",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 115,
+      "evidenceTokens": 6936,
+      "precision": 0.0609,
       "tokens": 2546,
       "steps": 1,
       "evidence": [
@@ -14245,6 +14707,9 @@
       "lang": "mixed",
       "hit": false,
       "rank": null,
+      "evidenceLines": 417,
+      "evidenceTokens": 7431,
+      "precision": 0,
       "tokens": 2879,
       "steps": 1,
       "evidence": [
@@ -14344,7 +14809,10 @@
       "lang": "mixed",
       "hit": true,
       "rank": 8,
-      "tokens": 1363,
+      "evidenceLines": 2307,
+      "evidenceTokens": 54298,
+      "precision": 0.036,
+      "tokens": 1364,
       "steps": 1,
       "evidence": [
         {

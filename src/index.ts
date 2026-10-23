@@ -43,5 +43,5 @@ export {
   type Gold,
   type QuestionIssue,
 } from './eval/questions.js'
-export { matchesGold, firstHitRank, aggregate, type EvidenceRef, type QuestionResult, type Summary, type Aggregate } from './eval/score.js'
+export { matchesGold, firstHitRank, aggregate, evidenceLineRanges, evidencePrecision, type LineRange, type EvidenceRef, type QuestionResult, type Summary, type Aggregate } from './eval/score.js'
 export { runEval, checkGold, type EvalMode, type RunEvalOptions, type EvalReport } from './eval/run.js'

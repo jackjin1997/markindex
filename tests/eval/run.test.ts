@@ -67,6 +67,33 @@ describe('runEval bm25', () => {
     expect(report.baseline).toBeUndefined()
   })
 
+  it('records evidence size and precision per question and in the summary', async () => {
+    const report = await runEval(lib, questions, { mode: 'bm25', topK: 5 })
+    for (const r of report.results) {
+      expect(r.evidenceLines).toBeGreaterThan(0)
+      expect(r.evidenceLines).toBeLessThanOrEqual(r.evidence.reduce((n, e) => n + e.endLine - e.startLine + 1, 0))
+      expect(r.evidenceTokens).toBeGreaterThan(0)
+    }
+    const en1 = report.results[0]!
+    expect(en1.precision).toBeGreaterThan(0)
+    expect(en1.precision).toBeLessThanOrEqual(1)
+    expect(report.results[1]!.precision).toBeNull() // title_path gold
+    expect(report.summary.overall.meanEvidenceLines).toBeGreaterThan(0)
+    expect(report.summary.overall.meanPrecision).not.toBeNull()
+  })
+
+  it('--max-evidence-lines: only short enough matching items count as hits', async () => {
+    const base = await runEval(lib, [questions[0]!], { mode: 'bm25', topK: 5 })
+    const e = base.results[0]!.evidence[base.results[0]!.rank! - 1]!
+    const span = e.endLine - e.startLine + 1
+    expect(span).toBeGreaterThan(1)
+    const ok = await runEval(lib, [questions[0]!], { mode: 'bm25', topK: 5, maxEvidenceLines: span })
+    expect(ok.results[0]!.hit).toBe(true)
+    expect(ok.options.maxEvidenceLines).toBe(span)
+    const strict = await runEval(lib, [questions[0]!], { mode: 'bm25', topK: 1, maxEvidenceLines: span - 1 })
+    expect(strict.results[0]!.hit).toBe(false)
+  })
+
   it('bm25 evidence is the matched node own text range', async () => {
     const report = await runEval(lib, [questions[0]!], { mode: 'bm25', topK: 1 })
     const e = report.results[0]!.evidence[0]!

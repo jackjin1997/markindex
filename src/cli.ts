@@ -136,15 +136,18 @@ function printSummary(report: EvalReport) {
     out(
       `${label.padEnd(10)}${String(s.questions).padStart(5)}${String(s.hits).padStart(6)}${pct(s.hitRate).padStart(9)}` +
         `${pct(s.hitAt1).padStart(9)}${s.mrr.toFixed(3).padStart(8)}${String(Math.round(s.avgTokens)).padStart(11)}` +
-        `${s.avgSteps.toFixed(1).padStart(7)}${String(s.errors).padStart(7)}`,
+        `${s.avgSteps.toFixed(1).padStart(7)}${String(s.errors).padStart(7)}` +
+        `${s.meanEvidenceLines.toFixed(1).padStart(10)}${String(s.medianEvidenceLines).padStart(7)}` +
+        `${(s.meanPrecision === null ? '-' : pct(s.meanPrecision)).padStart(8)}`,
     )
   const table = (title: string, a: Aggregate) => {
     out(title)
-    out(`${'set'.padEnd(10)}${'n'.padStart(5)}${'hits'.padStart(6)}${'hit'.padStart(9)}${'hit@1'.padStart(9)}${'mrr'.padStart(8)}${'avg tok'.padStart(11)}${'steps'.padStart(7)}${'errors'.padStart(7)}`)
+    out(`${'set'.padEnd(10)}${'n'.padStart(5)}${'hits'.padStart(6)}${'hit'.padStart(9)}${'hit@1'.padStart(9)}${'mrr'.padStart(8)}${'avg tok'.padStart(11)}${'steps'.padStart(7)}${'errors'.padStart(7)}${'ev lines'.padStart(10)}${'med'.padStart(7)}${'prec'.padStart(8)}`)
     row('overall', a.overall)
     for (const lang of ['zh', 'en', 'mixed'] as const) row(lang, a.byLang[lang])
   }
-  table(`mode ${report.mode}${report.model ? ` (${report.model})` : ''}${report.options.topK ? `, top-${report.options.topK}` : ''}`, report.summary)
+  const maxLines = report.options.maxEvidenceLines ? `, hits need evidence <= ${report.options.maxEvidenceLines} lines` : ''
+  table(`mode ${report.mode}${report.model ? ` (${report.model})` : ''}${report.options.topK ? `, top-${report.options.topK}` : ''}${maxLines}`, report.summary)
   if (report.baseline) {
     out('')
     table(`baseline bm25 top-${report.baseline.topK}`, report.baseline.summary)
@@ -162,6 +165,7 @@ async function evalCommand(
     maxInputTokens: string
     concurrency: string
     baseline: boolean
+    maxEvidenceLines?: string
     db?: string
     out?: string
     json?: boolean
@@ -170,6 +174,7 @@ async function evalCommand(
   const mode = EVAL_MODES[o.mode]
   if (!mode) throw new Error(`--mode must be bm25 or agent (aliases: tools, retrieve), got "${o.mode}"`)
   if (mode === 'agent' && !o.model) throw new Error('agent mode needs --model <provider:model>, e.g. --model anthropic:claude-sonnet-5-5')
+  const maxEvidenceLines = o.maxEvidenceLines === undefined ? undefined : int(o.maxEvidenceLines, '--max-evidence-lines')
   const questions = parseQuestions(readFileSync(o.questions, 'utf8'), o.questions)
   const lib = openLibrary({ root, dbFile: o.db })
   try {
@@ -188,6 +193,7 @@ async function evalCommand(
       maxInputTokens: int(o.maxInputTokens, '--max-input-tokens'),
       concurrency: int(o.concurrency, '--concurrency'),
       baseline: o.baseline,
+      ...(maxEvidenceLines !== undefined ? { maxEvidenceLines } : {}),
       ...(model ? { model, modelId: o.model } : {}),
       onProgress: o.json
         ? undefined
@@ -247,6 +253,7 @@ export function buildProgram(): Command {
     .option('--max-input-tokens <n>', 'agent: input-token budget per question', String(RETRIEVE_MAX_INPUT_TOKENS))
     .option('--concurrency <n>', 'agent: questions run in parallel', '1')
     .option('--no-baseline', 'agent: skip the bm25 baseline')
+    .option('--max-evidence-lines <n>', 'count a hit only if the matching evidence item spans at most n lines')
     .option('--db <file>', 'index database file')
     .option('--out <file>', 'write the full JSON report (per-question results) to this file')
     .option('--json', 'print the full JSON report instead of the summary table')

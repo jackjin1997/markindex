@@ -109,6 +109,14 @@ describe('cli', () => {
       expect(report.mode).toBe('bm25')
       expect(report.summary.overall.hits).toBe(2)
       expect(report.results).toHaveLength(2)
+      expect(r.stdout).toMatch(/ev lines\s+med\s+prec/)
+      expect(report.results[0].evidenceLines).toBeGreaterThan(0)
+      const strict = await tsx('eval', fixture.root, '--questions', qfile, '--mode', 'bm25', '--max-evidence-lines', '1', '--json')
+      expect(strict.code).toBe(0)
+      const sr = JSON.parse(strict.stdout)
+      expect(sr.options.maxEvidenceLines).toBe(1)
+      expect(sr.summary.overall.hits).toBeLessThan(2)
+      expect((await tsx('eval', fixture.root, '--questions', qfile, '--max-evidence-lines', '0')).code).toBe(1)
     } finally {
       rmSync(dir, { recursive: true, force: true })
     }

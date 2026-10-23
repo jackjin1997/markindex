@@ -1,6 +1,6 @@
 {
   "mode": "bm25",
-  "createdAt": "2026-10-23T09:38:38.655Z",
+  "createdAt": "2026-10-23T10:16:29.528Z",
   "options": {
     "topK": 5
   },
@@ -11,9 +11,13 @@
       "hitRate": 0.8013,
       "hitAt1": 0.6358,
       "mrr": 0.7086,
-      "avgTokens": 1181.7947,
+      "avgTokens": 1181.8278,
       "avgSteps": 1,
-      "errors": 0
+      "errors": 0,
+      "meanEvidenceLines": 209.9868,
+      "medianEvidenceLines": 85,
+      "meanEvidenceTokens": 6701.9338,
+      "meanPrecision": 0.1206
     },
     "byLang": {
       "zh": {
@@ -22,9 +26,13 @@
         "hitRate": 0.9365,
         "hitAt1": 0.7937,
         "mrr": 0.8558,
-        "avgTokens": 1545.0635,
+        "avgTokens": 1545.0317,
         "avgSteps": 1,
-        "errors": 0
+        "errors": 0,
+        "meanEvidenceLines": 244.9841,
+        "medianEvidenceLines": 256,
+        "meanEvidenceTokens": 6822.746,
+        "meanPrecision": 0.1282
       },
       "en": {
         "questions": 54,
@@ -32,9 +40,13 @@
         "hitRate": 0.6481,
         "hitAt1": 0.3889,
         "mrr": 0.5062,
-        "avgTokens": 644.7407,
+        "avgTokens": 644.8519,
         "avgSteps": 1,
-        "errors": 0
+        "errors": 0,
+        "meanEvidenceLines": 183.2963,
+        "medianEvidenceLines": 61.5,
+        "meanEvidenceTokens": 7684.2222,
+        "meanPrecision": 0.0972
       },
       "mixed": {
         "questions": 34,
@@ -42,9 +54,13 @@
         "hitRate": 0.7941,
         "hitAt1": 0.7353,
         "mrr": 0.7574,
-        "avgTokens": 1361.6471,
+        "avgTokens": 1361.6765,
         "avgSteps": 1,
-        "errors": 0
+        "errors": 0,
+        "meanEvidenceLines": 187.5294,
+        "medianEvidenceLines": 59,
+        "meanEvidenceTokens": 4917.9706,
+        "meanPrecision": 0.1435
       }
     }
   },
@@ -54,7 +70,10 @@
       "lang": "en",
       "hit": false,
       "rank": null,
-      "tokens": 609,
+      "evidenceLines": 218,
+      "evidenceTokens": 5534,
+      "precision": 0,
+      "tokens": 610,
       "steps": 1,
       "evidence": [
         {
@@ -104,6 +123,9 @@
       "lang": "en",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 204,
+      "evidenceTokens": 3025,
+      "precision": 0.2059,
       "tokens": 620,
       "steps": 1,
       "evidence": [
@@ -159,6 +181,9 @@
       "lang": "en",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 197,
+      "evidenceTokens": 3255,
+      "precision": 0.203,
       "tokens": 618,
       "steps": 1,
       "evidence": [
@@ -214,6 +239,9 @@
       "lang": "en",
       "hit": false,
       "rank": null,
+      "evidenceLines": 1075,
+      "evidenceTokens": 32013,
+      "precision": 0,
       "tokens": 680,
       "steps": 1,
       "evidence": [
@@ -274,7 +302,10 @@
       "lang": "en",
       "hit": true,
       "rank": 1,
-      "tokens": 743,
+      "evidenceLines": 141,
+      "evidenceTokens": 4582,
+      "precision": 0.2482,
+      "tokens": 744,
       "steps": 1,
       "evidence": [
         {
@@ -329,7 +360,10 @@
       "lang": "en",
       "hit": true,
       "rank": 2,
-      "tokens": 628,
+      "evidenceLines": 177,
+      "evidenceTokens": 12661,
+      "precision": 0.0113,
+      "tokens": 629,
       "steps": 1,
       "evidence": [
         {
@@ -385,6 +419,9 @@
       "lang": "en",
       "hit": false,
       "rank": null,
+      "evidenceLines": 157,
+      "evidenceTokens": 4893,
+      "precision": 0,
       "tokens": 605,
       "steps": 1,
       "evidence": [
@@ -435,7 +472,10 @@
       "lang": "en",
       "hit": false,
       "rank": null,
-      "tokens": 609,
+      "evidenceLines": 226,
+      "evidenceTokens": 5386,
+      "precision": 0,
+      "tokens": 608,
       "steps": 1,
       "evidence": [
         {
@@ -485,6 +525,9 @@
       "lang": "en",
       "hit": true,
       "rank": 2,
+      "evidenceLines": 207,
+      "evidenceTokens": 5096,
+      "precision": 0.1884,
       "tokens": 609,
       "steps": 1,
       "evidence": [
@@ -535,6 +578,9 @@
       "lang": "en",
       "hit": false,
       "rank": null,
+      "evidenceLines": 177,
+      "evidenceTokens": 6953,
+      "precision": 0,
       "tokens": 740,
       "steps": 1,
       "evidence": [
@@ -590,6 +636,9 @@
       "lang": "en",
       "hit": false,
       "rank": null,
+      "evidenceLines": 1325,
+      "evidenceTokens": 32505,
+      "precision": 0,
       "tokens": 635,
       "steps": 1,
       "evidence": [
@@ -646,6 +695,9 @@
       "lang": "en",
       "hit": false,
       "rank": null,
+      "evidenceLines": 548,
+      "evidenceTokens": 23890,
+      "precision": 0,
       "tokens": 603,
       "steps": 1,
       "evidence": [
@@ -697,6 +749,9 @@
       "lang": "en",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 829,
+      "evidenceTokens": 26190,
+      "precision": 0.0157,
       "tokens": 646,
       "steps": 1,
       "evidence": [
@@ -752,7 +807,10 @@
       "lang": "en",
       "hit": false,
       "rank": null,
-      "tokens": 677,
+      "evidenceLines": 18,
+      "evidenceTokens": 2202,
+      "precision": 0,
+      "tokens": 678,
       "steps": 1,
       "evidence": [
         {
@@ -807,6 +865,9 @@
       "lang": "en",
       "hit": true,
       "rank": 3,
+      "evidenceLines": 23,
+      "evidenceTokens": 1962,
+      "precision": 0.3043,
       "tokens": 615,
       "steps": 1,
       "evidence": [
@@ -862,7 +923,10 @@
       "lang": "en",
       "hit": false,
       "rank": null,
-      "tokens": 661,
+      "evidenceLines": 238,
+      "evidenceTokens": 18002,
+      "precision": 0,
+      "tokens": 662,
       "steps": 1,
       "evidence": [
         {
@@ -919,6 +983,9 @@
       "lang": "en",
       "hit": false,
       "rank": null,
+      "evidenceLines": 520,
+      "evidenceTokens": 29680,
+      "precision": 0,
       "tokens": 717,
       "steps": 1,
       "evidence": [
@@ -977,6 +1044,9 @@
       "lang": "en",
       "hit": false,
       "rank": null,
+      "evidenceLines": 711,
+      "evidenceTokens": 31631,
+      "precision": 0,
       "tokens": 707,
       "steps": 1,
       "evidence": [
@@ -1036,6 +1106,9 @@
       "lang": "en",
       "hit": true,
       "rank": 2,
+      "evidenceLines": 774,
+      "evidenceTokens": 21870,
+      "precision": 0.0543,
       "tokens": 698,
       "steps": 1,
       "evidence": [
@@ -1094,6 +1167,9 @@
       "lang": "en",
       "hit": false,
       "rank": null,
+      "evidenceLines": 15,
+      "evidenceTokens": 659,
+      "precision": 0,
       "tokens": 640,
       "steps": 1,
       "evidence": [
@@ -1149,7 +1225,10 @@
       "lang": "en",
       "hit": false,
       "rank": null,
-      "tokens": 727,
+      "evidenceLines": 70,
+      "evidenceTokens": 2656,
+      "precision": 0,
+      "tokens": 726,
       "steps": 1,
       "evidence": [
         {
@@ -1204,6 +1283,9 @@
       "lang": "en",
       "hit": false,
       "rank": null,
+      "evidenceLines": 585,
+      "evidenceTokens": 19857,
+      "precision": 0,
       "tokens": 651,
       "steps": 1,
       "evidence": [
@@ -1258,6 +1340,9 @@
       "lang": "en",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 63,
+      "evidenceTokens": 4412,
+      "precision": 0.1111,
       "tokens": 624,
       "steps": 1,
       "evidence": [
@@ -1308,7 +1393,10 @@
       "lang": "en",
       "hit": false,
       "rank": null,
-      "tokens": 622,
+      "evidenceLines": 42,
+      "evidenceTokens": 2139,
+      "precision": 0,
+      "tokens": 621,
       "steps": 1,
       "evidence": [
         {
@@ -1358,6 +1446,9 @@
       "lang": "en",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 22,
+      "evidenceTokens": 2440,
+      "precision": 0.1364,
       "tokens": 649,
       "steps": 1,
       "evidence": [
@@ -1408,6 +1499,9 @@
       "lang": "en",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 53,
+      "evidenceTokens": 5163,
+      "precision": 0.0755,
       "tokens": 637,
       "steps": 1,
       "evidence": [
@@ -1458,6 +1552,9 @@
       "lang": "en",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 49,
+      "evidenceTokens": 4559,
+      "precision": 0.0612,
       "tokens": 637,
       "steps": 1,
       "evidence": [
@@ -1508,7 +1605,10 @@
       "lang": "en",
       "hit": true,
       "rank": 1,
-      "tokens": 618,
+      "evidenceLines": 37,
+      "evidenceTokens": 3290,
+      "precision": 0.1081,
+      "tokens": 617,
       "steps": 1,
       "evidence": [
         {
@@ -1558,6 +1658,9 @@
       "lang": "en",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 40,
+      "evidenceTokens": 3415,
+      "precision": 0.125,
       "tokens": 602,
       "steps": 1,
       "evidence": [
@@ -1608,6 +1711,9 @@
       "lang": "en",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 37,
+      "evidenceTokens": 3885,
+      "precision": 0.1081,
       "tokens": 626,
       "steps": 1,
       "evidence": [
@@ -1658,6 +1764,9 @@
       "lang": "en",
       "hit": false,
       "rank": null,
+      "evidenceLines": 43,
+      "evidenceTokens": 3208,
+      "precision": 0,
       "tokens": 687,
       "steps": 1,
       "evidence": [
@@ -1711,6 +1820,9 @@
       "lang": "en",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 62,
+      "evidenceTokens": 2647,
+      "precision": 0.129,
       "tokens": 620,
       "steps": 1,
       "evidence": [
@@ -1761,6 +1873,9 @@
       "lang": "en",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 79,
+      "evidenceTokens": 2866,
+      "precision": 0.0759,
       "tokens": 680,
       "steps": 1,
       "evidence": [
@@ -1815,6 +1930,9 @@
       "lang": "en",
       "hit": true,
       "rank": 2,
+      "evidenceLines": 41,
+      "evidenceTokens": 2060,
+      "precision": 0.0976,
       "tokens": 636,
       "steps": 1,
       "evidence": [
@@ -1865,7 +1983,10 @@
       "lang": "en",
       "hit": true,
       "rank": 2,
-      "tokens": 620,
+      "evidenceLines": 40,
+      "evidenceTokens": 5367,
+      "precision": 0.3,
+      "tokens": 621,
       "steps": 1,
       "evidence": [
         {
@@ -1915,6 +2036,9 @@
       "lang": "en",
       "hit": true,
       "rank": 2,
+      "evidenceLines": 78,
+      "evidenceTokens": 3247,
+      "precision": 0.1923,
       "tokens": 621,
       "steps": 1,
       "evidence": [
@@ -1965,6 +2089,9 @@
       "lang": "en",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 26,
+      "evidenceTokens": 3503,
+      "precision": 0.1923,
       "tokens": 656,
       "steps": 1,
       "evidence": [
@@ -2019,6 +2146,9 @@
       "lang": "en",
       "hit": true,
       "rank": 2,
+      "evidenceLines": 67,
+      "evidenceTokens": 6260,
+      "precision": 0.0746,
       "tokens": 628,
       "steps": 1,
       "evidence": [
@@ -2069,6 +2199,9 @@
       "lang": "en",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 40,
+      "evidenceTokens": 3660,
+      "precision": 0.225,
       "tokens": 618,
       "steps": 1,
       "evidence": [
@@ -2119,7 +2252,10 @@
       "lang": "en",
       "hit": true,
       "rank": 1,
-      "tokens": 629,
+      "evidenceLines": 62,
+      "evidenceTokens": 12260,
+      "precision": 0.0806,
+      "tokens": 630,
       "steps": 1,
       "evidence": [
         {
@@ -2169,6 +2305,9 @@
       "lang": "en",
       "hit": true,
       "rank": 2,
+      "evidenceLines": 18,
+      "evidenceTokens": 1623,
+      "precision": 0.2222,
       "tokens": 673,
       "steps": 1,
       "evidence": [
@@ -2224,6 +2363,9 @@
       "lang": "en",
       "hit": true,
       "rank": 4,
+      "evidenceLines": 50,
+      "evidenceTokens": 2070,
+      "precision": 0.06,
       "tokens": 631,
       "steps": 1,
       "evidence": [
@@ -2274,6 +2416,9 @@
       "lang": "en",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 25,
+      "evidenceTokens": 2898,
+      "precision": 0.16,
       "tokens": 626,
       "steps": 1,
       "evidence": [
@@ -2324,7 +2469,10 @@
       "lang": "en",
       "hit": true,
       "rank": 2,
-      "tokens": 662,
+      "evidenceLines": 24,
+      "evidenceTokens": 2304,
+      "precision": 0.1667,
+      "tokens": 663,
       "steps": 1,
       "evidence": [
         {
@@ -2374,6 +2522,9 @@
       "lang": "en",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 33,
+      "evidenceTokens": 1222,
+      "precision": 0.1515,
       "tokens": 637,
       "steps": 1,
       "evidence": [
@@ -2424,6 +2575,9 @@
       "lang": "en",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 30,
+      "evidenceTokens": 3620,
+      "precision": 0.1,
       "tokens": 621,
       "steps": 1,
       "evidence": [
@@ -2474,7 +2628,10 @@
       "lang": "en",
       "hit": true,
       "rank": 2,
-      "tokens": 649,
+      "evidenceLines": 40,
+      "evidenceTokens": 5975,
+      "precision": 0.35,
+      "tokens": 650,
       "steps": 1,
       "evidence": [
         {
@@ -2527,6 +2684,9 @@
       "lang": "en",
       "hit": true,
       "rank": 2,
+      "evidenceLines": 49,
+      "evidenceTokens": 3526,
+      "precision": 0.0816,
       "tokens": 621,
       "steps": 1,
       "evidence": [
@@ -2577,7 +2737,10 @@
       "lang": "en",
       "hit": false,
       "rank": null,
-      "tokens": 634,
+      "evidenceLines": 37,
+      "evidenceTokens": 4633,
+      "precision": 0,
+      "tokens": 635,
       "steps": 1,
       "evidence": [
         {
@@ -2627,7 +2790,10 @@
       "lang": "en",
       "hit": false,
       "rank": null,
-      "tokens": 599,
+      "evidenceLines": 34,
+      "evidenceTokens": 3063,
+      "precision": 0,
+      "tokens": 600,
       "steps": 1,
       "evidence": [
         {
@@ -2677,7 +2843,10 @@
       "lang": "en",
       "hit": true,
       "rank": 1,
-      "tokens": 760,
+      "evidenceLines": 76,
+      "evidenceTokens": 1874,
+      "precision": 0.1184,
+      "tokens": 759,
       "steps": 1,
       "evidence": [
         {
@@ -2731,6 +2900,9 @@
       "lang": "en",
       "hit": false,
       "rank": null,
+      "evidenceLines": 61,
+      "evidenceTokens": 5187,
+      "precision": 0,
       "tokens": 625,
       "steps": 1,
       "evidence": [
@@ -2781,7 +2953,10 @@
       "lang": "en",
       "hit": true,
       "rank": 1,
-      "tokens": 607,
+      "evidenceLines": 24,
+      "evidenceTokens": 2817,
+      "precision": 0.1667,
+      "tokens": 608,
       "steps": 1,
       "evidence": [
         {
@@ -2831,7 +3006,10 @@
       "lang": "en",
       "hit": true,
       "rank": 4,
-      "tokens": 623,
+      "evidenceLines": 81,
+      "evidenceTokens": 5253,
+      "precision": 0.3457,
+      "tokens": 622,
       "steps": 1,
       "evidence": [
         {
@@ -2881,6 +3059,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 296,
+      "evidenceTokens": 6848,
+      "precision": 0.0405,
       "tokens": 1619,
       "steps": 1,
       "evidence": [
@@ -2931,7 +3112,10 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
-      "tokens": 1483,
+      "evidenceLines": 68,
+      "evidenceTokens": 2265,
+      "precision": 0.1176,
+      "tokens": 1482,
       "steps": 1,
       "evidence": [
         {
@@ -2984,6 +3168,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 552,
+      "evidenceTokens": 19798,
+      "precision": 0.0652,
       "tokens": 1634,
       "steps": 1,
       "evidence": [
@@ -3034,6 +3221,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 296,
+      "evidenceTokens": 7098,
+      "precision": 0.1486,
       "tokens": 1638,
       "steps": 1,
       "evidence": [
@@ -3086,6 +3276,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 568,
+      "evidenceTokens": 19680,
+      "precision": 0.1725,
       "tokens": 1682,
       "steps": 1,
       "evidence": [
@@ -3138,6 +3331,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 141,
+      "evidenceTokens": 5257,
+      "precision": 0.0284,
       "tokens": 1315,
       "steps": 1,
       "evidence": [
@@ -3189,6 +3385,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 338,
+      "evidenceTokens": 6588,
+      "precision": 0.071,
       "tokens": 1595,
       "steps": 1,
       "evidence": [
@@ -3244,7 +3443,10 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
-      "tokens": 1365,
+      "evidenceLines": 71,
+      "evidenceTokens": 2486,
+      "precision": 0.0563,
+      "tokens": 1366,
       "steps": 1,
       "evidence": [
         {
@@ -3297,6 +3499,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 2,
+      "evidenceLines": 125,
+      "evidenceTokens": 3599,
+      "precision": 0.144,
       "tokens": 1404,
       "steps": 1,
       "evidence": [
@@ -3348,6 +3553,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 328,
+      "evidenceTokens": 10326,
+      "precision": 0.189,
       "tokens": 1669,
       "steps": 1,
       "evidence": [
@@ -3400,6 +3608,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 90,
+      "evidenceTokens": 3556,
+      "precision": 0.0889,
       "tokens": 1591,
       "steps": 1,
       "evidence": [
@@ -3452,6 +3663,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 63,
+      "evidenceTokens": 2266,
+      "precision": 0.0635,
       "tokens": 1376,
       "steps": 1,
       "evidence": [
@@ -3505,7 +3719,10 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
-      "tokens": 1632,
+      "evidenceLines": 300,
+      "evidenceTokens": 6815,
+      "precision": 0.0733,
+      "tokens": 1633,
       "steps": 1,
       "evidence": [
         {
@@ -3557,6 +3774,9 @@
       "lang": "zh",
       "hit": false,
       "rank": null,
+      "evidenceLines": 60,
+      "evidenceTokens": 3815,
+      "precision": 0,
       "tokens": 1463,
       "steps": 1,
       "evidence": [
@@ -3610,6 +3830,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 244,
+      "evidenceTokens": 7443,
+      "precision": 0.0738,
       "tokens": 1638,
       "steps": 1,
       "evidence": [
@@ -3660,6 +3883,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 214,
+      "evidenceTokens": 8128,
+      "precision": 0.1589,
       "tokens": 1637,
       "steps": 1,
       "evidence": [
@@ -3712,6 +3938,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 4,
+      "evidenceLines": 35,
+      "evidenceTokens": 2519,
+      "precision": 0.1143,
       "tokens": 1379,
       "steps": 1,
       "evidence": [
@@ -3764,7 +3993,10 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
-      "tokens": 1681,
+      "evidenceLines": 622,
+      "evidenceTokens": 23527,
+      "precision": 0.0675,
+      "tokens": 1680,
       "steps": 1,
       "evidence": [
         {
@@ -3816,6 +4048,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 212,
+      "evidenceTokens": 5056,
+      "precision": 0.3585,
       "tokens": 1677,
       "steps": 1,
       "evidence": [
@@ -3869,6 +4104,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 35,
+      "evidenceTokens": 2079,
+      "precision": 0.1714,
       "tokens": 1320,
       "steps": 1,
       "evidence": [
@@ -3923,6 +4161,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 424,
+      "evidenceTokens": 12531,
+      "precision": 0.1085,
       "tokens": 1656,
       "steps": 1,
       "evidence": [
@@ -3974,6 +4215,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 3,
+      "evidenceLines": 67,
+      "evidenceTokens": 5625,
+      "precision": 0.1045,
       "tokens": 1564,
       "steps": 1,
       "evidence": [
@@ -4028,6 +4272,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 31,
+      "evidenceTokens": 2288,
+      "precision": 0.1935,
       "tokens": 1315,
       "steps": 1,
       "evidence": [
@@ -4081,6 +4328,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 3,
+      "evidenceLines": 172,
+      "evidenceTokens": 6726,
+      "precision": 0.1279,
       "tokens": 1510,
       "steps": 1,
       "evidence": [
@@ -4133,6 +4383,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 85,
+      "evidenceTokens": 2210,
+      "precision": 0.1294,
       "tokens": 1556,
       "steps": 1,
       "evidence": [
@@ -4183,6 +4436,9 @@
       "lang": "zh",
       "hit": false,
       "rank": null,
+      "evidenceLines": 110,
+      "evidenceTokens": 3027,
+      "precision": 0,
       "tokens": 1523,
       "steps": 1,
       "evidence": [
@@ -4234,7 +4490,10 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
-      "tokens": 1635,
+      "evidenceLines": 528,
+      "evidenceTokens": 12779,
+      "precision": 0.0455,
+      "tokens": 1634,
       "steps": 1,
       "evidence": [
         {
@@ -4294,7 +4553,10 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
-      "tokens": 1347,
+      "evidenceLines": 50,
+      "evidenceTokens": 2381,
+      "precision": 0.2,
+      "tokens": 1346,
       "steps": 1,
       "evidence": [
         {
@@ -4347,7 +4609,10 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
-      "tokens": 1148,
+      "evidenceLines": 32,
+      "evidenceTokens": 1308,
+      "precision": 0.125,
+      "tokens": 1147,
       "steps": 1,
       "evidence": [
         {
@@ -4401,6 +4666,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 260,
+      "evidenceTokens": 5687,
+      "precision": 0.3462,
       "tokens": 1631,
       "steps": 1,
       "evidence": [
@@ -4453,7 +4721,10 @@
       "lang": "zh",
       "hit": true,
       "rank": 2,
-      "tokens": 1623,
+      "evidenceLines": 310,
+      "evidenceTokens": 7502,
+      "precision": 0.1226,
+      "tokens": 1622,
       "steps": 1,
       "evidence": [
         {
@@ -4503,6 +4774,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 59,
+      "evidenceTokens": 2236,
+      "precision": 0.1017,
       "tokens": 1243,
       "steps": 1,
       "evidence": [
@@ -4555,6 +4829,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 612,
+      "evidenceTokens": 13017,
+      "precision": 0.1275,
       "tokens": 1652,
       "steps": 1,
       "evidence": [
@@ -4607,7 +4884,10 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
-      "tokens": 1646,
+      "evidenceLines": 236,
+      "evidenceTokens": 4934,
+      "precision": 0.0763,
+      "tokens": 1647,
       "steps": 1,
       "evidence": [
         {
@@ -4662,6 +4942,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 34,
+      "evidenceTokens": 1751,
+      "precision": 0.2353,
       "tokens": 1492,
       "steps": 1,
       "evidence": [
@@ -4715,6 +4998,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 344,
+      "evidenceTokens": 7215,
+      "precision": 0.0698,
       "tokens": 1622,
       "steps": 1,
       "evidence": [
@@ -4766,6 +5052,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 114,
+      "evidenceTokens": 3584,
+      "precision": 0.0877,
       "tokens": 1452,
       "steps": 1,
       "evidence": [
@@ -4818,6 +5107,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 2,
+      "evidenceLines": 186,
+      "evidenceTokens": 4067,
+      "precision": 0.1828,
       "tokens": 1508,
       "steps": 1,
       "evidence": [
@@ -4869,6 +5161,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 2,
+      "evidenceLines": 288,
+      "evidenceTokens": 8504,
+      "precision": 0.1667,
       "tokens": 1638,
       "steps": 1,
       "evidence": [
@@ -4919,6 +5214,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 504,
+      "evidenceTokens": 16915,
+      "precision": 0.1905,
       "tokens": 1656,
       "steps": 1,
       "evidence": [
@@ -4971,6 +5269,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 346,
+      "evidenceTokens": 5013,
+      "precision": 0.0231,
       "tokens": 1402,
       "steps": 1,
       "evidence": [
@@ -5023,7 +5324,10 @@
       "lang": "zh",
       "hit": false,
       "rank": null,
-      "tokens": 1638,
+      "evidenceLines": 272,
+      "evidenceTokens": 7454,
+      "precision": 0,
+      "tokens": 1637,
       "steps": 1,
       "evidence": [
         {
@@ -5073,6 +5377,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 548,
+      "evidenceTokens": 10473,
+      "precision": 0.3029,
       "tokens": 1612,
       "steps": 1,
       "evidence": [
@@ -5123,6 +5430,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 33,
+      "evidenceTokens": 2190,
+      "precision": 0.1212,
       "tokens": 1384,
       "steps": 1,
       "evidence": [
@@ -5176,7 +5486,10 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
-      "tokens": 1612,
+      "evidenceLines": 226,
+      "evidenceTokens": 6564,
+      "precision": 0.0442,
+      "tokens": 1611,
       "steps": 1,
       "evidence": [
         {
@@ -5226,7 +5539,10 @@
       "lang": "zh",
       "hit": false,
       "rank": null,
-      "tokens": 1600,
+      "evidenceLines": 358,
+      "evidenceTokens": 14379,
+      "precision": 0,
+      "tokens": 1599,
       "steps": 1,
       "evidence": [
         {
@@ -5280,7 +5596,10 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
-      "tokens": 1566,
+      "evidenceLines": 286,
+      "evidenceTokens": 4424,
+      "precision": 0.1888,
+      "tokens": 1567,
       "steps": 1,
       "evidence": [
         {
@@ -5332,6 +5651,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 258,
+      "evidenceTokens": 6845,
+      "precision": 0.1783,
       "tokens": 1674,
       "steps": 1,
       "evidence": [
@@ -5386,6 +5708,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 2,
+      "evidenceLines": 516,
+      "evidenceTokens": 10474,
+      "precision": 0.2016,
       "tokens": 1614,
       "steps": 1,
       "evidence": [
@@ -5437,7 +5762,10 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
-      "tokens": 1686,
+      "evidenceLines": 260,
+      "evidenceTokens": 9627,
+      "precision": 0.1923,
+      "tokens": 1687,
       "steps": 1,
       "evidence": [
         {
@@ -5490,6 +5818,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 378,
+      "evidenceTokens": 8626,
+      "precision": 0.1587,
       "tokens": 1595,
       "steps": 1,
       "evidence": [
@@ -5541,6 +5872,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 376,
+      "evidenceTokens": 7460,
+      "precision": 0.0319,
       "tokens": 1606,
       "steps": 1,
       "evidence": [
@@ -5591,7 +5925,10 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
-      "tokens": 1610,
+      "evidenceLines": 362,
+      "evidenceTokens": 7153,
+      "precision": 0.0552,
+      "tokens": 1611,
       "steps": 1,
       "evidence": [
         {
@@ -5642,7 +5979,10 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
-      "tokens": 1295,
+      "evidenceLines": 106,
+      "evidenceTokens": 2416,
+      "precision": 0.5,
+      "tokens": 1296,
       "steps": 1,
       "evidence": [
         {
@@ -5695,6 +6035,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 348,
+      "evidenceTokens": 6401,
+      "precision": 0.1264,
       "tokens": 1678,
       "steps": 1,
       "evidence": [
@@ -5749,6 +6092,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 53,
+      "evidenceTokens": 3004,
+      "precision": 0.1509,
       "tokens": 1507,
       "steps": 1,
       "evidence": [
@@ -5802,6 +6148,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 68,
+      "evidenceTokens": 3527,
+      "precision": 0.0882,
       "tokens": 1585,
       "steps": 1,
       "evidence": [
@@ -5859,6 +6208,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 2,
+      "evidenceLines": 524,
+      "evidenceTokens": 12780,
+      "precision": 0.1489,
       "tokens": 1604,
       "steps": 1,
       "evidence": [
@@ -5909,6 +6261,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 62,
+      "evidenceTokens": 2544,
+      "precision": 0.0968,
       "tokens": 1455,
       "steps": 1,
       "evidence": [
@@ -5962,6 +6317,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 256,
+      "evidenceTokens": 8053,
+      "precision": 0.0781,
       "tokens": 1608,
       "steps": 1,
       "evidence": [
@@ -6012,6 +6370,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 350,
+      "evidenceTokens": 7302,
+      "precision": 0.12,
       "tokens": 1660,
       "steps": 1,
       "evidence": [
@@ -6064,6 +6425,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 290,
+      "evidenceTokens": 6478,
+      "precision": 0.1793,
       "tokens": 1593,
       "steps": 1,
       "evidence": [
@@ -6114,6 +6478,9 @@
       "lang": "zh",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 54,
+      "evidenceTokens": 3210,
+      "precision": 0.1481,
       "tokens": 1540,
       "steps": 1,
       "evidence": [
@@ -6169,6 +6536,9 @@
       "lang": "mixed",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 366,
+      "evidenceTokens": 2655,
+      "precision": 0.8661,
       "tokens": 1266,
       "steps": 1,
       "evidence": [
@@ -6224,6 +6594,9 @@
       "lang": "mixed",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 53,
+      "evidenceTokens": 2913,
+      "precision": 0.0755,
       "tokens": 1404,
       "steps": 1,
       "evidence": [
@@ -6279,6 +6652,9 @@
       "lang": "mixed",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 45,
+      "evidenceTokens": 1743,
+      "precision": 0.0889,
       "tokens": 1365,
       "steps": 1,
       "evidence": [
@@ -6333,6 +6709,9 @@
       "lang": "mixed",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 148,
+      "evidenceTokens": 4826,
+      "precision": 0.0405,
       "tokens": 1509,
       "steps": 1,
       "evidence": [
@@ -6385,6 +6764,9 @@
       "lang": "mixed",
       "hit": false,
       "rank": null,
+      "evidenceLines": 102,
+      "evidenceTokens": 4727,
+      "precision": 0,
       "tokens": 1314,
       "steps": 1,
       "evidence": [
@@ -6437,6 +6819,9 @@
       "lang": "mixed",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 59,
+      "evidenceTokens": 4482,
+      "precision": 0.2712,
       "tokens": 1487,
       "steps": 1,
       "evidence": [
@@ -6490,7 +6875,10 @@
       "lang": "mixed",
       "hit": true,
       "rank": 1,
-      "tokens": 1461,
+      "evidenceLines": 43,
+      "evidenceTokens": 2462,
+      "precision": 0.3488,
+      "tokens": 1460,
       "steps": 1,
       "evidence": [
         {
@@ -6542,6 +6930,9 @@
       "lang": "mixed",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 58,
+      "evidenceTokens": 1623,
+      "precision": 0.069,
       "tokens": 1084,
       "steps": 1,
       "evidence": [
@@ -6595,6 +6986,9 @@
       "lang": "mixed",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 33,
+      "evidenceTokens": 1816,
+      "precision": 0.2424,
       "tokens": 1465,
       "steps": 1,
       "evidence": [
@@ -6650,7 +7044,10 @@
       "lang": "mixed",
       "hit": true,
       "rank": 1,
-      "tokens": 1165,
+      "evidenceLines": 56,
+      "evidenceTokens": 3018,
+      "precision": 0.1071,
+      "tokens": 1164,
       "steps": 1,
       "evidence": [
         {
@@ -6705,6 +7102,9 @@
       "lang": "mixed",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 114,
+      "evidenceTokens": 3364,
+      "precision": 0.0526,
       "tokens": 1288,
       "steps": 1,
       "evidence": [
@@ -6757,6 +7157,9 @@
       "lang": "mixed",
       "hit": true,
       "rank": 2,
+      "evidenceLines": 964,
+      "evidenceTokens": 9841,
+      "precision": 0.0083,
       "tokens": 1444,
       "steps": 1,
       "evidence": [
@@ -6813,7 +7216,10 @@
       "lang": "mixed",
       "hit": true,
       "rank": 1,
-      "tokens": 1582,
+      "evidenceLines": 44,
+      "evidenceTokens": 2733,
+      "precision": 0.3182,
+      "tokens": 1583,
       "steps": 1,
       "evidence": [
         {
@@ -6868,6 +7274,9 @@
       "lang": "mixed",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 57,
+      "evidenceTokens": 3807,
+      "precision": 0.1754,
       "tokens": 1490,
       "steps": 1,
       "evidence": [
@@ -6921,6 +7330,9 @@
       "lang": "mixed",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 53,
+      "evidenceTokens": 3097,
+      "precision": 0.1132,
       "tokens": 1438,
       "steps": 1,
       "evidence": [
@@ -6973,6 +7385,9 @@
       "lang": "mixed",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 958,
+      "evidenceTokens": 10003,
+      "precision": 0.0125,
       "tokens": 1428,
       "steps": 1,
       "evidence": [
@@ -7026,6 +7441,9 @@
       "lang": "mixed",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 59,
+      "evidenceTokens": 1519,
+      "precision": 0.3051,
       "tokens": 1340,
       "steps": 1,
       "evidence": [
@@ -7078,6 +7496,9 @@
       "lang": "mixed",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 42,
+      "evidenceTokens": 2781,
+      "precision": 0.2381,
       "tokens": 1489,
       "steps": 1,
       "evidence": [
@@ -7130,6 +7551,9 @@
       "lang": "mixed",
       "hit": false,
       "rank": null,
+      "evidenceLines": 33,
+      "evidenceTokens": 2436,
+      "precision": 0,
       "tokens": 1434,
       "steps": 1,
       "evidence": [
@@ -7183,6 +7607,9 @@
       "lang": "mixed",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 478,
+      "evidenceTokens": 9772,
+      "precision": 0.1297,
       "tokens": 1401,
       "steps": 1,
       "evidence": [
@@ -7236,7 +7663,10 @@
       "lang": "mixed",
       "hit": true,
       "rank": 1,
-      "tokens": 1213,
+      "evidenceLines": 45,
+      "evidenceTokens": 2299,
+      "precision": 0.0889,
+      "tokens": 1214,
       "steps": 1,
       "evidence": [
         {
@@ -7290,7 +7720,10 @@
       "lang": "mixed",
       "hit": true,
       "rank": 1,
-      "tokens": 1533,
+      "evidenceLines": 87,
+      "evidenceTokens": 3400,
+      "precision": 0.3103,
+      "tokens": 1534,
       "steps": 1,
       "evidence": [
         {
@@ -7343,7 +7776,10 @@
       "lang": "mixed",
       "hit": true,
       "rank": 1,
-      "tokens": 1468,
+      "evidenceLines": 36,
+      "evidenceTokens": 2273,
+      "precision": 0.2222,
+      "tokens": 1467,
       "steps": 1,
       "evidence": [
         {
@@ -7400,6 +7836,9 @@
       "lang": "mixed",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 67,
+      "evidenceTokens": 2846,
+      "precision": 0.4776,
       "tokens": 1453,
       "steps": 1,
       "evidence": [
@@ -7452,6 +7891,9 @@
       "lang": "mixed",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 120,
+      "evidenceTokens": 2580,
+      "precision": 0.05,
       "tokens": 1385,
       "steps": 1,
       "evidence": [
@@ -7505,6 +7947,9 @@
       "lang": "mixed",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 408,
+      "evidenceTokens": 10083,
+      "precision": 0.0245,
       "tokens": 1509,
       "steps": 1,
       "evidence": [
@@ -7557,7 +8002,10 @@
       "lang": "mixed",
       "hit": true,
       "rank": 1,
-      "tokens": 1452,
+      "evidenceLines": 97,
+      "evidenceTokens": 2657,
+      "precision": 0.0412,
+      "tokens": 1453,
       "steps": 1,
       "evidence": [
         {
@@ -7611,6 +8059,9 @@
       "lang": "mixed",
       "hit": false,
       "rank": null,
+      "evidenceLines": 73,
+      "evidenceTokens": 3483,
+      "precision": 0,
       "tokens": 1449,
       "steps": 1,
       "evidence": [
@@ -7663,7 +8114,10 @@
       "lang": "mixed",
       "hit": true,
       "rank": 4,
-      "tokens": 681,
+      "evidenceLines": 48,
+      "evidenceTokens": 9199,
+      "precision": 0.0625,
+      "tokens": 680,
       "steps": 1,
       "evidence": [
         {
@@ -7718,7 +8172,10 @@
       "lang": "mixed",
       "hit": false,
       "rank": null,
-      "tokens": 1526,
+      "evidenceLines": 62,
+      "evidenceTokens": 3680,
+      "precision": 0,
+      "tokens": 1527,
       "steps": 1,
       "evidence": [
         {
@@ -7774,6 +8231,9 @@
       "lang": "mixed",
       "hit": false,
       "rank": null,
+      "evidenceLines": 60,
+      "evidenceTokens": 4432,
+      "precision": 0,
       "tokens": 1522,
       "steps": 1,
       "evidence": [
@@ -7827,6 +8287,9 @@
       "lang": "mixed",
       "hit": true,
       "rank": 1,
+      "evidenceLines": 50,
+      "evidenceTokens": 3253,
+      "precision": 0.14,
       "tokens": 1119,
       "steps": 1,
       "evidence": [
@@ -7878,7 +8341,10 @@
       "lang": "mixed",
       "hit": false,
       "rank": null,
-      "tokens": 1485,
+      "evidenceLines": 53,
+      "evidenceTokens": 3476,
+      "precision": 0,
+      "tokens": 1484,
       "steps": 1,
       "evidence": [
         {
@@ -7932,7 +8398,10 @@
       "lang": "mixed",
       "hit": false,
       "rank": null,
-      "tokens": 647,
+      "evidenceLines": 1405,
+      "evidenceTokens": 33932,
+      "precision": 0,
+      "tokens": 648,
       "steps": 1,
       "evidence": [
         {

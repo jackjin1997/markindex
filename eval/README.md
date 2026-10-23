@@ -78,6 +78,10 @@ document-level one).
    section, or contains it);
 3. otherwise (only `doc_path`) → any evidence from that document hits.
 
+With `--max-evidence-lines <n>` an evidence item only counts as a hit when it spans at most `n` lines, so a
+whole-chapter read cannot "hit" a one-paragraph gold. The report always records the evidence size (see below),
+whether or not the option is set.
+
 Prefer line ranges: they survive heading renames and are what citations use. Keep gold ranges tight (the paragraph
 or section that actually answers the question): a gold range spanning a whole chapter makes almost any evidence
 from that chapter a hit.
@@ -110,6 +114,18 @@ evidence is extracted from free text, which would measure answer parsing rather 
 mode, `agent`; `--mode tools` and `--mode retrieve` are accepted as aliases. External agents (Claude Code, Cursor)
 use the same tool contract over MCP, so this measures the tool contract + instructions with your model.
 
+**Evidence size and precision.** The hit rule alone rewards returning a lot of text, so every question also
+records how much it returned:
+
+- `evidenceLines` — distinct document lines covered by the evidence (overlapping items counted once);
+- `evidenceTokens` — approx. tokens of those lines;
+- `precision` — share of `evidenceLines` that lie inside any gold line range (`null` when no gold of the question
+  has a line range, or there is no evidence).
+
+The summary adds `meanEvidenceLines`, `medianEvidenceLines`, `meanEvidenceTokens` and `meanPrecision` (mean over
+the questions whose precision is not `null`), overall and per language; the table prints them as `ev lines`,
+`med` and `prec`.
+
 `hitAt1` and `mrr` use the order of the evidence list; they are meaningful for the ranked `bm25` output and only
 indicative for `agent` (the model's selection order).
 
@@ -118,15 +134,17 @@ Report (`--out`):
 ```jsonc
 {
   "mode": "agent", "model": "anthropic:claude-sonnet-5-5", "createdAt": "…",
-  "options": { "maxSteps": 12, "maxInputTokens": 200000 },
+  "options": { "maxSteps": 12, "maxInputTokens": 200000, "maxEvidenceLines": 100 },
   "summary": {
     "overall": { "questions": 150, "hits": 120, "hitRate": 0.8, "hitAt1": 0.7, "mrr": 0.74,
-                 "avgTokens": 41000, "avgSteps": 7.2, "errors": 0 },
+                 "avgTokens": 41000, "avgSteps": 7.2, "errors": 0,
+                 "meanEvidenceLines": 48.2, "medianEvidenceLines": 31, "meanEvidenceTokens": 1650, "meanPrecision": 0.41 },
     "byLang": { "zh": { … }, "en": { … }, "mixed": { … } }
   },
   "baseline": { "mode": "bm25", "topK": 5, "summary": { … } },
   "results": [
     { "id": "zh-001", "lang": "zh", "hit": true, "rank": 1, "tokens": 38211, "steps": 6, "stopReason": "done",
+      "evidenceLines": 12, "evidenceTokens": 410, "precision": 0.75,
       "evidence": [{ "docPath": "…", "titlePath": ["…"], "startLine": 295, "endLine": 306 }] }
   ]
 }
@@ -193,7 +211,8 @@ Known biases — read the BM25 numbers with them in mind:
 
 ## 6. Results: BM25 baseline
 
-`markindex eval eval/corpus --questions eval/questions.jsonl --mode bm25` (full reports in `results/`):
+`markindex eval eval/corpus --questions eval/questions.jsonl --mode bm25` (full reports in `results/`; refreshed
+after the index-format v2 rebuild — hit numbers are unchanged, the evidence-size columns are new):
 
 | Set | n | hit@5 | hit@10 | hit@1 | MRR@5 | avg tokens (top-5 response) |
 |---|---:|---:|---:|---:|---:|---:|
@@ -201,6 +220,20 @@ Known biases — read the BM25 numbers with them in mind:
 | zh | 63 | 93.7% | 98.4% | 79.4% | 0.856 | 1 545 |
 | en | 54 | 64.8% | 77.8% | 38.9% | 0.506 | 645 |
 | mixed | 34 | 79.4% | 88.2% | 73.5% | 0.757 | 1 362 |
+
+Evidence size of those hits (each hit node's own text; top-5 / top-10):
+
+| Set | mean lines | median lines | mean evidence tokens | mean precision |
+|---|---:|---:|---:|---:|
+| overall | 210 / 417 | 85 / 242 | 6 702 / 13 479 | 12.1% / 6.8% |
+| zh | 245 / 485 | 256 / 498 | 6 823 / 13 119 | 12.8% / 6.7% |
+| en | 183 / 394 | 61.5 / 123 | 7 684 / 16 617 | 9.7% / 5.6% |
+| mixed | 188 / 327 | 59 / 154.5 | 4 918 / 9 164 | 14.3% / 9.0% |
+
+`avg tokens` is what the search response costs (snippets); `mean evidence tokens` is what reading the hit nodes in
+full would cost. With a size cap on the matching item, hit@5 drops from 80.1% to **78.1%** at
+`--max-evidence-lines 100` and to **58.3%** at 30 lines — many BM25 "hits" are whole multi-hundred-line nodes in
+which the gold paragraph sits. Precision is the number the agent run should improve on most.
 
 By source (hit@5): zh statutes + wiki (zh) 59/63, zh with English terms 25/28, medical-en 27/32,
 medical cross-lingual 2/4, **finance-en 8/22**, finance cross-lingual 0/2.

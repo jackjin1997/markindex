@@ -6,7 +6,15 @@ import { approxTokens } from '../text/tokens.js'
 import { walk } from '../tree/build.js'
 import type { TreeNode } from '../types.js'
 import type { EvalQuestion, QuestionIssue } from './questions.js'
-import { aggregate, firstHitRank, type Aggregate, type EvidenceRef, type QuestionResult } from './score.js'
+import {
+  aggregate,
+  evidenceLineRanges,
+  evidencePrecision,
+  firstHitRank,
+  type Aggregate,
+  type EvidenceRef,
+  type QuestionResult,
+} from './score.js'
 
 /**
  * - `bm25`: baseline — `searchNodes(question)` top-k, no LLM. Evidence = each hit node's own text range.
@@ -31,6 +39,8 @@ export interface RunEvalOptions {
   concurrency?: number
   /** agent: also run the bm25 baseline on the same questions (default true). */
   baseline?: boolean
+  /** When set, a matching evidence item only counts as a hit if it spans at most this many lines. */
+  maxEvidenceLines?: number
   onProgress?: (done: number, total: number, result: QuestionResult) => void
 }
 
@@ -38,7 +48,7 @@ export interface EvalReport {
   mode: EvalMode
   model?: string
   createdAt: string
-  options: { topK?: number; maxSteps?: number; maxInputTokens?: number }
+  options: { topK?: number; maxSteps?: number; maxInputTokens?: number; maxEvidenceLines?: number }
   summary: Aggregate
   /** agent mode: the bm25 top-k baseline on the same questions. */
   baseline?: { mode: 'bm25'; topK: number; summary: Aggregate }
@@ -79,7 +89,20 @@ export function checkGold(lib: Library, questions: EvalQuestion[]): QuestionIssu
   return issues
 }
 
-function bm25Runner(lib: Library, topK: number) {
+/** Hit / rank (honouring maxEvidenceLines) plus evidence size and precision for one question. */
+function judge(lib: Library, q: EvalQuestion, evidence: EvidenceRef[], maxEvidenceLines: number | undefined) {
+  const ranges = evidenceLineRanges(evidence)
+  const rank = firstHitRank(evidence, q.gold, maxEvidenceLines)
+  return {
+    hit: rank !== null,
+    rank,
+    evidenceLines: ranges.reduce((n, r) => n + r.endLine - r.startLine + 1, 0),
+    evidenceTokens: ranges.reduce((n, r) => n + approxTokens(lib.store.getLines(r.docPath, r.startLine, r.endLine).join('\n')), 0),
+    precision: evidencePrecision(evidence, q.gold),
+  }
+}
+
+function bm25Runner(lib: Library, topK: number, maxEvidenceLines: number | undefined) {
   const nodes = new Map<string, Map<string, TreeNode>>()
   const node = (docPath: string, nodeId: string) => {
     let m = nodes.get(docPath)
@@ -98,8 +121,14 @@ function bm25Runner(lib: Library, topK: number) {
       // what BM25 scored is the node's own text, not its whole subtree
       endLine: node(h.docPath, h.nodeId)?.ownEndLine ?? h.endLine,
     }))
-    const rank = firstHitRank(evidence, q.gold)
-    return { id: q.id, lang: q.lang, hit: rank !== null, rank, tokens: approxTokens(JSON.stringify(hits)), steps: 1, evidence }
+    return {
+      id: q.id,
+      lang: q.lang,
+      ...judge(lib, q, evidence, maxEvidenceLines),
+      tokens: approxTokens(JSON.stringify(hits)),
+      steps: 1,
+      evidence,
+    }
   }
 }
 
@@ -111,19 +140,29 @@ async function agentResult(lib: Library, q: EvalQuestion, opts: RunEvalOptions):
       ...(opts.maxInputTokens !== undefined ? { maxInputTokens: opts.maxInputTokens } : {}),
     })
     const evidence = r.evidence.map(({ docPath, titlePath, startLine, endLine }) => ({ docPath, titlePath, startLine, endLine }))
-    const rank = firstHitRank(evidence, q.gold)
     return {
       id: q.id,
       lang: q.lang,
-      hit: rank !== null,
-      rank,
+      ...judge(lib, q, evidence, opts.maxEvidenceLines),
       tokens: r.usage.inputTokens + r.usage.outputTokens,
       steps: r.steps,
       evidence,
       stopReason: r.stopReason,
     }
   } catch (e) {
-    return { id: q.id, lang: q.lang, hit: false, rank: null, tokens: 0, steps: 0, evidence: [], error: e instanceof Error ? e.message : String(e) }
+    return {
+      id: q.id,
+      lang: q.lang,
+      hit: false,
+      rank: null,
+      tokens: 0,
+      steps: 0,
+      evidence: [],
+      evidenceLines: 0,
+      evidenceTokens: 0,
+      precision: null,
+      error: e instanceof Error ? e.message : String(e),
+    }
   }
 }
 
@@ -132,15 +171,16 @@ export async function runEval(lib: Library, questions: EvalQuestion[], opts: Run
   const topK = opts.topK ?? DEFAULT_TOP_K
   const total = questions.length
   const createdAt = new Date().toISOString()
+  const maxLinesOption = opts.maxEvidenceLines === undefined ? {} : { maxEvidenceLines: opts.maxEvidenceLines }
 
   if (opts.mode === 'bm25') {
-    const run = bm25Runner(lib, topK)
+    const run = bm25Runner(lib, topK, opts.maxEvidenceLines)
     const results = questions.map((q, i) => {
       const r = run(q)
       opts.onProgress?.(i + 1, total, r)
       return r
     })
-    return { mode: 'bm25', createdAt, options: { topK }, summary: aggregate(results), results }
+    return { mode: 'bm25', createdAt, options: { topK, ...maxLinesOption }, summary: aggregate(results), results }
   }
 
   if (!opts.model) throw new Error('agent mode needs a model (e.g. --model anthropic:claude-sonnet-5-5)')
@@ -161,12 +201,16 @@ export async function runEval(lib: Library, questions: EvalQuestion[], opts: Run
     mode: 'agent',
     ...(opts.modelId ? { model: opts.modelId } : {}),
     createdAt,
-    options: { maxSteps: opts.maxSteps ?? RETRIEVE_MAX_STEPS, maxInputTokens: opts.maxInputTokens ?? RETRIEVE_MAX_INPUT_TOKENS },
+    options: {
+      maxSteps: opts.maxSteps ?? RETRIEVE_MAX_STEPS,
+      maxInputTokens: opts.maxInputTokens ?? RETRIEVE_MAX_INPUT_TOKENS,
+      ...maxLinesOption,
+    },
     summary: aggregate(results),
     results,
   }
   if (opts.baseline ?? true) {
-    const run = bm25Runner(lib, topK)
+    const run = bm25Runner(lib, topK, opts.maxEvidenceLines)
     report.baseline = { mode: 'bm25', topK, summary: aggregate(questions.map(run)) }
   }
   return report
