@@ -14,3 +14,4 @@ export {
   type IndexReport,
   type IndexStatus,
 } from './library/indexer.js'
+export { searchNodes, type SearchHit, type SearchOptions } from './store/search.js'
