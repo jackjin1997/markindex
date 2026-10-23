@@ -1,0 +1,223 @@
+{
+  "createdAt": "2026-10-23T09:40:33.894Z",
+  "node": "v24.5.0",
+  "platform": "darwin-arm64",
+  "seed": 20261023,
+  "fullIndex": {
+    "ms": 88396,
+    "added": 329,
+    "skipped": [],
+    "peakRssMB": 1764
+  },
+  "noopReindex": {
+    "ms": 75,
+    "unchanged": 329
+  },
+  "singleDocUpdate": {
+    "ms": 1402,
+    "target": "finance-en/JPM/10-K_2024.md",
+    "updated": [
+      "finance-en/JPM/10-K_2024.md"
+    ],
+    "unchanged": 328,
+    "peakRssMB": 880.8
+  },
+  "dbSizeMB": 872,
+  "tools": {
+    "browse_documents": {
+      "calls": 60,
+      "p50ms": 0.1,
+      "p95ms": 0.26,
+      "maxMs": 1.26,
+      "maxResponseChars": 4874,
+      "errorEnvelopes": 0
+    },
+    "get_document": {
+      "calls": 60,
+      "p50ms": 0.01,
+      "p95ms": 0.01,
+      "maxMs": 0.19,
+      "maxResponseChars": 838,
+      "errorEnvelopes": 0
+    },
+    "get_document_structure": {
+      "calls": 60,
+      "p50ms": 0.09,
+      "p95ms": 0.84,
+      "maxMs": 2.4,
+      "maxResponseChars": 94884,
+      "errorEnvelopes": 0
+    },
+    "get_node_content": {
+      "calls": 60,
+      "p50ms": 0.4,
+      "p95ms": 2.93,
+      "maxMs": 4.1,
+      "maxResponseChars": 94918,
+      "errorEnvelopes": 0
+    },
+    "search_documents": {
+      "calls": 60,
+      "p50ms": 5.33,
+      "p95ms": 33.04,
+      "maxMs": 51.13,
+      "maxResponseChars": 7326,
+      "errorEnvelopes": 0
+    }
+  },
+  "structure": {
+    "docs": 329,
+    "nodes": 38329,
+    "leaves": 36902,
+    "chunks": 3065,
+    "overMaxNodeTokens": 1,
+    "byGroup": {
+      "finance-en": {
+        "docs": 160,
+        "nodes": 7892,
+        "chunks": 3041,
+        "tokens": 27868718
+      },
+      "medical-en": {
+        "docs": 110,
+        "nodes": 29022,
+        "chunks": 24,
+        "tokens": 9303711
+      },
+      "zh": {
+        "docs": 59,
+        "nodes": 1415,
+        "chunks": 0,
+        "tokens": 968600
+      }
+    },
+    "ownTokens": {
+      "n": 38329,
+      "min": 1,
+      "p25": 69,
+      "p50": 211,
+      "p75": 655,
+      "p90": 2691,
+      "p99": 7881,
+      "max": 8420,
+      "mean": 995
+    },
+    "depth": {
+      "n": 38329,
+      "min": 1,
+      "p25": 1,
+      "p50": 1,
+      "p75": 1,
+      "p90": 2,
+      "p99": 3,
+      "max": 4,
+      "mean": 1
+    },
+    "nodesPerDoc": {
+      "n": 329,
+      "min": 7,
+      "p25": 36,
+      "p50": 49,
+      "p75": 139,
+      "p90": 308,
+      "p99": 1142,
+      "max": 1428,
+      "mean": 117
+    },
+    "docTokens": {
+      "n": 329,
+      "min": 4355,
+      "p25": 57239,
+      "p50": 92617,
+      "p75": 164870,
+      "p90": 241710,
+      "p99": 397244,
+      "max": 413907,
+      "mean": 115930
+    },
+    "docsOverStructureFirst": 289
+  },
+  "structureResponsesByDepth": [
+    {
+      "depth": 1,
+      "isDefault": false,
+      "responseChars": {
+        "n": 329,
+        "min": 598,
+        "p25": 1341,
+        "p50": 1378,
+        "p75": 12112,
+        "p90": 36573,
+        "p99": 94816,
+        "max": 94895,
+        "mean": 10893
+      },
+      "nodesShown": {
+        "n": 329,
+        "min": 2,
+        "p25": 9,
+        "p50": 9,
+        "p75": 83,
+        "p90": 281,
+        "p99": 757,
+        "max": 777,
+        "mean": 82
+      },
+      "docsNeedingMoreParts": 4
+    },
+    {
+      "depth": 2,
+      "isDefault": true,
+      "responseChars": {
+        "n": 329,
+        "min": 1099,
+        "p25": 3817,
+        "p50": 4716,
+        "p75": 19023,
+        "p90": 37587,
+        "p99": 94816,
+        "max": 94895,
+        "mean": 13681
+      },
+      "nodesShown": {
+        "n": 329,
+        "min": 7,
+        "p25": 26,
+        "p50": 31,
+        "p75": 138,
+        "p90": 297,
+        "p99": 757,
+        "max": 777,
+        "mean": 103
+      },
+      "docsNeedingMoreParts": 4
+    },
+    {
+      "depth": 3,
+      "isDefault": false,
+      "responseChars": {
+        "n": 329,
+        "min": 1099,
+        "p25": 4314,
+        "p50": 7419,
+        "p75": 19025,
+        "p90": 38364,
+        "p99": 94816,
+        "max": 94895,
+        "mean": 14740
+      },
+      "nodesShown": {
+        "n": 329,
+        "min": 7,
+        "p25": 36,
+        "p50": 49,
+        "p75": 139,
+        "p90": 308,
+        "p99": 757,
+        "max": 777,
+        "mean": 111
+      },
+      "docsNeedingMoreParts": 4
+    }
+  ]
+}

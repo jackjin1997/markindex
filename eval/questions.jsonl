@@ -1,0 +1,151 @@
+{"id": "en-001", "question": "What share of Community Health Systems' consolidated operating revenues came from its Florida hospitals in 2017?", "lang": "en", "gold": [{"doc_path": "finance-en/CYH/10-K_2017.md", "start_line": 599, "end_line": 633}]}
+{"id": "en-002", "question": "Where is JPMorgan Chase's head office building located and how tall is it, according to the 2019 annual report?", "lang": "en", "gold": [{"doc_path": "finance-en/JPM/10-K_2019.md", "start_line": 1929, "end_line": 1970}]}
+{"id": "en-003", "question": "As of the 2023 filing, what was the status of JPMorgan's new headquarters construction at 270 Park Avenue?", "lang": "en", "gold": [{"doc_path": "finance-en/JPM/10-K_2023.md", "start_line": 1058, "end_line": 1097}]}
+{"id": "en-004", "question": "What is the maximum term of Nigerian oil mining leases granted under the 1969 Petroleum Act, and can they be renewed?", "lang": "en", "gold": [{"doc_path": "finance-en/XOM/10-K_2017.md", "start_line": 1468, "end_line": 1761}]}
+{"id": "en-005", "question": "How many registered holders of record did Microsoft's common stock have in July 2022?", "lang": "en", "gold": [{"doc_path": "finance-en/MSFT/10-K_2022.md", "start_line": 853, "end_line": 887}]}
+{"id": "en-006", "question": "How does Aflac's management review lawsuits and regulatory inquiries, per its 2024 annual report?", "lang": "en", "gold": [{"doc_path": "finance-en/AFL/10-K_2024.md", "start_line": 551, "end_line": 552}]}
+{"id": "en-007", "question": "How much realized performance compensation did Blackstone record for 2017 compared with 2016, and why did it increase?", "lang": "en", "gold": [{"doc_path": "finance-en/BX/10-K_2018.md", "start_line": 4134, "end_line": 4175}]}
+{"id": "en-008", "question": "Why did Community Health Systems' effective income tax rate fall in 2018 compared with 2017?", "lang": "en", "gold": [{"doc_path": "finance-en/CYH/10-K_2018.md", "start_line": 2527, "end_line": 2559}]}
+{"id": "en-009", "question": "Which hospitals did Community Health Systems divest to Reading Health System, and when were those sales effective?", "lang": "en", "gold": [{"doc_path": "finance-en/CYH/10-K_2018.md", "start_line": 2221, "end_line": 2259}]}
+{"id": "en-010", "question": "Against which indices does Assurant benchmark its total stockholder return in the 2017 performance graph?", "lang": "en", "gold": [{"doc_path": "finance-en/AIZ/10-K_2017.md", "start_line": 771, "end_line": 859}]}
+{"id": "en-011", "question": "Which anti-bribery and corruption laws does JPMorgan Chase say it must comply with in its 2018 annual report?", "lang": "en", "gold": [{"doc_path": "finance-en/JPM/10-K_2018.md", "start_line": 207, "end_line": 225}]}
+{"id": "en-012", "question": "How does Blackstone describe its organization and businesses in the first note to its 2017 financial statements?", "lang": "en", "gold": [{"doc_path": "finance-en/BX/10-K_2017.md", "start_line": 5699, "end_line": 5734}]}
+{"id": "en-013", "question": "Which executives lead UnitedHealth Group's cybersecurity and data protection program?", "lang": "en", "gold": [{"doc_path": "finance-en/UNH/10-K_2023.md", "start_line": 403, "end_line": 415}]}
+{"id": "en-014", "question": "When did DaVita adopt its corporate governance code of ethics, and where does it disclose amendments or waivers?", "lang": "en", "gold": [{"doc_path": "finance-en/DVA/10-K_2022.md", "start_line": 1375, "end_line": 1378}]}
+{"id": "en-015", "question": "What operations are housed at Aflac's two main campuses in Tokyo?", "lang": "en", "gold": [{"doc_path": "finance-en/AFL/10-K_2022.md", "start_line": 546, "end_line": 552}]}
+{"id": "en-016", "question": "Where is Tesla headquartered and what kinds of facilities does it operate, per the 2022 annual report?", "lang": "en", "gold": [{"doc_path": "finance-en/TSLA/10-K_2022.md", "start_line": 453, "end_line": 466}]}
+{"id": "en-017", "question": "What were Community Health Systems' 2019 acquisition expenditures primarily related to?", "lang": "en", "gold": [{"doc_path": "finance-en/CYH/10-K_2019.md", "start_line": 2770, "end_line": 2799}]}
+{"id": "en-018", "question": "What can happen to AES if a subsidiary defaults on its non-recourse project financing?", "lang": "en", "gold": [{"doc_path": "finance-en/AES/10-K_2024.md", "start_line": 1746, "end_line": 1769}]}
+{"id": "en-019", "question": "Which exhibit in Tesla's 2021 annual report is the syndication revolving loan agreement of its Shanghai subsidiary?", "lang": "en", "gold": [{"doc_path": "finance-en/TSLA/10-K_2021.md", "start_line": 2645, "end_line": 2686}]}
+{"id": "en-020", "question": "Where will AES provide the executive and director compensation disclosures required by Item 402 of Regulation S-K for 2020?", "lang": "en", "gold": [{"doc_path": "finance-en/AES/10-K_2020.md", "start_line": 5258, "end_line": 5260}]}
+{"id": "en-021", "question": "Where does Community Health Systems refer readers for information on security ownership of beneficial owners and management for 2021?", "lang": "en", "gold": [{"doc_path": "finance-en/CYH/10-K_2021.md", "start_line": 3197, "end_line": 3198}]}
+{"id": "en-022", "question": "Which consolidated financial statements and auditor reports are filed as part of Facebook's 2020 Form 10-K?", "lang": "en", "gold": [{"doc_path": "finance-en/META/10-K_2020.md", "start_line": 2225, "end_line": 2306}]}
+{"id": "en-023", "question": "What requirements must the water supply used to fill a public pool or spa meet?", "lang": "en", "gold": [{"doc_path": "medical-en/cdc/53ddd4162e3be6a2.md", "start_line": 1863, "end_line": 1869}]}
+{"id": "en-024", "question": "Why do surgeons in war settings see relatively few patients with spinal cord and vertebral injuries?", "lang": "en", "gold": [{"doc_path": "medical-en/icrc/cc8467d2b1bc71fa.md", "start_line": 5773, "end_line": 5775}]}
+{"id": "en-025", "question": "How many category I contact hours can health education specialists earn from this CDC training, and what is CDC's provider number?", "lang": "en", "gold": [{"doc_path": "medical-en/cdc/07302f882239f6e7.md", "start_line": 759, "end_line": 761}]}
+{"id": "en-026", "question": "What makes running an outpatient HIV clinic different from managing other chronic disease clinics?", "lang": "en", "gold": [{"doc_path": "medical-en/cdc/e84735fe1e033177.md", "start_line": 142, "end_line": 145}]}
+{"id": "en-027", "question": "Why must access to hepatitis testing be equitable regardless of drug use or sexual preference?", "lang": "en", "gold": [{"doc_path": "medical-en/who/82252884058a4632.md", "start_line": 115, "end_line": 117}]}
+{"id": "en-028", "question": "What oral dose of ascorbic acid restores vitamin C reserves in a person with scurvy, and for how long?", "lang": "en", "gold": [{"doc_path": "medical-en/icrc/d43b425b5762e4e0.md", "start_line": 2567, "end_line": 2570}]}
+{"id": "en-029", "question": "How does the influence of peers on children's antisocial behavior change during elementary school?", "lang": "en", "gold": [{"doc_path": "medical-en/cdc/d4f6524012e9a4bd.md", "start_line": 505, "end_line": 509}]}
+{"id": "en-030", "question": "Which harm reduction services, such as naloxone or supervised consumption, exist across Canada?", "lang": "en", "gold": [{"doc_path": "medical-en/cma/351a89dec7db6a71.md", "start_line": 399, "end_line": 402}]}
+{"id": "en-031", "question": "What research did the committee recommend on drug treatment for people who have clusters of seizures?", "lang": "en", "gold": [{"doc_path": "medical-en/nice/647f75b05513df43.md", "start_line": 1098, "end_line": 1103}]}
+{"id": "en-032", "question": "In foundry terms, what are the metal spacers that keep cores in position in a mold called and defined as?", "lang": "en", "gold": [{"doc_path": "medical-en/cdc/aff9bc5f5302b3ac.md", "start_line": 1427, "end_line": 1434}]}
+{"id": "en-033", "question": "What research question was raised about intensive rehabilitation programmes for children after traumatic injury?", "lang": "en", "gold": [{"doc_path": "medical-en/nice/d83fee855b5ee3df.md", "start_line": 1021, "end_line": 1026}]}
+{"id": "en-034", "question": "How are desirable and undesirable effects balanced when deciding how strong a guideline recommendation should be?", "lang": "en", "gold": [{"doc_path": "medical-en/who/2aa4a54158baee4a.md", "start_line": 136, "end_line": 139}]}
+{"id": "en-035", "question": "How much energy does it take to put on one gram of new tissue during nutritional catch-up?", "lang": "en", "gold": [{"doc_path": "medical-en/icrc/d43b425b5762e4e0.md", "start_line": 4177, "end_line": 4188}]}
+{"id": "en-036", "question": "How should the fumes from direct-arc furnaces used to melt steel be controlled?", "lang": "en", "gold": [{"doc_path": "medical-en/cdc/aff9bc5f5302b3ac.md", "start_line": 993, "end_line": 1007}]}
+{"id": "en-037", "question": "Why are lung function reference values expressed as standardised residuals for a given age and height?", "lang": "en", "gold": [{"doc_path": "medical-en/pubmed/6c57dbb63a60cd57.md", "start_line": 114, "end_line": 118}]}
+{"id": "en-038", "question": "Are birth control pills, injectables and implants safe for HIV-infected women?", "lang": "en", "gold": [{"doc_path": "medical-en/cdc/03de94098168d8a4.md", "start_line": 626, "end_line": 630}]}
+{"id": "en-039", "question": "What does a foot valve do in a well pump installation, and how does it differ from a check valve?", "lang": "en", "gold": [{"doc_path": "medical-en/cdc/2076612ec6159079.md", "start_line": 1533, "end_line": 1541}]}
+{"id": "en-040", "question": "How did the ICRC help managers of physical rehabilitation centres draw up budgets?", "lang": "en", "gold": [{"doc_path": "medical-en/icrc/cc09e8c95113e076.md", "start_line": 90, "end_line": 94}]}
+{"id": "en-041", "question": "What open questions remain about using extended-release injectable naltrexone compared with agonist treatment?", "lang": "en", "gold": [{"doc_path": "medical-en/pubmed/f9c54cec4ab06f55.md", "start_line": 810, "end_line": 813}]}
+{"id": "en-042", "question": "In the illustrated below-knee amputation, how was the end of the tibia covered with muscle?", "lang": "en", "gold": [{"doc_path": "medical-en/icrc/cc8467d2b1bc71fa.md", "start_line": 1969, "end_line": 1971}]}
+{"id": "en-043", "question": "What primary prevention measures against STDs should be offered to adolescents and young adults during routine visits?", "lang": "en", "gold": [{"doc_path": "medical-en/cdc/305b3ff302f82dc5.md", "start_line": 139, "end_line": 142}]}
+{"id": "en-044", "question": "What did experiments exposing Sprague-Dawley rats to radon progeny show about lung cancer?", "lang": "en", "gold": [{"doc_path": "medical-en/cdc/11201a428de3597e.md", "start_line": 291, "end_line": 294}]}
+{"id": "en-045", "question": "Why do fragment wounds from exploding shells become more superficial the farther the victim is from the blast?", "lang": "en", "gold": [{"doc_path": "medical-en/icrc/8c08b8328c4fbcf0.md", "start_line": 569, "end_line": 573}]}
+{"id": "en-046", "question": "How is the neglect item of the stroke scale scored when the patient has severe visual loss or aphasia?", "lang": "en", "gold": [{"doc_path": "medical-en/spor/d223e84f618fc5c3.md", "start_line": 644, "end_line": 646}]}
+{"id": "en-047", "question": "Why does it matter to correctly diagnose monogenic forms of diabetes in children?", "lang": "en", "gold": [{"doc_path": "medical-en/pubmed/7aeca758a5c05517.md", "start_line": 256, "end_line": 269}]}
+{"id": "en-048", "question": "How should a displaced or refugee population be involved in managing primary health care in an emergency?", "lang": "en", "gold": [{"doc_path": "medical-en/icrc/b6c39138b0f3802a.md", "start_line": 3527, "end_line": 3530}]}
+{"id": "en-049", "question": "How much diacetyl is produced in the United States and how many flavoring workers may be exposed?", "lang": "en", "gold": [{"doc_path": "medical-en/cdc/c74fc13b17b03caf.md", "start_line": 71, "end_line": 112}]}
+{"id": "en-050", "question": "How can staff anticipate that a patient is about to become violent or self-harming?", "lang": "en", "gold": [{"doc_path": "medical-en/icrc/c448f4856db1e417.md", "start_line": 3331, "end_line": 3334}]}
+{"id": "en-051", "question": "What psychological support should be offered after a traumatic amputation or limb reconstruction?", "lang": "en", "gold": [{"doc_path": "medical-en/nice/d83fee855b5ee3df.md", "start_line": 776, "end_line": 784}]}
+{"id": "en-052", "question": "Which topical treatments for genital warts must be avoided in pregnancy?", "lang": "en", "gold": [{"doc_path": "medical-en/cdc/f6a6cf0f04be76ad.md", "start_line": 1466, "end_line": 1468}]}
+{"id": "en-053", "question": "Why is tuberculosis treatment problematic in patients with unstable or advanced liver disease?", "lang": "en", "gold": [{"doc_path": "medical-en/cdc/2498baa2c9ab5c47.md", "start_line": 704, "end_line": 707}]}
+{"id": "en-054", "question": "How does the aquatic health code define a lazy river?", "lang": "en", "gold": [{"doc_path": "medical-en/cdc/53ddd4162e3be6a2.md", "start_line": 158, "end_line": 185}]}
+{"id": "zh-001", "question": "商业银行应当在会计年度结束后多长时间内公布上一年度的经营业绩和审计报告？", "lang": "zh", "gold": [{"doc_path": "zh/law-wikisource/中华人民共和国商业银行法.md", "start_line": 295, "end_line": 306}]}
+{"id": "zh-002", "question": "伴有肥胖的2型糖尿病患者做减重手术效果如何，有什么风险？", "lang": "zh", "gold": [{"doc_path": "zh/wikipedia/糖尿病.md", "start_line": 288, "end_line": 295}]}
+{"id": "zh-003", "question": "没有取得医疗机构执业许可证就擅自执业，会被处以违法所得几倍的罚款？", "lang": "zh", "gold": [{"doc_path": "zh/law-wikisource/中华人民共和国基本医疗卫生与健康促进法.md", "start_line": 401, "end_line": 436}]}
+{"id": "zh-004", "question": "患者在诊疗过程中受到损害，什么情况下由医院承担赔偿责任？", "lang": "zh", "gold": [{"doc_path": "zh/law-wikisource/中华人民共和国民法典.md", "start_line": 4724, "end_line": 4767}]}
+{"id": "zh-005", "question": "食品生产经营者需要具备哪些场所、设备和人员条件？", "lang": "zh", "gold": [{"doc_path": "zh/law-wikisource/中华人民共和国食品安全法.md", "start_line": 186, "end_line": 283}]}
+{"id": "zh-006", "question": "减少感染者与未感染者接触、延缓疫情传播的非药物措施有哪些？", "lang": "zh", "gold": [{"doc_path": "zh/wikipedia/2019冠状病毒病.md", "start_line": 231, "end_line": 234}]}
+{"id": "zh-007", "question": "法官在什么情形下应当主动回避，当事人可以怎样申请？", "lang": "zh", "gold": [{"doc_path": "zh/law-wikisource/中华人民共和国民事诉讼法.md", "start_line": 200, "end_line": 223}]}
+{"id": "zh-008", "question": "台湾和香港媒体分别怎样称呼美国的联邦储备委员会？", "lang": "zh", "gold": [{"doc_path": "zh/wikipedia/联邦储备系统.md", "start_line": 10, "end_line": 13}]}
+{"id": "zh-009", "question": "新冠病毒感染者发病后几天内传染性较强，主要通过什么途径传播？", "lang": "zh", "gold": [{"doc_path": "zh/law-wikisource/新型冠状病毒肺炎诊疗方案（试行第八版）.md", "start_line": 32, "end_line": 49}]}
+{"id": "zh-010", "question": "电商平台对申请入驻的商家需要核验登记哪些信息？", "lang": "zh", "gold": [{"doc_path": "zh/law-wikisource/中华人民共和国电子商务法.md", "start_line": 88, "end_line": 149}]}
+{"id": "zh-011", "question": "医院一般用什么消毒疑似流感患者用过的病房和器材？", "lang": "zh", "gold": [{"doc_path": "zh/wikipedia/流行性感冒.md", "start_line": 229, "end_line": 236}]}
+{"id": "zh-012", "question": "由单基因突变引起的糖尿病占全部个案的比例是多少，患者通常需要注射胰岛素吗？", "lang": "zh", "gold": [{"doc_path": "zh/wikipedia/糖尿病.md", "start_line": 125, "end_line": 128}]}
+{"id": "zh-013", "question": "票据被盗或遗失后，持票人可以向哪个法院申请公示催告，催告期间最短多少天？", "lang": "zh", "gold": [{"doc_path": "zh/law-wikisource/中华人民共和国民事诉讼法.md", "start_line": 1096, "end_line": 1117}]}
+{"id": "zh-014", "question": "有哪些知名人士患有帕金森病？", "lang": "zh", "gold": [{"doc_path": "zh/wikipedia/帕金森病.md", "start_line": 332, "end_line": 341}]}
+{"id": "zh-015", "question": "社区卫生服务机构对在家居住的严重精神障碍患者需要做哪些工作？", "lang": "zh", "gold": [{"doc_path": "zh/law-wikisource/中华人民共和国精神卫生法.md", "start_line": 237, "end_line": 254}]}
+{"id": "zh-016", "question": "哪些情形不属于预防接种异常反应？", "lang": "zh", "gold": [{"doc_path": "zh/law-wikisource/中华人民共和国疫苗管理法.md", "start_line": 252, "end_line": 285}]}
+{"id": "zh-017", "question": "急性乙肝在早期会有哪些症状？", "lang": "zh", "gold": [{"doc_path": "zh/wikipedia/乙型肝炎.md", "start_line": 150, "end_line": 153}]}
+{"id": "zh-018", "question": "生产、销售伪劣产品，销售金额在五十万元以上不满二百万元的，怎么判刑？", "lang": "zh", "gold": [{"doc_path": "zh/law-wikisource/中华人民共和国刑法.md", "start_line": 703, "end_line": 744}]}
+{"id": "zh-019", "question": "在哪些情形下处理个人信息可以不取得个人同意？", "lang": "zh", "gold": [{"doc_path": "zh/law-wikisource/中华人民共和国个人信息保护法.md", "start_line": 58, "end_line": 133}]}
+{"id": "zh-020", "question": "世卫组织认为青蒿琥酯类抗疟药中有多大比例是假药？", "lang": "zh", "gold": [{"doc_path": "zh/wikipedia/疟疾.md", "start_line": 353, "end_line": 358}]}
+{"id": "zh-021", "question": "期货交易账户实行什么制度，可以出借或借用别人的期货账户吗？", "lang": "zh", "gold": [{"doc_path": "zh/law-wikisource/中华人民共和国期货和衍生品法.md", "start_line": 126, "end_line": 171}]}
+{"id": "zh-022", "question": "中国人民银行是在何时何地、由哪几家银行合并组建的？", "lang": "zh", "gold": [{"doc_path": "zh/wikipedia/中国人民银行.md", "start_line": 7, "end_line": 13}]}
+{"id": "zh-023", "question": "台湾2009年乙型肝炎带原率是多少，男女有何差别？", "lang": "zh", "gold": [{"doc_path": "zh/wikipedia/乙型肝炎.md", "start_line": 50, "end_line": 55}]}
+{"id": "zh-024", "question": "新冠疫苗是针对哪种病毒提供获得性免疫的？", "lang": "zh", "gold": [{"doc_path": "zh/wikipedia/2019冠状病毒病.md", "start_line": 195, "end_line": 216}]}
+{"id": "zh-025", "question": "消费者权益保护法是哪一年通过的，之后修正过几次？", "lang": "zh", "gold": [{"doc_path": "zh/law-wikisource/中华人民共和国消费者权益保护法.md", "start_line": 7, "end_line": 17}]}
+{"id": "zh-026", "question": "新冠肺炎死亡病例的肺部有哪些病理改变？", "lang": "zh", "gold": [{"doc_path": "zh/law-wikisource/新型冠状病毒肺炎诊疗方案（试行第八版）.md", "start_line": 54, "end_line": 61}]}
+{"id": "zh-027", "question": "供用电合同的履行地点在当事人没有约定时如何确定？", "lang": "zh", "gold": [{"doc_path": "zh/law-wikisource/中华人民共和国民法典.md", "start_line": 2744, "end_line": 2767}]}
+{"id": "zh-028", "question": "除吸烟外，还有哪些物质被国际癌症研究机构认定为肺部致癌物？", "lang": "zh", "gold": [{"doc_path": "zh/wikipedia/肺癌.md", "start_line": 74, "end_line": 83}]}
+{"id": "zh-029", "question": "二战结束时美国拥有全世界多少黄金储备，美元与黄金按什么比价兑换？", "lang": "zh", "gold": [{"doc_path": "zh/wikipedia/布雷顿森林体系.md", "start_line": 91, "end_line": 94}]}
+{"id": "zh-030", "question": "有限合伙企业最多可以有多少个合伙人，至少要有几个普通合伙人？", "lang": "zh", "gold": [{"doc_path": "zh/law-wikisource/中华人民共和国合伙企业法.md", "start_line": 297, "end_line": 386}]}
+{"id": "zh-031", "question": "国家在住院医师规范化培训方面有哪些规定？", "lang": "zh", "gold": [{"doc_path": "zh/law-wikisource/中华人民共和国医师法.md", "start_line": 228, "end_line": 265}]}
+{"id": "zh-032", "question": "儿童高血压应该怎样诊断？", "lang": "zh", "gold": [{"doc_path": "zh/wikipedia/高血压.md", "start_line": 75, "end_line": 80}]}
+{"id": "zh-033", "question": "哪些人不能担任公司的董事、监事或高管？", "lang": "zh", "gold": [{"doc_path": "zh/law-wikisource/中华人民共和国公司法.md", "start_line": 988, "end_line": 1065}]}
+{"id": "zh-034", "question": "合伙人向合伙人以外的人转让财产份额，需要满足什么条件？", "lang": "zh", "gold": [{"doc_path": "zh/law-wikisource/中华人民共和国合伙企业法.md", "start_line": 111, "end_line": 128}]}
+{"id": "zh-035", "question": "工业革命时期欧洲结核病的死亡率有多高？", "lang": "zh", "gold": [{"doc_path": "zh/wikipedia/结核病.md", "start_line": 166, "end_line": 173}]}
+{"id": "zh-036", "question": "外国公司要在中国境内设立分支机构，需要提交哪些文件？", "lang": "zh", "gold": [{"doc_path": "zh/law-wikisource/中华人民共和国公司法.md", "start_line": 1310, "end_line": 1333}]}
+{"id": "zh-037", "question": "招标投标法是什么时候通过的，后来在哪一年修正？", "lang": "zh", "gold": [{"doc_path": "zh/law-wikisource/中华人民共和国招标投标法.md", "start_line": 7, "end_line": 16}]}
+{"id": "zh-038", "question": "刑法施行后，哪些单行条例和补充规定被废止了？", "lang": "zh", "gold": [{"doc_path": "zh/law-wikisource/中华人民共和国刑法.md", "start_line": 2437, "end_line": 2470}]}
+{"id": "zh-039", "question": "企业从事疫苗生产需要满足哪些条件？", "lang": "zh", "gold": [{"doc_path": "zh/law-wikisource/中华人民共和国疫苗管理法.md", "start_line": 102, "end_line": 149}]}
+{"id": "zh-040", "question": "食品企业对员工健康管理和食品安全培训有什么要求？", "lang": "zh", "gold": [{"doc_path": "zh/law-wikisource/中华人民共和国食品安全法.md", "start_line": 284, "end_line": 379}]}
+{"id": "zh-041", "question": "世界艾滋病日为什么定在12月1日？", "lang": "zh", "gold": [{"doc_path": "zh/wikipedia/艾滋病.md", "start_line": 599, "end_line": 606}]}
+{"id": "zh-042", "question": "法律所称的基层医疗卫生机构包括哪些？", "lang": "zh", "gold": [{"doc_path": "zh/law-wikisource/中华人民共和国基本医疗卫生与健康促进法.md", "start_line": 437, "end_line": 458}]}
+{"id": "zh-043", "question": "设立期货公司需要具备哪些条件，注册资本最低多少？", "lang": "zh", "gold": [{"doc_path": "zh/law-wikisource/中华人民共和国期货和衍生品法.md", "start_line": 272, "end_line": 437}]}
+{"id": "zh-044", "question": "哪些日常活动和生活方式可能降低患阿尔茨海默病的风险？", "lang": "zh", "gold": [{"doc_path": "zh/wikipedia/阿兹海默病.md", "start_line": 192, "end_line": 195}]}
+{"id": "zh-045", "question": "哪些项目按照国家规定可以不进行招标？", "lang": "zh", "gold": [{"doc_path": "zh/law-wikisource/中华人民共和国招标投标法.md", "start_line": 263, "end_line": 272}]}
+{"id": "zh-046", "question": "什么样的药品属于假药，什么样的属于劣药？", "lang": "zh", "gold": [{"doc_path": "zh/law-wikisource/中华人民共和国药品管理法.md", "start_line": 382, "end_line": 471}]}
+{"id": "zh-047", "question": "签发汇票时必须记载哪些事项？", "lang": "zh", "gold": [{"doc_path": "zh/law-wikisource/中华人民共和国票据法.md", "start_line": 105, "end_line": 158}]}
+{"id": "zh-048", "question": "公司上市过程中，申报会计师和公司律师分别负责什么工作？", "lang": "zh", "gold": [{"doc_path": "zh/wikipedia/首次公开募股.md", "start_line": 194, "end_line": 239}]}
+{"id": "zh-049", "question": "什么样的劳动合同是无效的？", "lang": "zh", "gold": [{"doc_path": "zh/law-wikisource/中华人民共和国劳动法.md", "start_line": 66, "end_line": 169}]}
+{"id": "zh-050", "question": "个人在网上销售自产农副产品需要办理市场主体登记吗？", "lang": "zh", "gold": [{"doc_path": "zh/law-wikisource/中华人民共和国电子商务法.md", "start_line": 38, "end_line": 87}]}
+{"id": "zh-051", "question": "商业银行可以经营哪些业务？", "lang": "zh", "gold": [{"doc_path": "zh/law-wikisource/中华人民共和国商业银行法.md", "start_line": 17, "end_line": 76}]}
+{"id": "zh-052", "question": "事业单位聘用制人员订立和解除劳动合同适用什么规定？", "lang": "zh", "gold": [{"doc_path": "zh/law-wikisource/中华人民共和国劳动合同法.md", "start_line": 496, "end_line": 507}]}
+{"id": "zh-053", "question": "女职工产假不少于多少天，未成年工指多大年龄的劳动者？", "lang": "zh", "gold": [{"doc_path": "zh/law-wikisource/中华人民共和国劳动法.md", "start_line": 262, "end_line": 281}]}
+{"id": "zh-054", "question": "成人高血压的诊断阈值是多少，家庭自测血压应采用什么标准？", "lang": "zh", "gold": [{"doc_path": "zh/wikipedia/高血压.md", "start_line": 18, "end_line": 70}]}
+{"id": "zh-055", "question": "债权人委员会最多由几人组成，可以行使哪些职权？", "lang": "zh", "gold": [{"doc_path": "zh/law-wikisource/中华人民共和国企业破产法.md", "start_line": 376, "end_line": 419}]}
+{"id": "zh-056", "question": "小细胞肺癌一般采用什么化疗方案？", "lang": "zh", "gold": [{"doc_path": "zh/wikipedia/肺癌.md", "start_line": 452, "end_line": 459}]}
+{"id": "zh-057", "question": "阿斯利康延迟交付疫苗后，比利时法院对欧盟的起诉作出了什么裁定？", "lang": "zh", "gold": [{"doc_path": "zh/wikipedia/2019冠状病毒病疫苗.md", "start_line": 1957, "end_line": 1962}]}
+{"id": "zh-058", "question": "国务院证券监督管理机构在监管证券市场时负有哪些职责？", "lang": "zh", "gold": [{"doc_path": "zh/law-wikisource/中华人民共和国证券法.md", "start_line": 978, "end_line": 1055}]}
+{"id": "zh-059", "question": "帕金森病的主要病理变化发生在大脑的哪个部位？", "lang": "zh", "gold": [{"doc_path": "zh/wikipedia/帕金森病.md", "start_line": 139, "end_line": 144}]}
+{"id": "zh-060", "question": "国家对短缺药品采取了哪些管理措施？", "lang": "zh", "gold": [{"doc_path": "zh/law-wikisource/中华人民共和国药品管理法.md", "start_line": 362, "end_line": 381}]}
+{"id": "zh-061", "question": "债权人会议通过和解协议需要满足什么表决比例？", "lang": "zh", "gold": [{"doc_path": "zh/law-wikisource/中华人民共和国企业破产法.md", "start_line": 564, "end_line": 605}]}
+{"id": "zh-062", "question": "集中采购机构是什么性质的单位，由哪一级政府设立？", "lang": "zh", "gold": [{"doc_path": "zh/law-wikisource/中华人民共和国政府采购法.md", "start_line": 75, "end_line": 126}]}
+{"id": "zh-063", "question": "用抗病毒药伐昔洛韦治疗阿尔茨海默病的临床试验结果怎样？", "lang": "zh", "gold": [{"doc_path": "zh/wikipedia/阿兹海默病.md", "start_line": 406, "end_line": 413}]}
+{"id": "mx-001", "question": "COVID-19 的 CFR（病死率）在合并心血管疾病的患者中是多少？", "lang": "mixed", "gold": [{"doc_path": "zh/wikipedia/2019冠状病毒病.md", "start_line": 308, "end_line": 624}]}
+{"id": "mx-002", "question": "WHO 在哪一年宣布结核病进入 global health emergency？", "lang": "mixed", "gold": [{"doc_path": "zh/wikipedia/结核病.md", "start_line": 118, "end_line": 121}]}
+{"id": "mx-003", "question": "对于 60 岁以上的老人，英国指南推荐的首选降压药是什么，目标血压多少 mmHg？", "lang": "mixed", "gold": [{"doc_path": "zh/wikipedia/高血压.md", "start_line": 228, "end_line": 231}]}
+{"id": "mx-004", "question": "饮用水中的 lithium 含量与痴呆风险有什么关系？", "lang": "mixed", "gold": [{"doc_path": "zh/wikipedia/阿兹海默病.md", "start_line": 434, "end_line": 439}]}
+{"id": "mx-005", "question": "1995 年 David Ho 提出的抗 HIV 联合疗法有哪些局限？", "lang": "mixed", "gold": [{"doc_path": "zh/wikipedia/艾滋病.md", "start_line": 244, "end_line": 251}]}
+{"id": "mx-006", "question": "Olanzapine、Risperidone 这类抗精神病药大约多久能减轻阳性症状？", "lang": "mixed", "gold": [{"doc_path": "zh/wikipedia/精神分裂症.md", "start_line": 163, "end_line": 178}]}
+{"id": "mx-007", "question": "什么是 LTBI？活动性结核如果不治疗致死率是多少？", "lang": "mixed", "gold": [{"doc_path": "zh/wikipedia/结核病.md", "start_line": 7, "end_line": 21}]}
+{"id": "mx-008", "question": "Neurologix 参与的帕金森病基因疗法试验结果如何？", "lang": "mixed", "gold": [{"doc_path": "zh/wikipedia/帕金森病.md", "start_line": 350, "end_line": 353}]}
+{"id": "mx-009", "question": "1型糖尿病患者使用 insulin pump 时如何给药，2型糖尿病一般怎样控制血糖？", "lang": "mixed", "gold": [{"doc_path": "zh/wikipedia/糖尿病.md", "start_line": 270, "end_line": 277}]}
+{"id": "mx-010", "question": "WHO 建议的室内残留喷洒杀虫剂有哪些，斯德哥尔摩公约对 DDT 有什么限制？", "lang": "mixed", "gold": [{"doc_path": "zh/wikipedia/疟疾.md", "start_line": 255, "end_line": 260}]}
+{"id": "mx-011", "question": "Ben Hause 等人在 2014 年把哪类流感病毒独立为新属，它主要感染什么动物？", "lang": "mixed", "gold": [{"doc_path": "zh/wikipedia/流行性感冒.md", "start_line": 163, "end_line": 168}]}
+{"id": "mx-012", "question": "Sputnik V 疫苗是何时注册的，俄罗斯何时开始大规模接种？", "lang": "mixed", "gold": [{"doc_path": "zh/wikipedia/2019冠状病毒病疫苗.md", "start_line": 1813, "end_line": 1820}]}
+{"id": "mx-013", "question": "dopamine 假说怎样解释精神分裂症的发病机制？", "lang": "mixed", "gold": [{"doc_path": "zh/wikipedia/精神分裂症.md", "start_line": 88, "end_line": 101}]}
+{"id": "mx-014", "question": "florbetapir 是哪一年获 FDA 批准用于阿尔茨海默病诊断的？", "lang": "mixed", "gold": [{"doc_path": "zh/wikipedia/阿兹海默病.md", "start_line": 414, "end_line": 423}]}
+{"id": "mx-015", "question": "去疟疾流行区前预防用药，mefloquine、doxycycline 和 atovaquone/proguanil 哪个副作用最小？", "lang": "mixed", "gold": [{"doc_path": "zh/wikipedia/疟疾.md", "start_line": 267, "end_line": 272}]}
+{"id": "mx-016", "question": "辉瑞的 BNT162b2 是哪天获得 FDA 紧急使用授权（EUA）的？", "lang": "mixed", "gold": [{"doc_path": "zh/wikipedia/2019冠状病毒病疫苗.md", "start_line": 1795, "end_line": 1806}]}
+{"id": "mx-017", "question": "COVID-19 诊疗方案第十版是哪天印发的，文号是什么？", "lang": "mixed", "gold": [{"doc_path": "zh/law-wikisource/新型冠状病毒感染诊疗方案（试行第十版）.md", "start_line": 7, "end_line": 24}]}
+{"id": "mx-018", "question": "肺癌研究中 epigenetics（表观遗传学）方向的药物有什么作用？", "lang": "mixed", "gold": [{"doc_path": "zh/wikipedia/肺癌.md", "start_line": 592, "end_line": 601}]}
+{"id": "mx-019", "question": "MAO-B 抑制剂（如 rasagiline）是如何改善帕金森病症状的？", "lang": "mixed", "gold": [{"doc_path": "zh/wikipedia/帕金森病.md", "start_line": 202, "end_line": 205}]}
+{"id": "mx-020", "question": "PaO2/FiO2 低于 200 mmHg 的重型患者应使用 HFNC 还是 NIV？", "lang": "mixed", "gold": [{"doc_path": "zh/law-wikisource/新型冠状病毒肺炎诊疗方案（试行第八版）.md", "start_line": 312, "end_line": 373}]}
+{"id": "mx-021", "question": "SEC 哪天批准了比特币现货 ETF，一共批准了几只？", "lang": "mixed", "gold": [{"doc_path": "zh/wikipedia/比特币.md", "start_line": 92, "end_line": 95}]}
+{"id": "mx-022", "question": "成人感染 HBV 后发展为慢性感染的比例是多少，婴幼儿呢？", "lang": "mixed", "gold": [{"doc_path": "zh/wikipedia/乙型肝炎.md", "start_line": 111, "end_line": 137}]}
+{"id": "mx-023", "question": "比特币的 private key 丢失或泄露会有什么后果？", "lang": "mixed", "gold": [{"doc_path": "zh/wikipedia/比特币.md", "start_line": 56, "end_line": 63}]}
+{"id": "mx-024", "question": "诊断高血压时通常要检查 TSH、BUN 等哪些项目？", "lang": "mixed", "gold": [{"doc_path": "zh/wikipedia/高血压.md", "start_line": 141, "end_line": 172}]}
+{"id": "mx-025", "question": "SCLC 患者就诊时大约有多大比例已经发生广泛扩散？", "lang": "mixed", "gold": [{"doc_path": "zh/wikipedia/肺癌.md", "start_line": 154, "end_line": 159}]}
+{"id": "mx-026", "question": "新冠一般治疗中需要监测 CRP 等哪些指标，H2/O2 混合气体的比例是多少？", "lang": "mixed", "gold": [{"doc_path": "zh/law-wikisource/新型冠状病毒肺炎诊疗方案（试行第八版）.md", "start_line": 276, "end_line": 285}]}
+{"id": "mx-027", "question": "FOMC 由几名委员组成，席位如何分配？", "lang": "mixed", "gold": [{"doc_path": "zh/wikipedia/联邦储备系统.md", "start_line": 205, "end_line": 208}]}
+{"id": "mx-028", "question": "2008年10月8日美联储把 federal funds rate 下调到多少？", "lang": "mixed", "gold": [{"doc_path": "zh/wikipedia/2007年–2008年环球金融危机.md", "start_line": 108, "end_line": 209}]}
+{"id": "mx-029", "question": "sofosbuvir/velpatasvir 治疗无肝硬化的 HCV genotype 1a 患者 12 周，SVR 是多少？", "lang": "mixed", "gold": [{"doc_path": "medical-en/pubmed/51a2d6ea183a3a5c.md", "start_line": 228, "end_line": 230}]}
+{"id": "mx-030", "question": "ATV 与 famotidine 等 H2 受体拮抗剂合用时，剂量和服药间隔有什么要求？", "lang": "mixed", "gold": [{"doc_path": "medical-en/cdc/48c6eb4a0c41b4f6.md", "start_line": 1412, "end_line": 1430}]}
+{"id": "mx-031", "question": "PCSK9 单抗是如何帮助降低 LDL-C 的？", "lang": "mixed", "gold": [{"doc_path": "medical-en/pubmed/e6029f4c27a89217.md", "start_line": 587, "end_line": 591}]}
+{"id": "mx-032", "question": "JAK1、JAK2、TYK2 在 cytokine 受体信号转导中起什么作用？", "lang": "mixed", "gold": [{"doc_path": "medical-en/who/ef81ff7f47fbea15.md", "start_line": 1004, "end_line": 1010}]}
+{"id": "mx-033", "question": "Microsoft 2018 财年的 10-K 中，fiscal year 截止到哪一天？", "lang": "mixed", "gold": [{"doc_path": "finance-en/MSFT/10-K_2018.md", "start_line": 1, "end_line": 52}]}
+{"id": "mx-034", "question": "JPMorgan Chase 2019 年 10-K 的 Commission file number 是多少？", "lang": "mixed", "gold": [{"doc_path": "finance-en/JPM/10-K_2019.md", "start_line": 1, "end_line": 83}]}

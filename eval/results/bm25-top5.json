@@ -1,0 +1,7985 @@
+{
+  "mode": "bm25",
+  "createdAt": "2026-10-23T09:38:38.655Z",
+  "options": {
+    "topK": 5
+  },
+  "summary": {
+    "overall": {
+      "questions": 151,
+      "hits": 121,
+      "hitRate": 0.8013,
+      "hitAt1": 0.6358,
+      "mrr": 0.7086,
+      "avgTokens": 1181.7947,
+      "avgSteps": 1,
+      "errors": 0
+    },
+    "byLang": {
+      "zh": {
+        "questions": 63,
+        "hits": 59,
+        "hitRate": 0.9365,
+        "hitAt1": 0.7937,
+        "mrr": 0.8558,
+        "avgTokens": 1545.0635,
+        "avgSteps": 1,
+        "errors": 0
+      },
+      "en": {
+        "questions": 54,
+        "hits": 35,
+        "hitRate": 0.6481,
+        "hitAt1": 0.3889,
+        "mrr": 0.5062,
+        "avgTokens": 644.7407,
+        "avgSteps": 1,
+        "errors": 0
+      },
+      "mixed": {
+        "questions": 34,
+        "hits": 27,
+        "hitRate": 0.7941,
+        "hitAt1": 0.7353,
+        "mrr": 0.7574,
+        "avgTokens": 1361.6471,
+        "avgSteps": 1,
+        "errors": 0
+      }
+    }
+  },
+  "results": [
+    {
+      "id": "en-001",
+      "lang": "en",
+      "hit": false,
+      "rank": null,
+      "tokens": 609,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "finance-en/CYH/10-K_2017.md",
+          "titlePath": [
+            "Table of Contents"
+          ],
+          "startLine": 3778,
+          "endLine": 3809
+        },
+        {
+          "docPath": "finance-en/CYH/10-K_2018.md",
+          "titlePath": [
+            "Table of Contents"
+          ],
+          "startLine": 3763,
+          "endLine": 3795
+        },
+        {
+          "docPath": "finance-en/CYH/10-K_2019.md",
+          "titlePath": [
+            "Table of Contents"
+          ],
+          "startLine": 3761,
+          "endLine": 3793
+        },
+        {
+          "docPath": "finance-en/CYH/10-K_2019.md",
+          "titlePath": [
+            "Table of Contents"
+          ],
+          "startLine": 3466,
+          "endLine": 3535
+        },
+        {
+          "docPath": "finance-en/CYH/10-K_2017.md",
+          "titlePath": [
+            "Table of Contents"
+          ],
+          "startLine": 4387,
+          "endLine": 4436
+        }
+      ]
+    },
+    {
+      "id": "en-002",
+      "lang": "en",
+      "hit": true,
+      "rank": 1,
+      "tokens": 620,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "finance-en/JPM/10-K_2019.md",
+          "titlePath": [
+            "Part I",
+            "Item 2. Properties."
+          ],
+          "startLine": 1929,
+          "endLine": 1970
+        },
+        {
+          "docPath": "finance-en/JPM/10-K_2020.md",
+          "titlePath": [
+            "Part I",
+            "Item 2. Properties."
+          ],
+          "startLine": 1021,
+          "endLine": 1059
+        },
+        {
+          "docPath": "finance-en/JPM/10-K_2017.md",
+          "titlePath": [
+            "Part I",
+            "Item 2. Properties."
+          ],
+          "startLine": 1691,
+          "endLine": 1732
+        },
+        {
+          "docPath": "finance-en/JPM/10-K_2021.md",
+          "titlePath": [
+            "Part I",
+            "Item 2. Properties."
+          ],
+          "startLine": 1060,
+          "endLine": 1098
+        },
+        {
+          "docPath": "finance-en/JPM/10-K_2018.md",
+          "titlePath": [
+            "Part I",
+            "Item 2. Properties."
+          ],
+          "startLine": 1851,
+          "endLine": 1892
+        }
+      ]
+    },
+    {
+      "id": "en-003",
+      "lang": "en",
+      "hit": true,
+      "rank": 1,
+      "tokens": 618,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "finance-en/JPM/10-K_2023.md",
+          "titlePath": [
+            "Part I",
+            "Item 2. Properties."
+          ],
+          "startLine": 1058,
+          "endLine": 1097
+        },
+        {
+          "docPath": "finance-en/JPM/10-K_2021.md",
+          "titlePath": [
+            "Part I",
+            "Item 2. Properties."
+          ],
+          "startLine": 1060,
+          "endLine": 1098
+        },
+        {
+          "docPath": "finance-en/JPM/10-K_2024.md",
+          "titlePath": [
+            "Part I",
+            "Item 2. Properties."
+          ],
+          "startLine": 1105,
+          "endLine": 1143
+        },
+        {
+          "docPath": "finance-en/JPM/10-K_2022.md",
+          "titlePath": [
+            "Part I",
+            "Item 2. Properties."
+          ],
+          "startLine": 1046,
+          "endLine": 1085
+        },
+        {
+          "docPath": "finance-en/JPM/10-K_2020.md",
+          "titlePath": [
+            "Part I",
+            "Item 2. Properties."
+          ],
+          "startLine": 1021,
+          "endLine": 1059
+        }
+      ]
+    },
+    {
+      "id": "en-004",
+      "lang": "en",
+      "hit": false,
+      "rank": null,
+      "tokens": 680,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "finance-en/XOM/10-K_2022.md",
+          "titlePath": [
+            "PART I",
+            "ITEM 2. PROPERTIES",
+            "Gross and Net Developed Acreage (thousands of acres) Year-En"
+          ],
+          "startLine": 669,
+          "endLine": 881
+        },
+        {
+          "docPath": "finance-en/XOM/10-K_2021.md",
+          "titlePath": [
+            "PART I",
+            "ITEM 2. PROPERTIES",
+            "ExxonMobil’s investment in developed and undeveloped acreage"
+          ],
+          "startLine": 687,
+          "endLine": 884
+        },
+        {
+          "docPath": "finance-en/XOM/10-K_2023.md",
+          "titlePath": [
+            "PART I",
+            "ITEM 2. PROPERTIES",
+            "Gross and Net Developed Acreage (thousands of acres) Year-En"
+          ],
+          "startLine": 685,
+          "endLine": 894
+        },
+        {
+          "docPath": "finance-en/XOM/10-K_2018.md",
+          "titlePath": [
+            "PART I",
+            "Item 2. Properties",
+            "OMLs granted prior to the 1969 Petroleum"
+          ],
+          "startLine": 1488,
+          "endLine": 1771
+        },
+        {
+          "docPath": "finance-en/XOM/10-K_2020.md",
+          "titlePath": [
+            "PART I",
+            "ITEM 2. PROPERTIES",
+            "Russia"
+          ],
+          "startLine": 582,
+          "endLine": 751
+        }
+      ]
+    },
+    {
+      "id": "en-005",
+      "lang": "en",
+      "hit": true,
+      "rank": 1,
+      "tokens": 743,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "finance-en/MSFT/10-K_2022.md",
+          "titlePath": [
+            "PART II",
+            "ITEM 5. MARKET FOR REGISTRANT’S COMMON EQUITY, RELATED STOCKHOLDER MATTERS, AND ISSUER PURCHASES OF EQUITY SECURITIES"
+          ],
+          "startLine": 853,
+          "endLine": 887
+        },
+        {
+          "docPath": "finance-en/DVA/10-K_2022.md",
+          "titlePath": [
+            "PART II",
+            "Item 5. Market for the Registrant’s Common Equity, Related Stockholder Matters and Issuer Purchases of Equity Securities."
+          ],
+          "startLine": 780,
+          "endLine": 796
+        },
+        {
+          "docPath": "finance-en/MSFT/10-K_2025.md",
+          "titlePath": [
+            "PART II",
+            "ITEM 5. MARKET FOR REGISTRANT’S COMMON EQUITY, RELATED STOCKHOLDER MATTERS, AND ISSUER PURCHASES OF EQUITY SECURITIES"
+          ],
+          "startLine": 650,
+          "endLine": 689
+        },
+        {
+          "docPath": "finance-en/DVA/10-K_2021.md",
+          "titlePath": [
+            "PART II",
+            "Item 5. Market for the Registrant’s Common Equity, Related Stockholder Matters and Issuer Purchases of Equity Securities."
+          ],
+          "startLine": 788,
+          "endLine": 814
+        },
+        {
+          "docPath": "finance-en/DVA/10-K_2023.md",
+          "titlePath": [
+            "PART II",
+            "Item 5. Market for the Registrant’s Common Equity, Related Stockholder Matters and Issuer Purchases of Equity Securities"
+          ],
+          "startLine": 809,
+          "endLine": 830
+        }
+      ]
+    },
+    {
+      "id": "en-006",
+      "lang": "en",
+      "hit": true,
+      "rank": 2,
+      "tokens": 628,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "finance-en/AFL/10-K_2023.md",
+          "titlePath": [
+            "PART I",
+            "ITEM 3. LEGAL PROCEEDINGS"
+          ],
+          "startLine": 562,
+          "endLine": 563
+        },
+        {
+          "docPath": "finance-en/AFL/10-K_2024.md",
+          "titlePath": [
+            "PART I",
+            "ITEM 3. LEGAL PROCEEDINGS"
+          ],
+          "startLine": 551,
+          "endLine": 552
+        },
+        {
+          "docPath": "finance-en/META/10-K_2020.md",
+          "titlePath": [
+            "PART I",
+            "Item 3.Legal Proceedings"
+          ],
+          "startLine": 647,
+          "endLine": 661
+        },
+        {
+          "docPath": "finance-en/CYH/10-K_2024.md",
+          "titlePath": [
+            "PART IV",
+            "Item 3. Legal Proceedings"
+          ],
+          "startLine": 1000,
+          "endLine": 1014
+        },
+        {
+          "docPath": "finance-en/AES/10-K_2024.md",
+          "titlePath": [
+            "PART I",
+            "ITEM 1. BUSINESS",
+            "20 2024 Annual Report"
+          ],
+          "startLine": 785,
+          "endLine": 927
+        }
+      ]
+    },
+    {
+      "id": "en-007",
+      "lang": "en",
+      "hit": false,
+      "rank": null,
+      "tokens": 605,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "finance-en/BX/10-K_2018.md",
+          "titlePath": [
+            "Table of Contents"
+          ],
+          "startLine": 4260,
+          "endLine": 4294
+        },
+        {
+          "docPath": "finance-en/BX/10-K_2018.md",
+          "titlePath": [
+            "Table of Contents"
+          ],
+          "startLine": 4102,
+          "endLine": 4133
+        },
+        {
+          "docPath": "finance-en/BX/10-K_2018.md",
+          "titlePath": [
+            "Table of Contents"
+          ],
+          "startLine": 3816,
+          "endLine": 3844
+        },
+        {
+          "docPath": "finance-en/BX/10-K_2018.md",
+          "titlePath": [
+            "Table of Contents"
+          ],
+          "startLine": 3979,
+          "endLine": 4009
+        },
+        {
+          "docPath": "finance-en/BX/10-K_2017.md",
+          "titlePath": [
+            "Table of Contents"
+          ],
+          "startLine": 4363,
+          "endLine": 4392
+        }
+      ]
+    },
+    {
+      "id": "en-008",
+      "lang": "en",
+      "hit": false,
+      "rank": null,
+      "tokens": 609,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "finance-en/CYH/10-K_2018.md",
+          "titlePath": [
+            "Table of Contents"
+          ],
+          "startLine": 4514,
+          "endLine": 4563
+        },
+        {
+          "docPath": "finance-en/CYH/10-K_2018.md",
+          "titlePath": [
+            "Table of Contents"
+          ],
+          "startLine": 4016,
+          "endLine": 4045
+        },
+        {
+          "docPath": "finance-en/CYH/10-K_2019.md",
+          "titlePath": [
+            "Table of Contents"
+          ],
+          "startLine": 4499,
+          "endLine": 4546
+        },
+        {
+          "docPath": "finance-en/CYH/10-K_2019.md",
+          "titlePath": [
+            "Table of Contents"
+          ],
+          "startLine": 4449,
+          "endLine": 4498
+        },
+        {
+          "docPath": "finance-en/CYH/10-K_2017.md",
+          "titlePath": [
+            "Table of Contents"
+          ],
+          "startLine": 4570,
+          "endLine": 4617
+        }
+      ]
+    },
+    {
+      "id": "en-009",
+      "lang": "en",
+      "hit": true,
+      "rank": 2,
+      "tokens": 609,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "finance-en/CYH/10-K_2017.md",
+          "titlePath": [
+            "Table of Contents"
+          ],
+          "startLine": 4301,
+          "endLine": 4343
+        },
+        {
+          "docPath": "finance-en/CYH/10-K_2018.md",
+          "titlePath": [
+            "Table of Contents"
+          ],
+          "startLine": 2221,
+          "endLine": 2259
+        },
+        {
+          "docPath": "finance-en/CYH/10-K_2017.md",
+          "titlePath": [
+            "Table of Contents"
+          ],
+          "startLine": 2111,
+          "endLine": 2153
+        },
+        {
+          "docPath": "finance-en/CYH/10-K_2017.md",
+          "titlePath": [
+            "Table of Contents"
+          ],
+          "startLine": 4344,
+          "endLine": 4386
+        },
+        {
+          "docPath": "finance-en/CYH/10-K_2019.md",
+          "titlePath": [
+            "Table of Contents"
+          ],
+          "startLine": 4251,
+          "endLine": 4289
+        }
+      ]
+    },
+    {
+      "id": "en-010",
+      "lang": "en",
+      "hit": false,
+      "rank": null,
+      "tokens": 740,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "finance-en/NVDA/10-K_2021.md",
+          "titlePath": [
+            "PART II",
+            "ITEM 5. MARKET FOR REGISTRANT’S COMMON EQUITY, RELATED STOCKHOLDER MATTERS AND ISSUER PURCHASES OF EQUITY SECURITIES"
+          ],
+          "startLine": 468,
+          "endLine": 490
+        },
+        {
+          "docPath": "finance-en/NVDA/10-K_2020.md",
+          "titlePath": [
+            "PART II",
+            "ITEM 5. MARKET FOR REGISTRANT’S COMMON EQUITY, RELATED STOCKHOLDER MATTERS AND ISSUER PURCHASES OF EQUITY SECURITIES"
+          ],
+          "startLine": 640,
+          "endLine": 667
+        },
+        {
+          "docPath": "finance-en/NVDA/10-K_2019.md",
+          "titlePath": [
+            "PART II",
+            "ITEM 5. MARKET FOR REGISTRANT’S COMMON EQUITY, RELATED STOCKHOLDER MATTERS AND ISSUER PURCHASES OF EQUITY SECURITIES"
+          ],
+          "startLine": 589,
+          "endLine": 631
+        },
+        {
+          "docPath": "finance-en/NVDA/10-K_2018.md",
+          "titlePath": [
+            "PART II",
+            "ITEM 5. MARKET FOR REGISTRANT’S COMMON EQUITY, RELATED STOCKHOLDER MATTERS AND ISSUER PURCHASES OF EQUITY SECURITIES"
+          ],
+          "startLine": 595,
+          "endLine": 642
+        },
+        {
+          "docPath": "finance-en/AAPL/10-K_2022.md",
+          "titlePath": [
+            "PART II",
+            "Item 5. Market for Registrant’s Common Equity, Related Stockholder Matters and Issuer Purchases of Equity Securities"
+          ],
+          "startLine": 364,
+          "endLine": 398
+        }
+      ]
+    },
+    {
+      "id": "en-011",
+      "lang": "en",
+      "hit": false,
+      "rank": null,
+      "tokens": 635,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "finance-en/JPM/10-K_2017.md",
+          "titlePath": [
+            "Part I",
+            "Item 1A. Risk Factors.",
+            "• default on or restructure its obligations"
+          ],
+          "startLine": 1509,
+          "endLine": 1682
+        },
+        {
+          "docPath": "finance-en/JPM/10-K_2020.md",
+          "titlePath": [
+            "Part I",
+            "Item 1A. Risk Factors."
+          ],
+          "startLine": 241,
+          "endLine": 389
+        },
+        {
+          "docPath": "finance-en/JPM/10-K_2018.md",
+          "titlePath": [
+            "Part I",
+            "Item 1A. Risk Factors."
+          ],
+          "startLine": 226,
+          "endLine": 630
+        },
+        {
+          "docPath": "finance-en/JPM/10-K_2019.md",
+          "titlePath": [
+            "Part I",
+            "Item 1A. Risk Factors."
+          ],
+          "startLine": 216,
+          "endLine": 623
+        },
+        {
+          "docPath": "finance-en/JPM/10-K_2023.md",
+          "titlePath": [
+            "Part I",
+            "Item 1A. Risk Factors."
+          ],
+          "startLine": 271,
+          "endLine": 459
+        }
+      ]
+    },
+    {
+      "id": "en-012",
+      "lang": "en",
+      "hit": false,
+      "rank": null,
+      "tokens": 603,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "finance-en/BX/10-K_2017.md",
+          "titlePath": [
+            "Table of Contents"
+          ],
+          "startLine": 4976,
+          "endLine": 5011
+        },
+        {
+          "docPath": "finance-en/BX/10-K_2020.md",
+          "titlePath": [
+            "Part II."
+          ],
+          "startLine": 1636,
+          "endLine": 1797
+        },
+        {
+          "docPath": "finance-en/BX/10-K_2020.md",
+          "titlePath": [
+            "Part II.",
+            "Organization"
+          ],
+          "startLine": 4313,
+          "endLine": 4454
+        },
+        {
+          "docPath": "finance-en/BX/10-K_2021.md",
+          "titlePath": [
+            "Part II."
+          ],
+          "startLine": 1699,
+          "endLine": 1875
+        },
+        {
+          "docPath": "finance-en/BX/10-K_2017.md",
+          "titlePath": [
+            "Table of Contents"
+          ],
+          "startLine": 5057,
+          "endLine": 5087
+        }
+      ]
+    },
+    {
+      "id": "en-013",
+      "lang": "en",
+      "hit": true,
+      "rank": 1,
+      "tokens": 646,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "finance-en/UNH/10-K_2023.md",
+          "titlePath": [
+            "PART I",
+            "ITEM 1C. CYBERSECURITY"
+          ],
+          "startLine": 403,
+          "endLine": 415
+        },
+        {
+          "docPath": "finance-en/UNH/10-K_2024.md",
+          "titlePath": [
+            "PART I",
+            "ITEM 1C. CYBERSECURITY"
+          ],
+          "startLine": 395,
+          "endLine": 406
+        },
+        {
+          "docPath": "finance-en/UNH/10-K_2023.md",
+          "titlePath": [
+            "PART IV",
+            "ITEM 15. EXHIBIT AND FINANCIAL STATEMENT SCHEDULES"
+          ],
+          "startLine": 1905,
+          "endLine": 2174
+        },
+        {
+          "docPath": "finance-en/UNH/10-K_2022.md",
+          "titlePath": [
+            "PART IV",
+            "ITEM 15. EXHIBIT AND FINANCIAL STATEMENT SCHEDULES"
+          ],
+          "startLine": 1900,
+          "endLine": 2165
+        },
+        {
+          "docPath": "finance-en/UNH/10-K_2024.md",
+          "titlePath": [
+            "PART IV",
+            "ITEM 15. EXHIBITS AND FINANCIAL STATEMENT SCHEDULES"
+          ],
+          "startLine": 1898,
+          "endLine": 2165
+        }
+      ]
+    },
+    {
+      "id": "en-014",
+      "lang": "en",
+      "hit": false,
+      "rank": null,
+      "tokens": 677,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "finance-en/AMZN/10-K_2020.md",
+          "titlePath": [
+            "PART III",
+            "Item 10. Directors, Executive Officers, and Corporate Governance"
+          ],
+          "startLine": 1847,
+          "endLine": 1848
+        },
+        {
+          "docPath": "finance-en/DVA/10-K_2017.md",
+          "titlePath": [
+            "PART III",
+            "Item 10. Directors, Executive Officers and Corporate Governance."
+          ],
+          "startLine": 1937,
+          "endLine": 1940
+        },
+        {
+          "docPath": "finance-en/DVA/10-K_2018.md",
+          "titlePath": [
+            "PART III",
+            "Item 10. Directors, Executive Officers and Corporate Governance."
+          ],
+          "startLine": 1979,
+          "endLine": 1982
+        },
+        {
+          "docPath": "finance-en/DVA/10-K_2019.md",
+          "titlePath": [
+            "PART III",
+            "Item 10. Directors, Executive Officers and Corporate Governance."
+          ],
+          "startLine": 1689,
+          "endLine": 1692
+        },
+        {
+          "docPath": "finance-en/DVA/10-K_2020.md",
+          "titlePath": [
+            "PART III",
+            "Item 10. Directors, Executive Officers and Corporate Governance."
+          ],
+          "startLine": 1435,
+          "endLine": 1438
+        }
+      ]
+    },
+    {
+      "id": "en-015",
+      "lang": "en",
+      "hit": true,
+      "rank": 3,
+      "tokens": 615,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "finance-en/AFL/10-K_2024.md",
+          "titlePath": [
+            "PART I",
+            "ITEM 2. PROPERTIES"
+          ],
+          "startLine": 547,
+          "endLine": 550
+        },
+        {
+          "docPath": "finance-en/AFL/10-K_2023.md",
+          "titlePath": [
+            "PART I",
+            "ITEM 2. PROPERTIES"
+          ],
+          "startLine": 558,
+          "endLine": 561
+        },
+        {
+          "docPath": "finance-en/AFL/10-K_2022.md",
+          "titlePath": [
+            "PART I",
+            "ITEM 2. PROPERTIES"
+          ],
+          "startLine": 546,
+          "endLine": 552
+        },
+        {
+          "docPath": "finance-en/AFL/10-K_2020.md",
+          "titlePath": [
+            "PART I",
+            "ITEM 2. PROPERTIES"
+          ],
+          "startLine": 560,
+          "endLine": 563
+        },
+        {
+          "docPath": "finance-en/AFL/10-K_2021.md",
+          "titlePath": [
+            "PART I",
+            "ITEM 2. PROPERTIES"
+          ],
+          "startLine": 565,
+          "endLine": 568
+        }
+      ]
+    },
+    {
+      "id": "en-016",
+      "lang": "en",
+      "hit": false,
+      "rank": null,
+      "tokens": 661,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "finance-en/TSLA/10-K_2019.md",
+          "titlePath": [
+            "PART I",
+            "Our facilities or operations could be adversely affected by"
+          ],
+          "startLine": 475,
+          "endLine": 523
+        },
+        {
+          "docPath": "finance-en/AES/10-K_2022.md",
+          "titlePath": [
+            "PART I",
+            "ITEM 1A. RISK FACTORS",
+            "64 2022 Annual Report"
+          ],
+          "startLine": 1546,
+          "endLine": 1624
+        },
+        {
+          "docPath": "medical-en/icrc/b6c39138b0f3802a.md",
+          "titlePath": [
+            "Standardization of Transfer Procedures"
+          ],
+          "startLine": 2375,
+          "endLine": 2377
+        },
+        {
+          "docPath": "finance-en/TSLA/10-K_2022.md",
+          "titlePath": [
+            "PART I",
+            "ITEM 1. BUSINESS",
+            "We believe that our vehicles compete in the market based on"
+          ],
+          "startLine": 246,
+          "endLine": 282
+        },
+        {
+          "docPath": "finance-en/TSLA/10-K_2024.md",
+          "titlePath": [
+            "PART I",
+            "ITEM 1. BUSINESS",
+            "Table of Contents"
+          ],
+          "startLine": 252,
+          "endLine": 321
+        }
+      ]
+    },
+    {
+      "id": "en-017",
+      "lang": "en",
+      "hit": false,
+      "rank": null,
+      "tokens": 717,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "finance-en/CYH/10-K_2019.md",
+          "titlePath": [
+            "Table of Contents"
+          ],
+          "startLine": 2660,
+          "endLine": 2694
+        },
+        {
+          "docPath": "finance-en/CYH/10-K_2020.md",
+          "titlePath": [
+            "PART II",
+            "Item 7. Management’s Discussion and Analysis of Financial Condition and Results of Operations",
+            "hospitals during 2019 and 2020. On a consolidated basis, inp"
+          ],
+          "startLine": 1415,
+          "endLine": 1512
+        },
+        {
+          "docPath": "finance-en/CYH/10-K_2021.md",
+          "titlePath": [
+            "PART II",
+            "Item 8. Financial Statements and Supplementary Data",
+            "COMMUNITY HEALTH SYSTEMS, INC. AND SUBSIDIARIES"
+          ],
+          "startLine": 2064,
+          "endLine": 2256
+        },
+        {
+          "docPath": "finance-en/CYH/10-K_2020.md",
+          "titlePath": [
+            "PART II",
+            "Item 8. Financial Statements and Supplementary Data",
+            "COMMUNITY HEALTH SYSTEMS, INC. AND SUBSIDIARIES"
+          ],
+          "startLine": 2137,
+          "endLine": 2207
+        },
+        {
+          "docPath": "finance-en/CYH/10-K_2020.md",
+          "titlePath": [
+            "PART II",
+            "Item 8. Financial Statements and Supplementary Data",
+            "COMMUNITY HEALTH SYSTEMS, INC. AND SUBSIDIARIES"
+          ],
+          "startLine": 2208,
+          "endLine": 2330
+        }
+      ]
+    },
+    {
+      "id": "en-018",
+      "lang": "en",
+      "hit": false,
+      "rank": null,
+      "tokens": 707,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "finance-en/AES/10-K_2022.md",
+          "titlePath": [
+            "PART I",
+            "ITEM 1A. RISK FACTORS",
+            "74 2022 Annual Report"
+          ],
+          "startLine": 1699,
+          "endLine": 1725
+        },
+        {
+          "docPath": "finance-en/AES/10-K_2017.md",
+          "titlePath": [
+            "PART II",
+            "ITEM 7. MANAGEMENT'S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS",
+            "material changes in position."
+          ],
+          "startLine": 3031,
+          "endLine": 3091
+        },
+        {
+          "docPath": "finance-en/AES/10-K_2024.md",
+          "titlePath": [
+            "PART II",
+            "ITEM 7. MANAGEMENT'S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS",
+            "100 2024 Annual Report"
+          ],
+          "startLine": 2341,
+          "endLine": 2499
+        },
+        {
+          "docPath": "finance-en/AES/10-K_2022.md",
+          "titlePath": [
+            "PART II",
+            "ITEM 7. MANAGEMENT'S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS",
+            "104 2022 Annual Report"
+          ],
+          "startLine": 2456,
+          "endLine": 2623
+        },
+        {
+          "docPath": "finance-en/AES/10-K_2017.md",
+          "titlePath": [
+            "PART I",
+            "ITEM 1A. RISK FACTORS"
+          ],
+          "startLine": 1446,
+          "endLine": 1741
+        }
+      ]
+    },
+    {
+      "id": "en-019",
+      "lang": "en",
+      "hit": true,
+      "rank": 2,
+      "tokens": 698,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "finance-en/TSLA/10-K_2020.md",
+          "titlePath": [
+            "PART IV",
+            "Exhibit Incorporated by Reference Filed"
+          ],
+          "startLine": 2628,
+          "endLine": 2891
+        },
+        {
+          "docPath": "finance-en/TSLA/10-K_2021.md",
+          "titlePath": [
+            "PART IV",
+            "ITEM 15. EXHIBITS AND FINANCIAL STATEMENT SCHEDULES",
+            "Exhibit Incorporated by Reference Filed"
+          ],
+          "startLine": 2645,
+          "endLine": 2686
+        },
+        {
+          "docPath": "finance-en/TSLA/10-K_2019.md",
+          "titlePath": [
+            "PART III",
+            "Exhibit Incorporated by Reference Filed"
+          ],
+          "startLine": 2930,
+          "endLine": 3108
+        },
+        {
+          "docPath": "finance-en/TSLA/10-K_2021.md",
+          "titlePath": [
+            "PART IV",
+            "ITEM 15. EXHIBITS AND FINANCIAL STATEMENT SCHEDULES",
+            "Exhibit Incorporated by Reference Filed"
+          ],
+          "startLine": 2407,
+          "endLine": 2644
+        },
+        {
+          "docPath": "finance-en/TSLA/10-K_2024.md",
+          "titlePath": [
+            "PART IV",
+            "ITEM 15. EXHIBITS AND FINANCIAL STATEMENT SCHEDULES",
+            "Exhibit Number Incorporated by Reference Filed Herewith"
+          ],
+          "startLine": 2342,
+          "endLine": 2392
+        }
+      ]
+    },
+    {
+      "id": "en-020",
+      "lang": "en",
+      "hit": false,
+      "rank": null,
+      "tokens": 640,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "finance-en/AES/10-K_2019.md",
+          "titlePath": [
+            "PART III",
+            "ITEM 11. EXECUTIVE COMPENSATION"
+          ],
+          "startLine": 6560,
+          "endLine": 6562
+        },
+        {
+          "docPath": "finance-en/AES/10-K_2023.md",
+          "titlePath": [
+            "PART III",
+            "ITEM 11. EXECUTIVE COMPENSATION"
+          ],
+          "startLine": 5394,
+          "endLine": 5396
+        },
+        {
+          "docPath": "finance-en/AES/10-K_2024.md",
+          "titlePath": [
+            "PART III",
+            "ITEM 11. EXECUTIVE COMPENSATION"
+          ],
+          "startLine": 5923,
+          "endLine": 5925
+        },
+        {
+          "docPath": "finance-en/AES/10-K_2021.md",
+          "titlePath": [
+            "PART III",
+            "ITEM 11. EXECUTIVE COMPENSATION"
+          ],
+          "startLine": 5402,
+          "endLine": 5404
+        },
+        {
+          "docPath": "finance-en/AES/10-K_2022.md",
+          "titlePath": [
+            "PART III",
+            "ITEM 11. EXECUTIVE COMPENSATION"
+          ],
+          "startLine": 5485,
+          "endLine": 5487
+        }
+      ]
+    },
+    {
+      "id": "en-021",
+      "lang": "en",
+      "hit": false,
+      "rank": null,
+      "tokens": 727,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "finance-en/JPM/10-K_2023.md",
+          "titlePath": [
+            "Part I",
+            "Item 12. Security Ownership of Certain Beneficial Owners and Management and Related Stockholder Matters."
+          ],
+          "startLine": 1208,
+          "endLine": 1220
+        },
+        {
+          "docPath": "finance-en/JPM/10-K_2021.md",
+          "titlePath": [
+            "Part I",
+            "Item 12. Security Ownership of Certain Beneficial Owners and Management and Related Stockholder Matters."
+          ],
+          "startLine": 1190,
+          "endLine": 1202
+        },
+        {
+          "docPath": "finance-en/JPM/10-K_2022.md",
+          "titlePath": [
+            "Part II",
+            "Item 12. Security Ownership of Certain Beneficial Owners and Management and Related Stockholder Matters."
+          ],
+          "startLine": 1177,
+          "endLine": 1189
+        },
+        {
+          "docPath": "finance-en/JPM/10-K_2024.md",
+          "titlePath": [
+            "Part I",
+            "Item 12. Security Ownership of Certain Beneficial Owners and Management and Related Stockholder Matters."
+          ],
+          "startLine": 1257,
+          "endLine": 1269
+        },
+        {
+          "docPath": "finance-en/ELV/10-K_2021.md",
+          "titlePath": [
+            "PART III",
+            "ITEM 12. SECURITY OWNERSHIP OF CERTAIN BENEFICIAL OWNERS AND MANAGEMENT AND RELATED STOCKHOLDER MATTERS."
+          ],
+          "startLine": 3137,
+          "endLine": 3154
+        }
+      ]
+    },
+    {
+      "id": "en-022",
+      "lang": "en",
+      "hit": false,
+      "rank": null,
+      "tokens": 651,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "finance-en/KEY/10-K_2021.md",
+          "titlePath": [
+            "PART IV",
+            "ITEM 15. EXHIBITS AND FINANCIAL STATEMENT SCHEDULES"
+          ],
+          "startLine": 5284,
+          "endLine": 5398
+        },
+        {
+          "docPath": "finance-en/KEY/10-K_2020.md",
+          "titlePath": [
+            "PART IV",
+            "ITEM 15. EXHIBITS AND FINANCIAL STATEMENT SCHEDULES"
+          ],
+          "startLine": 5437,
+          "endLine": 5544
+        },
+        {
+          "docPath": "finance-en/KEY/10-K_2022.md",
+          "titlePath": [
+            "PART IV",
+            "ITEM 15. EXHIBITS AND FINANCIAL STATEMENT SCHEDULES"
+          ],
+          "startLine": 5249,
+          "endLine": 5366
+        },
+        {
+          "docPath": "finance-en/KEY/10-K_2023.md",
+          "titlePath": [
+            "PART IV",
+            "ITEM 15. EXHIBITS AND FINANCIAL STATEMENT SCHEDULES"
+          ],
+          "startLine": 5805,
+          "endLine": 5926
+        },
+        {
+          "docPath": "finance-en/KEY/10-K_2024.md",
+          "titlePath": [
+            "PART IV"
+          ],
+          "startLine": 5592,
+          "endLine": 5713
+        }
+      ]
+    },
+    {
+      "id": "en-023",
+      "lang": "en",
+      "hit": true,
+      "rank": 1,
+      "tokens": 624,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "medical-en/cdc/53ddd4162e3be6a2.md",
+          "titlePath": [
+            "Source (Fill) Water"
+          ],
+          "startLine": 1863,
+          "endLine": 1869
+        },
+        {
+          "docPath": "medical-en/cdc/078516ea49cefcb6.md",
+          "titlePath": [
+            "Determining Maximum Rate of Particle Contamination"
+          ],
+          "startLine": 68,
+          "endLine": 76
+        },
+        {
+          "docPath": "medical-en/cdc/53ddd4162e3be6a2.md",
+          "titlePath": [
+            "Glossary of Acronyms & Terms CODE 57"
+          ],
+          "startLine": 158,
+          "endLine": 185
+        },
+        {
+          "docPath": "medical-en/cdc/078516ea49cefcb6.md",
+          "titlePath": [
+            "Pool Wastewater"
+          ],
+          "startLine": 1028,
+          "endLine": 1038
+        },
+        {
+          "docPath": "medical-en/cdc/53ddd4162e3be6a2.md",
+          "titlePath": [
+            "Spa Signs"
+          ],
+          "startLine": 2550,
+          "endLine": 2557
+        }
+      ]
+    },
+    {
+      "id": "en-024",
+      "lang": "en",
+      "hit": false,
+      "rank": null,
+      "tokens": 622,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "medical-en/icrc/cc8467d2b1bc71fa.md",
+          "titlePath": [
+            "Epidemiology"
+          ],
+          "startLine": 5766,
+          "endLine": 5769
+        },
+        {
+          "docPath": "medical-en/icrc/cc8467d2b1bc71fa.md",
+          "titlePath": [
+            "Basic principles"
+          ],
+          "startLine": 5754,
+          "endLine": 5765
+        },
+        {
+          "docPath": "medical-en/icrc/cc8467d2b1bc71fa.md",
+          "titlePath": [
+            "INJURIES OF THE VERTEBRAL COLUMN AND SPINAL CORD"
+          ],
+          "startLine": 5746,
+          "endLine": 5748
+        },
+        {
+          "docPath": "medical-en/icrc/cc8467d2b1bc71fa.md",
+          "titlePath": [
+            "Indications for surgery"
+          ],
+          "startLine": 5840,
+          "endLine": 5852
+        },
+        {
+          "docPath": "medical-en/icrc/cc8467d2b1bc71fa.md",
+          "titlePath": [
+            "Epidemiology"
+          ],
+          "startLine": 3624,
+          "endLine": 3633
+        }
+      ]
+    },
+    {
+      "id": "en-025",
+      "lang": "en",
+      "hit": true,
+      "rank": 1,
+      "tokens": 649,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "medical-en/cdc/07302f882239f6e7.md",
+          "titlePath": [
+            "Certified Health Education Specialist (CHES)."
+          ],
+          "startLine": 759,
+          "endLine": 761
+        },
+        {
+          "docPath": "medical-en/cdc/12c98458b032d8e0.md",
+          "titlePath": [
+            "Contributing factor surveillance (2.2.2.5)"
+          ],
+          "startLine": 63,
+          "endLine": 66
+        },
+        {
+          "docPath": "medical-en/cdc/a30401e698342e05.md",
+          "titlePath": [
+            "Environmental Health Requirement in Basic Practitioner's Curriculum"
+          ],
+          "startLine": 776,
+          "endLine": 778
+        },
+        {
+          "docPath": "medical-en/cdc/fd7659fc55e872e3.md",
+          "titlePath": [
+            "Clinical Prevention Guidance"
+          ],
+          "startLine": 18,
+          "endLine": 25
+        },
+        {
+          "docPath": "medical-en/cdc/03de94098168d8a4.md",
+          "titlePath": [
+            "Strategies to expand the HIV prevention and care workforce"
+          ],
+          "startLine": 113,
+          "endLine": 116
+        }
+      ]
+    },
+    {
+      "id": "en-026",
+      "lang": "en",
+      "hit": true,
+      "rank": 1,
+      "tokens": 637,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "medical-en/cdc/e84735fe1e033177.md",
+          "titlePath": [
+            "Clinic Management"
+          ],
+          "startLine": 142,
+          "endLine": 145
+        },
+        {
+          "docPath": "medical-en/cdc/e84735fe1e033177.md",
+          "titlePath": [
+            "Patient Recruitment into Clinic"
+          ],
+          "startLine": 146,
+          "endLine": 156
+        },
+        {
+          "docPath": "medical-en/cdc/48c6eb4a0c41b4f6.md",
+          "titlePath": [
+            "Table 11. Identifying, Diagnosing, and Managing Acute and Recent HIV-1 Infection"
+          ],
+          "startLine": 933,
+          "endLine": 956
+        },
+        {
+          "docPath": "medical-en/cdc/e84735fe1e033177.md",
+          "titlePath": [
+            "Team Membership and Responsibilities"
+          ],
+          "startLine": 303,
+          "endLine": 310
+        },
+        {
+          "docPath": "medical-en/cdc/5b24aab4640b72e7.md",
+          "titlePath": [
+            "I.D.2.b. Ambulatory care."
+          ],
+          "startLine": 178,
+          "endLine": 183
+        }
+      ]
+    },
+    {
+      "id": "en-027",
+      "lang": "en",
+      "hit": true,
+      "rank": 1,
+      "tokens": 637,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "medical-en/who/82252884058a4632.md",
+          "titlePath": [
+            "Promoting human rights and equity in access to hepatitis testing"
+          ],
+          "startLine": 115,
+          "endLine": 117
+        },
+        {
+          "docPath": "medical-en/who/487a494c76797cb4.md",
+          "titlePath": [
+            "Access to health care"
+          ],
+          "startLine": 150,
+          "endLine": 152
+        },
+        {
+          "docPath": "medical-en/who/b6adaadafeee6882.md",
+          "titlePath": [
+            "Rationale and supporting evidence"
+          ],
+          "startLine": 370,
+          "endLine": 382
+        },
+        {
+          "docPath": "medical-en/who/d9b89173d5940898.md",
+          "titlePath": [
+            "Values and preferences and acceptability (Web Annex D)"
+          ],
+          "startLine": 464,
+          "endLine": 470
+        },
+        {
+          "docPath": "medical-en/who/a9d7aca21ac14e9b.md",
+          "titlePath": [
+            "Key populations"
+          ],
+          "startLine": 936,
+          "endLine": 958
+        }
+      ]
+    },
+    {
+      "id": "en-028",
+      "lang": "en",
+      "hit": true,
+      "rank": 1,
+      "tokens": 618,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "medical-en/icrc/d43b425b5762e4e0.md",
+          "titlePath": [
+            "Treatment"
+          ],
+          "startLine": 2567,
+          "endLine": 2570
+        },
+        {
+          "docPath": "medical-en/icrc/d43b425b5762e4e0.md",
+          "titlePath": [
+            "Nutritional disorder 2.5 Specifi c defi ciency"
+          ],
+          "startLine": 2556,
+          "endLine": 2563
+        },
+        {
+          "docPath": "medical-en/icrc/d43b425b5762e4e0.md",
+          "titlePath": [
+            "NUTRITION MANUAL"
+          ],
+          "startLine": 355,
+          "endLine": 366
+        },
+        {
+          "docPath": "medical-en/icrc/d43b425b5762e4e0.md",
+          "titlePath": [
+            "Scurvy"
+          ],
+          "startLine": 2546,
+          "endLine": 2551
+        },
+        {
+          "docPath": "medical-en/icrc/d43b425b5762e4e0.md",
+          "titlePath": [
+            "Vitamin C supplements"
+          ],
+          "startLine": 875,
+          "endLine": 881
+        }
+      ]
+    },
+    {
+      "id": "en-029",
+      "lang": "en",
+      "hit": true,
+      "rank": 1,
+      "tokens": 602,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "medical-en/cdc/d4f6524012e9a4bd.md",
+          "titlePath": [
+            "Peer Group"
+          ],
+          "startLine": 505,
+          "endLine": 509
+        },
+        {
+          "docPath": "medical-en/cdc/d4f6524012e9a4bd.md",
+          "titlePath": [
+            "124'm"
+          ],
+          "startLine": 793,
+          "endLine": 801
+        },
+        {
+          "docPath": "medical-en/cdc/d4f6524012e9a4bd.md",
+          "titlePath": [
+            "Chapter 4"
+          ],
+          "startLine": 174,
+          "endLine": 182
+        },
+        {
+          "docPath": "medical-en/cdc/d4f6524012e9a4bd.md",
+          "titlePath": [
+            "C o n c l u s io n s"
+          ],
+          "startLine": 609,
+          "endLine": 621
+        },
+        {
+          "docPath": "medical-en/cdc/d4f6524012e9a4bd.md",
+          "titlePath": [
+            "Summary"
+          ],
+          "startLine": 555,
+          "endLine": 558
+        }
+      ]
+    },
+    {
+      "id": "en-030",
+      "lang": "en",
+      "hit": true,
+      "rank": 1,
+      "tokens": 626,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "medical-en/cma/351a89dec7db6a71.md",
+          "titlePath": [
+            "3.9.vi Harm Reduction-oriented Care"
+          ],
+          "startLine": 399,
+          "endLine": 402
+        },
+        {
+          "docPath": "medical-en/cma/351a89dec7db6a71.md",
+          "titlePath": [
+            "Harm reduction:"
+          ],
+          "startLine": 778,
+          "endLine": 787
+        },
+        {
+          "docPath": "medical-en/cma/351a89dec7db6a71.md",
+          "titlePath": [
+            "3.9.vii Naloxone"
+          ],
+          "startLine": 403,
+          "endLine": 405
+        },
+        {
+          "docPath": "medical-en/who/13fc98f97956ca8a.md",
+          "titlePath": [
+            "Should opioid agonist maintenance treatment doses be supervised?"
+          ],
+          "startLine": 801,
+          "endLine": 816
+        },
+        {
+          "docPath": "medical-en/cma/351a89dec7db6a71.md",
+          "titlePath": [
+            "Evidence Summary"
+          ],
+          "startLine": 422,
+          "endLine": 425
+        }
+      ]
+    },
+    {
+      "id": "en-031",
+      "lang": "en",
+      "hit": false,
+      "rank": null,
+      "tokens": 687,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "medical-en/nice/647f75b05513df43.md",
+          "titlePath": [
+            "Referral after a first seizure or remission and assessing risk of a second seizure",
+            "Assessing the risk of a second seizure"
+          ],
+          "startLine": 1125,
+          "endLine": 1130
+        },
+        {
+          "docPath": "medical-en/nice/647f75b05513df43.md",
+          "titlePath": [
+            "Reducing the risk of epilepsy-related death including sudden unexpected death in epilepsy",
+            "Why the committee made the recommendations"
+          ],
+          "startLine": 1592,
+          "endLine": 1602
+        },
+        {
+          "docPath": "medical-en/nice/647f75b05513df43.md",
+          "titlePath": [
+            "Repeated or cluster seizures"
+          ],
+          "startLine": 1518,
+          "endLine": 1527
+        },
+        {
+          "docPath": "medical-en/nice/647f75b05513df43.md",
+          "titlePath": [
+            "Monitoring and review",
+            "Why the committee made the recommendations"
+          ],
+          "startLine": 1282,
+          "endLine": 1286
+        },
+        {
+          "docPath": "medical-en/nice/647f75b05513df43.md",
+          "titlePath": [
+            "Antibody testing"
+          ],
+          "startLine": 1181,
+          "endLine": 1191
+        }
+      ]
+    },
+    {
+      "id": "en-032",
+      "lang": "en",
+      "hit": true,
+      "rank": 1,
+      "tokens": 620,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "medical-en/cdc/aff9bc5f5302b3ac.md",
+          "titlePath": [
+            "APPENDIX A. Glossary of Terms-"
+          ],
+          "startLine": 1427,
+          "endLine": 1434
+        },
+        {
+          "docPath": "medical-en/cdc/aff9bc5f5302b3ac.md",
+          "titlePath": [
+            "II. INDUSTRY AND PROCESS DESCRIPTION"
+          ],
+          "startLine": 40,
+          "endLine": 46
+        },
+        {
+          "docPath": "medical-en/cdc/aff9bc5f5302b3ac.md",
+          "titlePath": [
+            "I. INTRODUCTION"
+          ],
+          "startLine": 20,
+          "endLine": 39
+        },
+        {
+          "docPath": "medical-en/cdc/aff9bc5f5302b3ac.md",
+          "titlePath": [
+            ". Hot-Box Binders"
+          ],
+          "startLine": 883,
+          "endLine": 890
+        },
+        {
+          "docPath": "medical-en/cdc/aff9bc5f5302b3ac.md",
+          "titlePath": [
+            "G. Knockout (Shakeout)"
+          ],
+          "startLine": 1084,
+          "endLine": 1102
+        }
+      ]
+    },
+    {
+      "id": "en-033",
+      "lang": "en",
+      "hit": true,
+      "rank": 1,
+      "tokens": 680,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "medical-en/nice/d83fee855b5ee3df.md",
+          "titlePath": [
+            "Key recommendations for research",
+            "Effectiveness of intensive rehabilitation in children and young people"
+          ],
+          "startLine": 1021,
+          "endLine": 1026
+        },
+        {
+          "docPath": "medical-en/nice/d83fee855b5ee3df.md",
+          "titlePath": [
+            "Key recommendations for research",
+            "Effectiveness of intensive rehabilitation in adults"
+          ],
+          "startLine": 1015,
+          "endLine": 1020
+        },
+        {
+          "docPath": "medical-en/nice/d83fee855b5ee3df.md",
+          "titlePath": [
+            "Key recommendations for research",
+            "Self-management materials"
+          ],
+          "startLine": 1033,
+          "endLine": 1038
+        },
+        {
+          "docPath": "medical-en/nice/d83fee855b5ee3df.md",
+          "titlePath": [
+            "Context"
+          ],
+          "startLine": 11,
+          "endLine": 57
+        },
+        {
+          "docPath": "medical-en/nice/d83fee855b5ee3df.md",
+          "titlePath": [
+            "Rehabilitation programmes of therapies and treatments",
+            "Intensive rehabilitation programmes"
+          ],
+          "startLine": 294,
+          "endLine": 307
+        }
+      ]
+    },
+    {
+      "id": "en-034",
+      "lang": "en",
+      "hit": true,
+      "rank": 2,
+      "tokens": 636,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "medical-en/who/2aa4a54158baee4a.md",
+          "titlePath": [
+            "Strength of the recommendations"
+          ],
+          "startLine": 87,
+          "endLine": 91
+        },
+        {
+          "docPath": "medical-en/who/2aa4a54158baee4a.md",
+          "titlePath": [
+            "Benefits and risks"
+          ],
+          "startLine": 136,
+          "endLine": 139
+        },
+        {
+          "docPath": "medical-en/who/35484f30c94fcca5.md",
+          "titlePath": [
+            "i. DEtAilED mEtHODOlOgY"
+          ],
+          "startLine": 76,
+          "endLine": 93
+        },
+        {
+          "docPath": "medical-en/who/a9d7aca21ac14e9b.md",
+          "titlePath": [
+            "Very low"
+          ],
+          "startLine": 178,
+          "endLine": 183
+        },
+        {
+          "docPath": "medical-en/who/b6adaadafeee6882.md",
+          "titlePath": [
+            "Box 3.1 Approach to rating the quality of evidence and strength of recommendations using the GRADE system"
+          ],
+          "startLine": 66,
+          "endLine": 73
+        }
+      ]
+    },
+    {
+      "id": "en-035",
+      "lang": "en",
+      "hit": true,
+      "rank": 2,
+      "tokens": 620,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "medical-en/icrc/d43b425b5762e4e0.md",
+          "titlePath": [
+            "The nutritional aspects of rehabilitation"
+          ],
+          "startLine": 4763,
+          "endLine": 4770
+        },
+        {
+          "docPath": "medical-en/icrc/d43b425b5762e4e0.md",
+          "titlePath": [
+            "Nutritional catch-up"
+          ],
+          "startLine": 4177,
+          "endLine": 4188
+        },
+        {
+          "docPath": "medical-en/icrc/d43b425b5762e4e0.md",
+          "titlePath": [
+            "Recovery"
+          ],
+          "startLine": 229,
+          "endLine": 231
+        },
+        {
+          "docPath": "medical-en/icrc/d43b425b5762e4e0.md",
+          "titlePath": [
+            "Selection"
+          ],
+          "startLine": 5676,
+          "endLine": 5683
+        },
+        {
+          "docPath": "medical-en/icrc/d43b425b5762e4e0.md",
+          "titlePath": [
+            "ADEQUATE NUTRITIONAL STATUS"
+          ],
+          "startLine": 1773,
+          "endLine": 1781
+        }
+      ]
+    },
+    {
+      "id": "en-036",
+      "lang": "en",
+      "hit": true,
+      "rank": 2,
+      "tokens": 621,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "medical-en/cdc/aff9bc5f5302b3ac.md",
+          "titlePath": [
+            "Me 11 i ng"
+          ],
+          "startLine": 131,
+          "endLine": 151
+        },
+        {
+          "docPath": "medical-en/cdc/aff9bc5f5302b3ac.md",
+          "titlePath": [
+            "E le c tr ic -A r c Furnaces"
+          ],
+          "startLine": 993,
+          "endLine": 1007
+        },
+        {
+          "docPath": "medical-en/cdc/aff9bc5f5302b3ac.md",
+          "titlePath": [
+            ". E le c t r ic Induction Furnaces"
+          ],
+          "startLine": 1008,
+          "endLine": 1034
+        },
+        {
+          "docPath": "medical-en/cdc/aff9bc5f5302b3ac.md",
+          "titlePath": [
+            "b. Metal Dusts and Fumes"
+          ],
+          "startLine": 236,
+          "endLine": 245
+        },
+        {
+          "docPath": "medical-en/cdc/aff9bc5f5302b3ac.md",
+          "titlePath": [
+            "Reverberatory furnaces"
+          ],
+          "startLine": 152,
+          "endLine": 156
+        }
+      ]
+    },
+    {
+      "id": "en-037",
+      "lang": "en",
+      "hit": true,
+      "rank": 1,
+      "tokens": 656,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "medical-en/pubmed/6c57dbb63a60cd57.md",
+          "titlePath": [
+            "Reference values introduction",
+            "Standardised residuals (z-scores)"
+          ],
+          "startLine": 114,
+          "endLine": 118
+        },
+        {
+          "docPath": "medical-en/pubmed/6c57dbb63a60cd57.md",
+          "titlePath": [
+            "Reference values introduction"
+          ],
+          "startLine": 106,
+          "endLine": 109
+        },
+        {
+          "docPath": "medical-en/pubmed/6c57dbb63a60cd57.md",
+          "titlePath": [
+            "Reference values introduction",
+            "Basic principles"
+          ],
+          "startLine": 110,
+          "endLine": 113
+        },
+        {
+          "docPath": "medical-en/pubmed/6c57dbb63a60cd57.md",
+          "titlePath": [
+            "Reference values introduction",
+            "Figure 4"
+          ],
+          "startLine": 124,
+          "endLine": 130
+        },
+        {
+          "docPath": "medical-en/pubmed/6c57dbb63a60cd57.md",
+          "titlePath": [
+            "Reference values introduction",
+            "Static lung volumes and gas transfer"
+          ],
+          "startLine": 137,
+          "endLine": 142
+        }
+      ]
+    },
+    {
+      "id": "en-038",
+      "lang": "en",
+      "hit": true,
+      "rank": 2,
+      "tokens": 628,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "medical-en/who/4964f2f77481efa6.md",
+          "titlePath": [
+            "Quality of the evidence"
+          ],
+          "startLine": 336,
+          "endLine": 345
+        },
+        {
+          "docPath": "medical-en/cdc/03de94098168d8a4.md",
+          "titlePath": [
+            "Hormonal contraception"
+          ],
+          "startLine": 626,
+          "endLine": 630
+        },
+        {
+          "docPath": "medical-en/who/4964f2f77481efa6.md",
+          "titlePath": [
+            "Quality of the evidence"
+          ],
+          "startLine": 281,
+          "endLine": 288
+        },
+        {
+          "docPath": "medical-en/cdc/305b3ff302f82dc5.md",
+          "titlePath": [
+            "Nonbarrier Contraception, Surgical Sterilization, and Hysterectomy"
+          ],
+          "startLine": 72,
+          "endLine": 75
+        },
+        {
+          "docPath": "medical-en/cdc/f0226eb221893996.md",
+          "titlePath": [
+            "Panel's Recommendations"
+          ],
+          "startLine": 695,
+          "endLine": 734
+        }
+      ]
+    },
+    {
+      "id": "en-039",
+      "lang": "en",
+      "hit": true,
+      "rank": 1,
+      "tokens": 618,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "medical-en/cdc/2076612ec6159079.md",
+          "titlePath": [
+            "Foot Valves."
+          ],
+          "startLine": 1533,
+          "endLine": 1541
+        },
+        {
+          "docPath": "medical-en/cdc/2076612ec6159079.md",
+          "titlePath": [
+            "Electricity"
+          ],
+          "startLine": 2079,
+          "endLine": 2089
+        },
+        {
+          "docPath": "medical-en/cdc/2076612ec6159079.md",
+          "titlePath": [
+            "Water Heaters"
+          ],
+          "startLine": 1542,
+          "endLine": 1546
+        },
+        {
+          "docPath": "medical-en/cdc/2076612ec6159079.md",
+          "titlePath": [
+            "Types of Water Flow Controls"
+          ],
+          "startLine": 1525,
+          "endLine": 1532
+        },
+        {
+          "docPath": "medical-en/cdc/078516ea49cefcb6.md",
+          "titlePath": [
+            "Coagulant Injection Equipment Installation"
+          ],
+          "startLine": 622,
+          "endLine": 628
+        }
+      ]
+    },
+    {
+      "id": "en-040",
+      "lang": "en",
+      "hit": true,
+      "rank": 1,
+      "tokens": 629,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "medical-en/icrc/cc09e8c95113e076.md",
+          "titlePath": [
+            "Supporting management at centres"
+          ],
+          "startLine": 90,
+          "endLine": 94
+        },
+        {
+          "docPath": "medical-en/icrc/cc09e8c95113e076.md",
+          "titlePath": [
+            "GUATEMALA"
+          ],
+          "startLine": 295,
+          "endLine": 310
+        },
+        {
+          "docPath": "medical-en/icrc/cc09e8c95113e076.md",
+          "titlePath": [
+            "DEVELOPING NATIONAL CAPACITY"
+          ],
+          "startLine": 32,
+          "endLine": 37
+        },
+        {
+          "docPath": "medical-en/icrc/cc09e8c95113e076.md",
+          "titlePath": [
+            "Promoting inclusion and participation"
+          ],
+          "startLine": 151,
+          "endLine": 182
+        },
+        {
+          "docPath": "medical-en/icrc/cc09e8c95113e076.md",
+          "titlePath": [
+            "ICRC SUPPORT IN THE NEAR AND MIDDLE EAST AT A GLANCE"
+          ],
+          "startLine": 311,
+          "endLine": 313
+        }
+      ]
+    },
+    {
+      "id": "en-041",
+      "lang": "en",
+      "hit": true,
+      "rank": 2,
+      "tokens": 673,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "medical-en/pubmed/f9c54cec4ab06f55.md",
+          "titlePath": [
+            "Rand/ucla appropriateness method",
+            "Pharmacology"
+          ],
+          "startLine": 263,
+          "endLine": 265
+        },
+        {
+          "docPath": "medical-en/pubmed/f9c54cec4ab06f55.md",
+          "titlePath": [
+            "Introduction",
+            "Naltrexone (part 6)"
+          ],
+          "startLine": 810,
+          "endLine": 813
+        },
+        {
+          "docPath": "medical-en/pubmed/f9c54cec4ab06f55.md",
+          "titlePath": [
+            "Rand/ucla appropriateness method",
+            "Extended-release injectable naltrexone"
+          ],
+          "startLine": 473,
+          "endLine": 475
+        },
+        {
+          "docPath": "medical-en/pubmed/f9c54cec4ab06f55.md",
+          "titlePath": [
+            "Rand/ucla appropriateness method",
+            "Summary of recommendations"
+          ],
+          "startLine": 512,
+          "endLine": 515
+        },
+        {
+          "docPath": "medical-en/pubmed/f9c54cec4ab06f55.md",
+          "titlePath": [
+            "Rand/ucla appropriateness method",
+            "Formulations of naltrexone: oral versus extended-release injectable"
+          ],
+          "startLine": 461,
+          "endLine": 464
+        }
+      ]
+    },
+    {
+      "id": "en-042",
+      "lang": "en",
+      "hit": true,
+      "rank": 4,
+      "tokens": 631,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "medical-en/icrc/9fa3e2eaac9df18f.md",
+          "titlePath": [
+            "Procedure"
+          ],
+          "startLine": 748,
+          "endLine": 758
+        },
+        {
+          "docPath": "medical-en/icrc/cc8467d2b1bc71fa.md",
+          "titlePath": [
+            "Basic principles of amputation technique"
+          ],
+          "startLine": 1949,
+          "endLine": 1964
+        },
+        {
+          "docPath": "medical-en/icrc/cc8467d2b1bc71fa.md",
+          "titlePath": [
+            "Level of amputation and surgical technique"
+          ],
+          "startLine": 536,
+          "endLine": 550
+        },
+        {
+          "docPath": "medical-en/icrc/cc8467d2b1bc71fa.md",
+          "titlePath": [
+            "Figure 23.10.3"
+          ],
+          "startLine": 1969,
+          "endLine": 1971
+        },
+        {
+          "docPath": "medical-en/icrc/cc8467d2b1bc71fa.md",
+          "titlePath": [
+            "22.A.d Tibia: sarmiento tibial cast 15"
+          ],
+          "startLine": 1477,
+          "endLine": 1481
+        }
+      ]
+    },
+    {
+      "id": "en-043",
+      "lang": "en",
+      "hit": true,
+      "rank": 1,
+      "tokens": 626,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "medical-en/cdc/305b3ff302f82dc5.md",
+          "titlePath": [
+            "Primary Prevention Recommendations"
+          ],
+          "startLine": 139,
+          "endLine": 142
+        },
+        {
+          "docPath": "medical-en/cdc/305b3ff302f82dc5.md",
+          "titlePath": [
+            "Adolescents"
+          ],
+          "startLine": 129,
+          "endLine": 134
+        },
+        {
+          "docPath": "medical-en/cdc/caa887f21cd42d4c.md",
+          "titlePath": [
+            "Adolescents"
+          ],
+          "startLine": 81,
+          "endLine": 86
+        },
+        {
+          "docPath": "medical-en/cdc/03de94098168d8a4.md",
+          "titlePath": [
+            "Intensive risk-reduction interventions during routine HIV care visits"
+          ],
+          "startLine": 388,
+          "endLine": 391
+        },
+        {
+          "docPath": "medical-en/cdc/9aba444af572deb5.md",
+          "titlePath": [
+            "Adults and Adolescents"
+          ],
+          "startLine": 1619,
+          "endLine": 1623
+        }
+      ]
+    },
+    {
+      "id": "en-044",
+      "lang": "en",
+      "hit": true,
+      "rank": 2,
+      "tokens": 662,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "medical-en/cdc/11201a428de3597e.md",
+          "titlePath": [
+            "c . S y n e rg is tic E ffe c ts o f C ig a r e tte Smoke"
+          ],
+          "startLine": 295,
+          "endLine": 299
+        },
+        {
+          "docPath": "medical-en/cdc/11201a428de3597e.md",
+          "titlePath": [
+            "An i maI Stud i es"
+          ],
+          "startLine": 291,
+          "endLine": 294
+        },
+        {
+          "docPath": "medical-en/cdc/11201a428de3597e.md",
+          "titlePath": [
+            "d. S ig n ific a n c e o f Animal Studies"
+          ],
+          "startLine": 300,
+          "endLine": 302
+        },
+        {
+          "docPath": "medical-en/cdc/11201a428de3597e.md",
+          "titlePath": [
+            "The Lowest Cumulative Radon Progeny Exposures Associated w ith Excess Lung Cancer M o r ta lity"
+          ],
+          "startLine": 558,
+          "endLine": 562
+        },
+        {
+          "docPath": "medical-en/cdc/11201a428de3597e.md",
+          "titlePath": [
+            "It is reasonable, however, to extract what information is available from these"
+          ],
+          "startLine": 547,
+          "endLine": 553
+        }
+      ]
+    },
+    {
+      "id": "en-045",
+      "lang": "en",
+      "hit": true,
+      "rank": 1,
+      "tokens": 637,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "medical-en/icrc/8c08b8328c4fbcf0.md",
+          "titlePath": [
+            "Different types of shells and explosives"
+          ],
+          "startLine": 569,
+          "endLine": 573
+        },
+        {
+          "docPath": "medical-en/icrc/05f17e0ce5247075.md",
+          "titlePath": [
+            "Characteristics of anti-personnel mine injuries"
+          ],
+          "startLine": 1497,
+          "endLine": 1506
+        },
+        {
+          "docPath": "medical-en/icrc/8c08b8328c4fbcf0.md",
+          "titlePath": [
+            "Fragment wounds"
+          ],
+          "startLine": 563,
+          "endLine": 568
+        },
+        {
+          "docPath": "medical-en/icrc/8c08b8328c4fbcf0.md",
+          "titlePath": [
+            "Definitions of weapon systems: methodology"
+          ],
+          "startLine": 1111,
+          "endLine": 1115
+        },
+        {
+          "docPath": "medical-en/icrc/05f17e0ce5247075.md",
+          "titlePath": [
+            "Characteristics of bullet wounds"
+          ],
+          "startLine": 1236,
+          "endLine": 1242
+        }
+      ]
+    },
+    {
+      "id": "en-046",
+      "lang": "en",
+      "hit": true,
+      "rank": 1,
+      "tokens": 621,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "medical-en/spor/d223e84f618fc5c3.md",
+          "titlePath": [
+            "Extinction and Inattention"
+          ],
+          "startLine": 644,
+          "endLine": 646
+        },
+        {
+          "docPath": "medical-en/spor/d223e84f618fc5c3.md",
+          "titlePath": [
+            "Limb Ataxia:"
+          ],
+          "startLine": 635,
+          "endLine": 638
+        },
+        {
+          "docPath": "medical-en/spor/d223e84f618fc5c3.md",
+          "titlePath": [
+            "Discussion of Evidence"
+          ],
+          "startLine": 811,
+          "endLine": 820
+        },
+        {
+          "docPath": "medical-en/spor/d223e84f618fc5c3.md",
+          "titlePath": [
+            "Stroke Assessment Across the Continuum of Care"
+          ],
+          "startLine": 346,
+          "endLine": 353
+        },
+        {
+          "docPath": "medical-en/spor/d223e84f618fc5c3.md",
+          "titlePath": [
+            "Best Language:"
+          ],
+          "startLine": 639,
+          "endLine": 643
+        }
+      ]
+    },
+    {
+      "id": "en-047",
+      "lang": "en",
+      "hit": true,
+      "rank": 2,
+      "tokens": 649,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "medical-en/pubmed/80038ff658f4bbc7.md",
+          "titlePath": [
+            "Position statement",
+            "Monogenic diabetes syndromes"
+          ],
+          "startLine": 295,
+          "endLine": 298
+        },
+        {
+          "docPath": "medical-en/pubmed/7aeca758a5c05517.md",
+          "titlePath": [
+            "Monogenic diabetes syndromes"
+          ],
+          "startLine": 256,
+          "endLine": 269
+        },
+        {
+          "docPath": "medical-en/nice/16ae85b0c878e045.md",
+          "titlePath": [
+            "Environmental adaptations",
+            "Why the committee made the recommendations"
+          ],
+          "startLine": 1438,
+          "endLine": 1446
+        },
+        {
+          "docPath": "medical-en/pubmed/80038ff658f4bbc7.md",
+          "titlePath": [
+            "B. diagnosis of diabetes recommendations"
+          ],
+          "startLine": 16,
+          "endLine": 23
+        },
+        {
+          "docPath": "medical-en/pubmed/80038ff658f4bbc7.md",
+          "titlePath": [
+            "Position statement",
+            "Vi. hypothyroidism"
+          ],
+          "startLine": 278,
+          "endLine": 282
+        }
+      ]
+    },
+    {
+      "id": "en-048",
+      "lang": "en",
+      "hit": true,
+      "rank": 2,
+      "tokens": 621,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "medical-en/icrc/b6c39138b0f3802a.md",
+          "titlePath": [
+            "Types of Medical Problems"
+          ],
+          "startLine": 2212,
+          "endLine": 2219
+        },
+        {
+          "docPath": "medical-en/icrc/b6c39138b0f3802a.md",
+          "titlePath": [
+            "The Management Aspect"
+          ],
+          "startLine": 3527,
+          "endLine": 3530
+        },
+        {
+          "docPath": "medical-en/icrc/b6c39138b0f3802a.md",
+          "titlePath": [
+            "Health Education"
+          ],
+          "startLine": 1812,
+          "endLine": 1828
+        },
+        {
+          "docPath": "medical-en/icrc/b6c39138b0f3802a.md",
+          "titlePath": [
+            "Factors to Consider"
+          ],
+          "startLine": 2502,
+          "endLine": 2510
+        },
+        {
+          "docPath": "medical-en/icrc/b6c39138b0f3802a.md",
+          "titlePath": [
+            "Coverage of Medical Problems"
+          ],
+          "startLine": 2276,
+          "endLine": 2286
+        }
+      ]
+    },
+    {
+      "id": "en-049",
+      "lang": "en",
+      "hit": false,
+      "rank": null,
+      "tokens": 634,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "medical-en/cdc/c74fc13b17b03caf.md",
+          "titlePath": [
+            "What to Sample (Specific Agents and Physical States)"
+          ],
+          "startLine": 888,
+          "endLine": 891
+        },
+        {
+          "docPath": "medical-en/cdc/c74fc13b17b03caf.md",
+          "titlePath": [
+            "Diacetyl and 2,3-Pentanedione in Food"
+          ],
+          "startLine": 341,
+          "endLine": 347
+        },
+        {
+          "docPath": "medical-en/cdc/c74fc13b17b03caf.md",
+          "titlePath": [
+            "How Many Samples to Collect"
+          ],
+          "startLine": 910,
+          "endLine": 914
+        },
+        {
+          "docPath": "medical-en/cdc/c74fc13b17b03caf.md",
+          "titlePath": [
+            "Determining Diagnosis Responsible for Lung Disease"
+          ],
+          "startLine": 846,
+          "endLine": 856
+        },
+        {
+          "docPath": "medical-en/cdc/c74fc13b17b03caf.md",
+          "titlePath": [
+            "How to Sample"
+          ],
+          "startLine": 892,
+          "endLine": 901
+        }
+      ]
+    },
+    {
+      "id": "en-050",
+      "lang": "en",
+      "hit": false,
+      "rank": null,
+      "tokens": 599,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "medical-en/icrc/c448f4856db1e417.md",
+          "titlePath": [
+            "Prevention"
+          ],
+          "startLine": 2855,
+          "endLine": 2861
+        },
+        {
+          "docPath": "medical-en/cdc/07302f882239f6e7.md",
+          "titlePath": [
+            "Partners"
+          ],
+          "startLine": 305,
+          "endLine": 311
+        },
+        {
+          "docPath": "medical-en/icrc/c448f4856db1e417.md",
+          "titlePath": [
+            "ASSESSMENT -SELF-HARM/SUICIDAL IDEATION"
+          ],
+          "startLine": 2840,
+          "endLine": 2846
+        },
+        {
+          "docPath": "medical-en/icrc/589b4565a5cdbae4.md",
+          "titlePath": [
+            "Violent or very agitated patient"
+          ],
+          "startLine": 1044,
+          "endLine": 1048
+        },
+        {
+          "docPath": "medical-en/icrc/c448f4856db1e417.md",
+          "titlePath": [
+            "MANAGEMENT"
+          ],
+          "startLine": 2847,
+          "endLine": 2854
+        }
+      ]
+    },
+    {
+      "id": "en-051",
+      "lang": "en",
+      "hit": true,
+      "rank": 1,
+      "tokens": 760,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "medical-en/nice/d83fee855b5ee3df.md",
+          "titlePath": [
+            "Rehabilitation after limb reconstruction, limb loss or amputation",
+            "Psychological support after limb loss, amputation or limb reconstruction"
+          ],
+          "startLine": 776,
+          "endLine": 784
+        },
+        {
+          "docPath": "medical-en/nice/d83fee855b5ee3df.md",
+          "titlePath": [
+            "Rehabilitation after limb-threatening injury – early assessment, decision making and support"
+          ],
+          "startLine": 1403,
+          "endLine": 1414
+        },
+        {
+          "docPath": "medical-en/nice/d83fee855b5ee3df.md",
+          "titlePath": [
+            "Rehabilitation after limb reconstruction, limb loss or amputation",
+            "Continuing rehabilitation after limb reconstruction, limb loss or amputation and after discharge"
+          ],
+          "startLine": 785,
+          "endLine": 810
+        },
+        {
+          "docPath": "medical-en/nice/d83fee855b5ee3df.md",
+          "titlePath": [
+            "Rehabilitation after limb reconstruction, limb loss or amputation",
+            "Rehabilitation after limb reconstruction"
+          ],
+          "startLine": 722,
+          "endLine": 736
+        },
+        {
+          "docPath": "medical-en/nice/d83fee855b5ee3df.md",
+          "titlePath": [
+            "Rehabilitation after limb reconstruction, limb loss or amputation",
+            "Rehabilitation after limb-threatening injury – early assessment, decision making and support"
+          ],
+          "startLine": 708,
+          "endLine": 721
+        }
+      ]
+    },
+    {
+      "id": "en-052",
+      "lang": "en",
+      "hit": false,
+      "rank": null,
+      "tokens": 625,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "medical-en/cdc/9aba444af572deb5.md",
+          "titlePath": [
+            "Recommended Regimens for External Genital Warts"
+          ],
+          "startLine": 1322,
+          "endLine": 1330
+        },
+        {
+          "docPath": "medical-en/cdc/305b3ff302f82dc5.md",
+          "titlePath": [
+            "Recommended Regimens"
+          ],
+          "startLine": 1466,
+          "endLine": 1473
+        },
+        {
+          "docPath": "medical-en/cdc/f6a6cf0f04be76ad.md",
+          "titlePath": [
+            "External Genital Warts, Recommended Treatments"
+          ],
+          "startLine": 1451,
+          "endLine": 1453
+        },
+        {
+          "docPath": "medical-en/cdc/9aba444af572deb5.md",
+          "titlePath": [
+            "Regimens"
+          ],
+          "startLine": 1316,
+          "endLine": 1321
+        },
+        {
+          "docPath": "medical-en/wikidoc/cb60a7693a281fc6.md",
+          "titlePath": [
+            "hpv"
+          ],
+          "startLine": 5292,
+          "endLine": 5326
+        }
+      ]
+    },
+    {
+      "id": "en-053",
+      "lang": "en",
+      "hit": true,
+      "rank": 1,
+      "tokens": 607,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "medical-en/cdc/2498baa2c9ab5c47.md",
+          "titlePath": [
+            "Hepatic Disease"
+          ],
+          "startLine": 704,
+          "endLine": 707
+        },
+        {
+          "docPath": "medical-en/cdc/2498baa2c9ab5c47.md",
+          "titlePath": [
+            "HIV infection"
+          ],
+          "startLine": 76,
+          "endLine": 80
+        },
+        {
+          "docPath": "medical-en/pubmed/023c58f8b4ca7e00.md",
+          "titlePath": [
+            "Treatment goals"
+          ],
+          "startLine": 65,
+          "endLine": 68
+        },
+        {
+          "docPath": "medical-en/cdc/2498baa2c9ab5c47.md",
+          "titlePath": [
+            "Use in pregnancy."
+          ],
+          "startLine": 267,
+          "endLine": 273
+        },
+        {
+          "docPath": "medical-en/cdc/2498baa2c9ab5c47.md",
+          "titlePath": [
+            "Liver disease"
+          ],
+          "startLine": 98,
+          "endLine": 101
+        }
+      ]
+    },
+    {
+      "id": "en-054",
+      "lang": "en",
+      "hit": true,
+      "rank": 4,
+      "tokens": 623,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "medical-en/cdc/53ddd4162e3be6a2.md",
+          "titlePath": [
+            "Minimum and Location"
+          ],
+          "startLine": 1041,
+          "endLine": 1051
+        },
+        {
+          "docPath": "medical-en/cdc/078516ea49cefcb6.md",
+          "titlePath": [
+            "Means"
+          ],
+          "startLine": 1668,
+          "endLine": 1687
+        },
+        {
+          "docPath": "medical-en/cdc/078516ea49cefcb6.md",
+          "titlePath": [
+            "Location"
+          ],
+          "startLine": 975,
+          "endLine": 988
+        },
+        {
+          "docPath": "medical-en/cdc/53ddd4162e3be6a2.md",
+          "titlePath": [
+            "Glossary of Acronyms & Terms CODE 57"
+          ],
+          "startLine": 158,
+          "endLine": 185
+        },
+        {
+          "docPath": "medical-en/cdc/53ddd4162e3be6a2.md",
+          "titlePath": [
+            "Acronyms and Initialisms Used in This Code and Annex"
+          ],
+          "startLine": 150,
+          "endLine": 157
+        }
+      ]
+    },
+    {
+      "id": "zh-001",
+      "lang": "zh",
+      "hit": true,
+      "rank": 1,
+      "tokens": 1619,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国商业银行法.md",
+          "titlePath": [
+            "第五章　财务会计"
+          ],
+          "startLine": 295,
+          "endLine": 306
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国证券法.md",
+          "titlePath": [
+            "第五章　信息披露"
+          ],
+          "startLine": 462,
+          "endLine": 555
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国预算法.md",
+          "titlePath": [
+            "第八章　决算"
+          ],
+          "startLine": 388,
+          "endLine": 453
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国公司法.md",
+          "titlePath": [
+            "第十章　公司财务、会计"
+          ],
+          "startLine": 1140,
+          "endLine": 1183
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国商业银行法.md",
+          "titlePath": [
+            "第四章　贷款和其他业务的基本规则"
+          ],
+          "startLine": 215,
+          "endLine": 294
+        }
+      ]
+    },
+    {
+      "id": "zh-002",
+      "lang": "zh",
+      "hit": true,
+      "rank": 1,
+      "tokens": 1483,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/wikipedia/糖尿病.md",
+          "titlePath": [
+            "管理",
+            "手术"
+          ],
+          "startLine": 288,
+          "endLine": 295
+        },
+        {
+          "docPath": "zh/wikipedia/糖尿病.md",
+          "titlePath": [
+            "管理",
+            "生活方式"
+          ],
+          "startLine": 260,
+          "endLine": 267
+        },
+        {
+          "docPath": "zh/wikipedia/糖尿病.md",
+          "titlePath": [
+            "分类",
+            "2型"
+          ],
+          "startLine": 105,
+          "endLine": 116
+        },
+        {
+          "docPath": "zh/wikipedia/糖尿病.md",
+          "titlePath": [
+            "流行病学"
+          ],
+          "startLine": 302,
+          "endLine": 333
+        },
+        {
+          "docPath": "zh/wikipedia/糖尿病.md",
+          "titlePath": [
+            "管理"
+          ],
+          "startLine": 252,
+          "endLine": 259
+        }
+      ]
+    },
+    {
+      "id": "zh-003",
+      "lang": "zh",
+      "hit": true,
+      "rank": 1,
+      "tokens": 1634,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国基本医疗卫生与健康促进法.md",
+          "titlePath": [
+            "第九章　法律责任"
+          ],
+          "startLine": 401,
+          "endLine": 436
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国药品管理法.md",
+          "titlePath": [
+            "第十一章　法律责任"
+          ],
+          "startLine": 472,
+          "endLine": 639
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国疫苗管理法.md",
+          "titlePath": [
+            "第十章　法律责任"
+          ],
+          "startLine": 390,
+          "endLine": 513
+        },
+        {
+          "docPath": "zh/law-wikisource/医疗器械监督管理条例.md",
+          "titlePath": [
+            "第七章　法律责任"
+          ],
+          "startLine": 442,
+          "endLine": 561
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国保险法.md",
+          "titlePath": [
+            "第七章　法律责任"
+          ],
+          "startLine": 778,
+          "endLine": 881
+        }
+      ]
+    },
+    {
+      "id": "zh-004",
+      "lang": "zh",
+      "hit": true,
+      "rank": 1,
+      "tokens": 1638,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国民法典.md",
+          "titlePath": [
+            "第七编　侵权责任",
+            "第六章　医疗损害责任"
+          ],
+          "startLine": 4724,
+          "endLine": 4767
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国精神卫生法.md",
+          "titlePath": [
+            "第六章　法律责任"
+          ],
+          "startLine": 305,
+          "endLine": 364
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国民法典.md",
+          "titlePath": [
+            "第七编　侵权责任",
+            "第三章　责任主体的特殊规定"
+          ],
+          "startLine": 4636,
+          "endLine": 4681
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国行政诉讼法.md",
+          "titlePath": [
+            "第五章　证据"
+          ],
+          "startLine": 177,
+          "endLine": 238
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国医师法.md",
+          "titlePath": [
+            "第三章　执业规则"
+          ],
+          "startLine": 144,
+          "endLine": 227
+        }
+      ]
+    },
+    {
+      "id": "zh-005",
+      "lang": "zh",
+      "hit": true,
+      "rank": 1,
+      "tokens": 1682,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国食品安全法.md",
+          "titlePath": [
+            "第四章　食品生产经营",
+            "第一节　一般规定"
+          ],
+          "startLine": 186,
+          "endLine": 283
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国食品安全法.md",
+          "titlePath": [
+            "第四章　食品生产经营",
+            "第二节　生产经营过程控制"
+          ],
+          "startLine": 284,
+          "endLine": 379
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国食品安全法.md",
+          "titlePath": [
+            "第九章　法律责任"
+          ],
+          "startLine": 668,
+          "endLine": 879
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国食品安全法.md",
+          "titlePath": [
+            "第八章　监督管理"
+          ],
+          "startLine": 594,
+          "endLine": 667
+        },
+        {
+          "docPath": "zh/law-wikisource/医疗器械监督管理条例.md",
+          "titlePath": [
+            "第四章　医疗器械经营与使用"
+          ],
+          "startLine": 246,
+          "endLine": 333
+        }
+      ]
+    },
+    {
+      "id": "zh-006",
+      "lang": "zh",
+      "hit": true,
+      "rank": 1,
+      "tokens": 1315,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/wikipedia/2019冠状病毒病.md",
+          "titlePath": [
+            "预防",
+            "保持社交距离"
+          ],
+          "startLine": 231,
+          "endLine": 234
+        },
+        {
+          "docPath": "zh/wikipedia/2019冠状病毒病.md",
+          "titlePath": [
+            "预防"
+          ],
+          "startLine": 187,
+          "endLine": 194
+        },
+        {
+          "docPath": "zh/wikipedia/2019冠状病毒病.md",
+          "titlePath": [
+            "Preface"
+          ],
+          "startLine": 7,
+          "endLine": 21
+        },
+        {
+          "docPath": "zh/wikipedia/艾滋病.md",
+          "titlePath": [
+            "历史"
+          ],
+          "startLine": 24,
+          "endLine": 73
+        },
+        {
+          "docPath": "zh/wikipedia/艾滋病.md",
+          "titlePath": [
+            "预防"
+          ],
+          "startLine": 151,
+          "endLine": 214
+        }
+      ]
+    },
+    {
+      "id": "zh-007",
+      "lang": "zh",
+      "hit": true,
+      "rank": 1,
+      "tokens": 1595,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国民事诉讼法.md",
+          "titlePath": [
+            "第一编　总则",
+            "第四章　回避"
+          ],
+          "startLine": 200,
+          "endLine": 223
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国民事诉讼法.md",
+          "titlePath": [
+            "第二编　审判程序",
+            "第十二章　第一审普通程序",
+            "第三节　开庭审理"
+          ],
+          "startLine": 656,
+          "endLine": 737
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国民事诉讼法.md",
+          "titlePath": [
+            "第一编　总则",
+            "第六章　证据"
+          ],
+          "startLine": 292,
+          "endLine": 383
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国行政诉讼法.md",
+          "titlePath": [
+            "第五章　证据"
+          ],
+          "startLine": 177,
+          "endLine": 238
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国民事诉讼法.md",
+          "titlePath": [
+            "第二编　审判程序",
+            "第十六章　审判监督程序"
+          ],
+          "startLine": 996,
+          "endLine": 1073
+        }
+      ]
+    },
+    {
+      "id": "zh-008",
+      "lang": "zh",
+      "hit": true,
+      "rank": 1,
+      "tokens": 1365,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/wikipedia/联邦储备系统.md",
+          "titlePath": [
+            "称呼"
+          ],
+          "startLine": 10,
+          "endLine": 13
+        },
+        {
+          "docPath": "zh/wikipedia/联邦储备系统.md",
+          "titlePath": [
+            "组织架构",
+            "联邦储备委员会"
+          ],
+          "startLine": 166,
+          "endLine": 181
+        },
+        {
+          "docPath": "zh/wikipedia/联邦储备系统.md",
+          "titlePath": [
+            "组织架构",
+            "联邦储备银行"
+          ],
+          "startLine": 209,
+          "endLine": 241
+        },
+        {
+          "docPath": "zh/wikipedia/2007年–2008年环球金融危机.md",
+          "titlePath": [
+            "2008年9月21日后的一周"
+          ],
+          "startLine": 232,
+          "endLine": 237
+        },
+        {
+          "docPath": "zh/wikipedia/联邦储备系统.md",
+          "titlePath": [
+            "历史",
+            "威尔逊总统签署《联邦储备法》"
+          ],
+          "startLine": 86,
+          "endLine": 97
+        }
+      ]
+    },
+    {
+      "id": "zh-009",
+      "lang": "zh",
+      "hit": true,
+      "rank": 2,
+      "tokens": 1404,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/law-wikisource/新型冠状病毒感染诊疗方案（试行第十版）.md",
+          "titlePath": [
+            "二、流行病学特点"
+          ],
+          "startLine": 33,
+          "endLine": 52
+        },
+        {
+          "docPath": "zh/law-wikisource/新型冠状病毒肺炎诊疗方案（试行第八版）.md",
+          "titlePath": [
+            "二、流行病学特点"
+          ],
+          "startLine": 32,
+          "endLine": 49
+        },
+        {
+          "docPath": "zh/wikipedia/艾滋病.md",
+          "titlePath": [
+            "预防"
+          ],
+          "startLine": 151,
+          "endLine": 214
+        },
+        {
+          "docPath": "zh/wikipedia/2019冠状病毒病.md",
+          "titlePath": [
+            "Preface"
+          ],
+          "startLine": 7,
+          "endLine": 21
+        },
+        {
+          "docPath": "zh/wikipedia/流行性感冒.md",
+          "titlePath": [
+            "传播及致病机制",
+            "传播"
+          ],
+          "startLine": 195,
+          "endLine": 202
+        }
+      ]
+    },
+    {
+      "id": "zh-010",
+      "lang": "zh",
+      "hit": true,
+      "rank": 1,
+      "tokens": 1669,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国电子商务法.md",
+          "titlePath": [
+            "第二章　电子商务经营者",
+            "第二节　电子商务平台经营者"
+          ],
+          "startLine": 88,
+          "endLine": 149
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国电子商务法.md",
+          "titlePath": [
+            "第二章　电子商务经营者",
+            "第一节　一般规定"
+          ],
+          "startLine": 38,
+          "endLine": 87
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国电子商务法.md",
+          "titlePath": [
+            "第六章　法律责任"
+          ],
+          "startLine": 246,
+          "endLine": 305
+        },
+        {
+          "docPath": "zh/law-wikisource/医疗器械监督管理条例.md",
+          "titlePath": [
+            "第四章　医疗器械经营与使用"
+          ],
+          "startLine": 246,
+          "endLine": 333
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国公司法.md",
+          "titlePath": [
+            "第二章　公司登记"
+          ],
+          "startLine": 136,
+          "endLine": 203
+        }
+      ]
+    },
+    {
+      "id": "zh-011",
+      "lang": "zh",
+      "hit": true,
+      "rank": 1,
+      "tokens": 1591,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/wikipedia/流行性感冒.md",
+          "titlePath": [
+            "预防",
+            "感染控制"
+          ],
+          "startLine": 229,
+          "endLine": 236
+        },
+        {
+          "docPath": "zh/wikipedia/2019冠状病毒病.md",
+          "titlePath": [
+            "预防"
+          ],
+          "startLine": 187,
+          "endLine": 194
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国传染病防治法.md",
+          "titlePath": [
+            "第五章　医疗救治"
+          ],
+          "startLine": 380,
+          "endLine": 403
+        },
+        {
+          "docPath": "zh/wikipedia/流行性感冒.md",
+          "titlePath": [
+            "预防",
+            "疫苗"
+          ],
+          "startLine": 215,
+          "endLine": 228
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国传染病防治法.md",
+          "titlePath": [
+            "第九章　附则"
+          ],
+          "startLine": 602,
+          "endLine": 637
+        }
+      ]
+    },
+    {
+      "id": "zh-012",
+      "lang": "zh",
+      "hit": true,
+      "rank": 1,
+      "tokens": 1376,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/wikipedia/糖尿病.md",
+          "titlePath": [
+            "分类",
+            "青少年发病的成人型糖尿病"
+          ],
+          "startLine": 125,
+          "endLine": 128
+        },
+        {
+          "docPath": "zh/wikipedia/糖尿病.md",
+          "titlePath": [
+            "Preface"
+          ],
+          "startLine": 7,
+          "endLine": 13
+        },
+        {
+          "docPath": "zh/wikipedia/糖尿病.md",
+          "titlePath": [
+            "症状与体征",
+            "长期并发症"
+          ],
+          "startLine": 24,
+          "endLine": 33
+        },
+        {
+          "docPath": "zh/wikipedia/糖尿病.md",
+          "titlePath": [
+            "分类",
+            "1型"
+          ],
+          "startLine": 95,
+          "endLine": 104
+        },
+        {
+          "docPath": "zh/wikipedia/糖尿病.md",
+          "titlePath": [
+            "流行病学"
+          ],
+          "startLine": 302,
+          "endLine": 333
+        }
+      ]
+    },
+    {
+      "id": "zh-013",
+      "lang": "zh",
+      "hit": true,
+      "rank": 1,
+      "tokens": 1632,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国民事诉讼法.md",
+          "titlePath": [
+            "第二编　审判程序",
+            "第十八章　公示催告程序"
+          ],
+          "startLine": 1096,
+          "endLine": 1117
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国票据法.md",
+          "titlePath": [
+            "第一章　总则"
+          ],
+          "startLine": 17,
+          "endLine": 102
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国公司法.md",
+          "titlePath": [
+            "第六章　股份有限公司的股份发行和转让",
+            "第二节　股份转让"
+          ],
+          "startLine": 890,
+          "endLine": 953
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国企业破产法.md",
+          "titlePath": [
+            "第六章　债权申报"
+          ],
+          "startLine": 266,
+          "endLine": 311
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国公司法.md",
+          "titlePath": [
+            "第十二章　公司解散和清算"
+          ],
+          "startLine": 1228,
+          "endLine": 1309
+        }
+      ]
+    },
+    {
+      "id": "zh-014",
+      "lang": "zh",
+      "hit": false,
+      "rank": null,
+      "tokens": 1463,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/wikipedia/帕金森病.md",
+          "titlePath": [
+            "Preface"
+          ],
+          "startLine": 7,
+          "endLine": 17
+        },
+        {
+          "docPath": "zh/wikipedia/帕金森病.md",
+          "titlePath": [
+            "症状",
+            "睡眠障碍",
+            "快速动眼睡眠行为障碍"
+          ],
+          "startLine": 95,
+          "endLine": 98
+        },
+        {
+          "docPath": "zh/wikipedia/帕金森病.md",
+          "titlePath": [
+            "诊断"
+          ],
+          "startLine": 162,
+          "endLine": 173
+        },
+        {
+          "docPath": "zh/wikipedia/帕金森病.md",
+          "titlePath": [
+            "分类"
+          ],
+          "startLine": 18,
+          "endLine": 34
+        },
+        {
+          "docPath": "zh/wikipedia/帕金森病.md",
+          "titlePath": [
+            "病因",
+            "遗传因子"
+          ],
+          "startLine": 119,
+          "endLine": 134
+        }
+      ]
+    },
+    {
+      "id": "zh-015",
+      "lang": "zh",
+      "hit": true,
+      "rank": 1,
+      "tokens": 1638,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国精神卫生法.md",
+          "titlePath": [
+            "第四章　精神障碍的康复"
+          ],
+          "startLine": 237,
+          "endLine": 254
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国精神卫生法.md",
+          "titlePath": [
+            "第五章　保障措施"
+          ],
+          "startLine": 255,
+          "endLine": 304
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国精神卫生法.md",
+          "titlePath": [
+            "第二章　心理健康促进和精神障碍预防"
+          ],
+          "startLine": 67,
+          "endLine": 108
+        },
+        {
+          "docPath": "zh/wikipedia/精神分裂症.md",
+          "titlePath": [
+            "病情管理"
+          ],
+          "startLine": 157,
+          "endLine": 162
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国精神卫生法.md",
+          "titlePath": [
+            "第三章　精神障碍的诊断和治疗"
+          ],
+          "startLine": 109,
+          "endLine": 236
+        }
+      ]
+    },
+    {
+      "id": "zh-016",
+      "lang": "zh",
+      "hit": true,
+      "rank": 1,
+      "tokens": 1637,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国疫苗管理法.md",
+          "titlePath": [
+            "第六章　异常反应监测和处理"
+          ],
+          "startLine": 252,
+          "endLine": 285
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国疫苗管理法.md",
+          "titlePath": [
+            "第十章　法律责任"
+          ],
+          "startLine": 390,
+          "endLine": 513
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国疫苗管理法.md",
+          "titlePath": [
+            "第七章　疫苗上市后管理"
+          ],
+          "startLine": 286,
+          "endLine": 307
+        },
+        {
+          "docPath": "zh/wikipedia/2019冠状病毒病疫苗.md",
+          "titlePath": [
+            "疫苗安全、供应及相关议题",
+            "争议",
+            "质疑疫苗是否安全或有效"
+          ],
+          "startLine": 1973,
+          "endLine": 1996
+        },
+        {
+          "docPath": "zh/wikipedia/流行性感冒.md",
+          "titlePath": [
+            "研究"
+          ],
+          "startLine": 323,
+          "endLine": 332
+        }
+      ]
+    },
+    {
+      "id": "zh-017",
+      "lang": "zh",
+      "hit": true,
+      "rank": 4,
+      "tokens": 1379,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/wikipedia/乙型肝炎.md",
+          "titlePath": [
+            "Preface"
+          ],
+          "startLine": 7,
+          "endLine": 15
+        },
+        {
+          "docPath": "zh/wikipedia/乙型肝炎.md",
+          "titlePath": [
+            "治疗"
+          ],
+          "startLine": 349,
+          "endLine": 356
+        },
+        {
+          "docPath": "zh/wikipedia/乙型肝炎.md",
+          "titlePath": [
+            "诊断"
+          ],
+          "startLine": 162,
+          "endLine": 171
+        },
+        {
+          "docPath": "zh/wikipedia/乙型肝炎.md",
+          "titlePath": [
+            "肝炎种类",
+            "急性肝炎"
+          ],
+          "startLine": 150,
+          "endLine": 153
+        },
+        {
+          "docPath": "zh/wikipedia/乙型肝炎.md",
+          "titlePath": [
+            "肝炎种类",
+            "乙型肝炎带原者"
+          ],
+          "startLine": 158,
+          "endLine": 161
+        }
+      ]
+    },
+    {
+      "id": "zh-018",
+      "lang": "zh",
+      "hit": true,
+      "rank": 1,
+      "tokens": 1681,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国刑法.md",
+          "titlePath": [
+            "第二编　分则",
+            "第三章　破坏社会主义市场经济秩序罪",
+            "第一节　生产、销售伪劣商品罪"
+          ],
+          "startLine": 703,
+          "endLine": 744
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国药品管理法.md",
+          "titlePath": [
+            "第十一章　法律责任"
+          ],
+          "startLine": 472,
+          "endLine": 639
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国疫苗管理法.md",
+          "titlePath": [
+            "第十章　法律责任"
+          ],
+          "startLine": 390,
+          "endLine": 513
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国食品安全法.md",
+          "titlePath": [
+            "第九章　法律责任"
+          ],
+          "startLine": 668,
+          "endLine": 879
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国网络安全法.md",
+          "titlePath": [
+            "第六章　法律责任"
+          ],
+          "startLine": 226,
+          "endLine": 301
+        }
+      ]
+    },
+    {
+      "id": "zh-019",
+      "lang": "zh",
+      "hit": true,
+      "rank": 1,
+      "tokens": 1677,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国个人信息保护法.md",
+          "titlePath": [
+            "第二章　个人信息处理规则",
+            "第一节　一般规定"
+          ],
+          "startLine": 58,
+          "endLine": 133
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国个人信息保护法.md",
+          "titlePath": [
+            "第二章　个人信息处理规则",
+            "第二节　敏感个人信息的处理规则"
+          ],
+          "startLine": 134,
+          "endLine": 149
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国个人信息保护法.md",
+          "titlePath": [
+            "第四章　个人在个人信息处理活动中的权利"
+          ],
+          "startLine": 188,
+          "endLine": 223
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国个人信息保护法.md",
+          "titlePath": [
+            "第三章　个人信息跨境提供的规则"
+          ],
+          "startLine": 162,
+          "endLine": 187
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国民法典.md",
+          "titlePath": [
+            "第四编　人格权",
+            "第六章　隐私权和个人信息保护"
+          ],
+          "startLine": 3966,
+          "endLine": 4023
+        }
+      ]
+    },
+    {
+      "id": "zh-020",
+      "lang": "zh",
+      "hit": true,
+      "rank": 1,
+      "tokens": 1320,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/wikipedia/疟疾.md",
+          "titlePath": [
+            "社会与文化",
+            "伪劣药品"
+          ],
+          "startLine": 353,
+          "endLine": 358
+        },
+        {
+          "docPath": "zh/wikipedia/疟疾.md",
+          "titlePath": [
+            "治疗",
+            "非重症疟疾"
+          ],
+          "startLine": 277,
+          "endLine": 282
+        },
+        {
+          "docPath": "zh/wikipedia/疟疾.md",
+          "titlePath": [
+            "治疗",
+            "重症疟疾"
+          ],
+          "startLine": 283,
+          "endLine": 286
+        },
+        {
+          "docPath": "zh/wikipedia/疟疾.md",
+          "titlePath": [
+            "治疗",
+            "抗药性"
+          ],
+          "startLine": 287,
+          "endLine": 290
+        },
+        {
+          "docPath": "zh/wikipedia/疟疾.md",
+          "titlePath": [
+            "Preface"
+          ],
+          "startLine": 7,
+          "endLine": 21
+        }
+      ]
+    },
+    {
+      "id": "zh-021",
+      "lang": "zh",
+      "hit": true,
+      "rank": 1,
+      "tokens": 1656,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国期货和衍生品法.md",
+          "titlePath": [
+            "第二章　期货交易和衍生品交易",
+            "第二节　期货交易"
+          ],
+          "startLine": 126,
+          "endLine": 171
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国期货和衍生品法.md",
+          "titlePath": [
+            "第十章　监督管理"
+          ],
+          "startLine": 616,
+          "endLine": 697
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国期货和衍生品法.md",
+          "titlePath": [
+            "第十二章　法律责任"
+          ],
+          "startLine": 728,
+          "endLine": 815
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国期货和衍生品法.md",
+          "titlePath": [
+            "第五章　期货经营机构"
+          ],
+          "startLine": 272,
+          "endLine": 437
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国期货和衍生品法.md",
+          "titlePath": [
+            "第一章　总则"
+          ],
+          "startLine": 18,
+          "endLine": 59
+        }
+      ]
+    },
+    {
+      "id": "zh-022",
+      "lang": "zh",
+      "hit": true,
+      "rank": 3,
+      "tokens": 1564,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/wikipedia/中国人民银行.md",
+          "titlePath": [
+            "沿革",
+            "改革开放初期"
+          ],
+          "startLine": 42,
+          "endLine": 53
+        },
+        {
+          "docPath": "zh/wikipedia/中国人民银行.md",
+          "titlePath": [
+            "沿革",
+            "建立初期"
+          ],
+          "startLine": 20,
+          "endLine": 31
+        },
+        {
+          "docPath": "zh/wikipedia/中国人民银行.md",
+          "titlePath": [
+            "Preface"
+          ],
+          "startLine": 7,
+          "endLine": 13
+        },
+        {
+          "docPath": "zh/wikipedia/中国人民银行.md",
+          "titlePath": [
+            "沿革",
+            "计划经济体制时期"
+          ],
+          "startLine": 32,
+          "endLine": 41
+        },
+        {
+          "docPath": "zh/wikipedia/中国人民银行.md",
+          "titlePath": [
+            "沿革",
+            "金融体制改革后"
+          ],
+          "startLine": 54,
+          "endLine": 79
+        }
+      ]
+    },
+    {
+      "id": "zh-023",
+      "lang": "zh",
+      "hit": true,
+      "rank": 1,
+      "tokens": 1315,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/wikipedia/乙型肝炎.md",
+          "titlePath": [
+            "流行病学分布",
+            "台湾"
+          ],
+          "startLine": 50,
+          "endLine": 55
+        },
+        {
+          "docPath": "zh/wikipedia/乙型肝炎.md",
+          "titlePath": [
+            "Preface"
+          ],
+          "startLine": 7,
+          "endLine": 15
+        },
+        {
+          "docPath": "zh/wikipedia/乙型肝炎.md",
+          "titlePath": [
+            "治疗"
+          ],
+          "startLine": 349,
+          "endLine": 356
+        },
+        {
+          "docPath": "zh/wikipedia/乙型肝炎.md",
+          "titlePath": [
+            "肝炎种类",
+            "慢性肝炎"
+          ],
+          "startLine": 154,
+          "endLine": 157
+        },
+        {
+          "docPath": "zh/wikipedia/乙型肝炎.md",
+          "titlePath": [
+            "肝炎种类",
+            "乙型肝炎带原者"
+          ],
+          "startLine": 158,
+          "endLine": 161
+        }
+      ]
+    },
+    {
+      "id": "zh-024",
+      "lang": "zh",
+      "hit": true,
+      "rank": 3,
+      "tokens": 1510,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/wikipedia/2019冠状病毒病疫苗.md",
+          "titlePath": [
+            "疫苗概况"
+          ],
+          "startLine": 183,
+          "endLine": 198
+        },
+        {
+          "docPath": "zh/wikipedia/2019冠状病毒病疫苗.md",
+          "titlePath": [
+            "背景与时间线"
+          ],
+          "startLine": 199,
+          "endLine": 304
+        },
+        {
+          "docPath": "zh/wikipedia/2019冠状病毒病.md",
+          "titlePath": [
+            "预防",
+            "疫苗"
+          ],
+          "startLine": 195,
+          "endLine": 216
+        },
+        {
+          "docPath": "zh/wikipedia/流行性感冒.md",
+          "titlePath": [
+            "预防",
+            "疫苗"
+          ],
+          "startLine": 215,
+          "endLine": 228
+        },
+        {
+          "docPath": "zh/wikipedia/艾滋病.md",
+          "titlePath": [
+            "病因"
+          ],
+          "startLine": 74,
+          "endLine": 87
+        }
+      ]
+    },
+    {
+      "id": "zh-025",
+      "lang": "zh",
+      "hit": true,
+      "rank": 1,
+      "tokens": 1556,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国消费者权益保护法.md",
+          "titlePath": [
+            "Preface"
+          ],
+          "startLine": 7,
+          "endLine": 17
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国消费者权益保护法.md",
+          "titlePath": [
+            "第五章　消费者组织"
+          ],
+          "startLine": 162,
+          "endLine": 191
+        },
+        {
+          "docPath": "zh/wikipedia/联邦储备系统.md",
+          "titlePath": [
+            "设立目的"
+          ],
+          "startLine": 134,
+          "endLine": 139
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国电子商务法.md",
+          "titlePath": [
+            "第四章　电子商务争议解决"
+          ],
+          "startLine": 200,
+          "endLine": 217
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国消费者权益保护法.md",
+          "titlePath": [
+            "第四章　国家对消费者合法权益的保护"
+          ],
+          "startLine": 142,
+          "endLine": 161
+        }
+      ]
+    },
+    {
+      "id": "zh-026",
+      "lang": "zh",
+      "hit": false,
+      "rank": null,
+      "tokens": 1523,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/wikipedia/流行性感冒.md",
+          "titlePath": [
+            "传播及致病机制",
+            "病理生理学"
+          ],
+          "startLine": 203,
+          "endLine": 212
+        },
+        {
+          "docPath": "zh/law-wikisource/新型冠状病毒感染诊疗方案（试行第十版）.md",
+          "titlePath": [
+            "四、临床特点"
+          ],
+          "startLine": 63,
+          "endLine": 94
+        },
+        {
+          "docPath": "zh/law-wikisource/新型冠状病毒肺炎诊疗方案（试行第八版）.md",
+          "titlePath": [
+            "五、诊断标准"
+          ],
+          "startLine": 122,
+          "endLine": 159
+        },
+        {
+          "docPath": "zh/wikipedia/肺癌.md",
+          "titlePath": [
+            "Preface"
+          ],
+          "startLine": 7,
+          "endLine": 17
+        },
+        {
+          "docPath": "zh/law-wikisource/新型冠状病毒肺炎诊疗方案（试行第八版）.md",
+          "titlePath": [
+            "Preface"
+          ],
+          "startLine": 7,
+          "endLine": 25
+        }
+      ]
+    },
+    {
+      "id": "zh-027",
+      "lang": "zh",
+      "hit": true,
+      "rank": 1,
+      "tokens": 1635,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国民法典.md",
+          "titlePath": [
+            "第三编　合同",
+            "第二分编　典型合同",
+            "第十章　供用电、水、气、热力合同"
+          ],
+          "startLine": 2744,
+          "endLine": 2767
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国民法典.md",
+          "titlePath": [
+            "第三编　合同",
+            "第一分编　通则",
+            "第二章　合同的订立"
+          ],
+          "startLine": 2082,
+          "endLine": 2223
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国民法典.md",
+          "titlePath": [
+            "第三编　合同",
+            "第一分编　通则",
+            "第四章　合同的履行"
+          ],
+          "startLine": 2248,
+          "endLine": 2363
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国民法典.md",
+          "titlePath": [
+            "第三编　合同",
+            "第二分编　典型合同",
+            "第九章　买卖合同"
+          ],
+          "startLine": 2600,
+          "endLine": 2743
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国民法典.md",
+          "titlePath": [
+            "第三编　合同",
+            "第一分编　通则",
+            "第七章　合同的权利义务终止"
+          ],
+          "startLine": 2434,
+          "endLine": 2535
+        }
+      ]
+    },
+    {
+      "id": "zh-028",
+      "lang": "zh",
+      "hit": true,
+      "rank": 1,
+      "tokens": 1347,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/wikipedia/肺癌.md",
+          "titlePath": [
+            "病因",
+            "其他"
+          ],
+          "startLine": 74,
+          "endLine": 83
+        },
+        {
+          "docPath": "zh/wikipedia/阿兹海默病.md",
+          "titlePath": [
+            "研究方向",
+            "药物"
+          ],
+          "startLine": 384,
+          "endLine": 393
+        },
+        {
+          "docPath": "zh/wikipedia/肺癌.md",
+          "titlePath": [
+            "致病机转"
+          ],
+          "startLine": 92,
+          "endLine": 105
+        },
+        {
+          "docPath": "zh/wikipedia/肺癌.md",
+          "titlePath": [
+            "病因",
+            "吸烟"
+          ],
+          "startLine": 40,
+          "endLine": 47
+        },
+        {
+          "docPath": "zh/wikipedia/肺癌.md",
+          "titlePath": [
+            "历史"
+          ],
+          "startLine": 584,
+          "endLine": 591
+        }
+      ]
+    },
+    {
+      "id": "zh-029",
+      "lang": "zh",
+      "hit": true,
+      "rank": 1,
+      "tokens": 1148,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/wikipedia/布雷顿森林体系.md",
+          "titlePath": [
+            "固定汇率",
+            "对美国的影响"
+          ],
+          "startLine": 91,
+          "endLine": 94
+        },
+        {
+          "docPath": "zh/wikipedia/布雷顿森林体系.md",
+          "titlePath": [
+            "协定内容",
+            "缺点"
+          ],
+          "startLine": 51,
+          "endLine": 58
+        },
+        {
+          "docPath": "zh/wikipedia/布雷顿森林体系.md",
+          "titlePath": [
+            "历史",
+            "结束"
+          ],
+          "startLine": 20,
+          "endLine": 28
+        },
+        {
+          "docPath": "zh/wikipedia/布雷顿森林体系.md",
+          "titlePath": [
+            "固定汇率"
+          ],
+          "startLine": 77,
+          "endLine": 80
+        },
+        {
+          "docPath": "zh/wikipedia/布雷顿森林体系.md",
+          "titlePath": [
+            "协定内容",
+            "美国作为国际储备货币发行国的责任"
+          ],
+          "startLine": 39,
+          "endLine": 45
+        }
+      ]
+    },
+    {
+      "id": "zh-030",
+      "lang": "zh",
+      "hit": true,
+      "rank": 1,
+      "tokens": 1631,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国合伙企业法.md",
+          "titlePath": [
+            "第三章　有限合伙企业"
+          ],
+          "startLine": 297,
+          "endLine": 386
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国合伙企业法.md",
+          "titlePath": [
+            "第二章　普通合伙企业",
+            "第五节　入伙、退伙"
+          ],
+          "startLine": 201,
+          "endLine": 276
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国合伙企业法.md",
+          "titlePath": [
+            "第一章　总则"
+          ],
+          "startLine": 17,
+          "endLine": 54
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国合伙企业法.md",
+          "titlePath": [
+            "第二章　普通合伙企业",
+            "第六节　特殊的普通合伙企业"
+          ],
+          "startLine": 277,
+          "endLine": 296
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国合伙企业法.md",
+          "titlePath": [
+            "第五章　法律责任"
+          ],
+          "startLine": 441,
+          "endLine": 476
+        }
+      ]
+    },
+    {
+      "id": "zh-031",
+      "lang": "zh",
+      "hit": true,
+      "rank": 2,
+      "tokens": 1623,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国基本医疗卫生与健康促进法.md",
+          "titlePath": [
+            "第四章　医疗卫生人员"
+          ],
+          "startLine": 219,
+          "endLine": 254
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国医师法.md",
+          "titlePath": [
+            "第四章　培训和考核"
+          ],
+          "startLine": 228,
+          "endLine": 265
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国医师法.md",
+          "titlePath": [
+            "第五章　保障措施"
+          ],
+          "startLine": 266,
+          "endLine": 321
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国医师法.md",
+          "titlePath": [
+            "第二章　考试和注册"
+          ],
+          "startLine": 48,
+          "endLine": 143
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国医师法.md",
+          "titlePath": [
+            "第三章　执业规则"
+          ],
+          "startLine": 144,
+          "endLine": 227
+        }
+      ]
+    },
+    {
+      "id": "zh-032",
+      "lang": "zh",
+      "hit": true,
+      "rank": 1,
+      "tokens": 1243,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/wikipedia/高血压.md",
+          "titlePath": [
+            "分类",
+            "儿童及青少年"
+          ],
+          "startLine": 75,
+          "endLine": 80
+        },
+        {
+          "docPath": "zh/wikipedia/高血压.md",
+          "titlePath": [
+            "诊断"
+          ],
+          "startLine": 141,
+          "endLine": 172
+        },
+        {
+          "docPath": "zh/wikipedia/高血压.md",
+          "titlePath": [
+            "Preface"
+          ],
+          "startLine": 7,
+          "endLine": 15
+        },
+        {
+          "docPath": "zh/wikipedia/高血压.md",
+          "titlePath": [
+            "患病率"
+          ],
+          "startLine": 236,
+          "endLine": 243
+        },
+        {
+          "docPath": "zh/wikipedia/高血压.md",
+          "titlePath": [
+            "症状与体征",
+            "婴儿与儿童"
+          ],
+          "startLine": 105,
+          "endLine": 108
+        }
+      ]
+    },
+    {
+      "id": "zh-033",
+      "lang": "zh",
+      "hit": true,
+      "rank": 1,
+      "tokens": 1652,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国公司法.md",
+          "titlePath": [
+            "第八章　公司董事、监事、高级管理人员的资格和义务"
+          ],
+          "startLine": 988,
+          "endLine": 1065
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国公司法.md",
+          "titlePath": [
+            "第三章　有限责任公司的设立和组织机构",
+            "第二节　组织机构"
+          ],
+          "startLine": 310,
+          "endLine": 469
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国公司法.md",
+          "titlePath": [
+            "第五章　股份有限公司的设立和组织机构",
+            "第三节　董事会、经理"
+          ],
+          "startLine": 670,
+          "endLine": 717
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国证券投资基金法.md",
+          "titlePath": [
+            "第二章　基金管理人"
+          ],
+          "startLine": 56,
+          "endLine": 215
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国期货和衍生品法.md",
+          "titlePath": [
+            "第五章　期货经营机构"
+          ],
+          "startLine": 272,
+          "endLine": 437
+        }
+      ]
+    },
+    {
+      "id": "zh-034",
+      "lang": "zh",
+      "hit": true,
+      "rank": 1,
+      "tokens": 1646,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国合伙企业法.md",
+          "titlePath": [
+            "第二章　普通合伙企业",
+            "第二节　合伙企业财产"
+          ],
+          "startLine": 111,
+          "endLine": 128
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国合伙企业法.md",
+          "titlePath": [
+            "第三章　有限合伙企业"
+          ],
+          "startLine": 297,
+          "endLine": 386
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国合伙企业法.md",
+          "titlePath": [
+            "第二章　普通合伙企业",
+            "第四节　合伙企业与第三人关系"
+          ],
+          "startLine": 185,
+          "endLine": 200
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国民法典.md",
+          "titlePath": [
+            "第三编　合同",
+            "第二分编　典型合同",
+            "第二十七章　合伙合同"
+          ],
+          "startLine": 3728,
+          "endLine": 3763
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国合伙企业法.md",
+          "titlePath": [
+            "第二章　普通合伙企业",
+            "第五节　入伙、退伙"
+          ],
+          "startLine": 201,
+          "endLine": 276
+        }
+      ]
+    },
+    {
+      "id": "zh-035",
+      "lang": "zh",
+      "hit": true,
+      "rank": 1,
+      "tokens": 1492,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/wikipedia/结核病.md",
+          "titlePath": [
+            "历史",
+            "工业革命及其后"
+          ],
+          "startLine": 166,
+          "endLine": 173
+        },
+        {
+          "docPath": "zh/wikipedia/结核病.md",
+          "titlePath": [
+            "历史",
+            "工业革命前"
+          ],
+          "startLine": 162,
+          "endLine": 165
+        },
+        {
+          "docPath": "zh/wikipedia/结核病.md",
+          "titlePath": [
+            "预防"
+          ],
+          "startLine": 106,
+          "endLine": 111
+        },
+        {
+          "docPath": "zh/wikipedia/结核病.md",
+          "titlePath": [
+            "耐药变种"
+          ],
+          "startLine": 152,
+          "endLine": 159
+        },
+        {
+          "docPath": "zh/wikipedia/结核病.md",
+          "titlePath": [
+            "治疗",
+            "抗药性"
+          ],
+          "startLine": 138,
+          "endLine": 145
+        }
+      ]
+    },
+    {
+      "id": "zh-036",
+      "lang": "zh",
+      "hit": true,
+      "rank": 1,
+      "tokens": 1622,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国公司法.md",
+          "titlePath": [
+            "第十三章　外国公司的分支机构"
+          ],
+          "startLine": 1310,
+          "endLine": 1333
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国商业银行法.md",
+          "titlePath": [
+            "第二章　商业银行的设立和组织机构"
+          ],
+          "startLine": 77,
+          "endLine": 200
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国保险法.md",
+          "titlePath": [
+            "第三章　保险公司"
+          ],
+          "startLine": 342,
+          "endLine": 487
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国合伙企业法.md",
+          "titlePath": [
+            "第一章　总则"
+          ],
+          "startLine": 17,
+          "endLine": 54
+        },
+        {
+          "docPath": "zh/wikipedia/中国人民银行.md",
+          "titlePath": [
+            "沿革",
+            "分支机构改革后"
+          ],
+          "startLine": 80,
+          "endLine": 91
+        }
+      ]
+    },
+    {
+      "id": "zh-037",
+      "lang": "zh",
+      "hit": true,
+      "rank": 1,
+      "tokens": 1452,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国招标投标法.md",
+          "titlePath": [
+            "Preface"
+          ],
+          "startLine": 7,
+          "endLine": 16
+        },
+        {
+          "docPath": "zh/wikipedia/首次公开募股.md",
+          "titlePath": [
+            "招股流程",
+            "首次公募的定价",
+            "荷兰式拍卖"
+          ],
+          "startLine": 116,
+          "endLine": 125
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国招标投标法.md",
+          "titlePath": [
+            "第二章　招标"
+          ],
+          "startLine": 47,
+          "endLine": 110
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国民事诉讼法.md",
+          "titlePath": [
+            "Preface"
+          ],
+          "startLine": 7,
+          "endLine": 21
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国公司法.md",
+          "titlePath": [
+            "Preface"
+          ],
+          "startLine": 7,
+          "endLine": 21
+        }
+      ]
+    },
+    {
+      "id": "zh-038",
+      "lang": "zh",
+      "hit": true,
+      "rank": 2,
+      "tokens": 1508,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国刑法.md",
+          "titlePath": [
+            "附则"
+          ],
+          "startLine": 2429,
+          "endLine": 2436
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国刑法.md",
+          "titlePath": [
+            "附件一"
+          ],
+          "startLine": 2437,
+          "endLine": 2470
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国企业破产法.md",
+          "titlePath": [
+            "第十二章　附则"
+          ],
+          "startLine": 720,
+          "endLine": 733
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国刑法.md",
+          "titlePath": [
+            "第一编　总则",
+            "第一章　刑法的任务、基本原则和适用范围"
+          ],
+          "startLine": 23,
+          "endLine": 56
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国医师法.md",
+          "titlePath": [
+            "第二章　考试和注册"
+          ],
+          "startLine": 48,
+          "endLine": 143
+        }
+      ]
+    },
+    {
+      "id": "zh-039",
+      "lang": "zh",
+      "hit": true,
+      "rank": 2,
+      "tokens": 1638,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/law-wikisource/医疗器械监督管理条例.md",
+          "titlePath": [
+            "第三章　医疗器械生产"
+          ],
+          "startLine": 180,
+          "endLine": 245
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国疫苗管理法.md",
+          "titlePath": [
+            "第三章　疫苗生产和批签发"
+          ],
+          "startLine": 102,
+          "endLine": 149
+        },
+        {
+          "docPath": "zh/law-wikisource/医疗器械监督管理条例.md",
+          "titlePath": [
+            "第四章　医疗器械经营与使用"
+          ],
+          "startLine": 246,
+          "endLine": 333
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国药品管理法.md",
+          "titlePath": [
+            "第四章　药品生产"
+          ],
+          "startLine": 154,
+          "endLine": 201
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国药品管理法.md",
+          "titlePath": [
+            "第三章　药品上市许可持有人"
+          ],
+          "startLine": 116,
+          "endLine": 153
+        }
+      ]
+    },
+    {
+      "id": "zh-040",
+      "lang": "zh",
+      "hit": true,
+      "rank": 1,
+      "tokens": 1656,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国食品安全法.md",
+          "titlePath": [
+            "第四章　食品生产经营",
+            "第二节　生产经营过程控制"
+          ],
+          "startLine": 284,
+          "endLine": 379
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国食品安全法.md",
+          "titlePath": [
+            "第六章　食品进出口"
+          ],
+          "startLine": 496,
+          "endLine": 545
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国食品安全法.md",
+          "titlePath": [
+            "第三章　食品安全标准"
+          ],
+          "startLine": 136,
+          "endLine": 183
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国食品安全法.md",
+          "titlePath": [
+            "第九章　法律责任"
+          ],
+          "startLine": 668,
+          "endLine": 879
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国食品安全法.md",
+          "titlePath": [
+            "第四章　食品生产经营",
+            "第一节　一般规定"
+          ],
+          "startLine": 186,
+          "endLine": 283
+        }
+      ]
+    },
+    {
+      "id": "zh-041",
+      "lang": "zh",
+      "hit": true,
+      "rank": 1,
+      "tokens": 1402,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/wikipedia/艾滋病.md",
+          "titlePath": [
+            "世界纪念日"
+          ],
+          "startLine": 599,
+          "endLine": 606
+        },
+        {
+          "docPath": "zh/wikipedia/艾滋病.md",
+          "titlePath": [
+            "现状"
+          ],
+          "startLine": 334,
+          "endLine": 598
+        },
+        {
+          "docPath": "zh/wikipedia/艾滋病.md",
+          "titlePath": [
+            "诊断"
+          ],
+          "startLine": 88,
+          "endLine": 95
+        },
+        {
+          "docPath": "zh/wikipedia/艾滋病.md",
+          "titlePath": [
+            "治疗",
+            "全球科研结果",
+            "2010年："
+          ],
+          "startLine": 297,
+          "endLine": 311
+        },
+        {
+          "docPath": "zh/wikipedia/艾滋病.md",
+          "titlePath": [
+            "历史"
+          ],
+          "startLine": 24,
+          "endLine": 73
+        }
+      ]
+    },
+    {
+      "id": "zh-042",
+      "lang": "zh",
+      "hit": false,
+      "rank": null,
+      "tokens": 1638,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国基本医疗卫生与健康促进法.md",
+          "titlePath": [
+            "第二章　基本医疗卫生服务"
+          ],
+          "startLine": 65,
+          "endLine": 134
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国医师法.md",
+          "titlePath": [
+            "第五章　保障措施"
+          ],
+          "startLine": 266,
+          "endLine": 321
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国基本医疗卫生与健康促进法.md",
+          "titlePath": [
+            "第三章　医疗卫生机构"
+          ],
+          "startLine": 135,
+          "endLine": 218
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国医师法.md",
+          "titlePath": [
+            "第一章　总则"
+          ],
+          "startLine": 22,
+          "endLine": 47
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国传染病防治法.md",
+          "titlePath": [
+            "第九章　附则"
+          ],
+          "startLine": 602,
+          "endLine": 637
+        }
+      ]
+    },
+    {
+      "id": "zh-043",
+      "lang": "zh",
+      "hit": true,
+      "rank": 1,
+      "tokens": 1612,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国期货和衍生品法.md",
+          "titlePath": [
+            "第五章　期货经营机构"
+          ],
+          "startLine": 272,
+          "endLine": 437
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国保险法.md",
+          "titlePath": [
+            "第三章　保险公司"
+          ],
+          "startLine": 342,
+          "endLine": 487
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国商业银行法.md",
+          "titlePath": [
+            "第二章　商业银行的设立和组织机构"
+          ],
+          "startLine": 77,
+          "endLine": 200
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国期货和衍生品法.md",
+          "titlePath": [
+            "第七章　期货结算机构"
+          ],
+          "startLine": 516,
+          "endLine": 559
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国公司法.md",
+          "titlePath": [
+            "第二章　公司登记"
+          ],
+          "startLine": 136,
+          "endLine": 203
+        }
+      ]
+    },
+    {
+      "id": "zh-044",
+      "lang": "zh",
+      "hit": true,
+      "rank": 1,
+      "tokens": 1384,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/wikipedia/阿兹海默病.md",
+          "titlePath": [
+            "预防",
+            "生活型态"
+          ],
+          "startLine": 192,
+          "endLine": 195
+        },
+        {
+          "docPath": "zh/wikipedia/阿兹海默病.md",
+          "titlePath": [
+            "预防"
+          ],
+          "startLine": 178,
+          "endLine": 183
+        },
+        {
+          "docPath": "zh/wikipedia/阿兹海默病.md",
+          "titlePath": [
+            "预防",
+            "药物"
+          ],
+          "startLine": 184,
+          "endLine": 191
+        },
+        {
+          "docPath": "zh/wikipedia/阿兹海默病.md",
+          "titlePath": [
+            "病因",
+            "遗传"
+          ],
+          "startLine": 80,
+          "endLine": 85
+        },
+        {
+          "docPath": "zh/wikipedia/阿兹海默病.md",
+          "titlePath": [
+            "Preface"
+          ],
+          "startLine": 7,
+          "endLine": 15
+        }
+      ]
+    },
+    {
+      "id": "zh-045",
+      "lang": "zh",
+      "hit": true,
+      "rank": 1,
+      "tokens": 1612,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国招标投标法.md",
+          "titlePath": [
+            "第六章　附则"
+          ],
+          "startLine": 263,
+          "endLine": 272
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国招标投标法.md",
+          "titlePath": [
+            "第二章　招标"
+          ],
+          "startLine": 47,
+          "endLine": 110
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国招标投标法.md",
+          "titlePath": [
+            "第五章　法律责任"
+          ],
+          "startLine": 215,
+          "endLine": 262
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国招标投标法.md",
+          "titlePath": [
+            "第三章　投标"
+          ],
+          "startLine": 111,
+          "endLine": 146
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国招标投标法.md",
+          "titlePath": [
+            "第四章　开标、评标和中标"
+          ],
+          "startLine": 147,
+          "endLine": 214
+        }
+      ]
+    },
+    {
+      "id": "zh-046",
+      "lang": "zh",
+      "hit": false,
+      "rank": null,
+      "tokens": 1600,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/wikipedia/疟疾.md",
+          "titlePath": [
+            "社会与文化",
+            "伪劣药品"
+          ],
+          "startLine": 353,
+          "endLine": 358
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国药品管理法.md",
+          "titlePath": [
+            "第十一章　法律责任"
+          ],
+          "startLine": 472,
+          "endLine": 639
+        },
+        {
+          "docPath": "zh/wikipedia/阿兹海默病.md",
+          "titlePath": [
+            "治疗",
+            "药物治疗"
+          ],
+          "startLine": 218,
+          "endLine": 235
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国刑法.md",
+          "titlePath": [
+            "第二编　分则",
+            "第三章　破坏社会主义市场经济秩序罪",
+            "第一节　生产、销售伪劣商品罪"
+          ],
+          "startLine": 703,
+          "endLine": 744
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国疫苗管理法.md",
+          "titlePath": [
+            "第十章　法律责任"
+          ],
+          "startLine": 390,
+          "endLine": 513
+        }
+      ]
+    },
+    {
+      "id": "zh-047",
+      "lang": "zh",
+      "hit": true,
+      "rank": 1,
+      "tokens": 1566,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国票据法.md",
+          "titlePath": [
+            "第二章　汇票",
+            "第一节　出票"
+          ],
+          "startLine": 105,
+          "endLine": 158
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国票据法.md",
+          "titlePath": [
+            "第三章　本票"
+          ],
+          "startLine": 353,
+          "endLine": 392
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国票据法.md",
+          "titlePath": [
+            "第四章　支票"
+          ],
+          "startLine": 393,
+          "endLine": 456
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国票据法.md",
+          "titlePath": [
+            "第二章　汇票",
+            "第二节　背书"
+          ],
+          "startLine": 159,
+          "endLine": 200
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国票据法.md",
+          "titlePath": [
+            "第一章　总则"
+          ],
+          "startLine": 17,
+          "endLine": 102
+        }
+      ]
+    },
+    {
+      "id": "zh-048",
+      "lang": "zh",
+      "hit": true,
+      "rank": 1,
+      "tokens": 1674,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/wikipedia/首次公开募股.md",
+          "titlePath": [
+            "各参与者在上市工作中的角色"
+          ],
+          "startLine": 194,
+          "endLine": 239
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国刑法.md",
+          "titlePath": [
+            "第二编　分则",
+            "第三章　破坏社会主义市场经济秩序罪",
+            "第三节　妨害对公司、企业的管理秩序罪"
+          ],
+          "startLine": 791,
+          "endLine": 872
+        },
+        {
+          "docPath": "zh/wikipedia/首次公开募股.md",
+          "titlePath": [
+            "上市理由",
+            "劣势"
+          ],
+          "startLine": 41,
+          "endLine": 56
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国公司法.md",
+          "titlePath": [
+            "第五章　股份有限公司的设立和组织机构",
+            "第五节　上市公司组织机构的特别规定"
+          ],
+          "startLine": 746,
+          "endLine": 777
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国证券法.md",
+          "titlePath": [
+            "第七章　证券交易场所"
+          ],
+          "startLine": 600,
+          "endLine": 681
+        }
+      ]
+    },
+    {
+      "id": "zh-049",
+      "lang": "zh",
+      "hit": true,
+      "rank": 2,
+      "tokens": 1614,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国劳动合同法.md",
+          "titlePath": [
+            "第二章　劳动合同的订立"
+          ],
+          "startLine": 46,
+          "endLine": 153
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国劳动法.md",
+          "titlePath": [
+            "第三章　劳动合同和集体合同"
+          ],
+          "startLine": 66,
+          "endLine": 169
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国劳动合同法.md",
+          "titlePath": [
+            "第四章　劳动合同的解除和终止"
+          ],
+          "startLine": 176,
+          "endLine": 303
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国公司法.md",
+          "titlePath": [
+            "第一章　总则"
+          ],
+          "startLine": 22,
+          "endLine": 135
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国劳动合同法.md",
+          "titlePath": [
+            "第五章　特别规定",
+            "第二节　劳务派遣"
+          ],
+          "startLine": 324,
+          "endLine": 385
+        }
+      ]
+    },
+    {
+      "id": "zh-050",
+      "lang": "zh",
+      "hit": true,
+      "rank": 1,
+      "tokens": 1686,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国电子商务法.md",
+          "titlePath": [
+            "第二章　电子商务经营者",
+            "第一节　一般规定"
+          ],
+          "startLine": 38,
+          "endLine": 87
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国电子商务法.md",
+          "titlePath": [
+            "第二章　电子商务经营者",
+            "第二节　电子商务平台经营者"
+          ],
+          "startLine": 88,
+          "endLine": 149
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国电子商务法.md",
+          "titlePath": [
+            "第一章　总则"
+          ],
+          "startLine": 14,
+          "endLine": 35
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国食品安全法.md",
+          "titlePath": [
+            "第四章　食品生产经营",
+            "第二节　生产经营过程控制"
+          ],
+          "startLine": 284,
+          "endLine": 379
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国证券投资基金法.md",
+          "titlePath": [
+            "第十一章　基金服务机构"
+          ],
+          "startLine": 712,
+          "endLine": 741
+        }
+      ]
+    },
+    {
+      "id": "zh-051",
+      "lang": "zh",
+      "hit": true,
+      "rank": 1,
+      "tokens": 1595,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国商业银行法.md",
+          "titlePath": [
+            "第一章　总则"
+          ],
+          "startLine": 17,
+          "endLine": 76
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国商业银行法.md",
+          "titlePath": [
+            "第二章　商业银行的设立和组织机构"
+          ],
+          "startLine": 77,
+          "endLine": 200
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国商业银行法.md",
+          "titlePath": [
+            "第四章　贷款和其他业务的基本规则"
+          ],
+          "startLine": 215,
+          "endLine": 294
+        },
+        {
+          "docPath": "zh/wikipedia/联邦储备系统.md",
+          "titlePath": [
+            "历史",
+            "1927年《麦克法登法案》"
+          ],
+          "startLine": 116,
+          "endLine": 129
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国商业银行法.md",
+          "titlePath": [
+            "第八章　法律责任"
+          ],
+          "startLine": 367,
+          "endLine": 466
+        }
+      ]
+    },
+    {
+      "id": "zh-052",
+      "lang": "zh",
+      "hit": true,
+      "rank": 1,
+      "tokens": 1606,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国劳动合同法.md",
+          "titlePath": [
+            "第八章　附则"
+          ],
+          "startLine": 496,
+          "endLine": 507
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国劳动合同法.md",
+          "titlePath": [
+            "第二章　劳动合同的订立"
+          ],
+          "startLine": 46,
+          "endLine": 153
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国劳动法.md",
+          "titlePath": [
+            "第三章　劳动合同和集体合同"
+          ],
+          "startLine": 66,
+          "endLine": 169
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国劳动合同法.md",
+          "titlePath": [
+            "第四章　劳动合同的解除和终止"
+          ],
+          "startLine": 176,
+          "endLine": 303
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国劳动合同法.md",
+          "titlePath": [
+            "第一章　总则"
+          ],
+          "startLine": 22,
+          "endLine": 45
+        }
+      ]
+    },
+    {
+      "id": "zh-053",
+      "lang": "zh",
+      "hit": true,
+      "rank": 1,
+      "tokens": 1610,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国劳动法.md",
+          "titlePath": [
+            "第七章　女职工和未成年工特殊保护"
+          ],
+          "startLine": 262,
+          "endLine": 281
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国劳动法.md",
+          "titlePath": [
+            "第十二章　法律责任"
+          ],
+          "startLine": 374,
+          "endLine": 421
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国劳动合同法.md",
+          "titlePath": [
+            "第四章　劳动合同的解除和终止"
+          ],
+          "startLine": 176,
+          "endLine": 303
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国劳动合同法.md",
+          "titlePath": [
+            "第五章　特别规定",
+            "第二节　劳务派遣"
+          ],
+          "startLine": 324,
+          "endLine": 385
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国劳动法.md",
+          "titlePath": [
+            "第三章　劳动合同和集体合同"
+          ],
+          "startLine": 66,
+          "endLine": 169
+        }
+      ]
+    },
+    {
+      "id": "zh-054",
+      "lang": "zh",
+      "hit": true,
+      "rank": 1,
+      "tokens": 1295,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/wikipedia/高血压.md",
+          "titlePath": [
+            "分类",
+            "成人"
+          ],
+          "startLine": 18,
+          "endLine": 70
+        },
+        {
+          "docPath": "zh/wikipedia/高血压.md",
+          "titlePath": [
+            "Preface"
+          ],
+          "startLine": 7,
+          "endLine": 15
+        },
+        {
+          "docPath": "zh/wikipedia/高血压.md",
+          "titlePath": [
+            "分类",
+            "儿童及青少年"
+          ],
+          "startLine": 75,
+          "endLine": 80
+        },
+        {
+          "docPath": "zh/wikipedia/高血压.md",
+          "titlePath": [
+            "诊断"
+          ],
+          "startLine": 141,
+          "endLine": 172
+        },
+        {
+          "docPath": "zh/wikipedia/高血压.md",
+          "titlePath": [
+            "历史",
+            "量测"
+          ],
+          "startLine": 246,
+          "endLine": 251
+        }
+      ]
+    },
+    {
+      "id": "zh-055",
+      "lang": "zh",
+      "hit": true,
+      "rank": 1,
+      "tokens": 1678,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国企业破产法.md",
+          "titlePath": [
+            "第七章　债权人会议",
+            "第二节　债权人委员会"
+          ],
+          "startLine": 376,
+          "endLine": 419
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国企业破产法.md",
+          "titlePath": [
+            "第七章　债权人会议",
+            "第一节　一般规定"
+          ],
+          "startLine": 314,
+          "endLine": 375
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国公司法.md",
+          "titlePath": [
+            "第三章　有限责任公司的设立和组织机构",
+            "第二节　组织机构"
+          ],
+          "startLine": 310,
+          "endLine": 469
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国公司法.md",
+          "titlePath": [
+            "第五章　股份有限公司的设立和组织机构",
+            "第三节　董事会、经理"
+          ],
+          "startLine": 670,
+          "endLine": 717
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国公司法.md",
+          "titlePath": [
+            "第七章　国家出资公司组织机构的特别规定"
+          ],
+          "startLine": 954,
+          "endLine": 987
+        }
+      ]
+    },
+    {
+      "id": "zh-056",
+      "lang": "zh",
+      "hit": true,
+      "rank": 1,
+      "tokens": 1507,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/wikipedia/肺癌.md",
+          "titlePath": [
+            "治疗",
+            "化疗"
+          ],
+          "startLine": 452,
+          "endLine": 459
+        },
+        {
+          "docPath": "zh/wikipedia/肺癌.md",
+          "titlePath": [
+            "治疗",
+            "放疗"
+          ],
+          "startLine": 438,
+          "endLine": 451
+        },
+        {
+          "docPath": "zh/wikipedia/肺癌.md",
+          "titlePath": [
+            "Preface"
+          ],
+          "startLine": 7,
+          "endLine": 17
+        },
+        {
+          "docPath": "zh/wikipedia/肺癌.md",
+          "titlePath": [
+            "治疗",
+            "手术"
+          ],
+          "startLine": 428,
+          "endLine": 437
+        },
+        {
+          "docPath": "zh/wikipedia/肺癌.md",
+          "titlePath": [
+            "研究方向"
+          ],
+          "startLine": 592,
+          "endLine": 601
+        }
+      ]
+    },
+    {
+      "id": "zh-057",
+      "lang": "zh",
+      "hit": true,
+      "rank": 1,
+      "tokens": 1585,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/wikipedia/2019冠状病毒病疫苗.md",
+          "titlePath": [
+            "疫苗安全、供应及相关议题",
+            "疫苗供应问题"
+          ],
+          "startLine": 1957,
+          "endLine": 1962
+        },
+        {
+          "docPath": "zh/wikipedia/2019冠状病毒病疫苗.md",
+          "titlePath": [
+            "接种计划",
+            "其他",
+            "欧洲"
+          ],
+          "startLine": 1859,
+          "endLine": 1888
+        },
+        {
+          "docPath": "zh/wikipedia/2019冠状病毒病疫苗.md",
+          "titlePath": [
+            "疫苗安全、供应及相关议题",
+            "争议",
+            "临床试验真实性问题"
+          ],
+          "startLine": 1997,
+          "endLine": 2000
+        },
+        {
+          "docPath": "zh/wikipedia/2019冠状病毒病疫苗.md",
+          "titlePath": [
+            "疫苗概况"
+          ],
+          "startLine": 183,
+          "endLine": 198
+        },
+        {
+          "docPath": "zh/wikipedia/2019冠状病毒病疫苗.md",
+          "titlePath": [
+            "疫苗安全、供应及相关议题",
+            "疫苗副作用与安全性",
+            "血栓与低血小板"
+          ],
+          "startLine": 1931,
+          "endLine": 1942
+        }
+      ]
+    },
+    {
+      "id": "zh-058",
+      "lang": "zh",
+      "hit": true,
+      "rank": 2,
+      "tokens": 1604,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国证券投资基金法.md",
+          "titlePath": [
+            "第十三章　监督管理"
+          ],
+          "startLine": 772,
+          "endLine": 815
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国证券法.md",
+          "titlePath": [
+            "第十二章　证券监督管理机构"
+          ],
+          "startLine": 978,
+          "endLine": 1055
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国证券投资基金法.md",
+          "titlePath": [
+            "第二章　基金管理人"
+          ],
+          "startLine": 56,
+          "endLine": 215
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国证券法.md",
+          "titlePath": [
+            "第八章　证券公司"
+          ],
+          "startLine": 682,
+          "endLine": 841
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国证券法.md",
+          "titlePath": [
+            "第七章　证券交易场所"
+          ],
+          "startLine": 600,
+          "endLine": 681
+        }
+      ]
+    },
+    {
+      "id": "zh-059",
+      "lang": "zh",
+      "hit": true,
+      "rank": 1,
+      "tokens": 1455,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/wikipedia/帕金森病.md",
+          "titlePath": [
+            "病理学",
+            "解剖学"
+          ],
+          "startLine": 139,
+          "endLine": 144
+        },
+        {
+          "docPath": "zh/wikipedia/帕金森病.md",
+          "titlePath": [
+            "病理学",
+            "病理生理学"
+          ],
+          "startLine": 145,
+          "endLine": 155
+        },
+        {
+          "docPath": "zh/wikipedia/帕金森病.md",
+          "titlePath": [
+            "Preface"
+          ],
+          "startLine": 7,
+          "endLine": 17
+        },
+        {
+          "docPath": "zh/wikipedia/帕金森病.md",
+          "titlePath": [
+            "流行病学"
+          ],
+          "startLine": 278,
+          "endLine": 305
+        },
+        {
+          "docPath": "zh/wikipedia/阿兹海默病.md",
+          "titlePath": [
+            "病因",
+            "神经病理学"
+          ],
+          "startLine": 120,
+          "endLine": 125
+        }
+      ]
+    },
+    {
+      "id": "zh-060",
+      "lang": "zh",
+      "hit": true,
+      "rank": 1,
+      "tokens": 1608,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国药品管理法.md",
+          "titlePath": [
+            "第九章　药品储备和供应"
+          ],
+          "startLine": 362,
+          "endLine": 381
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国疫苗管理法.md",
+          "titlePath": [
+            "第八章　保障措施"
+          ],
+          "startLine": 308,
+          "endLine": 339
+        },
+        {
+          "docPath": "zh/law-wikisource/医疗器械监督管理条例.md",
+          "titlePath": [
+            "第六章　监督检查"
+          ],
+          "startLine": 378,
+          "endLine": 441
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国药品管理法.md",
+          "titlePath": [
+            "第十章　监督管理"
+          ],
+          "startLine": 382,
+          "endLine": 471
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国疫苗管理法.md",
+          "titlePath": [
+            "第九章　监督管理"
+          ],
+          "startLine": 340,
+          "endLine": 389
+        }
+      ]
+    },
+    {
+      "id": "zh-061",
+      "lang": "zh",
+      "hit": true,
+      "rank": 1,
+      "tokens": 1660,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国企业破产法.md",
+          "titlePath": [
+            "第九章　和解"
+          ],
+          "startLine": 564,
+          "endLine": 605
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国企业破产法.md",
+          "titlePath": [
+            "第七章　债权人会议",
+            "第一节　一般规定"
+          ],
+          "startLine": 314,
+          "endLine": 375
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国企业破产法.md",
+          "titlePath": [
+            "第八章　重整",
+            "第二节　重整计划的制定和批准"
+          ],
+          "startLine": 456,
+          "endLine": 531
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国证券法.md",
+          "titlePath": [
+            "第四章　上市公司的收购"
+          ],
+          "startLine": 374,
+          "endLine": 461
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国公司法.md",
+          "titlePath": [
+            "第十二章　公司解散和清算"
+          ],
+          "startLine": 1228,
+          "endLine": 1309
+        }
+      ]
+    },
+    {
+      "id": "zh-062",
+      "lang": "zh",
+      "hit": true,
+      "rank": 1,
+      "tokens": 1593,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国政府采购法.md",
+          "titlePath": [
+            "第二章　政府采购当事人"
+          ],
+          "startLine": 75,
+          "endLine": 126
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国政府采购法.md",
+          "titlePath": [
+            "第一章　总则"
+          ],
+          "startLine": 19,
+          "endLine": 74
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国预算法.md",
+          "titlePath": [
+            "第六章　预算执行"
+          ],
+          "startLine": 282,
+          "endLine": 347
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国预算法.md",
+          "titlePath": [
+            "第一章　总则"
+          ],
+          "startLine": 18,
+          "endLine": 91
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国政府采购法.md",
+          "titlePath": [
+            "第七章　监督检查"
+          ],
+          "startLine": 287,
+          "endLine": 328
+        }
+      ]
+    },
+    {
+      "id": "zh-063",
+      "lang": "zh",
+      "hit": true,
+      "rank": 1,
+      "tokens": 1540,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/wikipedia/阿兹海默病.md",
+          "titlePath": [
+            "研究方向",
+            "感染"
+          ],
+          "startLine": 406,
+          "endLine": 413
+        },
+        {
+          "docPath": "zh/wikipedia/阿兹海默病.md",
+          "titlePath": [
+            "预防",
+            "药物"
+          ],
+          "startLine": 184,
+          "endLine": 191
+        },
+        {
+          "docPath": "zh/wikipedia/阿兹海默病.md",
+          "titlePath": [
+            "研究方向",
+            "药物"
+          ],
+          "startLine": 384,
+          "endLine": 393
+        },
+        {
+          "docPath": "zh/wikipedia/阿兹海默病.md",
+          "titlePath": [
+            "治疗",
+            "药物治疗"
+          ],
+          "startLine": 218,
+          "endLine": 235
+        },
+        {
+          "docPath": "zh/wikipedia/阿兹海默病.md",
+          "titlePath": [
+            "研究方向",
+            "影像学"
+          ],
+          "startLine": 414,
+          "endLine": 423
+        }
+      ]
+    },
+    {
+      "id": "mx-001",
+      "lang": "mixed",
+      "hit": true,
+      "rank": 1,
+      "tokens": 1266,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/wikipedia/2019冠状病毒病.md",
+          "titlePath": [
+            "流行病学",
+            "死亡率",
+            "致死率（CFR）"
+          ],
+          "startLine": 308,
+          "endLine": 624
+        },
+        {
+          "docPath": "zh/wikipedia/糖尿病.md",
+          "titlePath": [
+            "管理",
+            "药物",
+            "控制血压"
+          ],
+          "startLine": 278,
+          "endLine": 283
+        },
+        {
+          "docPath": "zh/wikipedia/糖尿病.md",
+          "titlePath": [
+            "流行病学"
+          ],
+          "startLine": 302,
+          "endLine": 333
+        },
+        {
+          "docPath": "zh/wikipedia/糖尿病.md",
+          "titlePath": [
+            "Preface"
+          ],
+          "startLine": 7,
+          "endLine": 13
+        },
+        {
+          "docPath": "zh/wikipedia/2019冠状病毒病.md",
+          "titlePath": [
+            "流行病学",
+            "死亡率"
+          ],
+          "startLine": 304,
+          "endLine": 307
+        }
+      ]
+    },
+    {
+      "id": "mx-002",
+      "lang": "mixed",
+      "hit": true,
+      "rank": 1,
+      "tokens": 1404,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/wikipedia/结核病.md",
+          "titlePath": [
+            "预防",
+            "公共卫生"
+          ],
+          "startLine": 118,
+          "endLine": 121
+        },
+        {
+          "docPath": "zh/wikipedia/结核病.md",
+          "titlePath": [
+            "社会和文化"
+          ],
+          "startLine": 198,
+          "endLine": 205
+        },
+        {
+          "docPath": "zh/wikipedia/艾滋病.md",
+          "titlePath": [
+            "治疗",
+            "全球科研结果",
+            "2010年："
+          ],
+          "startLine": 297,
+          "endLine": 311
+        },
+        {
+          "docPath": "zh/wikipedia/结核病.md",
+          "titlePath": [
+            "历史",
+            "工业革命及其后"
+          ],
+          "startLine": 166,
+          "endLine": 173
+        },
+        {
+          "docPath": "zh/wikipedia/结核病.md",
+          "titlePath": [
+            "发病机制",
+            "病因"
+          ],
+          "startLine": 68,
+          "endLine": 85
+        }
+      ]
+    },
+    {
+      "id": "mx-003",
+      "lang": "mixed",
+      "hit": true,
+      "rank": 1,
+      "tokens": 1365,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/wikipedia/高血压.md",
+          "titlePath": [
+            "治疗",
+            "老年人"
+          ],
+          "startLine": 228,
+          "endLine": 231
+        },
+        {
+          "docPath": "zh/wikipedia/高血压.md",
+          "titlePath": [
+            "治疗",
+            "药物"
+          ],
+          "startLine": 204,
+          "endLine": 209
+        },
+        {
+          "docPath": "zh/wikipedia/高血压.md",
+          "titlePath": [
+            "近年来的研究"
+          ],
+          "startLine": 268,
+          "endLine": 273
+        },
+        {
+          "docPath": "zh/wikipedia/高血压.md",
+          "titlePath": [
+            "治疗",
+            "药物",
+            "药物联用"
+          ],
+          "startLine": 210,
+          "endLine": 227
+        },
+        {
+          "docPath": "zh/wikipedia/高血压.md",
+          "titlePath": [
+            "预防"
+          ],
+          "startLine": 177,
+          "endLine": 187
+        }
+      ]
+    },
+    {
+      "id": "mx-004",
+      "lang": "mixed",
+      "hit": true,
+      "rank": 1,
+      "tokens": 1509,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/wikipedia/阿兹海默病.md",
+          "titlePath": [
+            "研究方向",
+            "锂"
+          ],
+          "startLine": 434,
+          "endLine": 439
+        },
+        {
+          "docPath": "zh/wikipedia/精神分裂症.md",
+          "titlePath": [
+            "预后"
+          ],
+          "startLine": 183,
+          "endLine": 220
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国反洗钱法.md",
+          "titlePath": [
+            "第三章　反洗钱义务"
+          ],
+          "startLine": 124,
+          "endLine": 209
+        },
+        {
+          "docPath": "zh/wikipedia/帕金森病.md",
+          "titlePath": [
+            "病因",
+            "环境因子"
+          ],
+          "startLine": 111,
+          "endLine": 118
+        },
+        {
+          "docPath": "zh/wikipedia/高血压.md",
+          "titlePath": [
+            "病因"
+          ],
+          "startLine": 118,
+          "endLine": 127
+        }
+      ]
+    },
+    {
+      "id": "mx-005",
+      "lang": "mixed",
+      "hit": false,
+      "rank": null,
+      "tokens": 1314,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/wikipedia/艾滋病.md",
+          "titlePath": [
+            "历史"
+          ],
+          "startLine": 24,
+          "endLine": 73
+        },
+        {
+          "docPath": "zh/wikipedia/流行性感冒.md",
+          "titlePath": [
+            "研究"
+          ],
+          "startLine": 323,
+          "endLine": 332
+        },
+        {
+          "docPath": "zh/wikipedia/疟疾.md",
+          "titlePath": [
+            "历史"
+          ],
+          "startLine": 22,
+          "endLine": 53
+        },
+        {
+          "docPath": "zh/wikipedia/疟疾.md",
+          "titlePath": [
+            "治疗",
+            "非重症疟疾"
+          ],
+          "startLine": 277,
+          "endLine": 282
+        },
+        {
+          "docPath": "zh/wikipedia/帕金森病.md",
+          "titlePath": [
+            "研究",
+            "基因疗法"
+          ],
+          "startLine": 350,
+          "endLine": 353
+        }
+      ]
+    },
+    {
+      "id": "mx-006",
+      "lang": "mixed",
+      "hit": true,
+      "rank": 1,
+      "tokens": 1487,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/wikipedia/精神分裂症.md",
+          "titlePath": [
+            "病情管理",
+            "药物治疗"
+          ],
+          "startLine": 163,
+          "endLine": 178
+        },
+        {
+          "docPath": "zh/wikipedia/精神分裂症.md",
+          "titlePath": [
+            "Preface"
+          ],
+          "startLine": 7,
+          "endLine": 15
+        },
+        {
+          "docPath": "zh/wikipedia/精神分裂症.md",
+          "titlePath": [
+            "预防"
+          ],
+          "startLine": 149,
+          "endLine": 156
+        },
+        {
+          "docPath": "zh/wikipedia/帕金森病.md",
+          "titlePath": [
+            "治疗",
+            "L-多巴"
+          ],
+          "startLine": 186,
+          "endLine": 193
+        },
+        {
+          "docPath": "zh/wikipedia/阿兹海默病.md",
+          "titlePath": [
+            "治疗",
+            "药物治疗"
+          ],
+          "startLine": 218,
+          "endLine": 235
+        }
+      ]
+    },
+    {
+      "id": "mx-007",
+      "lang": "mixed",
+      "hit": true,
+      "rank": 1,
+      "tokens": 1461,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/wikipedia/结核病.md",
+          "titlePath": [
+            "Preface"
+          ],
+          "startLine": 7,
+          "endLine": 21
+        },
+        {
+          "docPath": "zh/wikipedia/结核病.md",
+          "titlePath": [
+            "发病机制",
+            "传染途径"
+          ],
+          "startLine": 62,
+          "endLine": 67
+        },
+        {
+          "docPath": "zh/wikipedia/结核病.md",
+          "titlePath": [
+            "预防"
+          ],
+          "startLine": 106,
+          "endLine": 111
+        },
+        {
+          "docPath": "zh/wikipedia/结核病.md",
+          "titlePath": [
+            "治疗"
+          ],
+          "startLine": 122,
+          "endLine": 129
+        },
+        {
+          "docPath": "zh/wikipedia/结核病.md",
+          "titlePath": [
+            "诊断",
+            "活动性结核病"
+          ],
+          "startLine": 92,
+          "endLine": 99
+        }
+      ]
+    },
+    {
+      "id": "mx-008",
+      "lang": "mixed",
+      "hit": true,
+      "rank": 1,
+      "tokens": 1084,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/wikipedia/帕金森病.md",
+          "titlePath": [
+            "研究",
+            "基因疗法"
+          ],
+          "startLine": 350,
+          "endLine": 353
+        },
+        {
+          "docPath": "zh/wikipedia/帕金森病.md",
+          "titlePath": [
+            "病因",
+            "遗传因子"
+          ],
+          "startLine": 119,
+          "endLine": 134
+        },
+        {
+          "docPath": "zh/wikipedia/帕金森病.md",
+          "titlePath": [
+            "流行病学"
+          ],
+          "startLine": 278,
+          "endLine": 305
+        },
+        {
+          "docPath": "zh/wikipedia/帕金森病.md",
+          "titlePath": [
+            "研究",
+            "神经保护疗法"
+          ],
+          "startLine": 354,
+          "endLine": 359
+        },
+        {
+          "docPath": "zh/wikipedia/帕金森病.md",
+          "titlePath": [
+            "研究"
+          ],
+          "startLine": 342,
+          "endLine": 345
+        }
+      ]
+    },
+    {
+      "id": "mx-009",
+      "lang": "mixed",
+      "hit": true,
+      "rank": 1,
+      "tokens": 1465,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/wikipedia/糖尿病.md",
+          "titlePath": [
+            "管理",
+            "药物",
+            "抗糖尿病药"
+          ],
+          "startLine": 270,
+          "endLine": 277
+        },
+        {
+          "docPath": "zh/wikipedia/糖尿病.md",
+          "titlePath": [
+            "Preface"
+          ],
+          "startLine": 7,
+          "endLine": 13
+        },
+        {
+          "docPath": "zh/wikipedia/糖尿病.md",
+          "titlePath": [
+            "管理",
+            "自我管理与支援"
+          ],
+          "startLine": 296,
+          "endLine": 301
+        },
+        {
+          "docPath": "zh/wikipedia/糖尿病.md",
+          "titlePath": [
+            "管理",
+            "手术"
+          ],
+          "startLine": 288,
+          "endLine": 295
+        },
+        {
+          "docPath": "zh/wikipedia/糖尿病.md",
+          "titlePath": [
+            "分类",
+            "青少年发病的成人型糖尿病"
+          ],
+          "startLine": 125,
+          "endLine": 128
+        }
+      ]
+    },
+    {
+      "id": "mx-010",
+      "lang": "mixed",
+      "hit": true,
+      "rank": 1,
+      "tokens": 1165,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/wikipedia/疟疾.md",
+          "titlePath": [
+            "预防",
+            "蚊虫控制",
+            "室内残留喷洒"
+          ],
+          "startLine": 255,
+          "endLine": 260
+        },
+        {
+          "docPath": "zh/wikipedia/疟疾.md",
+          "titlePath": [
+            "社会与文化",
+            "防疫工作"
+          ],
+          "startLine": 371,
+          "endLine": 376
+        },
+        {
+          "docPath": "zh/wikipedia/疟疾.md",
+          "titlePath": [
+            "历史"
+          ],
+          "startLine": 22,
+          "endLine": 53
+        },
+        {
+          "docPath": "zh/wikipedia/疟疾.md",
+          "titlePath": [
+            "预防",
+            "蚊虫控制"
+          ],
+          "startLine": 241,
+          "endLine": 248
+        },
+        {
+          "docPath": "zh/wikipedia/结核病.md",
+          "titlePath": [
+            "治疗",
+            "复发"
+          ],
+          "startLine": 134,
+          "endLine": 137
+        }
+      ]
+    },
+    {
+      "id": "mx-011",
+      "lang": "mixed",
+      "hit": true,
+      "rank": 1,
+      "tokens": 1288,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/wikipedia/流行性感冒.md",
+          "titlePath": [
+            "病毒学",
+            "病毒种类",
+            "丁型流感病毒"
+          ],
+          "startLine": 163,
+          "endLine": 168
+        },
+        {
+          "docPath": "zh/wikipedia/流行性感冒.md",
+          "titlePath": [
+            "Preface"
+          ],
+          "startLine": 7,
+          "endLine": 75
+        },
+        {
+          "docPath": "zh/wikipedia/结核病.md",
+          "titlePath": [
+            "Preface"
+          ],
+          "startLine": 7,
+          "endLine": 21
+        },
+        {
+          "docPath": "zh/wikipedia/2019冠状病毒病.md",
+          "titlePath": [
+            "动物感染"
+          ],
+          "startLine": 1069,
+          "endLine": 1088
+        },
+        {
+          "docPath": "zh/wikipedia/流行性感冒.md",
+          "titlePath": [
+            "其他动物"
+          ],
+          "startLine": 333,
+          "endLine": 336
+        }
+      ]
+    },
+    {
+      "id": "mx-012",
+      "lang": "mixed",
+      "hit": true,
+      "rank": 2,
+      "tokens": 1444,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/wikipedia/2019冠状病毒病疫苗.md",
+          "titlePath": [
+            "疫苗安全、供应及相关议题",
+            "争议",
+            "对部分疫苗研究速度的质疑"
+          ],
+          "startLine": 1965,
+          "endLine": 1972
+        },
+        {
+          "docPath": "zh/wikipedia/2019冠状病毒病疫苗.md",
+          "titlePath": [
+            "接种计划",
+            "俄罗斯"
+          ],
+          "startLine": 1813,
+          "endLine": 1820
+        },
+        {
+          "docPath": "zh/wikipedia/2019冠状病毒病疫苗.md",
+          "titlePath": [
+            "背景与时间线"
+          ],
+          "startLine": 199,
+          "endLine": 304
+        },
+        {
+          "docPath": "zh/wikipedia/2019冠状病毒病疫苗.md",
+          "titlePath": [
+            "接种计划",
+            "其他",
+            "亚洲"
+          ],
+          "startLine": 1827,
+          "endLine": 1858
+        },
+        {
+          "docPath": "zh/wikipedia/2019冠状病毒病疫苗.md",
+          "titlePath": [
+            "疫苗列表",
+            "获得紧急使用授权或全面授权的疫苗"
+          ],
+          "startLine": 307,
+          "endLine": 1116
+        }
+      ]
+    },
+    {
+      "id": "mx-013",
+      "lang": "mixed",
+      "hit": true,
+      "rank": 1,
+      "tokens": 1582,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/wikipedia/精神分裂症.md",
+          "titlePath": [
+            "病理机制"
+          ],
+          "startLine": 88,
+          "endLine": 101
+        },
+        {
+          "docPath": "zh/wikipedia/精神分裂症.md",
+          "titlePath": [
+            "病因",
+            "遗传因子"
+          ],
+          "startLine": 56,
+          "endLine": 63
+        },
+        {
+          "docPath": "zh/wikipedia/精神分裂症.md",
+          "titlePath": [
+            "病因",
+            "环境因子",
+            "物质滥用"
+          ],
+          "startLine": 74,
+          "endLine": 83
+        },
+        {
+          "docPath": "zh/wikipedia/精神分裂症.md",
+          "titlePath": [
+            "症状",
+            "发病"
+          ],
+          "startLine": 48,
+          "endLine": 51
+        },
+        {
+          "docPath": "zh/wikipedia/阿兹海默病.md",
+          "titlePath": [
+            "研究方向",
+            "感染"
+          ],
+          "startLine": 406,
+          "endLine": 413
+        }
+      ]
+    },
+    {
+      "id": "mx-014",
+      "lang": "mixed",
+      "hit": true,
+      "rank": 1,
+      "tokens": 1490,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/wikipedia/阿兹海默病.md",
+          "titlePath": [
+            "研究方向",
+            "影像学"
+          ],
+          "startLine": 414,
+          "endLine": 423
+        },
+        {
+          "docPath": "zh/wikipedia/阿兹海默病.md",
+          "titlePath": [
+            "诊断",
+            "影像学"
+          ],
+          "startLine": 166,
+          "endLine": 177
+        },
+        {
+          "docPath": "zh/wikipedia/阿兹海默病.md",
+          "titlePath": [
+            "历史"
+          ],
+          "startLine": 350,
+          "endLine": 357
+        },
+        {
+          "docPath": "zh/wikipedia/阿兹海默病.md",
+          "titlePath": [
+            "Preface"
+          ],
+          "startLine": 7,
+          "endLine": 15
+        },
+        {
+          "docPath": "zh/wikipedia/阿兹海默病.md",
+          "titlePath": [
+            "治疗",
+            "药物治疗"
+          ],
+          "startLine": 218,
+          "endLine": 235
+        }
+      ]
+    },
+    {
+      "id": "mx-015",
+      "lang": "mixed",
+      "hit": true,
+      "rank": 1,
+      "tokens": 1438,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/wikipedia/疟疾.md",
+          "titlePath": [
+            "预防",
+            "药物预防"
+          ],
+          "startLine": 267,
+          "endLine": 272
+        },
+        {
+          "docPath": "zh/wikipedia/疟疾.md",
+          "titlePath": [
+            "治疗",
+            "非重症疟疾"
+          ],
+          "startLine": 277,
+          "endLine": 282
+        },
+        {
+          "docPath": "zh/wikipedia/疟疾.md",
+          "titlePath": [
+            "Preface"
+          ],
+          "startLine": 7,
+          "endLine": 21
+        },
+        {
+          "docPath": "zh/wikipedia/疟疾.md",
+          "titlePath": [
+            "预防"
+          ],
+          "startLine": 229,
+          "endLine": 240
+        },
+        {
+          "docPath": "zh/wikipedia/疟疾.md",
+          "titlePath": [
+            "流行病学"
+          ],
+          "startLine": 325,
+          "endLine": 338
+        }
+      ]
+    },
+    {
+      "id": "mx-016",
+      "lang": "mixed",
+      "hit": true,
+      "rank": 1,
+      "tokens": 1428,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/wikipedia/2019冠状病毒病疫苗.md",
+          "titlePath": [
+            "接种计划",
+            "美国"
+          ],
+          "startLine": 1795,
+          "endLine": 1806
+        },
+        {
+          "docPath": "zh/wikipedia/2019冠状病毒病.md",
+          "titlePath": [
+            "预防"
+          ],
+          "startLine": 187,
+          "endLine": 194
+        },
+        {
+          "docPath": "zh/wikipedia/2019冠状病毒病疫苗.md",
+          "titlePath": [
+            "背景与时间线"
+          ],
+          "startLine": 199,
+          "endLine": 304
+        },
+        {
+          "docPath": "zh/wikipedia/2019冠状病毒病疫苗.md",
+          "titlePath": [
+            "疫苗列表",
+            "获得紧急使用授权或全面授权的疫苗"
+          ],
+          "startLine": 307,
+          "endLine": 1116
+        },
+        {
+          "docPath": "zh/wikipedia/2019冠状病毒病.md",
+          "titlePath": [
+            "预防",
+            "疫苗"
+          ],
+          "startLine": 195,
+          "endLine": 216
+        }
+      ]
+    },
+    {
+      "id": "mx-017",
+      "lang": "mixed",
+      "hit": true,
+      "rank": 1,
+      "tokens": 1340,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/law-wikisource/新型冠状病毒感染诊疗方案（试行第十版）.md",
+          "titlePath": [
+            "Preface"
+          ],
+          "startLine": 7,
+          "endLine": 24
+        },
+        {
+          "docPath": "zh/law-wikisource/新型冠状病毒肺炎诊疗方案（试行第八版）.md",
+          "titlePath": [
+            "Preface"
+          ],
+          "startLine": 7,
+          "endLine": 25
+        },
+        {
+          "docPath": "zh/wikipedia/2019冠状病毒病.md",
+          "titlePath": [
+            "症状",
+            "临床分类"
+          ],
+          "startLine": 116,
+          "endLine": 127
+        },
+        {
+          "docPath": "zh/wikipedia/首次公开募股.md",
+          "titlePath": [
+            "招股流程",
+            "静默期"
+          ],
+          "startLine": 126,
+          "endLine": 131
+        },
+        {
+          "docPath": "zh/law-wikisource/新型冠状病毒肺炎诊疗方案（试行第八版）.md",
+          "titlePath": [
+            "十五、医疗机构内感染预防与控制"
+          ],
+          "startLine": 542,
+          "endLine": 545
+        }
+      ]
+    },
+    {
+      "id": "mx-018",
+      "lang": "mixed",
+      "hit": true,
+      "rank": 1,
+      "tokens": 1489,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/wikipedia/肺癌.md",
+          "titlePath": [
+            "研究方向"
+          ],
+          "startLine": 592,
+          "endLine": 601
+        },
+        {
+          "docPath": "zh/wikipedia/精神分裂症.md",
+          "titlePath": [
+            "研究方向"
+          ],
+          "startLine": 273,
+          "endLine": 276
+        },
+        {
+          "docPath": "zh/wikipedia/精神分裂症.md",
+          "titlePath": [
+            "病因",
+            "遗传因子"
+          ],
+          "startLine": 56,
+          "endLine": 63
+        },
+        {
+          "docPath": "zh/wikipedia/肺癌.md",
+          "titlePath": [
+            "治疗",
+            "标靶治疗"
+          ],
+          "startLine": 460,
+          "endLine": 469
+        },
+        {
+          "docPath": "zh/wikipedia/流行性感冒.md",
+          "titlePath": [
+            "研究"
+          ],
+          "startLine": 323,
+          "endLine": 332
+        }
+      ]
+    },
+    {
+      "id": "mx-019",
+      "lang": "mixed",
+      "hit": false,
+      "rank": null,
+      "tokens": 1434,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/wikipedia/帕金森病.md",
+          "titlePath": [
+            "治疗"
+          ],
+          "startLine": 182,
+          "endLine": 185
+        },
+        {
+          "docPath": "zh/wikipedia/帕金森病.md",
+          "titlePath": [
+            "治疗",
+            "其他治疗"
+          ],
+          "startLine": 230,
+          "endLine": 237
+        },
+        {
+          "docPath": "zh/wikipedia/帕金森病.md",
+          "titlePath": [
+            "Preface"
+          ],
+          "startLine": 7,
+          "endLine": 17
+        },
+        {
+          "docPath": "zh/wikipedia/帕金森病.md",
+          "titlePath": [
+            "治疗",
+            "其他药物"
+          ],
+          "startLine": 206,
+          "endLine": 209
+        },
+        {
+          "docPath": "zh/wikipedia/帕金森病.md",
+          "titlePath": [
+            "研究",
+            "神经保护疗法"
+          ],
+          "startLine": 354,
+          "endLine": 359
+        }
+      ]
+    },
+    {
+      "id": "mx-020",
+      "lang": "mixed",
+      "hit": true,
+      "rank": 1,
+      "tokens": 1401,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/law-wikisource/新型冠状病毒肺炎诊疗方案（试行第八版）.md",
+          "titlePath": [
+            "十一、治疗",
+            "（六）重型、危重型病例的治疗。"
+          ],
+          "startLine": 312,
+          "endLine": 373
+        },
+        {
+          "docPath": "zh/law-wikisource/新型冠状病毒感染诊疗方案（试行第十版）.md",
+          "titlePath": [
+            "十一、治疗"
+          ],
+          "startLine": 225,
+          "endLine": 540
+        },
+        {
+          "docPath": "zh/law-wikisource/新型冠状病毒肺炎诊疗方案（试行第八版）.md",
+          "titlePath": [
+            "六、临床分型"
+          ],
+          "startLine": 160,
+          "endLine": 207
+        },
+        {
+          "docPath": "zh/wikipedia/糖尿病.md",
+          "titlePath": [
+            "管理",
+            "药物",
+            "控制血压"
+          ],
+          "startLine": 278,
+          "endLine": 283
+        },
+        {
+          "docPath": "zh/law-wikisource/新型冠状病毒感染诊疗方案（试行第十版）.md",
+          "titlePath": [
+            "六、临床分型"
+          ],
+          "startLine": 115,
+          "endLine": 160
+        }
+      ]
+    },
+    {
+      "id": "mx-021",
+      "lang": "mixed",
+      "hit": true,
+      "rank": 1,
+      "tokens": 1213,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/wikipedia/比特币.md",
+          "titlePath": [
+            "应用",
+            "交易所买卖基金"
+          ],
+          "startLine": 92,
+          "endLine": 95
+        },
+        {
+          "docPath": "zh/wikipedia/比特币.md",
+          "titlePath": [
+            "Preface"
+          ],
+          "startLine": 7,
+          "endLine": 15
+        },
+        {
+          "docPath": "zh/wikipedia/比特币.md",
+          "titlePath": [
+            "存储方法",
+            "钱包",
+            "硬件钱包"
+          ],
+          "startLine": 110,
+          "endLine": 115
+        },
+        {
+          "docPath": "zh/wikipedia/比特币.md",
+          "titlePath": [
+            "扩容与分叉"
+          ],
+          "startLine": 133,
+          "endLine": 150
+        },
+        {
+          "docPath": "zh/wikipedia/比特币.md",
+          "titlePath": [
+            "应用",
+            "国家战略储备"
+          ],
+          "startLine": 96,
+          "endLine": 103
+        }
+      ]
+    },
+    {
+      "id": "mx-022",
+      "lang": "mixed",
+      "hit": true,
+      "rank": 1,
+      "tokens": 1533,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/wikipedia/乙型肝炎.md",
+          "titlePath": [
+            "感染过程",
+            "慢性感染"
+          ],
+          "startLine": 111,
+          "endLine": 137
+        },
+        {
+          "docPath": "zh/wikipedia/乙型肝炎.md",
+          "titlePath": [
+            "Preface"
+          ],
+          "startLine": 7,
+          "endLine": 15
+        },
+        {
+          "docPath": "zh/wikipedia/流行性感冒.md",
+          "titlePath": [
+            "预后"
+          ],
+          "startLine": 257,
+          "endLine": 266
+        },
+        {
+          "docPath": "zh/wikipedia/结核病.md",
+          "titlePath": [
+            "病因",
+            "危险因子"
+          ],
+          "startLine": 54,
+          "endLine": 57
+        },
+        {
+          "docPath": "zh/wikipedia/糖尿病.md",
+          "titlePath": [
+            "分类",
+            "其他类型"
+          ],
+          "startLine": 129,
+          "endLine": 165
+        }
+      ]
+    },
+    {
+      "id": "mx-023",
+      "lang": "mixed",
+      "hit": true,
+      "rank": 1,
+      "tokens": 1468,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/wikipedia/比特币.md",
+          "titlePath": [
+            "特性",
+            "匿名与安全性",
+            "私密密钥"
+          ],
+          "startLine": 56,
+          "endLine": 63
+        },
+        {
+          "docPath": "zh/wikipedia/比特币.md",
+          "titlePath": [
+            "存储方法",
+            "钱包",
+            "离线钱包"
+          ],
+          "startLine": 122,
+          "endLine": 132
+        },
+        {
+          "docPath": "zh/wikipedia/比特币.md",
+          "titlePath": [
+            "特性",
+            "匿名与安全性",
+            "地址"
+          ],
+          "startLine": 52,
+          "endLine": 55
+        },
+        {
+          "docPath": "zh/wikipedia/比特币.md",
+          "titlePath": [
+            "运作原理",
+            "减半机制"
+          ],
+          "startLine": 76,
+          "endLine": 79
+        },
+        {
+          "docPath": "zh/wikipedia/比特币.md",
+          "titlePath": [
+            "Preface"
+          ],
+          "startLine": 7,
+          "endLine": 15
+        }
+      ]
+    },
+    {
+      "id": "mx-024",
+      "lang": "mixed",
+      "hit": true,
+      "rank": 1,
+      "tokens": 1453,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/wikipedia/高血压.md",
+          "titlePath": [
+            "诊断"
+          ],
+          "startLine": 141,
+          "endLine": 172
+        },
+        {
+          "docPath": "zh/wikipedia/阿兹海默病.md",
+          "titlePath": [
+            "诊断",
+            "检测技术"
+          ],
+          "startLine": 154,
+          "endLine": 165
+        },
+        {
+          "docPath": "zh/wikipedia/结核病.md",
+          "titlePath": [
+            "诊断",
+            "活动性结核病"
+          ],
+          "startLine": 92,
+          "endLine": 99
+        },
+        {
+          "docPath": "zh/wikipedia/阿兹海默病.md",
+          "titlePath": [
+            "Preface"
+          ],
+          "startLine": 7,
+          "endLine": 15
+        },
+        {
+          "docPath": "zh/wikipedia/高血压.md",
+          "titlePath": [
+            "症状与体征"
+          ],
+          "startLine": 81,
+          "endLine": 86
+        }
+      ]
+    },
+    {
+      "id": "mx-025",
+      "lang": "mixed",
+      "hit": true,
+      "rank": 1,
+      "tokens": 1385,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/wikipedia/肺癌.md",
+          "titlePath": [
+            "诊断",
+            "分类",
+            "小细胞肺癌"
+          ],
+          "startLine": 154,
+          "endLine": 159
+        },
+        {
+          "docPath": "zh/wikipedia/肺癌.md",
+          "titlePath": [
+            "预后"
+          ],
+          "startLine": 478,
+          "endLine": 539
+        },
+        {
+          "docPath": "zh/wikipedia/肺癌.md",
+          "titlePath": [
+            "临床表现"
+          ],
+          "startLine": 18,
+          "endLine": 31
+        },
+        {
+          "docPath": "zh/wikipedia/肺癌.md",
+          "titlePath": [
+            "Preface"
+          ],
+          "startLine": 7,
+          "endLine": 17
+        },
+        {
+          "docPath": "zh/wikipedia/艾滋病.md",
+          "titlePath": [
+            "病程与表现",
+            "急性感染期"
+          ],
+          "startLine": 108,
+          "endLine": 134
+        }
+      ]
+    },
+    {
+      "id": "mx-026",
+      "lang": "mixed",
+      "hit": true,
+      "rank": 1,
+      "tokens": 1509,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/law-wikisource/新型冠状病毒肺炎诊疗方案（试行第八版）.md",
+          "titlePath": [
+            "十一、治疗",
+            "（二）一般治疗。"
+          ],
+          "startLine": 276,
+          "endLine": 285
+        },
+        {
+          "docPath": "zh/wikipedia/2019冠状病毒病.md",
+          "titlePath": [
+            "治疗"
+          ],
+          "startLine": 239,
+          "endLine": 248
+        },
+        {
+          "docPath": "zh/wikipedia/流行性感冒.md",
+          "titlePath": [
+            "研究"
+          ],
+          "startLine": 323,
+          "endLine": 332
+        },
+        {
+          "docPath": "zh/law-wikisource/新型冠状病毒肺炎诊疗方案（试行第八版）.md",
+          "titlePath": [
+            "十一、治疗",
+            "（六）重型、危重型病例的治疗。"
+          ],
+          "startLine": 312,
+          "endLine": 373
+        },
+        {
+          "docPath": "zh/law-wikisource/新型冠状病毒感染诊疗方案（试行第十版）.md",
+          "titlePath": [
+            "十一、治疗"
+          ],
+          "startLine": 225,
+          "endLine": 540
+        }
+      ]
+    },
+    {
+      "id": "mx-027",
+      "lang": "mixed",
+      "hit": true,
+      "rank": 1,
+      "tokens": 1452,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/wikipedia/联邦储备系统.md",
+          "titlePath": [
+            "组织架构",
+            "联邦公开市场委员会"
+          ],
+          "startLine": 205,
+          "endLine": 208
+        },
+        {
+          "docPath": "zh/wikipedia/联邦储备系统.md",
+          "titlePath": [
+            "组织架构",
+            "联邦储备委员会"
+          ],
+          "startLine": 166,
+          "endLine": 181
+        },
+        {
+          "docPath": "zh/wikipedia/联邦储备系统.md",
+          "titlePath": [
+            "组织架构"
+          ],
+          "startLine": 152,
+          "endLine": 165
+        },
+        {
+          "docPath": "zh/wikipedia/首次公开募股.md",
+          "titlePath": [
+            "招股流程",
+            "股权分配和定价"
+          ],
+          "startLine": 85,
+          "endLine": 103
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国企业破产法.md",
+          "titlePath": [
+            "第七章　债权人会议",
+            "第二节　债权人委员会"
+          ],
+          "startLine": 376,
+          "endLine": 419
+        }
+      ]
+    },
+    {
+      "id": "mx-028",
+      "lang": "mixed",
+      "hit": false,
+      "rank": null,
+      "tokens": 1449,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/wikipedia/联邦储备系统.md",
+          "titlePath": [
+            "联邦基金利率"
+          ],
+          "startLine": 264,
+          "endLine": 273
+        },
+        {
+          "docPath": "zh/wikipedia/2007年–2008年环球金融危机.md",
+          "titlePath": [
+            "历史背景",
+            "2008年环球股灾"
+          ],
+          "startLine": 84,
+          "endLine": 91
+        },
+        {
+          "docPath": "zh/wikipedia/2007年–2008年环球金融危机.md",
+          "titlePath": [
+            "2008年10月5日后的一周"
+          ],
+          "startLine": 270,
+          "endLine": 289
+        },
+        {
+          "docPath": "zh/wikipedia/2007年–2008年环球金融危机.md",
+          "titlePath": [
+            "时序"
+          ],
+          "startLine": 300,
+          "endLine": 330
+        },
+        {
+          "docPath": "zh/wikipedia/2007年–2008年环球金融危机.md",
+          "titlePath": [
+            "2008年9月14日后的一周",
+            "大型金融机构的危机"
+          ],
+          "startLine": 212,
+          "endLine": 215
+        }
+      ]
+    },
+    {
+      "id": "mx-029",
+      "lang": "mixed",
+      "hit": true,
+      "rank": 4,
+      "tokens": 681,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "medical-en/pubmed/51a2d6ea183a3a5c.md",
+          "titlePath": [
+            "Strength of recommendation",
+            "Sofosbuvir/velpatasvir/voxilaprevir"
+          ],
+          "startLine": 254,
+          "endLine": 258
+        },
+        {
+          "docPath": "medical-en/pubmed/51a2d6ea183a3a5c.md",
+          "titlePath": [
+            "Strength of recommendation",
+            "Sofosbuvir/velpatasvir/voxilaprevir"
+          ],
+          "startLine": 231,
+          "endLine": 233
+        },
+        {
+          "docPath": "medical-en/pubmed/51a2d6ea183a3a5c.md",
+          "titlePath": [
+            "Strength of recommendation",
+            "Retreatment of patients with daa treatment failure"
+          ],
+          "startLine": 487,
+          "endLine": 514
+        },
+        {
+          "docPath": "medical-en/pubmed/51a2d6ea183a3a5c.md",
+          "titlePath": [
+            "Strength of recommendation",
+            "Sofosbuvir/velpatasvir"
+          ],
+          "startLine": 228,
+          "endLine": 230
+        },
+        {
+          "docPath": "medical-en/pubmed/51a2d6ea183a3a5c.md",
+          "titlePath": [
+            "Strength of recommendation",
+            "Re-treatment of treatment-experienced patients with genotype 1b"
+          ],
+          "startLine": 204,
+          "endLine": 212
+        }
+      ]
+    },
+    {
+      "id": "mx-030",
+      "lang": "mixed",
+      "hit": false,
+      "rank": null,
+      "tokens": 1526,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/wikipedia/阿兹海默病.md",
+          "titlePath": [
+            "治疗",
+            "药物治疗"
+          ],
+          "startLine": 218,
+          "endLine": 235
+        },
+        {
+          "docPath": "zh/wikipedia/帕金森病.md",
+          "titlePath": [
+            "治疗",
+            "L-多巴"
+          ],
+          "startLine": 186,
+          "endLine": 193
+        },
+        {
+          "docPath": "zh/wikipedia/高血压.md",
+          "titlePath": [
+            "治疗",
+            "药物",
+            "药物联用"
+          ],
+          "startLine": 210,
+          "endLine": 227
+        },
+        {
+          "docPath": "zh/wikipedia/阿兹海默病.md",
+          "titlePath": [
+            "研究方向",
+            "药物"
+          ],
+          "startLine": 384,
+          "endLine": 393
+        },
+        {
+          "docPath": "zh/wikipedia/帕金森病.md",
+          "titlePath": [
+            "治疗",
+            "多巴胺受体激动剂"
+          ],
+          "startLine": 194,
+          "endLine": 201
+        }
+      ]
+    },
+    {
+      "id": "mx-031",
+      "lang": "mixed",
+      "hit": false,
+      "rank": null,
+      "tokens": 1522,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/wikipedia/精神分裂症.md",
+          "titlePath": [
+            "预防"
+          ],
+          "startLine": 149,
+          "endLine": 156
+        },
+        {
+          "docPath": "zh/wikipedia/精神分裂症.md",
+          "titlePath": [
+            "病情管理",
+            "药物治疗"
+          ],
+          "startLine": 163,
+          "endLine": 178
+        },
+        {
+          "docPath": "zh/wikipedia/高血压.md",
+          "titlePath": [
+            "治疗",
+            "药物"
+          ],
+          "startLine": 204,
+          "endLine": 209
+        },
+        {
+          "docPath": "zh/wikipedia/帕金森病.md",
+          "titlePath": [
+            "诊断"
+          ],
+          "startLine": 162,
+          "endLine": 173
+        },
+        {
+          "docPath": "zh/wikipedia/阿兹海默病.md",
+          "titlePath": [
+            "治疗",
+            "药物治疗"
+          ],
+          "startLine": 218,
+          "endLine": 235
+        }
+      ]
+    },
+    {
+      "id": "mx-032",
+      "lang": "mixed",
+      "hit": true,
+      "rank": 1,
+      "tokens": 1119,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "medical-en/who/ef81ff7f47fbea15.md",
+          "titlePath": [
+            "Mechanism of action"
+          ],
+          "startLine": 1004,
+          "endLine": 1010
+        },
+        {
+          "docPath": "medical-en/who/60c4ab15b31ceefc.md",
+          "titlePath": [
+            "Mechanism of action"
+          ],
+          "startLine": 776,
+          "endLine": 780
+        },
+        {
+          "docPath": "zh/wikipedia/精神分裂症.md",
+          "titlePath": [
+            "病理机制"
+          ],
+          "startLine": 88,
+          "endLine": 101
+        },
+        {
+          "docPath": "zh/wikipedia/肺癌.md",
+          "titlePath": [
+            "治疗",
+            "标靶治疗"
+          ],
+          "startLine": 460,
+          "endLine": 469
+        },
+        {
+          "docPath": "zh/wikipedia/肺癌.md",
+          "titlePath": [
+            "致病机转"
+          ],
+          "startLine": 92,
+          "endLine": 105
+        }
+      ]
+    },
+    {
+      "id": "mx-033",
+      "lang": "mixed",
+      "hit": false,
+      "rank": null,
+      "tokens": 1485,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "zh/wikipedia/2019冠状病毒病.md",
+          "titlePath": [
+            "Preface"
+          ],
+          "startLine": 7,
+          "endLine": 21
+        },
+        {
+          "docPath": "zh/wikipedia/比特币.md",
+          "titlePath": [
+            "运作原理",
+            "减半机制"
+          ],
+          "startLine": 76,
+          "endLine": 79
+        },
+        {
+          "docPath": "zh/wikipedia/艾滋病.md",
+          "titlePath": [
+            "诊断"
+          ],
+          "startLine": 88,
+          "endLine": 95
+        },
+        {
+          "docPath": "zh/wikipedia/2019冠状病毒病疫苗.md",
+          "titlePath": [
+            "接种计划",
+            "中华民国（台湾）"
+          ],
+          "startLine": 1775,
+          "endLine": 1794
+        },
+        {
+          "docPath": "zh/wikipedia/2019冠状病毒病疫苗.md",
+          "titlePath": [
+            "疫苗安全、供应及相关议题",
+            "疫苗副作用与安全性",
+            "心肌炎或心包炎"
+          ],
+          "startLine": 1943,
+          "endLine": 1948
+        }
+      ]
+    },
+    {
+      "id": "mx-034",
+      "lang": "mixed",
+      "hit": false,
+      "rank": null,
+      "tokens": 647,
+      "steps": 1,
+      "evidence": [
+        {
+          "docPath": "finance-en/JPM/10-K_2020.md",
+          "titlePath": [
+            "Part IV",
+            "Item 15. Exhibits, Financial Statement Schedules."
+          ],
+          "startLine": 1171,
+          "endLine": 1415
+        },
+        {
+          "docPath": "finance-en/JPM/10-K_2022.md",
+          "titlePath": [
+            "Part IV",
+            "Item 15. Exhibits, Financial Statement Schedules."
+          ],
+          "startLine": 1200,
+          "endLine": 1442
+        },
+        {
+          "docPath": "finance-en/JPM/10-K_2021.md",
+          "titlePath": [
+            "Part IV"
+          ],
+          "startLine": 1265,
+          "endLine": 1551
+        },
+        {
+          "docPath": "finance-en/JPM/10-K_2019.md",
+          "titlePath": [
+            "Part IV",
+            "Item 15. Exhibits, Financial Statement Schedules."
+          ],
+          "startLine": 2104,
+          "endLine": 2486
+        },
+        {
+          "docPath": "finance-en/JPM/10-K_2023.md",
+          "titlePath": [
+            "Part IV",
+            "Item 15. Exhibits, Financial Statement Schedules."
+          ],
+          "startLine": 1231,
+          "endLine": 1477
+        }
+      ]
+    }
+  ]
+}

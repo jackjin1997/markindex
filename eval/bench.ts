@@ -183,21 +183,21 @@ function structureStats() {
   }
 }
 
-/** Default get_document_structure (depth = DEFAULT_STRUCTURE_DEPTH) response size per document. */
-async function structureResponses() {
+/** get_document_structure response size per document at `depth` (first part only). */
+async function structureResponses(depth: number) {
   const lib = openLibrary({ root: ROOT })
   try {
     const chars: number[] = []
     const shown: number[] = []
     let multiPart = 0
     for (const d of lib.store.allDocPaths()) {
-      const res = JSON.parse(await lib.callTool('get_document_structure', { doc_path: d })) as { data?: { pagination?: { has_more?: boolean } } }
+      const res = JSON.parse(await lib.callTool('get_document_structure', { doc_path: d, depth })) as { data?: { pagination?: { has_more?: boolean } } }
       const s = JSON.stringify(res)
       chars.push(s.length)
       shown.push((s.match(/"node_id"/g) ?? []).length)
       if (res.data?.pagination?.has_more) multiPart++
     }
-    return { depth: DEFAULT_STRUCTURE_DEPTH, responseChars: dist(chars), nodesShown: dist(shown), docsNeedingMoreParts: multiPart }
+    return { depth, isDefault: depth === DEFAULT_STRUCTURE_DEPTH, responseChars: dist(chars), nodesShown: dist(shown), docsNeedingMoreParts: multiPart }
   } finally {
     lib.close()
   }
@@ -242,7 +242,7 @@ async function main() {
   const tools = await toolLatencies()
   log('phase 4: structure statistics')
   const structure = structureStats()
-  const structureDefault = await structureResponses()
+  const structureResponsesByDepth = [await structureResponses(1), await structureResponses(2), await structureResponses(3)]
 
   const result = {
     createdAt: new Date().toISOString(),
@@ -255,7 +255,7 @@ async function main() {
     dbSizeMB: dbAfterIndex,
     tools,
     structure,
-    structureDefault,
+    structureResponsesByDepth,
   }
   mkdirSync(dirname(OUT), { recursive: true })
   writeFileSync(OUT, `${JSON.stringify(result, null, 2)}\n`)
