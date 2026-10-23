@@ -5,6 +5,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { indexLibrary, type IndexEvent } from '../../src/library/indexer.js'
 import { scanLibrary } from '../../src/library/scan.js'
 import { openStore, type Store } from '../../src/store/db.js'
+import { searchNodes } from '../../src/store/search.js'
 
 const FIX = join(import.meta.dirname, '../fixtures/md')
 
@@ -102,6 +103,15 @@ describe('indexLibrary', () => {
     copyFileSync(join(FIX, 'zh-manual.md'), join(root, 'zh', 'manual.md'))
     copyFileSync(join(FIX, 'headless.md'), join(root, 'zh', 'headless.md'))
   }
+
+  it('indexes a single ~200k-word line and keeps it searchable', async () => {
+    put('huge-line.md', `# Huge\n\n${'alpha '.repeat(200_000)}needle-word\n`)
+    const report = await indexLibrary({ root, store })
+    expect(report.added).toEqual(['huge-line.md'])
+    expect(report.skipped).toEqual([])
+    const hits = searchNodes(store, 'needle-word')
+    expect(hits.map((h) => h.docPath)).toContain('huge-line.md')
+  })
 
   it('indexes a library and records documents', async () => {
     seed()

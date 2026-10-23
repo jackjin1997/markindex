@@ -24,3 +24,14 @@ test('trailing punctuation is not glued to tokens', () => {
 })
 test('drops emoji and full-width punctuation', () =>
   expect(segmentForIndex('合同，解除。😀')).toBe('合同 解除'))
+
+test('segments a ~200k-word span without overflowing the stack', () => {
+  const out = segmentForIndex('alpha '.repeat(200_000) + 'v2.1 ' + 'beta '.repeat(200_000))
+  expect(out.split(' ')).toHaveLength(400_001)
+})
+
+test('segments a 250k-char alphanumeric run in linear time', () => {
+  const start = performance.now()
+  expect(segmentForIndex(`x ${'L'.repeat(250_000)} y`)).toBe(`x ${'l'.repeat(250_000)} y`)
+  expect(performance.now() - start).toBeLessThan(2_000)
+})
