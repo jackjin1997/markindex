@@ -11,6 +11,7 @@ import { indexLibrary, type IndexReport } from './library/indexer.js'
 import { defaultDbFile, openLibrary } from './library.js'
 import { estimateSummaryCost } from './llm/summarize.js'
 import { ProviderError, resolveSummaryModel } from './llm/provider.js'
+import { parseRateLimit } from './llm/rate-limit.js'
 import { RETRIEVE_MAX_INPUT_TOKENS, RETRIEVE_MAX_STEPS } from './retrieve.js'
 import { searchNodes } from './store/search.js'
 import { openStore, StoreLockedError } from './store/db.js'
@@ -33,9 +34,22 @@ function printReport(r: IndexReport) {
 
 async function indexCommand(
   root: string,
-  o: { db?: string; summaryModel?: string; estimate?: boolean; json?: boolean; setext?: boolean; ignore: string[] },
+  o: {
+    db?: string
+    summaryModel?: string
+    summaryRpm?: string
+    summaryTpm?: string
+    estimate?: boolean
+    json?: boolean
+    setext?: boolean
+    ignore: string[]
+  },
 ) {
   root = resolve(root)
+  const rateLimit = parseRateLimit({ rpm: o.summaryRpm, tpm: o.summaryTpm }, '--summary-rpm', '--summary-tpm')
+  if (rateLimit && (!o.summaryModel || o.estimate)) {
+    err(`markindex: ${[o.summaryRpm && '--summary-rpm', o.summaryTpm && '--summary-tpm'].filter(Boolean).join(', ')} ignored without --summary-model (and with --estimate)`)
+  }
   const model = o.summaryModel && !o.estimate ? await resolveSummaryModel(o.summaryModel) : undefined
   const store = openStore(resolve(o.db ?? defaultDbFile(root)))
   try {
@@ -44,7 +58,7 @@ async function indexCommand(
       store,
       setext: o.setext,
       ignore: o.ignore,
-      summary: model ? { model } : undefined,
+      summary: model ? { model, ...(rateLimit ? { rateLimit } : {}) } : undefined,
       onProgress: o.json ? undefined : (e) => err(`[${e.done}/${e.total}] ${e.status} ${e.path}`),
     })
     if (o.estimate) {
@@ -182,14 +196,18 @@ async function evalCommand(
     concurrency: string
     baseline: boolean
     maxEvidenceLines?: string
+    rpm?: string
+    tpm?: string
     db?: string
     out?: string
     json?: boolean
   },
 ) {
+  const rateLimit = parseRateLimit(o, '--rpm', '--tpm')
   const mode = EVAL_MODES[o.mode]
   if (!mode) throw new Error(`--mode must be bm25 or agent (aliases: tools, retrieve), got "${o.mode}"`)
   if (mode === 'agent' && !o.model) throw new Error('agent mode needs --model <provider:model>, e.g. --model anthropic:claude-sonnet-5-5')
+  if (rateLimit && mode !== 'agent') err('markindex: --rpm, --tpm only apply to agent mode; ignored')
   const maxEvidenceLines = o.maxEvidenceLines === undefined ? undefined : int(o.maxEvidenceLines, '--max-evidence-lines')
   const questions = parseQuestions(readFileSync(o.questions, 'utf8'), o.questions)
   const lib = openLibrary({ root, dbFile: o.db })
@@ -211,6 +229,7 @@ async function evalCommand(
       baseline: o.baseline,
       ...(maxEvidenceLines !== undefined ? { maxEvidenceLines } : {}),
       ...(model ? { model, modelId: o.model } : {}),
+      ...(model && rateLimit ? { rateLimit } : {}),
       onProgress: o.json
         ? undefined
         : (done, total, r) => err(`[${done}/${total}] ${r.id} ${r.hit ? 'HIT' : 'miss'}${r.error ? ` (error: ${r.error})` : ''}`),
@@ -233,6 +252,8 @@ export function buildProgram(): Command {
     .description('Build or update the index of a Markdown folder')
     .option('--db <file>', 'index database file (default <root>/.markindex/index.db)')
     .option('--summary-model <provider:model>', 'summarize with an LLM, e.g. anthropic:claude-sonnet-5-5 (needs @ai-sdk/<provider> installed)')
+    .option('--summary-rpm <n>', 'limit summary LLM requests per minute (sliding 60 s window)')
+    .option('--summary-tpm <n>', 'limit estimated summary input tokens per minute (sliding 60 s window)')
     .option('--estimate', 'index, then print the summarization cost estimate and exit without LLM calls')
     .option('--ignore <pattern>', 'gitignore-syntax pattern relative to <root> to leave out (repeatable; adds to .gitignore / .markindexignore)', collect, [])
     .option('--setext', 'treat `Text` + `---` / `===` as headings (CommonMark; the default for a new index); rebuilds when it was off')
@@ -274,6 +295,8 @@ export function buildProgram(): Command {
     .option('--max-steps <n>', 'agent: model steps per question', String(RETRIEVE_MAX_STEPS))
     .option('--max-input-tokens <n>', 'agent: input-token budget per question', String(RETRIEVE_MAX_INPUT_TOKENS))
     .option('--concurrency <n>', 'agent: questions run in parallel', '1')
+    .option('--rpm <n>', 'agent: limit model requests per minute, shared by all questions (sliding 60 s window)')
+    .option('--tpm <n>', 'agent: limit estimated input tokens per minute, shared by all questions (sliding 60 s window)')
     .option('--no-baseline', 'agent: skip the bm25 baseline')
     .option('--max-evidence-lines <n>', 'count a hit only if the matching evidence item spans at most n lines')
     .option('--db <file>', 'index database file')

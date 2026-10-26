@@ -53,6 +53,7 @@ npx -p markindex -p @ai-sdk/anthropic markindex index ./docs --summary-model ant
 markindex index ./docs
 markindex index ./docs --summary-model anthropic:claude-sonnet-5-5 --estimate   # cost estimate, no LLM calls
 markindex index ./docs --summary-model anthropic:claude-sonnet-5-5             # with node summaries
+markindex index ./docs --summary-model anthropic:claude-sonnet-5-5 --summary-rpm 50 --summary-tpm 40000   # rate-limited
 markindex index ./docs --json                                                   # machine-readable report
 markindex index ./docs --no-setext                                              # converter output with `---` page breaks
 markindex index ./docs --ignore 'drafts/' --ignore '*.tmp.md'                   # extra ignore patterns (repeatable)
@@ -71,7 +72,18 @@ markindex mcp ./docs --reindex-on-start
 # Measure retrieval quality on your own documents (see "Evaluation")
 markindex eval ./docs --questions questions.jsonl --mode bm25 --out report.json
 markindex eval ./docs --questions questions.jsonl --mode agent --model anthropic:claude-sonnet-5-5 --out report.json
+markindex eval ./docs --questions questions.jsonl --mode agent --model anthropic:claude-sonnet-5-5 --rpm 50 --tpm 40000
 ```
+
+**Rate limits.** Calls are always bounded by concurrency (`--concurrency` for eval; 8 for summaries) and the AI SDK's
+retries, which already honor `retry-after` / `retry-after-ms` on 429 / 5xx responses (up to 60 s). To stay under a
+provider quota, add a client-side limit: `--summary-rpm` / `--summary-tpm` on `index`, `--rpm` / `--tpm` on `eval`
+(agent mode). `rpm` caps requests and `tpm` caps *estimated input* tokens in any sliding 60 s window; both are
+shared by all documents (index) or all questions (eval) of the run, and waiting callers are served in order. Input
+tokens are estimated from the prompt text (about 1 token per CJK character, otherwise 4 characters), so leave
+headroom below the real quota; output tokens and tool definitions are not counted. A single request larger than the
+`tpm` still goes through, alone. In the library, pass `rateLimit: { requestsPerMinute, inputTokensPerMinute }` to
+`summarizeDocument` / `indexLibrary({ summary })` or `retrieve()`; reuse the same object to share one budget.
 
 `--summary-model` / `--model` take `<provider>:<model>`; MarkIndex imports `@ai-sdk/<provider>` dynamically, so
 only the provider you use needs to be installed. Every command accepts `--db <file>` to use a different index file.
@@ -148,6 +160,7 @@ const { evidence, usage, stopReason } = await retrieve(lib, 'What notice period 
   model: anthropic('claude-sonnet-5-5'),
   maxSteps: 12,
   maxInputTokens: 200_000,
+  rateLimit: { requestsPerMinute: 50, inputTokensPerMinute: 40_000 }, // optional, client-side
 })
 for (const e of evidence) console.log(`${e.docPath} L${e.startLine}-${e.endLine}`, e.titlePath.join(' > '))
 ```

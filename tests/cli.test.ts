@@ -120,6 +120,32 @@ describe('cli', () => {
     expect(JSON.parse(j.stdout).estimate).toHaveProperty('llmCalls')
   })
 
+  it('rate-limit flags are listed in --help and validated before any model is loaded', async () => {
+    const help = await tsx('index', '--help')
+    expect(help.stdout).toContain('--summary-rpm <n>')
+    expect(help.stdout).toContain('--summary-tpm <n>')
+    const evalHelp = await tsx('eval', '--help')
+    expect(evalHelp.stdout).toContain('--rpm <n>')
+    expect(evalHelp.stdout).toContain('--tpm <n>')
+    for (const args of [
+      ['index', fixture.root, '--summary-model', 'nosuchprovider:m', '--summary-rpm', '0'],
+      ['index', fixture.root, '--summary-tpm', 'abc'],
+      ['index', fixture.root, '--summary-rpm', '1.5'],
+      ['eval', fixture.root, '--questions', 'nope.jsonl', '--rpm', '-3'],
+    ]) {
+      const r = await tsx(...args)
+      expect(r.code, args.join(' ')).toBe(1)
+      expect(r.stderr, args.join(' ')).toMatch(/--(summary-)?(rpm|tpm) must be an integer >= 1/)
+    }
+  })
+
+  it('rate-limit flags without a model are reported as unused', async () => {
+    const r = await tsx('index', fixture.root, '--summary-rpm', '10')
+    expect(r.code).toBe(0)
+    expect(r.stderr).toContain('--summary-rpm')
+    expect(r.stderr).toContain('ignored without --summary-model')
+  })
+
   it('missing provider package exits non-zero with an install hint', async () => {
     const r = await tsx('index', fixture.root, '--summary-model', 'nosuchprovider:m')
     expect(r.code).toBe(1)

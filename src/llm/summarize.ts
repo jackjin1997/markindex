@@ -1,8 +1,10 @@
 import { createHash } from 'node:crypto'
 import { generateText, type LanguageModel } from 'ai'
 import { SUMMARY_TOKEN_THRESHOLD } from '../config.js'
+import { approxTokens } from '../text/tokens.js'
 import type { Store } from '../store/db.js'
 import type { TreeNode } from '../types.js'
+import { rateLimiterFor, type RateLimiter, type RateLimitOptions } from './rate-limit.js'
 
 export interface SummaryOptions {
   model: LanguageModel
@@ -14,6 +16,13 @@ export interface SummaryOptions {
   maxRetries?: number
   /** Also generate a one-sentence document description (default true). */
   describe?: boolean
+  /**
+   * Client-side rate limit for the summary calls (sliding 60 s window; input tokens are estimated from the prompt).
+   * The same options object shares one budget across every document it is passed with.
+   */
+  rateLimit?: RateLimitOptions
+  /** Advanced: use this limiter instead of building one from `rateLimit` (e.g. to share a budget or inject a clock). */
+  rateLimiter?: RateLimiter
 }
 
 export interface SummaryFailure {
@@ -140,8 +149,11 @@ export async function summarizeDocument(store: Store, docPath: string, opts: Sum
   const tree = store.getTree(docPath)
   if (!doc || !tree) throw new Error(`document not found: ${docPath}`)
 
+  const limiter = opts.rateLimiter ?? rateLimiterFor(opts.rateLimit)
+
   const ask = async (prompt: string): Promise<string> => {
     result.llmCalls++
+    await limiter?.acquire(approxTokens(prompt))
     const res = await generateText({ model: opts.model, prompt, maxRetries })
     result.usage.inputTokens += res.usage?.inputTokens ?? 0
     result.usage.outputTokens += res.usage?.outputTokens ?? 0

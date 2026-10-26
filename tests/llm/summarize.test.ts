@@ -5,6 +5,7 @@ import { APICallError } from 'ai'
 import { MockLanguageModelV4 } from 'ai/test'
 import { afterEach, beforeEach, describe, expect, it } from 'vitest'
 import { indexLibrary } from '../../src/library/indexer.js'
+import { createRateLimiter } from '../../src/llm/rate-limit.js'
 import { estimateSummaryCost, summarizeDocument } from '../../src/llm/summarize.js'
 import { openStore, type Store } from '../../src/store/db.js'
 import { searchNodes } from '../../src/store/search.js'
@@ -285,5 +286,53 @@ describe('indexLibrary summary option', () => {
     expect(byTitle('a.md', 'Beta').summary).toBe('SUM[betatext]')
     expect(byTitle('a.md', 'Alpha').prefixSummary).toBe('SUM[alphaintro]')
     expect(store.getDoc('a.md')!.description).toBe('DESC one sentence')
+  })
+})
+
+describe('summarizeDocument rate limiting', () => {
+  /**
+   * Fake-clock limiter: `sleep` advances the clock. Slot times are recorded when `acquire` resolves, because the
+   * shared fake clock keeps moving while other callers wait.
+   */
+  function limited(opts: { requestsPerMinute?: number; inputTokensPerMinute?: number }) {
+    let t = 0
+    const inner = createRateLimiter(opts, { now: () => t, sleep: async (ms) => void (t += ms) })
+    const stamps: number[] = []
+    const limiter = {
+      acquire: async (tokens: number) => {
+        await inner.acquire(tokens)
+        stamps.push(t)
+      },
+    }
+    return { limiter, stamps }
+  }
+
+  it('spaces LLM calls by requestsPerMinute even with high concurrency', async () => {
+    await indexed()
+    const { limiter, stamps } = limited({ requestsPerMinute: 2 })
+    const m = mockModel()
+    const res = await summarizeDocument(store, 'a.md', { model: m.model, concurrency: 8, rateLimiter: limiter })
+    expect(res.failures).toEqual([])
+    expect(stamps.length).toBe(res.llmCalls)
+    expect(stamps.length).toBeGreaterThanOrEqual(5)
+    for (let i = 2; i < stamps.length; i++) expect(stamps[i]! - stamps[i - 2]!).toBeGreaterThanOrEqual(60_000)
+  })
+
+  it('spaces LLM calls by inputTokensPerMinute using the prompt size', async () => {
+    await indexed()
+    // each node prompt is ~300 words of ~4 chars, i.e. several hundred tokens; the budget fits one at a time
+    const { limiter, stamps } = limited({ inputTokensPerMinute: 500 })
+    const m = mockModel()
+    await summarizeDocument(store, 'a.md', { model: m.model, concurrency: 8, describe: false, rateLimiter: limiter })
+    expect(stamps.length).toBe(4)
+    for (let i = 1; i < stamps.length; i++) expect(stamps[i]! - stamps[i - 1]!).toBeGreaterThanOrEqual(60_000)
+  })
+
+  it('builds a shared limiter from the rateLimit option (no limiter given), without slowing an unlimited run', async () => {
+    await indexed()
+    const m = mockModel()
+    const res = await summarizeDocument(store, 'a.md', { model: m.model, rateLimit: { requestsPerMinute: 1000 } })
+    expect(res.failures).toEqual([])
+    expect(res.llmCalls).toBe(5)
   })
 })

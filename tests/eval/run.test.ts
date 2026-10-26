@@ -1,3 +1,4 @@
+import { createRateLimiter } from '../../src/llm/rate-limit.js'
 import { MockLanguageModelV4 } from 'ai/test'
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 import { checkGold, runEval } from '../../src/eval/run.js'
@@ -138,6 +139,28 @@ describe('runEval agent', () => {
     expect(report.summary.overall).toMatchObject({ questions: 3, hits: 1, avgTokens: 105, avgSteps: 1 })
     expect(report.baseline?.summary.overall).toMatchObject({ questions: 3, hits: 2 })
     expect(progress).toHaveLength(3)
+  })
+
+  it('all questions draw from one shared rate limiter', async () => {
+    const model = new MockLanguageModelV4({
+      doGenerate: async () => ({
+        content: [{ type: 'tool-call' as const, toolCallId: 's', toolName: 'select_evidence', input: JSON.stringify({ items: [] }) }],
+        finishReason: { unified: 'tool-calls' as const, raw: undefined },
+        usage: usage(10),
+        warnings: [],
+      }),
+    })
+    let t = 0
+    const inner = createRateLimiter({ requestsPerMinute: 1 }, { now: () => t, sleep: async (ms) => void (t += ms) })
+    const stamps: number[] = []
+    const rateLimiter = {
+      acquire: async (n: number) => {
+        await inner.acquire(n)
+        stamps.push(t)
+      },
+    }
+    await runEval(lib, questions, { mode: 'agent', model, concurrency: 3, baseline: false, rateLimiter })
+    expect(stamps).toEqual([0, 60_000, 120_000])
   })
 
   it('records a failing question as an error miss and keeps going', async () => {

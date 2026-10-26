@@ -25,6 +25,7 @@ export {
   type SummarizeResult,
   type SummaryFailure,
 } from './llm/summarize.js'
+export { createRateLimiter, rateLimiterFor, type RateLimiter, type RateLimitOptions, type RateLimiterClock } from './llm/rate-limit.js'
 export {
   TOOL_CONTRACT,
   AGENT_INSTRUCTIONS,

@@ -1,6 +1,7 @@
 import { MockLanguageModelV4 } from 'ai/test'
 import { afterEach, beforeEach, describe, expect, it } from 'vitest'
 import { openLibrary, type Library } from '../src/library.js'
+import { createRateLimiter } from '../src/llm/rate-limit.js'
 import { retrieve } from '../src/retrieve.js'
 import { walk } from '../src/tree/build.js'
 import { indexedFixtureRoot } from './adapters/helpers.js'
@@ -155,5 +156,43 @@ describe('retrieve', () => {
     const model = scripted([toolStep([call('select_evidence', { items: [] })])])
     await retrieve(lib, 'q', { model, folder: 'docs/api' })
     expect(JSON.stringify(model.doGenerateCalls[0]!.prompt)).toContain('docs/api')
+  })
+
+  it('takes a rate-limit slot before every model step, sized by the request', async () => {
+    const { docPath, node } = firstNode()
+    let t = 0
+    const slots: { at: number; tokens: number }[] = []
+    const inner = createRateLimiter({ requestsPerMinute: 1 }, { now: () => t, sleep: async (ms) => void (t += ms) })
+    const rateLimiter = {
+      acquire: async (tokens: number) => {
+        await inner.acquire(tokens)
+        slots.push({ at: t, tokens })
+      },
+    }
+    const stamps: number[] = []
+    const steps = [
+      toolStep([call('search_documents', { query: 'npm install' })], 100),
+      toolStep([call('select_evidence', { items: [{ doc_path: docPath, node_id: node.nodeId }] })], 50),
+    ]
+    let i = 0
+    const model = new MockLanguageModelV4({
+      doGenerate: async () => {
+        stamps.push(t)
+        return steps[Math.min(i++, steps.length - 1)]!
+      },
+    })
+    const r = await retrieve(lib, 'how to install?', { model, rateLimiter })
+    expect(r.steps).toBe(2)
+    expect(slots).toHaveLength(2)
+    expect(slots[0]!.tokens).toBeGreaterThan(0)
+    expect(slots[1]!.tokens).toBeGreaterThan(slots[0]!.tokens) // the second request carries the first step's messages
+    expect(stamps).toEqual([0, 60_000])
+  })
+
+  it('builds a limiter from the rateLimit option', async () => {
+    const { docPath, node } = firstNode()
+    const model = scripted([toolStep([call('select_evidence', { items: [{ doc_path: docPath, node_id: node.nodeId }] })])])
+    const r = await retrieve(lib, 'q', { model, rateLimit: { requestsPerMinute: 1000, inputTokensPerMinute: 1_000_000 } })
+    expect(r.evidence).toHaveLength(1)
   })
 })

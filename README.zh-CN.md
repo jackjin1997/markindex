@@ -39,6 +39,7 @@ npx -p markindex -p @ai-sdk/anthropic markindex index ./docs --summary-model ant
 ```bash
 markindex index ./docs                                                       # 建立 / 增量更新索引（<root>/.markindex/index.db）
 markindex index ./docs --summary-model anthropic:claude-sonnet-5-5 --estimate # 只估算摘要成本，不调 LLM
+markindex index ./docs --summary-model anthropic:claude-sonnet-5-5 --summary-rpm 50 --summary-tpm 40000 # 摘要限速
 markindex index ./docs --no-setext                                           # 转换器产物里 `---` 是分页符时使用
 markindex index ./docs --ignore 'drafts/' --ignore '*.tmp.md'                # 额外的忽略规则（可重复）
 markindex tree ./docs 指南/安装.md --depth 3                                  # 查看一篇文档的章节树
@@ -46,7 +47,16 @@ markindex search ./docs "离职 补偿" --limit 5 --json                        
 markindex mcp ./docs                                                         # 以 MCP server（stdio，只读）提供给 Agent
 markindex eval ./docs --questions questions.jsonl --mode bm25 --out report.json
 markindex eval ./docs --questions questions.jsonl --mode agent --model anthropic:claude-sonnet-5-5 --out report.json
+markindex eval ./docs --questions questions.jsonl --mode agent --model anthropic:claude-sonnet-5-5 --rpm 50 --tpm 40000
 ```
+
+**限速**：调用默认受并发数（eval 的 `--concurrency`；摘要为 8）和 AI SDK 重试约束，后者已经会遵循 429 / 5xx 响应里的
+`retry-after` / `retry-after-ms`（上限 60 秒）。要压在服务商配额以内，可再加客户端限速：`index` 用 `--summary-rpm` / `--summary-tpm`，
+`eval`（agent 模式）用 `--rpm` / `--tpm`。`rpm` 限制任意滑动 60 秒窗口内的请求数，`tpm` 限制窗口内**估算的输入** token 数；
+同一次运行的所有文档（index）或所有问题（eval）共用一份额度，排队的调用按先后顺序放行。输入 token 按提示词文本估算
+（中日韩字符约 1 个 token 一个字，其余约 4 个字符 1 个 token），请在真实配额下留出余量；输出 token 与工具定义不计入。
+单个请求超过 `tpm` 时仍会放行（独占整个窗口）。库 API 中给 `summarizeDocument` / `indexLibrary({ summary })` 或 `retrieve()`
+传 `rateLimit: { requestsPerMinute, inputTokensPerMinute }`；复用同一个对象即共用额度。
 
 所有命令都接受 `--db <file>` 指定索引文件。索引请放在本地磁盘：写锁依赖硬链接，SQLite 使用 WAL 模式，二者在 exFAT、
 SMB / NFS 共享或其他网络卷上都不可靠；文档放在这类卷上时，文档原地不动，用 `--db` 指向本地路径

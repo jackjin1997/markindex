@@ -1,5 +1,6 @@
 import type { LanguageModel } from 'ai'
 import type { Library } from '../library.js'
+import { rateLimiterFor, type RateLimiter, type RateLimitOptions } from '../llm/rate-limit.js'
 import { retrieve, RETRIEVE_MAX_INPUT_TOKENS, RETRIEVE_MAX_STEPS } from '../retrieve.js'
 import { searchNodes } from '../store/search.js'
 import { approxTokens } from '../text/tokens.js'
@@ -37,6 +38,10 @@ export interface RunEvalOptions {
   maxInputTokens?: number
   /** agent: questions run in parallel (default 1). */
   concurrency?: number
+  /** agent: client-side rate limit shared by every model step of every question (see `RetrieveOptions.rateLimit`). */
+  rateLimit?: RateLimitOptions
+  /** agent: advanced, use this limiter instead of building one from `rateLimit`. */
+  rateLimiter?: RateLimiter
   /** agent: also run the bm25 baseline on the same questions (default true). */
   baseline?: boolean
   /** When set, a matching evidence item only counts as a hit if it spans at most this many lines. */
@@ -48,7 +53,7 @@ export interface EvalReport {
   mode: EvalMode
   model?: string
   createdAt: string
-  options: { topK?: number; maxSteps?: number; maxInputTokens?: number; maxEvidenceLines?: number }
+  options: { topK?: number; maxSteps?: number; maxInputTokens?: number; maxEvidenceLines?: number; rateLimit?: RateLimitOptions }
   summary: Aggregate
   /** agent mode: the bm25 top-k baseline on the same questions. */
   baseline?: { mode: 'bm25'; topK: number; summary: Aggregate }
@@ -132,10 +137,11 @@ function bm25Runner(lib: Library, topK: number, maxEvidenceLines: number | undef
   }
 }
 
-async function agentResult(lib: Library, q: EvalQuestion, opts: RunEvalOptions): Promise<QuestionResult> {
+async function agentResult(lib: Library, q: EvalQuestion, opts: RunEvalOptions, rateLimiter: RateLimiter | undefined): Promise<QuestionResult> {
   try {
     const r = await retrieve(lib, q.question, {
       model: opts.model!,
+      ...(rateLimiter ? { rateLimiter } : {}),
       ...(opts.maxSteps !== undefined ? { maxSteps: opts.maxSteps } : {}),
       ...(opts.maxInputTokens !== undefined ? { maxInputTokens: opts.maxInputTokens } : {}),
     })
@@ -184,13 +190,14 @@ export async function runEval(lib: Library, questions: EvalQuestion[], opts: Run
   }
 
   if (!opts.model) throw new Error('agent mode needs a model (e.g. --model anthropic:claude-sonnet-5-5)')
+  const rateLimiter = opts.rateLimiter ?? rateLimiterFor(opts.rateLimit)
   const results: QuestionResult[] = new Array(total)
   let next = 0
   let done = 0
   const worker = async () => {
     while (next < total) {
       const i = next++
-      results[i] = await agentResult(lib, questions[i]!, opts)
+      results[i] = await agentResult(lib, questions[i]!, opts, rateLimiter)
       opts.onProgress?.(++done, total, results[i]!)
     }
   }
@@ -205,6 +212,7 @@ export async function runEval(lib: Library, questions: EvalQuestion[], opts: Run
       maxSteps: opts.maxSteps ?? RETRIEVE_MAX_STEPS,
       maxInputTokens: opts.maxInputTokens ?? RETRIEVE_MAX_INPUT_TOKENS,
       ...maxLinesOption,
+      ...(opts.rateLimit ? { rateLimit: opts.rateLimit } : {}),
     },
     summary: aggregate(results),
     results,

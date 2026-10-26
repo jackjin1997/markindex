@@ -1,6 +1,7 @@
 import { generateText, stepCountIs, tool, type LanguageModel, type StopCondition, type ToolSet } from 'ai'
 import { z } from 'zod'
 import { createAiSdkTools } from './adapters/ai-sdk.js'
+import { estimateInputTokens, rateLimiterFor, type RateLimiter, type RateLimitOptions } from './llm/rate-limit.js'
 import type { Library } from './library.js'
 import { AGENT_INSTRUCTIONS } from './tools/contract.js'
 import { walk } from './tree/build.js'
@@ -24,6 +25,14 @@ export interface RetrieveOptions {
   maxInputTokens?: number
   /** Restrict the search to this folder (prompt-level instruction; the tools take a `folder` argument). */
   folder?: string
+  /**
+   * Client-side rate limit, applied before every model step (sliding 60 s window). Input tokens per step are
+   * estimated from the instructions and messages sent (tool definitions are not counted). The same options object
+   * shares one budget across calls, e.g. across the questions of an eval run.
+   */
+  rateLimit?: RateLimitOptions
+  /** Advanced: use this limiter instead of building one from `rateLimit` (e.g. to share a budget or inject a clock). */
+  rateLimiter?: RateLimiter
 }
 
 export interface RetrieveResult {
@@ -99,12 +108,23 @@ export async function retrieve(lib: Library, question: string, opts: RetrieveOpt
     ? `\n\nRestrict the search to the folder "${opts.folder}": pass folder="${opts.folder}" to browse/search tools.`
     : ''
 
+  const limiter = opts.rateLimiter ?? rateLimiterFor(opts.rateLimit)
+
   const res = await generateText({
     model: opts.model,
     system: `${AGENT_INSTRUCTIONS}\n\n${EVIDENCE_INSTRUCTIONS}${scope}`,
     prompt: question,
     tools,
     stopWhen: [stepCountIs(maxSteps), overBudget],
+    // prepareStep runs before each model call (AI SDK v7); awaiting here delays the step without any model wrapper.
+    ...(limiter
+      ? {
+          prepareStep: async ({ instructions, messages }) => {
+            await limiter.acquire(estimateInputTokens([instructions, messages]))
+            return {}
+          },
+        }
+      : {}),
   })
 
   type Items = z.infer<typeof selectEvidenceInput>['items']

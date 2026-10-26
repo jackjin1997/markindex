@@ -191,6 +191,8 @@ PageIndex MD 路径的简单 thinning（`min_node_token`）被此机制取代。
 
 - 通过 **Vercel AI SDK**（`ai` 包）调用模型，调用方传入任意 provider 的 model 实例（**Claude 的选择**：与模型厂商解耦，且 AI SDK 的 `tool()` 本身就是适配目标之一）。
 - **摘要**：沿用 PageIndex 规则——节点自身 token 低于阈值直接用原文，否则调 LLM；叶子写 `summary`，非叶子写 `prefixSummary`。支持并发上限、重试、限速；按节点内容 hash 缓存。
+  - **限速**（`rateLimit: { requestsPerMinute?, inputTokensPerMinute? }`，摘要与 `retrieve()` 共用同一实现 `src/llm/rate-limit.ts`）：无依赖的滑动 60 秒窗口，分别限制请求数与**估算输入 token**（`approxTokens(prompt)`；`retrieve()` 对每一步的 instructions + messages 估算，不含工具定义与输出）；等待为异步、严格 FIFO；单个请求大于 TPM 时在窗口内无其他 token 时独占放行，不死锁；时钟与 sleep 可注入以便确定性测试。同一个 `rateLimit` 对象在一次运行内共用一份额度（按对象身份共享：索引时所有文档、eval 时所有问题）。接入点：摘要在每次 `generateText` 前获取额度；`retrieve()` 通过 AI SDK v7 的 `prepareStep` 在每个模型步骤前获取（不需要 `wrapLanguageModel`）。CLI：`index --summary-rpm/--summary-tpm`，`eval --rpm/--tpm`（agent 模式）。
+  - **429 退避**：不额外实现。AI SDK 的 `maxRetries` 对 `APICallError.isRetryable`（408/409/429/≥500）做指数退避，并读取 `retry-after-ms` / `retry-after` 响应头（0–60 秒内采用，超出则回退到指数退避），已满足需求（核对 `ai@7.0.150` 的 `retryWithExponentialBackoffRespectingRetryHeaders`）。限速器位于重试之外：SDK 内部的重试不再占用额度，因此 RPM/TPM 应留出余量。
 - **文档描述**：基于（含摘要的）精简树生成一句话描述。
 - **`retrieve(question, options)`**：系统指令移植 PageIndex 的 `AGENT_INSTRUCTIONS` 与引用规则（只依据读到的原文、不用常识补、引用必须可回溯），把"页"改为"文档路径 + 行区间"；用 `generateText` + 本库工具跑多步循环；返回 `{ evidence: [{ docPath, nodeId, titlePath, startLine, endLine, text }], usage, stopReason }`，**不返回答案文本**。有 `maxSteps` 与 token 预算上限；预算耗尽时返回已收集的证据并标 `stopReason: "budget"`，而非报错（**Claude 的选择**）。本期不做流式。
 - 参考 PageIndex 的成本数据：其 Flash 模式在 1098 页文档上摘要 + 优化约 160 万输入 token。本项目摘要应可完全关闭，并提供索引前的成本预估（节点数、预计调用次数 / token）。
