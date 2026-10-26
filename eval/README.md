@@ -295,9 +295,22 @@ npx tsx eval/claude-code-eval.ts --root eval/corpus --questions eval/questions.j
 
 ### 7.1 Re-run with built-in tools disabled
 
-_Pending: to be filled in from a run of `eval/claude-code-eval.ts` as committed (with `--tools ""`). Report file,
-date, model, the per-language table in the same columns as 7.2, misses, parse failures and cost go here; this run
-supersedes 7.2._
+Report: [`eval/results/agent-claude-code-sonnet-30-strict.json`](results/agent-claude-code-sonnet-30-strict.json),
+run 2026-10-26 with the committed runner exactly as in the command above (`--tools ""` and `--setting-sources ""`, so
+the agent had **only** the five MarkIndex MCP tools), model `sonnet`, same 30 questions as 7.2.
+
+| | n | hit | hit@1 | MRR | mean / median evidence lines | precision | mean turns | cost (USD est.) |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| **agent, all** | 30 | **100%** | 93.3% | 0.967 | 15.0 / 6.5 | **88.6%** | 3.1 | 1.16 |
+| agent, zh | 10 | 100% | 90% | 0.95 | 25.3 / 8 | 90.0% | 2.5 | 0.34 |
+| agent, en | 10 | 100% | 90% | 0.95 | 6.4 / 5 | 81.3% | 4.3 | 0.52 |
+| agent, mixed | 10 | 100% | 100% | 1.00 | 13.2 / 8 | 94.5% | 2.4 | 0.30 |
+| BM25 top-5, same ids | 30 | 73.3% | 60.0% | 0.667 | 208.6 / 112 | 12.8% | 1 | – |
+
+No misses, no parse failures, no errors. With built-in tools gone the agent needed fewer turns than in the prototype
+run (3.1 vs 4.8) and the one prototype miss (en-038) is now a hit. Caveats: n = 30; one model; questions were written
+by an agent from sampled nodes (see §2), and the evidence is the agent's own JSON citation of line ranges it read, so
+this measures *locating* the passage, not answer quality.
 
 ### 7.2 Prototype run, without built-in tools disabled (superseded by 7.1)
 
