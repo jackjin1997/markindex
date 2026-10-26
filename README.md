@@ -233,8 +233,9 @@ the hit rule, the development corpus (329 public documents, ~38 M tokens, Englis
 Chinese laws and encyclopedia articles), baseline results and scale benchmarks are in
 [eval/README.md](eval/README.md).
 
-**Headline (n = 30, Claude Code sonnet over the MCP tools):** 96.7% of questions answered from the gold passage
-with 12 cited lines on average, vs 73.3% and 209 lines for BM25 top-5 on the same questions
+**Headline (n = 30, Claude Code sonnet over the MCP tools, prototype run):** 96.7% of questions answered from the
+gold passage with 12 cited lines on average, vs 73.3% and 209 lines for BM25 top-5 on the same questions. Built-in
+tools were not disabled in that run; a re-run with only the MarkIndex tools is pending
 ([details and caveats](eval/README.md#7-results-agent-mode-via-claude-code)).
 
 ## Development

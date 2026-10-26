@@ -133,8 +133,8 @@ const { evidence } = await retrieve(lib, '员工辞职需要提前多久通知�
 并按语言汇总；`--max-evidence-lines <n>` 要求命中的证据条目不超过 `n` 行。完整格式、命中规则、开发期语料、BM25 基线结果与规模基准见
 [eval/README.md](eval/README.md)。
 
-**核心结果（n = 30，Claude Code sonnet 通过 MCP 工具检索）**：96.7% 的问题命中标准答案段落，平均只引用 12 行；同一批问题上 BM25 top-5
-为 73.3%、209 行（[详情与局限](eval/README.md#7-results-agent-mode-via-claude-code)）。
+**核心结果（n = 30，Claude Code sonnet 通过 MCP 工具检索，原型脚本运行）**：96.7% 的问题命中标准答案段落，平均只引用 12 行；同一批问题上 BM25 top-5
+为 73.3%、209 行。该次运行未禁用内置工具，只开放 MarkIndex 工具的复测待补（[详情与局限](eval/README.md#7-results-agent-mode-via-claude-code)）。
 
 ## 许可
 

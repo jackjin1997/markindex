@@ -5,7 +5,7 @@
  */
 import { resolve } from 'node:path'
 import { parseArgs } from 'node:util'
-import type { EvalQuestion } from '../../src/eval/questions.js'
+import type { EvalQuestion, QuestionIssue } from '../../src/eval/questions.js'
 import {
   aggregate,
   evidenceLineRanges,
@@ -123,10 +123,17 @@ export function mcpConfigFor(cli: string, root: string, db?: string) {
   }
 }
 
-/** `claude -p` arguments: only the markindex MCP server is loaded and only its tools are allowed. */
+/**
+ * `claude -p` arguments. `--tools ""` removes every built-in tool (Read, Grep, Bash, WebFetch, …; MCP tools are not
+ * affected) — `--allowedTools` alone only pre-approves tools and would leave the built-ins available.
+ * `--setting-sources ""` ignores user / project / local settings (permission mode, hooks, extra MCP servers);
+ * authentication still works without them. Only the markindex MCP server is loaded, and its tools are pre-approved.
+ */
 export function buildClaudeArgs(o: { question: string; mcpConfig: string; model: string; maxTurns: number }): string[] {
   return [
     '-p', PROMPT(o.question),
+    '--tools', '',
+    '--setting-sources', '',
     '--mcp-config', o.mcpConfig,
     '--strict-mcp-config',
     '--allowedTools', 'mcp__markindex__*',
@@ -134,6 +141,24 @@ export function buildClaudeArgs(o: { question: string; mcpConfig: string; model:
     '--max-turns', String(o.maxTurns),
     '--model', o.model,
   ]
+}
+
+/**
+ * Answers carry line ranges only (no title path), so a gold with a title_path but no line range cannot be judged
+ * (any range in the document would match). Returns one issue per such question; doc-level golds are fine.
+ */
+export function unsupportedGold(questions: EvalQuestion[]): QuestionIssue[] {
+  const issues: QuestionIssue[] = []
+  for (const q of questions) {
+    const bad = q.gold.find((g) => g.title_path !== undefined && g.start_line === undefined)
+    if (bad) {
+      issues.push({
+        line: q.line,
+        message: `question "${q.id}": gold in "${bad.doc_path}" has a title_path but no line range; the Claude Code runner judges line ranges only (add start_line / end_line)`,
+      })
+    }
+  }
+  return issues
 }
 
 export type ClaudeOutput =

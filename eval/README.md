@@ -242,8 +242,8 @@ Evidence size of those hits (each hit node's own text; top-5 / top-10):
 `avg tokens` is what the search response costs (snippets); `mean evidence tokens` is what reading the hit nodes in
 full would cost. With a size cap on the matching item, hit@5 drops from 80.1% to **78.1%** at
 `--max-evidence-lines 100` and to **58.3%** at 30 lines — many BM25 "hits" are whole multi-hundred-line nodes in
-which the gold paragraph sits. Precision is the number the agent run should improve on most (it does: 85% vs
-13% on the 30 questions of section 7).
+which the gold paragraph sits. Precision is the number the agent run should improve on most (it does in the
+prototype Claude Code run: 85% vs 13% on the 30 questions of section 7.2).
 
 By source (hit@5): zh statutes + wiki (zh) 59/63, zh with English terms 25/28, medical-en 27/32,
 medical cross-lingual 2/4, **finance-en 8/22**, finance cross-lingual 0/2.
@@ -271,8 +271,45 @@ npx markindex eval eval/corpus --questions eval/questions.jsonl --mode agent \
 
 ## 7. Results: agent mode via Claude Code
 
-**Claude Code (sonnet) driving the five MCP tools found the gold passage for 29 of 30 questions (96.7%) and cited
-12 lines per question on average, against 73.3% and 209 lines for BM25 top-5 on the same questions.**
+**Method.** `eval/claude-code-eval.ts` starts one headless `claude -p` session per question with a temporary
+`--mcp-config` that serves the library through `node dist/cli.js mcp <root>`, from an empty working directory. The
+session's only tools are the five MarkIndex tools: `--tools ""` removes every built-in tool (Read, Grep, Bash,
+WebFetch, …), `--strict-mcp-config` loads no other MCP server, `--setting-sources ""` ignores user / project
+settings (permission mode, hooks), and `--allowedTools mcp__markindex__*` pre-approves the MarkIndex tools
+(`--allowedTools` alone only pre-approves; it does not remove other tools). The prompt asks the model to locate the
+passage with the MarkIndex tools only and to reply with nothing but
+`{"evidence":[{"doc_path","start_line","end_line"}]}` (at most 5 items, best first). The answer is scored with the
+same helpers as `markindex eval`: hit = any item overlapping a gold line range (`matchesGold`), evidence lines =
+distinct document lines, precision = share of them inside the gold range (section 3). Golds must have a line range
+or be document-level (title-path-only golds are rejected: the answer carries no title path). Questions: a
+deterministic stratified sample of `eval/questions.jsonl`, every k-th question of each language (`--per-lang 10`).
+Concurrency 3, at most 20 turns and 420 s per question. It uses the Claude Code login (here a Claude subscription),
+not an API key; the cost column is Claude Code's own `total_cost_usd` estimate.
+
+```bash
+npm run build
+npx tsx eval/claude-code-eval.ts --root eval/corpus --questions eval/questions.jsonl --per-lang 10 \
+  --model sonnet --concurrency 3 --bm25 eval/results/bm25-top5.json --out eval/results/agent-claude-code.json
+# --all instead of --per-lang runs every question; --dry-run checks the setup without calling claude
+```
+
+### 7.1 Re-run with built-in tools disabled
+
+_Pending: to be filled in from a run of `eval/claude-code-eval.ts` as committed (with `--tools ""`). Report file,
+date, model, the per-language table in the same columns as 7.2, misses, parse failures and cost go here; this run
+supersedes 7.2._
+
+### 7.2 Prototype run, without built-in tools disabled (superseded by 7.1)
+
+These numbers come from the **prototype script** that `eval/claude-code-eval.ts` was ported from, not from the
+committed runner. It used the same prompt, the same question sample and the same flags except `--tools ""` and
+`--setting-sources ""`: built-in tools (Read, Grep, Bash, WebFetch, …) stayed available to the model, and with the
+user's settings in auto permission mode it cannot be ruled out that some answers used them instead of the MarkIndex
+tools. Its report format also differs from the runner's (`agent` / `bm25SameQuestions` summaries, evidence lines
+summed per item, no precision).
+
+Prototype result: Claude Code (sonnet) found the gold passage for 29 of 30 questions (96.7%), citing 12 lines per
+question on average, against 73.3% and 209 lines for BM25 top-5 on the same questions.
 
 | Set | n | agent hit | BM25 top-5 hit | agent mean / median lines | BM25 mean / median lines | agent precision | BM25 precision | agent mean turns | agent cost |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
@@ -281,28 +318,11 @@ npx markindex eval eval/corpus --questions eval/questions.jsonl --mode agent \
 | zh | 10 | 100% | 90% | 16.3 / 6.5 | 217.3 / 219 | 92.9% | 11.2% | 4.6 | $1.49 |
 | mixed | 10 | 100% | 80% | 11.9 / 6 | 101.5 / 63.5 | 85.5% | 22.9% | 4.5 | $1.47 |
 
-Raw results: [`results/agent-claude-code-sonnet-30.json`](results/agent-claude-code-sonnet-30.json) (per-question
-evidence, turns and cost; BM25 rows are [`results/bm25-top5.json`](results/bm25-top5.json) restricted to the same
-ids). Lines are distinct document lines of the evidence; precision is the share of them inside the gold range
-(section 3). Hit rates, turns and cost are as recorded by the run; evidence lines and precision were re-scored from
-the recorded evidence with `eval/lib/claude-code.ts` (the run itself summed item lengths: mean 12, the same here).
-
-**Method.** `eval/claude-code-eval.ts` starts one headless `claude -p` session per question with a temporary
-`--mcp-config` that serves the library through `node dist/cli.js mcp <root>`, `--strict-mcp-config` (no other MCP
-servers) and `--allowedTools mcp__markindex__*` (no file, shell or web tools), from an empty working directory. The
-prompt asks the model to locate the passage with the MarkIndex tools only and to reply with nothing but
-`{"evidence":[{"doc_path","start_line","end_line"}]}` (at most 5 items, best first). The answer is scored with the
-same hit rule as `markindex eval` (`matchesGold`: any item overlapping the gold range). Questions: a deterministic
-stratified sample of `eval/questions.jsonl`, every k-th question of each language (`--per-lang 10`). Concurrency 3,
-at most 20 turns per question. It uses the Claude Code login (here a Claude subscription), not an API key; the cost
-column is Claude Code's own `total_cost_usd` estimate.
-
-```bash
-npm run build
-npx tsx eval/claude-code-eval.ts --root eval/corpus --questions eval/questions.jsonl --per-lang 10 \
-  --model sonnet --concurrency 3 --bm25 eval/results/bm25-top5.json --out eval/results/agent-claude-code.json
-# --all instead of --per-lang runs every question; --dry-run checks the setup without calling claude
-```
+Raw results: [`results/agent-claude-code-sonnet-30.json`](results/agent-claude-code-sonnet-30.json) (prototype
+format: per-question evidence, turns and cost). BM25 rows are [`results/bm25-top5.json`](results/bm25-top5.json)
+restricted to the same ids. Hit rates, turns and cost are as recorded by the prototype; evidence lines (distinct)
+and precision were re-scored offline from its recorded evidence with `eval/lib/claude-code.ts` (the prototype's
+summed mean was 12 lines, the same).
 
 **The one miss.** `en-038` ("Are birth control pills, injectables and implants safe for HIV-infected women?") has
 its gold in a CDC contraception guideline (`medical-en/cdc/03de94098168d8a4.md` L626-630); the agent cited a WHO
@@ -314,6 +334,7 @@ document, scored as a miss because each question has exactly one gold.
 - n = 30 (10 per language): one question moves a per-language rate by 10 points. Treat the numbers as a strong
   signal, not a measurement; `--all` runs the full 151.
 - One model (Claude Code's `sonnet` alias at the time of the run) and one run; no variance estimate.
+- 7.2 only: built-in tools were not disabled (see above).
 - The questions were written by an agent from the gold text (section 5), which helps keyword search as much as it
   helps the agent; real users' questions will be harder for both.
 - The evidence is the agent's own answer in a fixed JSON format, so a hit also requires following that format (all
@@ -391,10 +412,10 @@ Structure statistics of the indexed corpus (from `results/bench.json`):
 
 | Default | Value | Verdict |
 |---|---|---|
-| `MAX_NODE_TOKENS` | 8 000 | **Keep.** An 8 000-token node is ≤ ~32k chars of English or ~8k CJK chars, so one `get_node_content` part (95k chars) always holds a whole node — lowering it buys no pagination savings and would multiply the finance `chunk` nodes (already 3 041), raising the cost of reading structure. In the Claude Code run (section 7) agents cite ~12 lines per question at 85% precision, so node size does not limit agent precision there. |
+| `MAX_NODE_TOKENS` | 8 000 | **Keep.** An 8 000-token node is ≤ ~32k chars of English or ~8k CJK chars, so one `get_node_content` part (95k chars) always holds a whole node — lowering it buys no pagination savings and would multiply the finance `chunk` nodes (already 3 041), raising the cost of reading structure. In the prototype Claude Code run (section 7.2) agents cite ~12 lines per question at 85% precision, so node size does not limit agent precision there. |
 | `STRUCTURE_FIRST_TOKEN_THRESHOLD` | 15 000 | **Keep.** 15k tokens is ≤ ~60k chars of English or ~15k CJK chars — a document under the threshold fits in one response, so "read it directly" is safe; documents above it do not, so the threshold coincides with the response budget. |
 | `DEFAULT_STRUCTURE_DEPTH` | 2 | **Keep.** Depth 2 shows 3.3× more nodes than depth 1 at the median (31 vs 9) for ~3.3k extra chars; depth 3 adds little because trees are shallow; the p90 response is the same at all depths (wide flat outlines). |
-| `ROUTING_COST_TOKENS` | 150 | **Keep (not calibratable offline).** It only decides merges of small subtrees; with summaries off the true routing cost is a title line (~20 tokens), with summaries it is ~100–200. Its effect is on how many steps the agent needs, which only an agent run measures (Claude Code: 4.8 turns per question, section 7). |
+| `ROUTING_COST_TOKENS` | 150 | **Keep (not calibratable offline).** It only decides merges of small subtrees; with summaries off the true routing cost is a title line (~20 tokens), with summaries it is ~100–200. Its effect is on how many steps the agent needs, which only an agent run measures (prototype Claude Code run: 4.8 turns per question, section 7.2). |
 
 `src/config.ts` is unchanged: the BM25 baseline does not depend on these values (it ranks node own text, which merges
 change only marginally), and the structure statistics support the current values. Re-check with a larger agent run:

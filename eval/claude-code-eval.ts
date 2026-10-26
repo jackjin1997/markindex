@@ -7,8 +7,10 @@
  *     (--per-lang 10 | --all) [--model sonnet] [--concurrency 3] [--max-turns 20] [--timeout-sec 420] \
  *     [--bm25 eval/results/bm25-top5.json] [--db <index.db>] [--cli dist/cli.js] [--dry-run] --out report.json
  *
- * Every question runs in a fresh `claude -p` session restricted to the markindex MCP tools (`--strict-mcp-config`,
- * `--allowedTools mcp__markindex__*`), from an empty temporary working directory. The model must answer with a JSON
+ * Every question runs in a fresh `claude -p` session whose only tools are the markindex MCP tools (`--tools ""`
+ * removes the built-in tools, `--strict-mcp-config` other MCP servers, `--setting-sources ""` user / project
+ * settings; `--allowedTools mcp__markindex__*` pre-approves the rest), from an empty temporary working directory.
+ * Golds must have line ranges or be document-level (title_path-only golds are rejected). The model must answer with a JSON
  * evidence object; it is scored with the same hit rule, evidence size and precision as `markindex eval`.
  * The report is rewritten after every question, so an interrupted run keeps what it has.
  *
@@ -33,11 +35,15 @@ import {
   parseRunnerArgs,
   sampleQuestions,
   scoreAnswer,
+  unsupportedGold,
   type ClaudeCodeReport,
   type ClaudeCodeResult,
   type ClaudeOutput,
   type SessionSummary,
 } from './lib/claude-code.js'
+
+/** After the per-question timeout, SIGTERM, then SIGKILL if the process is still alive after this grace period. */
+const KILL_GRACE_MS = 10_000
 
 const log = (s: string) => process.stderr.write(`${s}\n`)
 const pct = (x: number) => `${(x * 100).toFixed(1)}%`
@@ -65,7 +71,7 @@ async function main() {
   const lib = openLibrary({ root: args.root, dbFile: args.db })
   const work = mkdtempSync(join(tmpdir(), 'markindex-cc-eval-'))
   try {
-    const goldIssues = checkGold(lib, questions)
+    const goldIssues = [...unsupportedGold(questions), ...checkGold(lib, questions)]
     if (goldIssues.length > 0) throw new QuestionFileError(goldIssues, args.questions)
     const bm25 = args.bm25 ? (JSON.parse(readFileSync(args.bm25, 'utf8')) as { options?: { topK?: number }; results: QuestionResult[] }) : undefined
     const mcpConfig = join(work, 'mcp.json')
@@ -86,13 +92,21 @@ async function main() {
         let errOut = ''
         p.stdout.on('data', (d: Buffer) => (out += d))
         p.stderr.on('data', (d: Buffer) => (errOut += d))
-        const timer = setTimeout(() => p.kill('SIGTERM'), args.timeoutMs)
-        p.on('error', (e) => {
+        let killer: NodeJS.Timeout | undefined
+        const timer = setTimeout(() => {
+          p.kill('SIGTERM')
+          killer = setTimeout(() => p.kill('SIGKILL'), KILL_GRACE_MS) // claude ignored SIGTERM
+        }, args.timeoutMs)
+        const stop = () => {
           clearTimeout(timer)
+          clearTimeout(killer)
+        }
+        p.on('error', (e) => {
+          stop()
           done({ ok: false, raw: `could not run claude: ${e.message}` })
         })
         p.on('close', () => {
-          clearTimeout(timer)
+          stop()
           const parsed = parseClaudeOutput(out)
           done(parsed.ok ? parsed : { ok: false, raw: `${parsed.raw}${errOut ? ` | stderr: ${errOut.slice(0, 300)}` : ''}` })
         })

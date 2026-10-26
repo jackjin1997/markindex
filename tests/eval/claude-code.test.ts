@@ -10,6 +10,7 @@ import {
   parseRunnerArgs,
   sampleQuestions,
   scoreAnswer,
+  unsupportedGold,
   type ClaudeCodeResult,
 } from '../../eval/lib/claude-code.js'
 import { parseQuestions, type EvalQuestion } from '../../src/eval/questions.js'
@@ -185,9 +186,25 @@ describe('runner plumbing', () => {
     expect(args[0]).toBe('-p')
     expect(args[1]).toContain('Question: Q?')
     expect(args.slice(2)).toEqual([
+      '--tools', '',
+      '--setting-sources', '',
       '--mcp-config', '/t/mcp.json', '--strict-mcp-config', '--allowedTools', 'mcp__markindex__*',
       '--output-format', 'json', '--max-turns', '20', '--model', 'sonnet',
     ])
+    // --allowedTools only pre-approves; built-in tools must be removed with an empty --tools list
+    expect(args[args.indexOf('--tools') + 1]).toBe('')
+  })
+
+  it('rejects golds that only have a title_path (the answer format carries no title path)', () => {
+    const qs = [
+      q('a', 'en'),
+      q('b', 'en', [{ doc_path: 'x.md' }]),
+      q('c', 'zh', [{ doc_path: 'x.md', start_line: 1, end_line: 2 }, { doc_path: 'y.md', title_path: ['A', 'B'] }]),
+    ]
+    expect(unsupportedGold(qs)).toEqual([
+      { line: 1, message: expect.stringMatching(/question "c": gold in "y\.md" has a title_path but no line range/) },
+    ])
+    expect(unsupportedGold(qs.slice(0, 2))).toEqual([])
   })
 
   it('parses runner arguments', () => {
