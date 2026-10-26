@@ -76,6 +76,24 @@ describe('cli', () => {
     }
   })
 
+  it('index --ignore is repeatable and drops newly ignored files', async () => {
+    const root = mkdtempSync(join(tmpdir(), 'markindex-cli-'))
+    try {
+      const { mkdirSync } = await import('node:fs')
+      mkdirSync(join(root, 'drafts'))
+      mkdirSync(join(root, 'tmp'))
+      writeFileSync(join(root, 'a.md'), '# A\n')
+      writeFileSync(join(root, 'drafts', 'b.md'), '# B\n')
+      writeFileSync(join(root, 'tmp', 'c.md'), '# C\n')
+      expect(JSON.parse((await tsx('index', root, '--json')).stdout).added).toEqual(['a.md', 'drafts/b.md', 'tmp/c.md'])
+      const r = await tsx('index', root, '--ignore', 'drafts/', '--ignore', 'tmp/', '--json')
+      expect(r.code).toBe(0)
+      expect(JSON.parse(r.stdout).removed).toEqual(['drafts/b.md', 'tmp/c.md'])
+    } finally {
+      rmSync(root, { recursive: true, force: true })
+    }
+  })
+
   it('tree prints the outline, --json prunes by depth', async () => {
     const t = await tsx('tree', fixture.root, 'en-guide.md', '--depth', '1')
     expect(t.code).toBe(0)
@@ -215,11 +233,11 @@ describe('stdio smoke (built dist)', () => {
     }
   }, 30_000)
 
-  it('mcp --reindex-on-start honours --no-setext', async () => {
+  it('mcp --reindex-on-start honours --no-setext and --ignore', async () => {
     const f = await indexedFixtureRoot()
     const transport = new StdioClientTransport({
       command: process.execPath,
-      args: [join(repo, 'dist/cli.js'), 'mcp', f.root, '--reindex-on-start', '--no-setext'],
+      args: [join(repo, 'dist/cli.js'), 'mcp', f.root, '--reindex-on-start', '--no-setext', '--ignore', 'zh-*.md'],
       stderr: 'pipe',
     })
     const client = new Client({ name: 'smoke', version: '0' })
@@ -228,6 +246,8 @@ describe('stdio smoke (built dist)', () => {
       await client.listTools()
       const st = openStore(defaultDbFile(f.root), { readonly: true })
       expect(JSON.parse(st.getMeta('index_format')!).setext).toBe(false)
+      expect(st.allDocPaths()).toContain('en-guide.md')
+      expect(st.allDocPaths().filter((p) => p.startsWith('zh-'))).toEqual([])
       st.close()
     } finally {
       await client.close()

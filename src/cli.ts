@@ -33,7 +33,7 @@ function printReport(r: IndexReport) {
 
 async function indexCommand(
   root: string,
-  o: { db?: string; summaryModel?: string; estimate?: boolean; json?: boolean; setext: boolean },
+  o: { db?: string; summaryModel?: string; estimate?: boolean; json?: boolean; setext: boolean; ignore: string[] },
 ) {
   root = resolve(root)
   const model = o.summaryModel && !o.estimate ? await resolveSummaryModel(o.summaryModel) : undefined
@@ -43,6 +43,7 @@ async function indexCommand(
       root,
       store,
       setext: o.setext,
+      ignore: o.ignore,
       summary: model ? { model } : undefined,
       onProgress: o.json ? undefined : (e) => err(`[${e.done}/${e.total}] ${e.status} ${e.path}`),
     })
@@ -109,13 +110,13 @@ function searchCommand(root: string, query: string, o: { db?: string; folder?: s
   }
 }
 
-async function mcpCommand(root: string, o: { db?: string; reindexOnStart?: boolean; setext: boolean }) {
+async function mcpCommand(root: string, o: { db?: string; reindexOnStart?: boolean; setext: boolean; ignore: string[] }) {
   root = resolve(root)
   const dbFile = resolve(o.db ?? defaultDbFile(root))
   if (o.reindexOnStart) {
     const store = openStore(dbFile)
     try {
-      const report = await indexLibrary({ root, store, setext: o.setext })
+      const report = await indexLibrary({ root, store, setext: o.setext, ignore: o.ignore })
       for (const w of report.warnings) err(`markindex: warning ${w.path}: ${w.message} (--no-setext)`)
     } finally {
       store.close()
@@ -129,6 +130,8 @@ async function mcpCommand(root: string, o: { db?: string; reindexOnStart?: boole
   await server.connect(new StdioServerTransport())
   err(`markindex MCP server ready (stdio), library: ${root}`)
 }
+
+const collect = (value: string, previous: string[]) => [...previous, value]
 
 const EVAL_MODES: Record<string, EvalMode> = { bm25: 'bm25', agent: 'agent', tools: 'agent', retrieve: 'agent' }
 
@@ -227,6 +230,7 @@ export function buildProgram(): Command {
     .option('--db <file>', 'index database file (default <root>/.markindex/index.db)')
     .option('--summary-model <provider:model>', 'summarize with an LLM, e.g. anthropic:claude-sonnet-5-5 (needs @ai-sdk/<provider> installed)')
     .option('--estimate', 'index, then print the summarization cost estimate and exit without LLM calls')
+    .option('--ignore <pattern>', 'gitignore-syntax pattern relative to <root> to leave out (repeatable; adds to .gitignore / .markindexignore)', collect, [])
     .option('--no-setext', 'do not treat `---` / `===` under a paragraph as a heading (converter page breaks); rebuilds the index when changed')
     .option('--json', 'machine-readable output')
     .action(indexCommand)
@@ -251,6 +255,7 @@ export function buildProgram(): Command {
     .description('Serve the library to agents as an MCP server over stdio (read-only)')
     .option('--db <file>', 'index database file')
     .option('--reindex-on-start', 'update the index before serving')
+    .option('--ignore <pattern>', 'with --reindex-on-start: pattern to leave out (repeatable, see `index --ignore`)', collect, [])
     .option('--no-setext', 'with --reindex-on-start: index without setext headings (see `index --no-setext`)')
     .action(mcpCommand)
   program

@@ -42,6 +42,11 @@ export interface IndexOptions {
    * Part of the index format fingerprint: changing it re-indexes every document.
    */
   setext?: boolean
+  /**
+   * Extra gitignore-syntax patterns relative to `root` (on top of `.gitignore` files and a root `.markindexignore`).
+   * Documents that become ignored are removed from the index like deleted files.
+   */
+  ignore?: string[]
   onProgress?: (e: IndexEvent) => void
   /** When set, every document (including unchanged ones, so earlier failures are retried) is summarized; omitted = no LLM calls at all. */
   summary?: SummaryOptions
@@ -128,6 +133,7 @@ export async function indexLibrary(opts: IndexOptions): Promise<IndexReport> {
   }
   const unreadableDirs: string[] = []
   const files = scanLibrary(opts.root, {
+    ignore: opts.ignore,
     onError: (dir, error) => {
       unreadableDirs.push(dir)
       report.skipped.push({ path: dir, reason: `directory not readable: ${error.message}` })

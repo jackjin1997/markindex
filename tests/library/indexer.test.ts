@@ -52,6 +52,27 @@ describe('scanLibrary', () => {
     ])
   })
 
+  it('applies ignore patterns and a root .markindexignore on top of .gitignore', () => {
+    put('a.md', '# A\n')
+    put('drafts/d.md', '# D\n')
+    put('sub/drafts/e.md', '# E\n')
+    put('archive/old.md', '# O\n')
+    put('sub/notes.md', '# N\n')
+    put('sub/keep.md', '# K\n')
+    put('.gitignore', 'archive/\n')
+    expect(scanLibrary(root, { ignore: ['drafts/', 'sub/notes.md'] }).map((f) => f.path)).toEqual(['a.md', 'sub/keep.md'])
+    put('.markindexignore', '# comment\n/drafts/\n*.md\n!keep.md\n')
+    expect(scanLibrary(root).map((f) => f.path)).toEqual(['sub/keep.md'])
+    expect(scanLibrary(root, { ignore: ['keep.md'] }).map((f) => f.path)).toEqual([])
+  })
+
+  it('.markindexignore is only read at the root', () => {
+    put('a.md', '# A\n')
+    put('sub/b.md', '# B\n')
+    put('sub/.markindexignore', 'b.md\n')
+    expect(scanLibrary(root).map((f) => f.path)).toEqual(['a.md', 'sub/b.md'])
+  })
+
   it('ignores the .markindex directory', () => {
     put('.markindex/notes.md', '# N\n')
     put('a.md', '# A\n')
@@ -277,6 +298,20 @@ describe('indexLibrary', () => {
       await indexLibrary({ root, store })
       expect((await indexLibrary({ root, store })).warnings).toEqual([])
     })
+  })
+
+  it('ignore option: a newly ignored file is removed from the index on the next run', async () => {
+    put('a.md', '# A\n')
+    put('drafts/b.md', '# B\n')
+    put('c.md', '# C\n')
+    await indexLibrary({ root, store })
+    const r = await indexLibrary({ root, store, ignore: ['drafts/'] })
+    expect(r.removed).toEqual(['drafts/b.md'])
+    expect(r.unchanged).toEqual(['a.md', 'c.md'])
+    put('.markindexignore', 'c.md\n')
+    const r2 = await indexLibrary({ root, store, ignore: ['drafts/'] })
+    expect(r2.removed).toEqual(['c.md'])
+    expect(store.allDocPaths()).toEqual(['a.md'])
   })
 
   it('reports non-utf8 files and continues', async () => {

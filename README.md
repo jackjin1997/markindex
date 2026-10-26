@@ -53,6 +53,7 @@ markindex index ./docs --summary-model anthropic:claude-sonnet-5-5 --estimate   
 markindex index ./docs --summary-model anthropic:claude-sonnet-5-5             # with node summaries
 markindex index ./docs --json                                                   # machine-readable report
 markindex index ./docs --no-setext                                              # converter output with `---` page breaks
+markindex index ./docs --ignore 'drafts/' --ignore '*.tmp.md'                   # extra ignore patterns (repeatable)
 
 # Inspect one document's section tree
 markindex tree ./docs guides/setup.md --depth 3
@@ -78,10 +79,13 @@ point `--db` at a local path (e.g. `--db ~/.cache/markindex/docs.db`).
 
 Indexing is incremental: files are compared by content hash, only new or changed documents are rebuilt (one
 transaction per document), deleted files are removed, and summaries are cached by node content hash. Scanned files
-are `.md` and `.markdown` (not `.mdx`). The ignore list is the library's own `.gitignore` files (at any level under
-the root; global git excludes and `.git/info/exclude` are not read); dot-directories such as `.git` and
-`.markindex` are skipped and symlinks are not followed. One writer at a time (a second `index` fails fast); readers
-such as the MCP server are never blocked. When the index was built by an older MarkIndex version or with different
+are `.md` and `.markdown` (not `.mdx`). Ignored are: paths matched by the library's own `.gitignore` files (at any
+level under the root; global git excludes and `.git/info/exclude` are not read), by an optional `.markindexignore`
+file at the root (same syntax, for rules you don't want in `.gitignore`) and by `--ignore <pattern>` options
+(gitignore syntax, relative to the root, repeatable; `ignore: string[]` in the library API; also accepted by
+`mcp --reindex-on-start`). A document that becomes ignored is removed from the index on the next run.
+Dot-directories such as `.git` and `.markindex` are skipped and symlinks are not followed. One writer at a time (a
+second `index` fails fast); readers such as the MCP server are never blocked. When the index was built by an older MarkIndex version or with different
 tree parameters, the next `index` run rebuilds every document (`full rebuild: …` in the output, `rebuilt` in the
 report); cached summaries are reused.
 

@@ -11,10 +11,14 @@ export interface ScannedFile {
 const EXTENSIONS = ['.md', '.markdown']
 /** Holds the index database. */
 const STORE_DIR = '.markindex'
+/** Optional ignore file at the library root (gitignore syntax), for rules that should not live in .gitignore. */
+export const IGNORE_FILE = '.markindexignore'
 
 export interface ScanOptions {
   /** Called for a subdirectory that cannot be read (e.g. EACCES); it is skipped and the scan continues. */
   onError?: (path: string, error: Error) => void
+  /** Extra gitignore-syntax patterns, relative to `root`, applied on top of `.gitignore` and `.markindexignore`. */
+  ignore?: string[]
 }
 
 interface Rules {
@@ -26,7 +30,7 @@ interface Rules {
 /**
  * Lists `.md` / `.markdown` files under `root` (spec §6), sorted by path.
  * Skips `.mdx`, symbolic links (files and directories), dot-directories (`.git`, `.markindex`, ...)
- * and anything matched by `.gitignore` files at any level. An unreadable root throws; an unreadable
+ * and anything matched by `.gitignore` files at any level, a `.markindexignore` file at the root, or `opts.ignore`. An unreadable root throws; an unreadable
  * subdirectory is skipped and reported through `opts.onError` with its posix path plus a trailing `/`.
  */
 export function scanLibrary(root: string, opts: ScanOptions = {}): ScannedFile[] {
@@ -70,6 +74,13 @@ export function scanLibrary(root: string, opts: ScanOptions = {}): ScannedFile[]
     }
   }
 
-  visit('', [])
+  const rootRules: Rules[] = []
+  try {
+    rootRules.push({ base: '', ig: ignore().add(readFileSync(join(root, IGNORE_FILE), 'utf8')) })
+  } catch {
+    // no .markindexignore
+  }
+  if (opts.ignore && opts.ignore.length > 0) rootRules.push({ base: '', ig: ignore().add(opts.ignore) })
+  visit('', rootRules)
   return out.sort((a, b) => (a.path < b.path ? -1 : a.path > b.path ? 1 : 0))
 }
