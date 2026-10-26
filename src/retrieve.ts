@@ -27,7 +27,8 @@ export interface RetrieveOptions {
   folder?: string
   /**
    * Client-side rate limit, applied before every model step (sliding 60 s window). Input tokens per step are
-   * estimated from the instructions and messages sent (tool definitions are not counted). The same options object
+   * estimated from the instructions and messages sent (tool definitions are not counted). The estimate is
+   * conservative: it counts the JSON-serialized messages, whose syntax overhead exceeds the text actually tokenized. The same options object
    * shares one budget across calls, e.g. across the questions of an eval run.
    */
   rateLimit?: RateLimitOptions

@@ -27,7 +27,7 @@ const WINDOW_MS = 60_000
 const defaultSleep = (ms: number) => new Promise<void>((resolve) => setTimeout(resolve, ms))
 
 function checkLimit(name: string, value: number | undefined) {
-  if (value !== undefined && (!Number.isFinite(value) || value <= 0)) throw new Error(`${name} must be a positive number, got ${value}`)
+  if (value !== undefined && (!Number.isInteger(value) || value < 1)) throw new Error(`${name} must be an integer >= 1, got ${value}`)
 }
 
 /** Sliding-window limiter (requests and estimated input tokens over the last 60 s) with a FIFO queue. No dependencies. */
@@ -36,7 +36,7 @@ export function createRateLimiter(opts: RateLimitOptions, clock: RateLimiterCloc
   checkLimit('inputTokensPerMinute', opts.inputTokensPerMinute)
   const rpm = opts.requestsPerMinute
   const tpm = opts.inputTokensPerMinute
-  const now = clock.now ?? Date.now
+  const now = clock.now ?? (() => performance.now())
   const sleep = clock.sleep ?? defaultSleep
   let log: { t: number; tokens: number }[] = []
   let tail: Promise<void> = Promise.resolve()
@@ -63,7 +63,7 @@ export function createRateLimiter(opts: RateLimitOptions, clock: RateLimiterCloc
       const at = r.t + WINDOW_MS
       if (at > t && fits(at, tokens)) return at - t
     }
-    return 0 // unreachable: the window empties after 60 s
+    throw new Error('rate limiter: no admissible time found (internal error)') // unreachable: the window empties after 60 s
   }
 
   const take = async (tokens: number) => {

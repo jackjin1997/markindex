@@ -108,10 +108,16 @@ describe('createRateLimiter', () => {
     expect(c.sleeps).toEqual([])
   })
 
-  it('rejects non-positive limits', () => {
-    expect(() => createRateLimiter({ requestsPerMinute: 0 })).toThrow(/requestsPerMinute/)
-    expect(() => createRateLimiter({ inputTokensPerMinute: -1 })).toThrow(/inputTokensPerMinute/)
-    expect(() => createRateLimiter({ requestsPerMinute: Number.NaN })).toThrow(/requestsPerMinute/)
+  it('rejects limits that are not positive integers (0.5 must not silently disable limiting)', () => {
+    for (const bad of [0.5, 0, -1, Number.NaN, Number.POSITIVE_INFINITY, 1.5]) {
+      expect(() => createRateLimiter({ requestsPerMinute: bad }), `rpm ${bad}`).toThrow(/requestsPerMinute must be an integer >= 1/)
+      expect(() => createRateLimiter({ inputTokensPerMinute: bad }), `tpm ${bad}`).toThrow(/inputTokensPerMinute must be an integer >= 1/)
+    }
+  })
+
+  it('uses performance.now() as the default clock', async () => {
+    const l = createRateLimiter({ requestsPerMinute: 1000 })
+    await l.acquire(1) // real clock and sleep, no wait needed
   })
 })
 
