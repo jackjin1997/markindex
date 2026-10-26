@@ -1,6 +1,6 @@
 # MarkIndex
 
-[![CI](https://github.com/jackjin1997/markindex/actions/workflows/ci.yml/badge.svg)](https://github.com/jackjin1997/markindex/actions/workflows/ci.yml)
+[![CI](https://github.com/jackjin1997/markindex/actions/workflows/ci.yml/badge.svg)](https://github.com/jackjin1997/markindex/actions/workflows/ci.yml) [![npm](https://img.shields.io/npm/v/markindex)](https://www.npmjs.com/package/markindex)
 
 **面向 Agent 的无向量、结构优先的长篇 Markdown 文档库检索。**
 
@@ -23,18 +23,17 @@ English: [README.md](README.md)
 
 ## 安装
 
-MarkIndex 将以 `markindex` 为包名发布到 npm（0.1.0 尚未上架）。在此之前请从源码安装：
+```bash
+npm install markindex          # 库 + CLI（Node.js >= 22.12）
+npx markindex --help
+```
+
+从源码安装：
 
 ```bash
 git clone https://github.com/jackjin1997/markindex.git && cd markindex
 npm install && npm run build
 node dist/cli.js --help          # 或 `npm link` 得到 `markindex` 命令
-```
-
-发布之后：
-
-```bash
-npm install markindex          # 库 + CLI（Node.js >= 22.12）
 ```
 
 只有用到 LLM 功能（摘要、`retrieve()`、agent 模式评测）时才需要安装对应的 AI SDK provider，例如 `npm install @ai-sdk/anthropic`，并设置 `ANTHROPIC_API_KEY`。
