@@ -1,5 +1,5 @@
 import { type Dirent, readdirSync, readFileSync } from 'node:fs'
-import { join } from 'node:path'
+import { join, resolve, sep } from 'node:path'
 import ignore, { type Ignore } from 'ignore'
 
 export interface ScannedFile {
@@ -25,6 +25,27 @@ interface Rules {
   /** posix path of the directory the .gitignore lives in ('' = root) */
   base: string
   ig: Ignore
+}
+
+/**
+ * Makes `ignore` option patterns usable as root-level gitignore patterns: a leading `./` (also after `!`) is
+ * stripped, since gitignore would never match it. A leading `/` stays a gitignore anchor (`/drafts/` = only the
+ * top-level folder). Throws for filesystem paths — a pattern starting with the library root's absolute path, a
+ * drive letter or `~` — and for `../` patterns, which can never match inside the library.
+ */
+export function normalizeIgnorePatterns(root: string, patterns: string[]): string[] {
+  const absRoot = resolve(root).split(sep).join('/')
+  return patterns.map((raw) => {
+    const neg = raw.startsWith('!') ? '!' : ''
+    let p = raw.slice(neg.length) // backslashes are gitignore escapes, so they are left alone
+    if (p.startsWith(`${absRoot}/`) || p === absRoot || /^[A-Za-z]:[\\/]/.test(p) || p.startsWith('~')) {
+      const rel = p.startsWith(`${absRoot}/`) ? p.slice(absRoot.length + 1) : '<path relative to the library root>'
+      throw new Error(`ignore pattern "${raw}" is an absolute path; patterns are gitignore syntax relative to the library root, e.g. "${neg}${rel}"`)
+    }
+    while (p.startsWith('./')) p = p.slice(2)
+    if (p === '..' || p.startsWith('../')) throw new Error(`ignore pattern "${raw}" points outside the library root`)
+    return neg + p
+  })
 }
 
 /**
@@ -80,7 +101,7 @@ export function scanLibrary(root: string, opts: ScanOptions = {}): ScannedFile[]
   } catch {
     // no .markindexignore
   }
-  if (opts.ignore && opts.ignore.length > 0) rootRules.push({ base: '', ig: ignore().add(opts.ignore) })
+  if (opts.ignore && opts.ignore.length > 0) rootRules.push({ base: '', ig: ignore().add(normalizeIgnorePatterns(root, opts.ignore)) })
   visit('', rootRules)
   return out.sort((a, b) => (a.path < b.path ? -1 : a.path > b.path ? 1 : 0))
 }

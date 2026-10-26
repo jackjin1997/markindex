@@ -121,7 +121,11 @@ async function mcpCommand(root: string, o: { db?: string; reindexOnStart?: boole
     } finally {
       store.close()
     }
-  } else if (!existsSync(dbFile)) {
+  } else {
+    const unused = [...(o.ignore.length > 0 ? ['--ignore'] : []), ...(o.setext === undefined ? [] : [o.setext ? '--setext' : '--no-setext'])]
+    if (unused.length > 0) err(`markindex: ${unused.join(', ')} only apply when indexing; ignored without --reindex-on-start`)
+  }
+  if (!o.reindexOnStart && !existsSync(dbFile)) {
     throw new Error(`No MarkIndex index at ${dbFile}. Run \`markindex index ${root}\` first (or pass --reindex-on-start).`)
   }
   const lib = openLibrary({ root, dbFile })

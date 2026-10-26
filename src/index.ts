@@ -6,10 +6,11 @@ export * from './parse/markdown.js'
 export * from './tree/build.js'
 export * from './tree/optimize.js'
 export { openStore, StoreLockedError, type Store } from './store/db.js'
-export { scanLibrary, type ScanOptions, type ScannedFile } from './library/scan.js'
+export { scanLibrary, normalizeIgnorePatterns, IGNORE_FILE, type ScanOptions, type ScannedFile } from './library/scan.js'
 export {
   indexLibrary,
   indexFormat,
+  SUSPECT_SETEXT_CHARS,
   type IndexFormatOptions,
   type IndexEvent,
   type IndexOptions,

@@ -261,6 +261,24 @@ describe('stdio smoke (built dist)', () => {
     }
   }, 30_000)
 
+  it('mcp without --reindex-on-start warns that index-only flags are ignored', async () => {
+    const transport = new StdioClientTransport({
+      command: process.execPath,
+      args: [join(repo, 'dist/cli.js'), 'mcp', fixture.root, '--ignore', 'x/', '--no-setext'],
+      stderr: 'pipe',
+    })
+    let stderr = ''
+    transport.stderr?.on('data', (d: Buffer) => (stderr += d))
+    const client = new Client({ name: 'smoke', version: '0' })
+    await client.connect(transport)
+    try {
+      await client.listTools()
+      expect(stderr).toMatch(/--ignore, --no-setext .*ignored without --reindex-on-start/)
+    } finally {
+      await client.close()
+    }
+  }, 30_000)
+
   it('--reindex-on-start builds a missing index before serving', async () => {
     const f = await indexedFixtureRoot()
     rmSync(join(f.root, '.markindex'), { recursive: true, force: true })

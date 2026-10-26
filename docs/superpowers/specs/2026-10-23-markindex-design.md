@@ -155,7 +155,7 @@ PageIndex MD 路径的简单 thinning（`min_node_token`）被此机制取代。
 - 增量：`index(root)` 扫描目录，按文件内容 hash 判断新增 / 修改 / 删除；只重建变化的文档。摘要按**节点内容 hash** 缓存，文档局部修改时未变节点的摘要复用。库内记录索引格式指纹（代码常量 `INDEX_FORMAT_VERSION` + 影响树形的建树参数：`maxNodeTokens`、`routingCost`、token 计数器标识、`setext`（仅关闭时记录，旧索引不因此重建；未显式传入时沿用已存值））；指纹与本次不同时全部文档视为已修改并重建（报告带 `rebuilt`），摘要经内容 hash 缓存复用。
 - 写入以文档为单位走事务，索引中途失败不留下半篇文档。
 - 并发（**Claude 的选择**）：SQLite 开 WAL；同一时刻只允许一个写进程（文件锁），读不受限。MCP server 默认只读服务一个已建好的库，提供 `--reindex-on-start` 选项；文件监听自动增量不在本期范围。
-- 扫描范围（**Claude 的选择**）：`.md`、`.markdown`；不含 `.mdx`（JSX 语法需另一套解析）；遵守各级 `.gitignore`、库根的可选 `.markindexignore` 与可配置的 ignore 规则（`ignore: string[]` / CLI 可重复的 `--ignore <pattern>`，gitignore 语法、相对库根）；新变为被忽略的文档在下次索引时按删除处理；不跟随符号链接。文档重命名按"删除 + 新增"处理，摘要因按节点内容 hash 缓存而自动复用。
+- 扫描范围（**Claude 的选择**）：`.md`、`.markdown`；不含 `.mdx`（JSX 语法需另一套解析）；遵守各级 `.gitignore`、库根的可选 `.markindexignore` 与可配置的 ignore 规则（`ignore: string[]` / CLI 可重复的 `--ignore <pattern>`，gitignore 语法、相对库根）；各来源只增加排除（`.markindexignore` / `--ignore` 中的 `!` 不能重新包含 `.gitignore` 已排除的路径）；选项中的模式去掉开头的 `./`，绝对文件系统路径与 `../` 报错；新变为被忽略的文档在下次索引时按删除处理；不跟随符号链接。文档重命名按"删除 + 新增"处理，摘要因按节点内容 hash 缓存而自动复用。
 
 ## 7. 关键词检索（BM25，中英混排）
 

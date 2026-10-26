@@ -64,6 +64,26 @@ describe('scanLibrary', () => {
     put('.markindexignore', '# comment\n/drafts/\n*.md\n!keep.md\n')
     expect(scanLibrary(root).map((f) => f.path)).toEqual(['sub/keep.md'])
     expect(scanLibrary(root, { ignore: ['keep.md'] }).map((f) => f.path)).toEqual([])
+    put('.markindexignore', '!archive/\n!archive/old.md\n')
+    expect(scanLibrary(root).map((f) => f.path)).not.toContain('archive/old.md') // cannot re-include .gitignore'd paths
+  })
+
+  it('ignore patterns: a leading ./ is stripped, absolute filesystem paths and ../ are rejected', () => {
+    put('a.md', '# A\n')
+    put('drafts/d.md', '# D\n')
+    put('sub/x.md', '# X\n')
+    expect(scanLibrary(root, { ignore: ['./drafts/', '!./sub/x.md', './sub/'] }).map((f) => f.path)).toEqual(['a.md'])
+    expect(scanLibrary(root, { ignore: ['/drafts/'] }).map((f) => f.path)).toEqual(['a.md', 'sub/x.md']) // gitignore anchor
+    expect(() => scanLibrary(root, { ignore: [join(root, 'drafts')] })).toThrow(/ignore pattern ".*drafts" is an absolute path.*"drafts"/)
+    expect(() => scanLibrary(root, { ignore: ['C:\\docs\\drafts'] })).toThrow(/absolute path/)
+    expect(() => scanLibrary(root, { ignore: ['../other/'] })).toThrow(/outside the library root/)
+  })
+
+  it('the ignore-file name and setext threshold are part of the public API', async () => {
+    const api = await import('../../src/index.js')
+    expect(api.IGNORE_FILE).toBe('.markindexignore')
+    expect(api.SUSPECT_SETEXT_CHARS).toBe(120)
+    expect(typeof api.normalizeIgnorePatterns).toBe('function')
   })
 
   it('.markindexignore is only read at the root', () => {

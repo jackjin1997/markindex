@@ -56,7 +56,9 @@ SMB / NFS 共享或其他网络卷上都不可靠；文档放在这类卷上时�
 `.markdown`（不含 `.mdx`）；以下路径会被忽略：文档库自身各级目录下 `.gitignore` 文件匹配的路径（不读取全局 git excludes 与
 `.git/info/exclude`）、库根目录下可选的 `.markindexignore` 文件（语法相同，用于不想写进 `.gitignore` 的规则）匹配的路径，
 以及 `--ignore <pattern>` 选项（gitignore 语法，相对库根，可重复；库 API 为 `ignore: string[]`；`mcp --reindex-on-start` 同样支持）
-匹配的路径。变为被忽略的文档会在下一次运行时从索引中删除。跳过 `.git`、`.markindex` 等点目录，不跟随符号链接。同一时间只允许一个写进程（第二个 `index`
+匹配的路径（开头的 `./` 会被去掉，开头的 `/` 与 gitignore 一样表示锚定到库根，绝对文件系统路径或 `../` 会报错）。
+这几类来源只会增加排除：`.markindexignore` 或 `--ignore` 中的 `!` 规则不能重新包含被 `.gitignore` 排除的路径。
+变为被忽略的文档会在下一次运行时从索引中删除。跳过 `.git`、`.markindex` 等点目录，不跟随符号链接。同一时间只允许一个写进程（第二个 `index`
 立即失败），MCP server 等读取方不受阻塞。索引由旧版本 MarkIndex 或不同的建树参数生成时，下一次 `index` 会重建全部文档
 （输出 `full rebuild: …`，报告中带 `rebuilt`），已缓存的摘要会被复用。
 

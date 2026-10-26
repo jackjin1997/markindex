@@ -85,7 +85,10 @@ are `.md` and `.markdown` (not `.mdx`). Ignored are: paths matched by the librar
 level under the root; global git excludes and `.git/info/exclude` are not read), by an optional `.markindexignore`
 file at the root (same syntax, for rules you don't want in `.gitignore`) and by `--ignore <pattern>` options
 (gitignore syntax, relative to the root, repeatable; `ignore: string[]` in the library API; also accepted by
-`mcp --reindex-on-start`). A document that becomes ignored is removed from the index on the next run.
+`mcp --reindex-on-start`; a leading `./` is dropped, a leading `/` anchors at the root as in gitignore, and
+absolute filesystem paths or `../` are rejected). The sources only add exclusions: a `!` rule in `.markindexignore`
+or `--ignore` cannot re-include a path that a `.gitignore` excludes. A document that becomes ignored is removed
+from the index on the next run.
 Dot-directories such as `.git` and `.markindex` are skipped and symlinks are not followed. One writer at a time (a
 second `index` fails fast); readers such as the MCP server are never blocked. When the index was built by an older MarkIndex version or with different
 tree parameters, the next `index` run rebuilds every document (`full rebuild: …` in the output, `rebuilt` in the
