@@ -20,6 +20,23 @@ describe('parseMarkdown', () => {
     expect(parseMarkdown('Sub\n---\n').headings[0]).toMatchObject({ level: 2, line: 1, endLine: 2 })
   })
 
+  it('setext: false parses --- as a thematic break and === as paragraph text', () => {
+    const src = 'Page one text\nmore page text\n---\nPage two\n===\n\n# Real\n'
+    expect(parseMarkdown(src).headings.map((h) => [h.level, h.line, h.endLine])).toEqual([
+      [2, 1, 3],
+      [1, 4, 5],
+      [1, 7, 7],
+    ])
+    const off = parseMarkdown(src, { setext: false })
+    expect(off.headings).toEqual([{ title: 'Real', level: 1, line: 7, endLine: 7 }])
+    expect(off.blocks).toEqual([
+      { type: 'paragraph', startLine: 1, endLine: 2 },
+      { type: 'thematicBreak', startLine: 3, endLine: 3 },
+      { type: 'paragraph', startLine: 4, endLine: 5 },
+    ])
+    expect(parseMarkdown(src, { setext: true }).headings).toEqual(parseMarkdown(src).headings)
+  })
+
   it('ignores # inside fenced (``` and ~~~), indented code, blockquote, list, html', () => {
     const src = [
       '```', '# in backtick fence', '```',

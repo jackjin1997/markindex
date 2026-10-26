@@ -158,6 +158,7 @@ describe('indexLibrary', () => {
       unchanged: ['en-guide.md', 'zh/headless.md', 'zh/manual.md'],
       skipped: [],
       summaryErrors: [],
+      warnings: [],
     })
     expect(spy).not.toHaveBeenCalled()
     expect(store.getDoc('en-guide.md')).toEqual(before)
@@ -194,6 +195,19 @@ describe('indexLibrary', () => {
       const next = await indexLibrary({ root, store, ...opts })
       expect(next.rebuilt).toBeUndefined()
       expect(next.unchanged).toEqual(all)
+    })
+
+    it('turning setext off re-indexes every document and changes the parse', async () => {
+      seed()
+      put('pages.md', 'Page one line one\npage one line two\n---\nPage two\n')
+      await indexLibrary({ root, store })
+      expect(store.getTree('pages.md')![0]!.title).toBe('Page one line one\npage one line two')
+      const r = await indexLibrary({ root, store, setext: false })
+      expect(r.rebuilt?.reason).toMatch(/index format changed/)
+      expect(r.updated).toEqual([...all.slice(0, 1), 'pages.md', ...all.slice(1)])
+      expect(store.getTree('pages.md')!.map((n) => n.title)).toEqual(['pages'])
+      expect(JSON.parse(indexFormat({ setext: false })).setext).toBe(false)
+      expect((await indexLibrary({ root, store, setext: false })).rebuilt).toBeUndefined()
     })
 
     it('a stale or missing stored format (older code) triggers a full rebuild', async () => {
@@ -235,11 +249,34 @@ describe('indexLibrary', () => {
       unchanged: [],
       skipped: [],
       summaryErrors: [],
+      warnings: [],
     })
     expect(store.allDocPaths()).toEqual(['en-guide.md', 'new.md', 'zh/manual-v2.md'])
     expect(store.getDoc('en-guide.md')!.title).toBe('Rewritten')
     expect(store.getLines('en-guide.md', 1, 10)).toEqual(['# Rewritten', '', 'new body', ''])
     expect(store.getTree('zh/headless.md')).toBeUndefined()
+  })
+
+  describe('page-break setext warning', () => {
+    const longLine = 'word '.repeat(30).trim() // 149 chars
+    it('warns about setext h2 headings that are long or span several lines, only while setext is on', async () => {
+      put('pdf.md', `# Report\n\nFirst page line\nstill first page\n---\n${longLine}\n---\nshort\n---\n`)
+      put('clean.md', '# Title\n\nSub\n---\n\nTop\n===\n')
+      const r = await indexLibrary({ root, store })
+      expect(r.warnings).toEqual([
+        { path: 'pdf.md', message: expect.stringMatching(/^2 setext h2 heading\(s\) .*page break.*line 3/) },
+      ])
+      unlinkSync(join(root, 'pdf.md'))
+      put('pdf2.md', `${longLine}\n---\n`)
+      const off = await indexLibrary({ root, store, setext: false })
+      expect(off.warnings).toEqual([])
+    })
+
+    it('an incremental run without parsed files has no warnings', async () => {
+      put('a.md', '# A\n')
+      await indexLibrary({ root, store })
+      expect((await indexLibrary({ root, store })).warnings).toEqual([])
+    })
   })
 
   it('reports non-utf8 files and continues', async () => {

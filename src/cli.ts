@@ -25,9 +25,16 @@ function printReport(r: IndexReport) {
   out(`added ${r.added.length}, updated ${r.updated.length}, removed ${r.removed.length}, unchanged ${r.unchanged.length}, skipped ${r.skipped.length}`)
   for (const s of r.skipped) out(`  skipped ${s.path}: ${s.reason}`)
   for (const s of r.summaryErrors) out(`  summary failed ${s.path}${s.nodeId ? ` [${s.nodeId}]` : ''}: ${s.message}`)
+  for (const w of r.warnings) out(`  warning ${w.path}: ${w.message}`)
+  if (r.warnings.some((w) => w.message.includes('setext'))) {
+    out('  hint: if your converter writes `---` page breaks, re-run with --no-setext (rebuilds the whole index)')
+  }
 }
 
-async function indexCommand(root: string, o: { db?: string; summaryModel?: string; estimate?: boolean; json?: boolean }) {
+async function indexCommand(
+  root: string,
+  o: { db?: string; summaryModel?: string; estimate?: boolean; json?: boolean; setext: boolean },
+) {
   root = resolve(root)
   const model = o.summaryModel && !o.estimate ? await resolveSummaryModel(o.summaryModel) : undefined
   const store = openStore(resolve(o.db ?? defaultDbFile(root)))
@@ -35,6 +42,7 @@ async function indexCommand(root: string, o: { db?: string; summaryModel?: strin
     const report = await indexLibrary({
       root,
       store,
+      setext: o.setext,
       summary: model ? { model } : undefined,
       onProgress: o.json ? undefined : (e) => err(`[${e.done}/${e.total}] ${e.status} ${e.path}`),
     })
@@ -101,13 +109,14 @@ function searchCommand(root: string, query: string, o: { db?: string; folder?: s
   }
 }
 
-async function mcpCommand(root: string, o: { db?: string; reindexOnStart?: boolean }) {
+async function mcpCommand(root: string, o: { db?: string; reindexOnStart?: boolean; setext: boolean }) {
   root = resolve(root)
   const dbFile = resolve(o.db ?? defaultDbFile(root))
   if (o.reindexOnStart) {
     const store = openStore(dbFile)
     try {
-      await indexLibrary({ root, store })
+      const report = await indexLibrary({ root, store, setext: o.setext })
+      for (const w of report.warnings) err(`markindex: warning ${w.path}: ${w.message} (--no-setext)`)
     } finally {
       store.close()
     }
@@ -218,6 +227,7 @@ export function buildProgram(): Command {
     .option('--db <file>', 'index database file (default <root>/.markindex/index.db)')
     .option('--summary-model <provider:model>', 'summarize with an LLM, e.g. anthropic:claude-sonnet-5-5 (needs @ai-sdk/<provider> installed)')
     .option('--estimate', 'index, then print the summarization cost estimate and exit without LLM calls')
+    .option('--no-setext', 'do not treat `---` / `===` under a paragraph as a heading (converter page breaks); rebuilds the index when changed')
     .option('--json', 'machine-readable output')
     .action(indexCommand)
   program
@@ -241,6 +251,7 @@ export function buildProgram(): Command {
     .description('Serve the library to agents as an MCP server over stdio (read-only)')
     .option('--db <file>', 'index database file')
     .option('--reindex-on-start', 'update the index before serving')
+    .option('--no-setext', 'with --reindex-on-start: index without setext headings (see `index --no-setext`)')
     .action(mcpCommand)
   program
     .command('eval <root>')

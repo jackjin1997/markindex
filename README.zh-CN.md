@@ -37,6 +37,7 @@ npx -p markindex -p @ai-sdk/anthropic markindex index ./docs --summary-model ant
 ```bash
 markindex index ./docs                                                       # 建立 / 增量更新索引（<root>/.markindex/index.db）
 markindex index ./docs --summary-model anthropic:claude-sonnet-5-5 --estimate # 只估算摘要成本，不调 LLM
+markindex index ./docs --no-setext                                           # 转换器产物里 `---` 是分页符时使用
 markindex tree ./docs 指南/安装.md --depth 3                                  # 查看一篇文档的章节树
 markindex search ./docs "离职 补偿" --limit 5 --json                          # 关键词检索
 markindex mcp ./docs                                                         # 以 MCP server（stdio，只读）提供给 Agent
@@ -53,6 +54,11 @@ SMB / NFS 共享或其他网络卷上都不可靠；文档放在这类卷上时�
 `.git/info/exclude`），跳过 `.git`、`.markindex` 等点目录，不跟随符号链接。同一时间只允许一个写进程（第二个 `index`
 立即失败），MCP server 等读取方不受阻塞。索引由旧版本 MarkIndex 或不同的建树参数生成时，下一次 `index` 会重建全部文档
 （输出 `full rebuild: …`，报告中带 `rebuilt`），已缓存的摘要会被复用。
+
+**PDF / HTML 转换产物的分页符**：转换器常在一页最后一段之后紧跟一行 `---` 作为分页，CommonMark 会把它读成 setext 标题，
+整段文字变成二级标题。`index` 发现文字跨多行或超过 120 个字符的 setext 二级标题时会给出警告（标准输出 `warning <path>: …`，
+JSON 报告中的 `warnings`）。这类文档库请加 `--no-setext`（`mcp --reindex-on-start` 同样支持；库 API 为 `setext: false`）：
+`---` 按分隔线、`===` 按普通文字处理。该设置属于索引格式，改变它会重建整个索引。
 
 ## 库用法
 

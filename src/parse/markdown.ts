@@ -37,11 +37,22 @@ export interface ParsedDoc {
 
 const FM: ('yaml' | 'toml')[] = ['yaml', 'toml']
 
-export function parseMarkdown(src: string): ParsedDoc {
+export interface ParseOptions {
+  /**
+   * Recognize setext headings (`Title` underlined with `===` / `---`), as CommonMark does. Default true.
+   * Set false for converter output (PDF/HTML → Markdown) that marks page breaks with a bare `---` line right after
+   * a paragraph: `---` then parses as a thematic break and `===` lines as paragraph text.
+   */
+  setext?: boolean
+}
+
+const NO_SETEXT = { disable: { null: ['setextUnderline'] } }
+
+export function parseMarkdown(src: string, opts: ParseOptions = {}): ParsedDoc {
   const text = src.charCodeAt(0) === 0xfeff ? src.slice(1) : src
   const lines = text.split(/\r\n|\r|\n/)
   const root = fromMarkdown(text, {
-    extensions: [gfm(), frontmatter(FM)],
+    extensions: opts.setext === false ? [gfm(), frontmatter(FM), NO_SETEXT] : [gfm(), frontmatter(FM)],
     mdastExtensions: [gfmFromMarkdown(), frontmatterFromMarkdown(FM)],
   })
 

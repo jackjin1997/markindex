@@ -37,6 +37,11 @@ export interface IndexOptions {
   maxNodeTokens?: number
   /** optimizeTree `routingCost` (default ROUTING_COST_TOKENS). */
   routingCost?: number
+  /**
+   * parseMarkdown `setext` (default true). Set false for converter output whose bare `---` lines are page breaks.
+   * Part of the index format fingerprint: changing it re-indexes every document.
+   */
+  setext?: boolean
   onProgress?: (e: IndexEvent) => void
   /** When set, every document (including unchanged ones, so earlier failures are retried) is summarized; omitted = no LLM calls at all. */
   summary?: SummaryOptions
@@ -56,9 +61,14 @@ export interface IndexReport {
   summaryErrors: { path: string; nodeId: string | null; message: string }[]
   /** Present when the stored index format differed from this run's, so every document was re-indexed. */
   rebuilt?: { reason: string }
+  /**
+   * Non-fatal findings about documents parsed in this run (unchanged documents are not re-checked). Currently:
+   * setext h2 headings that look like page breaks (see `SUSPECT_SETEXT_CHARS`), reported only while `setext` is on.
+   */
+  warnings: { path: string; message: string }[]
 }
 
-export type IndexFormatOptions = Pick<IndexOptions, 'countTokens' | 'tokenCounterId' | 'maxNodeTokens' | 'routingCost'>
+export type IndexFormatOptions = Pick<IndexOptions, 'countTokens' | 'tokenCounterId' | 'maxNodeTokens' | 'routingCost' | 'setext'>
 
 const FORMAT_KEY = 'index_format'
 
@@ -70,7 +80,27 @@ export function indexFormat(opts: IndexFormatOptions): string {
     maxNodeTokens: opts.maxNodeTokens ?? MAX_NODE_TOKENS,
     routingCost: opts.routingCost ?? ROUTING_COST_TOKENS,
     tokens: custom ? `custom${opts.tokenCounterId === undefined ? '' : `:${opts.tokenCounterId}`}` : 'approx',
+    // only recorded when off, so indexes built before the option existed (setext always on) are not rebuilt
+    ...(opts.setext === false ? { setext: false } : {}),
   })
+}
+
+/** A setext h2 whose heading text is longer than this many code points (or spans several lines) looks like a page. */
+export const SUSPECT_SETEXT_CHARS = 120
+
+/**
+ * Setext h2 headings that are probably a converter's page break (`---` right under a paragraph) rather than a real
+ * heading: heading text over SUSPECT_SETEXT_CHARS code points or spread over more than one source line.
+ */
+function suspectSetextHeadings(doc: ParsedDoc): number[] {
+  const out: number[] = []
+  for (const h of doc.headings) {
+    if (h.level !== 2 || h.endLine === h.line) continue // ATX headings are one line; setext ones span text + underline
+    const textLines = h.endLine - h.line
+    const raw = doc.lines.slice(h.line - 1, h.endLine - 1).join('\n').trim()
+    if (textLines > 1 || Array.from(raw).length > SUSPECT_SETEXT_CHARS) out.push(h.line)
+  }
+  return out
 }
 
 const utf8 = new TextDecoder('utf-8', { fatal: true })
@@ -87,7 +117,7 @@ const utf8 = new TextDecoder('utf-8', { fatal: true })
 export async function indexLibrary(opts: IndexOptions): Promise<IndexReport> {
   const { store } = opts
   const countTokens = opts.countTokens ?? approxTokens
-  const report: IndexReport = { added: [], updated: [], removed: [], unchanged: [], skipped: [], summaryErrors: [] }
+  const report: IndexReport = { added: [], updated: [], removed: [], unchanged: [], skipped: [], summaryErrors: [], warnings: [] }
   const format = indexFormat(opts)
   const storedFormat = store.getMeta(FORMAT_KEY)
   const rebuild = storedFormat !== format && store.allDocPaths().length > 0
@@ -136,7 +166,8 @@ export async function indexLibrary(opts: IndexOptions): Promise<IndexReport> {
       } catch {
         throw new Error('not valid utf-8 text')
       }
-      const doc = parseMarkdown(src)
+      const doc = parseMarkdown(src, { setext: opts.setext })
+      const suspects = opts.setext === false ? [] : suspectSetextHeadings(doc)
       const title = docTitle(doc, file.path)
       const tree = optimizeTree(buildTree(doc, { fileTitle: title, countTokens }), doc, {
         countTokens,
@@ -154,6 +185,15 @@ export async function indexLibrary(opts: IndexOptions): Promise<IndexReport> {
         indexedAt: new Date().toISOString(),
       }
       store.replaceDoc(record, tree, doc.lines)
+      if (suspects.length > 0) {
+        report.warnings.push({
+          path: file.path,
+          message:
+            `${suspects.length} setext h2 heading(s) look like page breaks (a \`---\` line under a paragraph that spans ` +
+            `several lines or exceeds ${SUSPECT_SETEXT_CHARS} characters), first at line ${suspects[0]}; if \`---\` ` +
+            'marks page breaks in this file, index with setext headings off',
+        })
+      }
       const status = existing ? 'updated' : 'added'
       report[status].push(file.path)
       emit(file.path, status)

@@ -55,6 +55,27 @@ describe('cli', () => {
     }
   })
 
+  it('index warns about page-break setext headings and --no-setext turns them off', async () => {
+    const root = mkdtempSync(join(tmpdir(), 'markindex-cli-'))
+    try {
+      writeFileSync(join(root, 'pdf.md'), 'Page one line one\npage one line two\n---\nPage two\n')
+      const on = await tsx('index', root)
+      expect(on.code).toBe(0)
+      expect(on.stdout).toMatch(/warning pdf\.md: 1 setext h2 heading\(s\) look like page breaks/)
+      expect(on.stdout).toContain('--no-setext')
+      const off = await tsx('index', root, '--no-setext', '--json')
+      const report = JSON.parse(off.stdout)
+      expect(report.rebuilt.reason).toMatch(/index format changed/)
+      expect(report.warnings).toEqual([])
+      const st = openStore(defaultDbFile(root))
+      expect(JSON.parse(st.getMeta('index_format')!).setext).toBe(false)
+      expect(st.getTree('pdf.md')!.map((n) => n.title)).toEqual(['pdf'])
+      st.close()
+    } finally {
+      rmSync(root, { recursive: true, force: true })
+    }
+  })
+
   it('tree prints the outline, --json prunes by depth', async () => {
     const t = await tsx('tree', fixture.root, 'en-guide.md', '--depth', '1')
     expect(t.code).toBe(0)
@@ -191,6 +212,26 @@ describe('stdio smoke (built dist)', () => {
       expect((res.content as { text: string }[])[0]!.text).toContain('en-guide.md')
     } finally {
       await client.close()
+    }
+  }, 30_000)
+
+  it('mcp --reindex-on-start honours --no-setext', async () => {
+    const f = await indexedFixtureRoot()
+    const transport = new StdioClientTransport({
+      command: process.execPath,
+      args: [join(repo, 'dist/cli.js'), 'mcp', f.root, '--reindex-on-start', '--no-setext'],
+      stderr: 'pipe',
+    })
+    const client = new Client({ name: 'smoke', version: '0' })
+    await client.connect(transport)
+    try {
+      await client.listTools()
+      const st = openStore(defaultDbFile(f.root), { readonly: true })
+      expect(JSON.parse(st.getMeta('index_format')!).setext).toBe(false)
+      st.close()
+    } finally {
+      await client.close()
+      f.cleanup()
     }
   }, 30_000)
 

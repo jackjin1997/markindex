@@ -172,13 +172,15 @@ What the corpus covers on purpose: English filings with poor structure (converte
 running page headers), well-structured English guidelines (deep `#` outlines), Chinese statutes (编/章/节/条),
 Chinese encyclopedia articles with dense English terms, and very large single documents (up to ~414k tokens).
 
-Preprocessing (in `eval/lib/headings.ts`, unit-tested, never changes the line count):
+Preprocessing (in `eval/lib/headings.ts`, unit-tested, never changes the line count; it predates the
+`--no-setext` option, which now handles the `---` page breaks without rewriting files — the heading promotion is
+still needed):
 
 - **SEC 10-K.** The converted Markdown has almost no `#` headings (e.g. AAPL 2016–2025: zero) and separates pages
   with bare `---` lines while having no blank lines between paragraphs. Per CommonMark every `---` therefore turns
   the whole preceding page into one giant setext heading (before the fix, over half of the finance nodes had
   multi-kilobyte titles). The fetch script rewrites bare `---` lines to `***` (still a thematic break, never a
-  setext underline) and promotes `PART I` / `Item 1A.` lines (plain or single-cell table rows) to h1 / h2, skipping
+  setext underline; `markindex index --no-setext` has the same effect on unmodified files) and promotes `PART I` / `Item 1A.` lines (plain or single-cell table rows) to h1 / h2, skipping
   running page headers that repeat the current PART / Item. Filings that already had ≥ 5 headings keep them; some
   (e.g. CYH, BX) use a repeated `##### Table of Contents` page header, which is left as is — realistic noise.
 - **epfl-llm/guidelines.** Sampled first: 239 of the first 255 records (94%) had ≥ 3 `#` headings; over the full file
@@ -340,8 +342,9 @@ expanding outlines, try `DEFAULT_STRUCTURE_DEPTH` 3.
   byte-identical results after re-indexing).
 - **Converter artifacts can create giant setext headings.** Markdown converted from HTML/PDF often has no blank
   lines between paragraphs and uses `---` as a page separator; CommonMark then makes each page a level-2 setext
-  heading whose title is the whole page. MarkIndex follows CommonMark (spec §5.1), so such files get huge titles.
-  The dev corpus is pre-processed (section 4); if your internal documents come from a converter, check
-  `markindex tree` for very long titles. A parser option to ignore multi-line setext headings would be a
-  reasonable follow-up.
+  heading whose title is the whole page. MarkIndex follows CommonMark by default (spec §5.1), so such files get
+  huge titles. **Now handled:** `markindex index` warns about setext h2 headings whose text spans several lines or
+  exceeds 120 characters, and `--no-setext` turns setext headings off for the library (`---` becomes a thematic
+  break; part of the index format, so changing it rebuilds). If your internal documents come from a converter and
+  `index` prints such warnings, index them with `--no-setext`.
 - **Memory for very large table-heavy files** — see section 7.

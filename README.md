@@ -52,6 +52,7 @@ markindex index ./docs
 markindex index ./docs --summary-model anthropic:claude-sonnet-5-5 --estimate   # cost estimate, no LLM calls
 markindex index ./docs --summary-model anthropic:claude-sonnet-5-5             # with node summaries
 markindex index ./docs --json                                                   # machine-readable report
+markindex index ./docs --no-setext                                              # converter output with `---` page breaks
 
 # Inspect one document's section tree
 markindex tree ./docs guides/setup.md --depth 3
@@ -84,6 +85,13 @@ such as the MCP server are never blocked. When the index was built by an older M
 tree parameters, the next `index` run rebuilds every document (`full rebuild: …` in the output, `rebuilt` in the
 report); cached summaries are reused.
 
+**Page breaks from PDF / HTML converters.** Converters often emit a bare `---` line right after a page's last
+paragraph. CommonMark reads that as a setext heading, so the whole paragraph becomes a level-2 heading. `index`
+warns when it sees setext h2 headings whose text spans several lines or exceeds 120 characters (`warning <path>: …`
+on stdout, `warnings` in the JSON report). For such libraries pass `--no-setext` (also on
+`mcp --reindex-on-start`; `setext: false` in the library API): `---` then is a thematic break and `===` plain text.
+The setting is part of the index format, so changing it rebuilds the index.
+
 ## Library usage
 
 ```ts
@@ -91,7 +99,7 @@ import { openLibrary } from 'markindex'
 
 // Index (or update) a folder, then open it read-only for agents.
 const writer = openLibrary({ root: './docs', readonly: false })
-await writer.index() // { added, updated, removed, unchanged, skipped, summaryErrors }
+await writer.index() // { added, updated, removed, unchanged, skipped, summaryErrors, warnings }
 writer.close()
 
 const lib = openLibrary({ root: './docs' })
