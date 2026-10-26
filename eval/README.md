@@ -337,7 +337,7 @@ restricted to the same ids. Hit rates, turns and cost are as recorded by the pro
 and precision were re-scored offline from its recorded evidence with `eval/lib/claude-code.ts` (the prototype's
 summed mean was 12 lines, the same).
 
-**The one miss.** `en-038` ("Are birth control pills, injectables and implants safe for HIV-infected women?") has
+**The one miss (prototype run, 7.2; a hit in 7.1).** `en-038` ("Are birth control pills, injectables and implants safe for HIV-infected women?") has
 its gold in a CDC contraception guideline (`medical-en/cdc/03de94098168d8a4.md` L626-630); the agent cited a WHO
 guideline on the same topic (`medical-en/who/4964f2f77481efa6.md`) instead — a plausible answer from a similar
 document, scored as a miss because each question has exactly one gold.
