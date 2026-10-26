@@ -230,6 +230,10 @@ the hit rule, the development corpus (329 public documents, ~38 M tokens, Englis
 Chinese laws and encyclopedia articles), baseline results and scale benchmarks are in
 [eval/README.md](eval/README.md).
 
+**Headline (n = 30, Claude Code sonnet over the MCP tools):** 96.7% of questions answered from the gold passage
+with 12 cited lines on average, vs 73.3% and 209 lines for BM25 top-5 on the same questions
+([details and caveats](eval/README.md#7-results-agent-mode-via-claude-code)).
+
 ## Development
 
 ```bash
@@ -239,6 +243,8 @@ npm run typecheck
 npm run build
 npx tsx eval/fetch-corpus.ts   # download the evaluation corpus (eval/corpus, not committed)
 npx tsx eval/bench.ts          # scale benchmark
+npx tsx eval/claude-code-eval.ts --root eval/corpus --questions eval/questions.jsonl --per-lang 10 --out cc.json
+                               # agent eval with Claude Code over MCP (spends Claude usage; eval/README.md §7)
 ```
 
 ## License

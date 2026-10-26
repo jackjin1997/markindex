@@ -10,9 +10,10 @@ you can run it on any library — in particular on your own internal documents f
 - [4. Development corpus](#4-development-corpus)
 - [5. Development question set](#5-development-question-set)
 - [6. Results: BM25 baseline](#6-results-bm25-baseline)
-- [7. Scale benchmark and proposed thresholds](#7-scale-benchmark-and-proposed-thresholds)
-- [8. Calibration of the defaults](#8-calibration-of-the-defaults)
-- [9. Issues found while evaluating](#9-issues-found-while-evaluating)
+- [7. Results: agent mode via Claude Code](#7-results-agent-mode-via-claude-code)
+- [8. Scale benchmark and proposed thresholds](#8-scale-benchmark-and-proposed-thresholds)
+- [9. Calibration of the defaults](#9-calibration-of-the-defaults)
+- [10. Issues found while evaluating](#10-issues-found-while-evaluating)
 
 ## 1. Running an evaluation on your own documents
 
@@ -32,6 +33,11 @@ npm install @ai-sdk/anthropic            # or @ai-sdk/openai, @ai-sdk/google, ..
 export ANTHROPIC_API_KEY=...
 npx markindex eval /path/to/docs --questions questions.jsonl --mode agent \
   --model anthropic:claude-sonnet-5-5 --concurrency 4 --out agent.json
+
+# 5. or: Claude Code as the agent, over the MCP server — uses your Claude Code login, no API key (section 7)
+npm run build   # in a clone of this repository
+npx tsx eval/claude-code-eval.ts --root /path/to/docs --questions questions.jsonl --per-lang 10 \
+  --model sonnet --bm25 bm25.json --out agent-claude-code.json
 ```
 
 Agent mode prints the agent table followed by the BM25 baseline on the same questions (skip it with
@@ -198,7 +204,8 @@ still needed):
 How they were made (no LLM API was available, and no money was spent): candidate nodes were sampled with
 `eval/sample-nodes.ts` (leaf nodes with 120–4 000 own tokens, at most 2 per document) using fixed seeds —
 `--group finance-en --seed 101`, `--group medical-en --seed 102`, `--group zh --seed 103`,
-`--group zh --latin --seed 104` — and the questions were written by hand from each node's text, gold = that node's
+`--group zh --latin --seed 104` — and the questions were written one by one from each node's text by the coding agent that built MarkIndex (no
+generation API or script), gold = that node's
 line range. Questions paraphrase rather than copy the node title. Mixed questions are Chinese questions containing
 English terms: 28 on Chinese documents that use those terms (e.g. `PaO2/FiO2`, `HFNC`, `BNT162b2`, `FOMC`) and 6
 cross-lingual ones on English documents (drug names, `PCSK9`, `JAK1`, SEC file numbers).
@@ -235,7 +242,8 @@ Evidence size of those hits (each hit node's own text; top-5 / top-10):
 `avg tokens` is what the search response costs (snippets); `mean evidence tokens` is what reading the hit nodes in
 full would cost. With a size cap on the matching item, hit@5 drops from 80.1% to **78.1%** at
 `--max-evidence-lines 100` and to **58.3%** at 30 lines — many BM25 "hits" are whole multi-hundred-line nodes in
-which the gold paragraph sits. Precision is the number the agent run should improve on most.
+which the gold paragraph sits. Precision is the number the agent run should improve on most (it does: 85% vs
+13% on the 30 questions of section 7).
 
 By source (hit@5): zh statutes + wiki (zh) 59/63, zh with English terms 25/28, medical-en 27/32,
 medical cross-lingual 2/4, **finance-en 8/22**, finance cross-lingual 0/2.
@@ -250,9 +258,10 @@ Observations:
   run should show.
 - Cross-lingual questions (Chinese question, English document) only match through the English terms they contain.
 
-**Agent mode was not run here**: no LLM API key is available in the development environment. It is implemented
-and tested offline with a mock model (`tests/eval/run.test.ts`, `tests/cli.test.ts`). To produce the agent numbers
-on this corpus:
+The built-in agent mode (`markindex eval --mode agent`, the AI SDK `retrieve()` loop) has not been run on this
+corpus: no LLM API key is available in the development environment, so it is tested offline with a mock model
+(`tests/eval/run.test.ts`, `tests/cli.test.ts`). Agent results with Claude Code driving the MCP tools are in
+section 7. To produce the built-in agent numbers:
 
 ```bash
 npx tsx eval/fetch-corpus.ts && npx markindex index eval/corpus
@@ -260,7 +269,58 @@ npx markindex eval eval/corpus --questions eval/questions.jsonl --mode agent \
   --model anthropic:claude-sonnet-5-5 --concurrency 4 --out eval/results/agent.json
 ```
 
-## 7. Scale benchmark and proposed thresholds
+## 7. Results: agent mode via Claude Code
+
+**Claude Code (sonnet) driving the five MCP tools found the gold passage for 29 of 30 questions (96.7%) and cited
+12 lines per question on average, against 73.3% and 209 lines for BM25 top-5 on the same questions.**
+
+| Set | n | agent hit | BM25 top-5 hit | agent mean / median lines | BM25 mean / median lines | agent precision | BM25 precision | agent mean turns | agent cost |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| overall | 30 | **96.7%** | 73.3% | **12.4 / 6** | 208.6 / 112 | **84.6%** | 12.8% | 4.8 | $4.59 |
+| en | 10 | 90% | 50% | 8.9 / 3.5 | 306.9 / 128 | 75.3% | 4.4% | 5.4 | $1.63 |
+| zh | 10 | 100% | 90% | 16.3 / 6.5 | 217.3 / 219 | 92.9% | 11.2% | 4.6 | $1.49 |
+| mixed | 10 | 100% | 80% | 11.9 / 6 | 101.5 / 63.5 | 85.5% | 22.9% | 4.5 | $1.47 |
+
+Raw results: [`results/agent-claude-code-sonnet-30.json`](results/agent-claude-code-sonnet-30.json) (per-question
+evidence, turns and cost; BM25 rows are [`results/bm25-top5.json`](results/bm25-top5.json) restricted to the same
+ids). Lines are distinct document lines of the evidence; precision is the share of them inside the gold range
+(section 3). Hit rates, turns and cost are as recorded by the run; evidence lines and precision were re-scored from
+the recorded evidence with `eval/lib/claude-code.ts` (the run itself summed item lengths: mean 12, the same here).
+
+**Method.** `eval/claude-code-eval.ts` starts one headless `claude -p` session per question with a temporary
+`--mcp-config` that serves the library through `node dist/cli.js mcp <root>`, `--strict-mcp-config` (no other MCP
+servers) and `--allowedTools mcp__markindex__*` (no file, shell or web tools), from an empty working directory. The
+prompt asks the model to locate the passage with the MarkIndex tools only and to reply with nothing but
+`{"evidence":[{"doc_path","start_line","end_line"}]}` (at most 5 items, best first). The answer is scored with the
+same hit rule as `markindex eval` (`matchesGold`: any item overlapping the gold range). Questions: a deterministic
+stratified sample of `eval/questions.jsonl`, every k-th question of each language (`--per-lang 10`). Concurrency 3,
+at most 20 turns per question. It uses the Claude Code login (here a Claude subscription), not an API key; the cost
+column is Claude Code's own `total_cost_usd` estimate.
+
+```bash
+npm run build
+npx tsx eval/claude-code-eval.ts --root eval/corpus --questions eval/questions.jsonl --per-lang 10 \
+  --model sonnet --concurrency 3 --bm25 eval/results/bm25-top5.json --out eval/results/agent-claude-code.json
+# --all instead of --per-lang runs every question; --dry-run checks the setup without calling claude
+```
+
+**The one miss.** `en-038` ("Are birth control pills, injectables and implants safe for HIV-infected women?") has
+its gold in a CDC contraception guideline (`medical-en/cdc/03de94098168d8a4.md` L626-630); the agent cited a WHO
+guideline on the same topic (`medical-en/who/4964f2f77481efa6.md`) instead — a plausible answer from a similar
+document, scored as a miss because each question has exactly one gold.
+
+**Caveats.**
+
+- n = 30 (10 per language): one question moves a per-language rate by 10 points. Treat the numbers as a strong
+  signal, not a measurement; `--all` runs the full 151.
+- One model (Claude Code's `sonnet` alias at the time of the run) and one run; no variance estimate.
+- The questions were written by an agent from the gold text (section 5), which helps keyword search as much as it
+  helps the agent; real users' questions will be harder for both.
+- The evidence is the agent's own answer in a fixed JSON format, so a hit also requires following that format (all
+  30 answers parsed). This is not the built-in `retrieve()` path (`--mode agent`), whose evidence comes from a
+  `select_evidence` tool call and whose numbers are not measured here.
+
+## 8. Scale benchmark and proposed thresholds
 
 `npx tsx eval/bench.ts` on the full corpus (329 docs, 38.1 M approx. tokens, summaries OFF), Apple M4, 32 GB,
 Node 24.5, macOS. Raw numbers: [`results/bench.json`](results/bench.json).
@@ -308,7 +368,7 @@ The memory and DB-size limits are the tight ones. If they matter for your deploy
 (a) contentless FTS tables (the FTS content columns duplicate the stored lines: ~300 MB here) and (b) streaming
 the parse of very large files; neither is done in this version.
 
-## 8. Calibration of the defaults
+## 9. Calibration of the defaults
 
 Structure statistics of the indexed corpus (from `results/bench.json`):
 
@@ -320,17 +380,17 @@ Structure statistics of the indexed corpus (from `results/bench.json`):
 
 | Default | Value | Verdict |
 |---|---|---|
-| `MAX_NODE_TOKENS` | 8 000 | **Keep.** An 8 000-token node is ≤ ~32k chars of English or ~8k CJK chars, so one `get_node_content` part (95k chars) always holds a whole node — lowering it buys no pagination savings and would multiply the finance `chunk` nodes (already 3 041), raising the cost of reading structure. Whether a smaller limit improves agent precision needs the agent run. |
+| `MAX_NODE_TOKENS` | 8 000 | **Keep.** An 8 000-token node is ≤ ~32k chars of English or ~8k CJK chars, so one `get_node_content` part (95k chars) always holds a whole node — lowering it buys no pagination savings and would multiply the finance `chunk` nodes (already 3 041), raising the cost of reading structure. In the Claude Code run (section 7) agents cite ~12 lines per question at 85% precision, so node size does not limit agent precision there. |
 | `STRUCTURE_FIRST_TOKEN_THRESHOLD` | 15 000 | **Keep.** 15k tokens is ≤ ~60k chars of English or ~15k CJK chars — a document under the threshold fits in one response, so "read it directly" is safe; documents above it do not, so the threshold coincides with the response budget. |
 | `DEFAULT_STRUCTURE_DEPTH` | 2 | **Keep.** Depth 2 shows 3.3× more nodes than depth 1 at the median (31 vs 9) for ~3.3k extra chars; depth 3 adds little because trees are shallow; the p90 response is the same at all depths (wide flat outlines). |
-| `ROUTING_COST_TOKENS` | 150 | **Keep (not calibratable offline).** It only decides merges of small subtrees; with summaries off the true routing cost is a title line (~20 tokens), with summaries it is ~100–200. Its effect is on how many steps the agent needs, which only the agent run measures. |
+| `ROUTING_COST_TOKENS` | 150 | **Keep (not calibratable offline).** It only decides merges of small subtrees; with summaries off the true routing cost is a title line (~20 tokens), with summaries it is ~100–200. Its effect is on how many steps the agent needs, which only an agent run measures (Claude Code: 4.8 turns per question, section 7). |
 
 `src/config.ts` is unchanged: the BM25 baseline does not depend on these values (it ranks node own text, which merges
-change only marginally), and the structure statistics support the current values. Re-check after the agent run:
+change only marginally), and the structure statistics support the current values. Re-check with a larger agent run:
 if agent precision suffers from long `chunk` reads, try `MAX_NODE_TOKENS` 4 000; if agents spend many steps
 expanding outlines, try `DEFAULT_STRUCTURE_DEPTH` 3.
 
-## 9. Issues found while evaluating
+## 10. Issues found while evaluating
 
 - **Fixed: duplicate node ids** (5 guidelines failed to index with `UNIQUE constraint failed: nodes.doc_path,
   nodes.node_id`). Two same-title sections (e.g. two `# Conclusions`) with same-title children (`## Harms`)
@@ -347,4 +407,4 @@ expanding outlines, try `DEFAULT_STRUCTURE_DEPTH` 3.
   exceeds 120 characters, and `--no-setext` turns setext headings off for the library (`---` becomes a thematic
   break; part of the index format, so changing it rebuilds). If your internal documents come from a converter and
   `index` prints such warnings, index them with `--no-setext`.
-- **Memory for very large table-heavy files** — see section 7.
+- **Memory for very large table-heavy files** — see section 8.

@@ -1,0 +1,682 @@
+{
+  "model": "sonnet",
+  "perLang": 10,
+  "agent": {
+    "all": {
+      "n": 30,
+      "hitRate": 0.967,
+      "meanEvidenceLines": 12,
+      "meanTurns": 4.8,
+      "totalCostUsd": 4.59
+    },
+    "en": {
+      "n": 10,
+      "hitRate": 0.9,
+      "meanEvidenceLines": 9,
+      "meanTurns": 5.4,
+      "totalCostUsd": 1.63
+    },
+    "zh": {
+      "n": 10,
+      "hitRate": 1,
+      "meanEvidenceLines": 16,
+      "meanTurns": 4.6,
+      "totalCostUsd": 1.49
+    },
+    "mixed": {
+      "n": 10,
+      "hitRate": 1,
+      "meanEvidenceLines": 12,
+      "meanTurns": 4.5,
+      "totalCostUsd": 1.47
+    }
+  },
+  "bm25SameQuestions": {
+    "all": {
+      "n": 30,
+      "hitRate": 0.733,
+      "meanEvidenceLines": 209
+    },
+    "en": {
+      "n": 10,
+      "hitRate": 0.5,
+      "meanEvidenceLines": 307
+    },
+    "zh": {
+      "n": 10,
+      "hitRate": 0.9,
+      "meanEvidenceLines": 217
+    },
+    "mixed": {
+      "n": 10,
+      "hitRate": 0.8,
+      "meanEvidenceLines": 102
+    }
+  },
+  "results": [
+    {
+      "id": "en-011",
+      "lang": "en",
+      "hit": true,
+      "rank": 1,
+      "evidence": [
+        {
+          "docPath": "finance-en/JPM/10-K_2018.md",
+          "titlePath": [],
+          "startLine": 209,
+          "endLine": 210
+        }
+      ],
+      "evidenceLines": 2,
+      "turns": 4,
+      "costUsd": 0.15017540000000001,
+      "inputTokens": 8,
+      "parseOk": true
+    },
+    {
+      "id": "en-001",
+      "lang": "en",
+      "hit": true,
+      "rank": 1,
+      "evidence": [
+        {
+          "docPath": "finance-en/CYH/10-K_2017.md",
+          "titlePath": [],
+          "startLine": 599,
+          "endLine": 601
+        }
+      ],
+      "evidenceLines": 3,
+      "turns": 5,
+      "costUsd": 0.16598049999999998,
+      "inputTokens": 10,
+      "parseOk": true
+    },
+    {
+      "id": "en-006",
+      "lang": "en",
+      "hit": true,
+      "rank": 1,
+      "evidence": [
+        {
+          "docPath": "finance-en/AFL/10-K_2024.md",
+          "titlePath": [],
+          "startLine": 551,
+          "endLine": 552
+        }
+      ],
+      "evidenceLines": 2,
+      "turns": 4,
+      "costUsd": 0.1427424,
+      "inputTokens": 8,
+      "parseOk": true
+    },
+    {
+      "id": "en-022",
+      "lang": "en",
+      "hit": true,
+      "rank": 1,
+      "evidence": [
+        {
+          "docPath": "finance-en/META/10-K_2020.md",
+          "titlePath": [],
+          "startLine": 2226,
+          "endLine": 2241
+        }
+      ],
+      "evidenceLines": 16,
+      "turns": 6,
+      "costUsd": 0.1848015,
+      "inputTokens": 12,
+      "parseOk": true
+    },
+    {
+      "id": "en-017",
+      "lang": "en",
+      "hit": true,
+      "rank": 1,
+      "evidence": [
+        {
+          "docPath": "finance-en/CYH/10-K_2019.md",
+          "titlePath": [],
+          "startLine": 2766,
+          "endLine": 2772
+        },
+        {
+          "docPath": "finance-en/CYH/10-K_2019.md",
+          "titlePath": [],
+          "startLine": 4219,
+          "endLine": 4226
+        }
+      ],
+      "evidenceLines": 15,
+      "turns": 8,
+      "costUsd": 0.19178399999999998,
+      "inputTokens": 12,
+      "parseOk": true
+    },
+    {
+      "id": "en-028",
+      "lang": "en",
+      "hit": true,
+      "rank": 1,
+      "evidence": [
+        {
+          "docPath": "medical-en/icrc/d43b425b5762e4e0.md",
+          "titlePath": [],
+          "startLine": 2567,
+          "endLine": 2568
+        }
+      ],
+      "evidenceLines": 2,
+      "turns": 4,
+      "costUsd": 0.13715850000000002,
+      "inputTokens": 8,
+      "parseOk": true
+    },
+    {
+      "id": "en-033",
+      "lang": "en",
+      "hit": true,
+      "rank": 1,
+      "evidence": [
+        {
+          "docPath": "medical-en/nice/d83fee855b5ee3df.md",
+          "titlePath": [],
+          "startLine": 1021,
+          "endLine": 1024
+        }
+      ],
+      "evidenceLines": 4,
+      "turns": 5,
+      "costUsd": 0.13673249999999998,
+      "inputTokens": 8,
+      "parseOk": true
+    },
+    {
+      "id": "en-038",
+      "lang": "en",
+      "hit": false,
+      "rank": null,
+      "evidence": [
+        {
+          "docPath": "medical-en/who/4964f2f77481efa6.md",
+          "titlePath": [],
+          "startLine": 28,
+          "endLine": 49
+        },
+        {
+          "docPath": "medical-en/who/4964f2f77481efa6.md",
+          "titlePath": [],
+          "startLine": 336,
+          "endLine": 345
+        },
+        {
+          "docPath": "medical-en/cdc/362198c7a125c6aa.md",
+          "titlePath": [],
+          "startLine": 1018,
+          "endLine": 1021
+        }
+      ],
+      "evidenceLines": 36,
+      "turns": 6,
+      "costUsd": 0.152608,
+      "inputTokens": 8,
+      "parseOk": true
+    },
+    {
+      "id": "en-044",
+      "lang": "en",
+      "hit": true,
+      "rank": 1,
+      "evidence": [
+        {
+          "docPath": "medical-en/cdc/11201a428de3597e.md",
+          "titlePath": [],
+          "startLine": 292,
+          "endLine": 293
+        },
+        {
+          "docPath": "medical-en/cdc/11201a428de3597e.md",
+          "titlePath": [],
+          "startLine": 296,
+          "endLine": 298
+        },
+        {
+          "docPath": "medical-en/cdc/11201a428de3597e.md",
+          "titlePath": [],
+          "startLine": 301,
+          "endLine": 301
+        }
+      ],
+      "evidenceLines": 6,
+      "turns": 4,
+      "costUsd": 0.1443875,
+      "inputTokens": 8,
+      "parseOk": true
+    },
+    {
+      "id": "zh-001",
+      "lang": "zh",
+      "hit": true,
+      "rank": 1,
+      "evidence": [
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国商业银行法.md",
+          "titlePath": [],
+          "startLine": 301,
+          "endLine": 301
+        }
+      ],
+      "evidenceLines": 1,
+      "turns": 4,
+      "costUsd": 0.1453579,
+      "inputTokens": 8,
+      "parseOk": true
+    },
+    {
+      "id": "zh-007",
+      "lang": "zh",
+      "hit": true,
+      "rank": 1,
+      "evidence": [
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国民事诉讼法.md",
+          "titlePath": [],
+          "startLine": 200,
+          "endLine": 223
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国刑事诉讼法.md",
+          "titlePath": [],
+          "startLine": 107,
+          "endLine": 132
+        }
+      ],
+      "evidenceLines": 50,
+      "turns": 5,
+      "costUsd": 0.1529241,
+      "inputTokens": 8,
+      "parseOk": true
+    },
+    {
+      "id": "en-049",
+      "lang": "en",
+      "hit": true,
+      "rank": 1,
+      "evidence": [
+        {
+          "docPath": "medical-en/cdc/c74fc13b17b03caf.md",
+          "titlePath": [],
+          "startLine": 72,
+          "endLine": 74
+        }
+      ],
+      "evidenceLines": 3,
+      "turns": 8,
+      "costUsd": 0.22591920000000001,
+      "inputTokens": 16,
+      "parseOk": true
+    },
+    {
+      "id": "zh-013",
+      "lang": "zh",
+      "hit": true,
+      "rank": 1,
+      "evidence": [
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国民事诉讼法.md",
+          "titlePath": [],
+          "startLine": 1098,
+          "endLine": 1102
+        }
+      ],
+      "evidenceLines": 5,
+      "turns": 4,
+      "costUsd": 0.14755580000000001,
+      "inputTokens": 8,
+      "parseOk": true
+    },
+    {
+      "id": "zh-019",
+      "lang": "zh",
+      "hit": true,
+      "rank": 1,
+      "evidence": [
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国个人信息保护法.md",
+          "titlePath": [],
+          "startLine": 60,
+          "endLine": 76
+        }
+      ],
+      "evidenceLines": 17,
+      "turns": 5,
+      "costUsd": 0.1544646,
+      "inputTokens": 8,
+      "parseOk": true
+    },
+    {
+      "id": "zh-026",
+      "lang": "zh",
+      "hit": true,
+      "rank": 1,
+      "evidence": [
+        {
+          "docPath": "zh/law-wikisource/新型冠状病毒肺炎诊疗方案（试行第八版）.md",
+          "titlePath": [],
+          "startLine": 54,
+          "endLine": 60
+        }
+      ],
+      "evidenceLines": 7,
+      "turns": 6,
+      "costUsd": 0.17022840000000003,
+      "inputTokens": 10,
+      "parseOk": true
+    },
+    {
+      "id": "zh-032",
+      "lang": "zh",
+      "hit": true,
+      "rank": 1,
+      "evidence": [
+        {
+          "docPath": "zh/wikipedia/高血压.md",
+          "titlePath": [],
+          "startLine": 75,
+          "endLine": 80
+        }
+      ],
+      "evidenceLines": 6,
+      "turns": 4,
+      "costUsd": 0.13615660000000002,
+      "inputTokens": 6,
+      "parseOk": true
+    },
+    {
+      "id": "zh-045",
+      "lang": "zh",
+      "hit": true,
+      "rank": 1,
+      "evidence": [
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国招标投标法.md",
+          "titlePath": [],
+          "startLine": 267,
+          "endLine": 267
+        }
+      ],
+      "evidenceLines": 1,
+      "turns": 5,
+      "costUsd": 0.14639459999999999,
+      "inputTokens": 8,
+      "parseOk": true
+    },
+    {
+      "id": "zh-038",
+      "lang": "zh",
+      "hit": true,
+      "rank": 1,
+      "evidence": [
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国刑法.md",
+          "titlePath": [],
+          "startLine": 2437,
+          "endLine": 2470
+        },
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国刑法.md",
+          "titlePath": [],
+          "startLine": 2429,
+          "endLine": 2436
+        }
+      ],
+      "evidenceLines": 42,
+      "turns": 4,
+      "costUsd": 0.14710859999999998,
+      "inputTokens": 8,
+      "parseOk": true
+    },
+    {
+      "id": "zh-051",
+      "lang": "zh",
+      "hit": true,
+      "rank": 1,
+      "evidence": [
+        {
+          "docPath": "zh/law-wikisource/中华人民共和国商业银行法.md",
+          "titlePath": [],
+          "startLine": 23,
+          "endLine": 55
+        }
+      ],
+      "evidenceLines": 33,
+      "turns": 5,
+      "costUsd": 0.1492745,
+      "inputTokens": 8,
+      "parseOk": true
+    },
+    {
+      "id": "mx-004",
+      "lang": "mixed",
+      "hit": true,
+      "rank": 1,
+      "evidence": [
+        {
+          "docPath": "zh/wikipedia/阿兹海默病.md",
+          "titlePath": [],
+          "startLine": 434,
+          "endLine": 439
+        }
+      ],
+      "evidenceLines": 6,
+      "turns": 6,
+      "costUsd": 0.15438090000000002,
+      "inputTokens": 8,
+      "parseOk": true
+    },
+    {
+      "id": "zh-057",
+      "lang": "zh",
+      "hit": true,
+      "rank": 1,
+      "evidence": [
+        {
+          "docPath": "zh/wikipedia/2019冠状病毒病疫苗.md",
+          "titlePath": [],
+          "startLine": 1961,
+          "endLine": 1961
+        }
+      ],
+      "evidenceLines": 1,
+      "turns": 4,
+      "costUsd": 0.14455320000000002,
+      "inputTokens": 8,
+      "parseOk": true
+    },
+    {
+      "id": "mx-001",
+      "lang": "mixed",
+      "hit": true,
+      "rank": 1,
+      "evidence": [
+        {
+          "docPath": "zh/wikipedia/2019冠状病毒病.md",
+          "titlePath": [],
+          "startLine": 312,
+          "endLine": 312
+        }
+      ],
+      "evidenceLines": 1,
+      "turns": 5,
+      "costUsd": 0.15700050000000002,
+      "inputTokens": 8,
+      "parseOk": true
+    },
+    {
+      "id": "mx-007",
+      "lang": "mixed",
+      "hit": true,
+      "rank": 1,
+      "evidence": [
+        {
+          "docPath": "zh/wikipedia/结核病.md",
+          "titlePath": [],
+          "startLine": 10,
+          "endLine": 10
+        },
+        {
+          "docPath": "zh/wikipedia/结核病.md",
+          "titlePath": [],
+          "startLine": 68,
+          "endLine": 85
+        }
+      ],
+      "evidenceLines": 19,
+      "turns": 5,
+      "costUsd": 0.14835610000000002,
+      "inputTokens": 8,
+      "parseOk": true
+    },
+    {
+      "id": "mx-014",
+      "lang": "mixed",
+      "hit": true,
+      "rank": 1,
+      "evidence": [
+        {
+          "docPath": "zh/wikipedia/阿兹海默病.md",
+          "titlePath": [],
+          "startLine": 414,
+          "endLine": 423
+        }
+      ],
+      "evidenceLines": 10,
+      "turns": 3,
+      "costUsd": 0.1300787,
+      "inputTokens": 6,
+      "parseOk": true
+    },
+    {
+      "id": "mx-011",
+      "lang": "mixed",
+      "hit": true,
+      "rank": 1,
+      "evidence": [
+        {
+          "docPath": "zh/wikipedia/流行性感冒.md",
+          "titlePath": [],
+          "startLine": 163,
+          "endLine": 168
+        }
+      ],
+      "evidenceLines": 6,
+      "turns": 3,
+      "costUsd": 0.1313798,
+      "inputTokens": 6,
+      "parseOk": true
+    },
+    {
+      "id": "mx-018",
+      "lang": "mixed",
+      "hit": true,
+      "rank": 1,
+      "evidence": [
+        {
+          "docPath": "zh/wikipedia/肺癌.md",
+          "titlePath": [],
+          "startLine": 594,
+          "endLine": 596
+        },
+        {
+          "docPath": "zh/wikipedia/肺癌.md",
+          "titlePath": [],
+          "startLine": 92,
+          "endLine": 94
+        }
+      ],
+      "evidenceLines": 6,
+      "turns": 5,
+      "costUsd": 0.15743410000000002,
+      "inputTokens": 8,
+      "parseOk": true
+    },
+    {
+      "id": "mx-021",
+      "lang": "mixed",
+      "hit": true,
+      "rank": 1,
+      "evidence": [
+        {
+          "docPath": "zh/wikipedia/比特币.md",
+          "titlePath": [],
+          "startLine": 92,
+          "endLine": 94
+        }
+      ],
+      "evidenceLines": 3,
+      "turns": 4,
+      "costUsd": 0.141026,
+      "inputTokens": 8,
+      "parseOk": true
+    },
+    {
+      "id": "mx-024",
+      "lang": "mixed",
+      "hit": true,
+      "rank": 1,
+      "evidence": [
+        {
+          "docPath": "zh/wikipedia/高血压.md",
+          "titlePath": [],
+          "startLine": 141,
+          "endLine": 165
+        }
+      ],
+      "evidenceLines": 25,
+      "turns": 4,
+      "costUsd": 0.1451369,
+      "inputTokens": 8,
+      "parseOk": true
+    },
+    {
+      "id": "mx-028",
+      "lang": "mixed",
+      "hit": true,
+      "rank": 1,
+      "evidence": [
+        {
+          "docPath": "zh/wikipedia/2007年–2008年环球金融危机.md",
+          "titlePath": [],
+          "startLine": 108,
+          "endLine": 148
+        }
+      ],
+      "evidenceLines": 41,
+      "turns": 5,
+      "costUsd": 0.1596909,
+      "inputTokens": 8,
+      "parseOk": true
+    },
+    {
+      "id": "mx-031",
+      "lang": "mixed",
+      "hit": true,
+      "rank": 1,
+      "evidence": [
+        {
+          "docPath": "medical-en/pubmed/e6029f4c27a89217.md",
+          "titlePath": [],
+          "startLine": 588,
+          "endLine": 589
+        }
+      ],
+      "evidenceLines": 2,
+      "turns": 5,
+      "costUsd": 0.1439816,
+      "inputTokens": 8,
+      "parseOk": true
+    }
+  ]
+}
