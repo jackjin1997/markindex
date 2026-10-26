@@ -8,6 +8,7 @@ import { parseQuestions, QuestionFileError } from './eval/questions.js'
 import { checkGold, runEval, type EvalMode, type EvalReport } from './eval/run.js'
 import type { Aggregate, Summary } from './eval/score.js'
 import { indexLibrary, type IndexReport } from './library/indexer.js'
+import { assertLibraryRoot } from './library/scan.js'
 import { defaultDbFile, openLibrary } from './library.js'
 import { estimateSummaryCost } from './llm/summarize.js'
 import { ProviderError, resolveSummaryModel } from './llm/provider.js'
@@ -46,9 +47,10 @@ async function indexCommand(
   },
 ) {
   root = resolve(root)
+  assertLibraryRoot(root)
   const rateLimit = parseRateLimit({ rpm: o.summaryRpm, tpm: o.summaryTpm }, '--summary-rpm', '--summary-tpm')
   if (rateLimit && (!o.summaryModel || o.estimate)) {
-    err(`markindex: ${[o.summaryRpm && '--summary-rpm', o.summaryTpm && '--summary-tpm'].filter(Boolean).join(', ')} ignored without --summary-model (and with --estimate)`)
+    err(`markindex: ${[o.summaryRpm && '--summary-rpm', o.summaryTpm && '--summary-tpm'].filter(Boolean).join(', ')} ignored (needs --summary-model and no --estimate)`)
   }
   const model = o.summaryModel && !o.estimate ? await resolveSummaryModel(o.summaryModel) : undefined
   const store = openStore(resolve(o.db ?? defaultDbFile(root)))
@@ -126,6 +128,7 @@ function searchCommand(root: string, query: string, o: { db?: string; folder?: s
 
 async function mcpCommand(root: string, o: { db?: string; reindexOnStart?: boolean; setext?: boolean; ignore: string[] }) {
   root = resolve(root)
+  assertLibraryRoot(root)
   const dbFile = resolve(o.db ?? defaultDbFile(root))
   if (o.reindexOnStart) {
     const store = openStore(dbFile)

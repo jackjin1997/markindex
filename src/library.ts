@@ -1,5 +1,6 @@
 import { existsSync } from 'node:fs'
 import { join, resolve } from 'node:path'
+import { assertLibraryRoot } from './library/scan.js'
 import { indexLibrary, type IndexOptions, type IndexReport } from './library/indexer.js'
 import { openStore, type Store } from './store/db.js'
 import type { ToolName } from './tools/contract.js'
@@ -36,6 +37,7 @@ export const defaultDbFile = (root: string) => join(root, '.markindex', 'index.d
  */
 export function openLibrary(opts: OpenLibraryOptions): Library {
   const root = resolve(opts.root)
+  assertLibraryRoot(root)
   const dbFile = resolve(opts.dbFile ?? defaultDbFile(root))
   const readonly = opts.readonly ?? true
   if (readonly && !existsSync(dbFile)) {

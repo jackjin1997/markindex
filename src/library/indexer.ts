@@ -9,7 +9,7 @@ import { buildTree } from '../tree/build.js'
 import { optimizeTree } from '../tree/optimize.js'
 import type { DocumentRecord } from '../types.js'
 import { summarizeDocument, type SummaryOptions } from '../llm/summarize.js'
-import { scanLibrary } from './scan.js'
+import { assertLibraryRoot, scanLibrary } from './scan.js'
 
 export type IndexStatus = 'added' | 'updated' | 'unchanged' | 'removed' | 'skipped'
 
@@ -131,6 +131,7 @@ const utf8 = new TextDecoder('utf-8', { fatal: true })
  * (summaries are reused through the content-hash cache) and the report carries `rebuilt`.
  */
 export async function indexLibrary(opts: IndexOptions): Promise<IndexReport> {
+  assertLibraryRoot(opts.root)
   const { store } = opts
   const countTokens = opts.countTokens ?? approxTokens
   const report: IndexReport = { added: [], updated: [], removed: [], unchanged: [], skipped: [], summaryErrors: [], warnings: [] }

@@ -1,4 +1,4 @@
-import { type Dirent, readdirSync, readFileSync } from 'node:fs'
+import { type Dirent, readdirSync, readFileSync, statSync } from 'node:fs'
 import { join, resolve, sep } from 'node:path'
 import ignore, { type Ignore } from 'ignore'
 
@@ -104,4 +104,15 @@ export function scanLibrary(root: string, opts: ScanOptions = {}): ScannedFile[]
   if (opts.ignore && opts.ignore.length > 0) rootRules.push({ base: '', ig: ignore().add(normalizeIgnorePatterns(root, opts.ignore)) })
   visit('', rootRules)
   return out.sort((a, b) => (a.path < b.path ? -1 : a.path > b.path ? 1 : 0))
+}
+
+/** Throws a clear error unless `root` is an existing directory. Never creates anything. */
+export function assertLibraryRoot(root: string): void {
+  let st: ReturnType<typeof statSync>
+  try {
+    st = statSync(root)
+  } catch {
+    throw new Error(`Library root does not exist: ${root}`)
+  }
+  if (!st.isDirectory()) throw new Error(`Library root is not a directory: ${root}`)
 }

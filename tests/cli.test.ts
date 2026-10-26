@@ -143,7 +143,7 @@ describe('cli', () => {
     const r = await tsx('index', fixture.root, '--summary-rpm', '10')
     expect(r.code).toBe(0)
     expect(r.stderr).toContain('--summary-rpm')
-    expect(r.stderr).toContain('ignored without --summary-model')
+    expect(r.stderr).toContain('ignored (needs --summary-model and no --estimate)')
   })
 
   it('missing provider package exits non-zero with an install hint', async () => {
@@ -323,4 +323,24 @@ describe('stdio smoke (built dist)', () => {
       f.cleanup()
     }
   }, 30_000)
+})
+
+describe('cli missing root', () => {
+  it('index and mcp fail clearly on a missing root or a file, and create nothing', async () => {
+    const dir = mkdtempSync(join(tmpdir(), 'markindex-noroot-'))
+    try {
+      const missing = join(dir, 'nope')
+      const file = join(dir, 'a.md')
+      writeFileSync(file, '# x\n')
+      for (const args of [['index', missing], ['mcp', missing], ['index', file]]) {
+        const r = await tsx(...args)
+        expect(r.code, args.join(' ')).toBe(1)
+        expect(r.stderr, args.join(' ')).toMatch(/not a directory|does not exist/)
+      }
+      const { readdirSync } = await import('node:fs')
+      expect(readdirSync(dir)).toEqual(['a.md'])
+    } finally {
+      rmSync(dir, { recursive: true, force: true })
+    }
+  })
 })
