@@ -1,5 +1,7 @@
 # MarkIndex
 
+[![CI](https://github.com/jackjin1997/markindex/actions/workflows/ci.yml/badge.svg)](https://github.com/jackjin1997/markindex/actions/workflows/ci.yml)
+
 **Vectorless, structure-first retrieval over large libraries of long Markdown documents — for agents.**
 
 MarkIndex parses every Markdown file into a tree of its own sections, stores the trees, the original lines and a

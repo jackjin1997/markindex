@@ -1,5 +1,7 @@
 # MarkIndex
 
+[![CI](https://github.com/jackjin1997/markindex/actions/workflows/ci.yml/badge.svg)](https://github.com/jackjin1997/markindex/actions/workflows/ci.yml)
+
 **面向 Agent 的无向量、结构优先的长篇 Markdown 文档库检索。**
 
 MarkIndex 把每篇 Markdown 按其自身章节解析成树，把树、原文行和中英混排 BM25 索引存进一个 SQLite 文件，
