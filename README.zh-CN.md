@@ -63,7 +63,8 @@ SMB / NFS 共享或其他网络卷上都不可靠；文档放在这类卷上时�
 **PDF / HTML 转换产物的分页符**：转换器常在一页最后一段之后紧跟一行 `---` 作为分页，CommonMark 会把它读成 setext 标题，
 整段文字变成二级标题。`index` 发现文字跨多行或超过 120 个字符的 setext 二级标题时会给出警告（标准输出 `warning <path>: …`，
 JSON 报告中的 `warnings`）。这类文档库请加 `--no-setext`（`mcp --reindex-on-start` 同样支持；库 API 为 `setext: false`）：
-`---` 按分隔线、`===` 按普通文字处理。该设置属于索引格式，改变它会重建整个索引。
+`---` 按分隔线、`===` 按普通文字处理。该设置保存在索引中：之后不带该参数的运行（`index`、`mcp --reindex-on-start`、`Library.index()`）会沿用它；
+要重新开启请传 `--setext`（库 API 为 `setext: true`）。改变该设置会重建整个索引。
 
 ## 库用法
 

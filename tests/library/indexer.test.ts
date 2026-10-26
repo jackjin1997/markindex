@@ -231,6 +231,27 @@ describe('indexLibrary', () => {
       expect((await indexLibrary({ root, store, setext: false })).rebuilt).toBeUndefined()
     })
 
+    it('setext is persisted: omitted inherits the stored value, only an explicit value changes it', async () => {
+      seed()
+      put('pages.md', 'Page one line one\npage one line two\n---\nPage two\n')
+      await indexLibrary({ root, store, setext: false })
+      const plain = await indexLibrary({ root, store })
+      expect(plain.rebuilt).toBeUndefined()
+      expect(plain.unchanged).toHaveLength(4)
+      expect(JSON.parse(store.getMeta('index_format')!).setext).toBe(false)
+      put('new.md', 'para line\nsecond line\n---\n')
+      const added = await indexLibrary({ root, store })
+      expect(added.added).toEqual(['new.md'])
+      expect(added.warnings).toEqual([]) // inherited off: no setext, no page-break warnings
+      expect(store.getTree('new.md')!.map((n) => n.title)).toEqual(['new'])
+      const on = await indexLibrary({ root, store, setext: true })
+      expect(on.rebuilt?.reason).toMatch(/index format changed/)
+      expect(on.updated).toHaveLength(5)
+      expect(store.getTree('pages.md')![0]!.title).toBe('Page one line one\npage one line two')
+      expect(store.getMeta('index_format')).toBe(indexFormat({}))
+      expect((await indexLibrary({ root, store })).rebuilt).toBeUndefined()
+    })
+
     it('a stale or missing stored format (older code) triggers a full rebuild', async () => {
       seed()
       await indexLibrary({ root, store })

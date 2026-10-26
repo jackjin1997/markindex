@@ -415,7 +415,7 @@ expanding outlines, try `DEFAULT_STRUCTURE_DEPTH` 3.
   lines between paragraphs and uses `---` as a page separator; CommonMark then makes each page a level-2 setext
   heading whose title is the whole page. MarkIndex follows CommonMark by default (spec §5.1), so such files get
   huge titles. **Now handled:** `markindex index` warns about setext h2 headings whose text spans several lines or
-  exceeds 120 characters, and `--no-setext` turns setext headings off for the library (`---` becomes a thematic
-  break; part of the index format, so changing it rebuilds). If your internal documents come from a converter and
+  exceeds 120 characters, and `--no-setext` turns setext headings off for the library (`---` becomes a
+  thematic break; stored in the index until `--setext` turns it back on; changing it rebuilds). If your internal documents come from a converter and
   `index` prints such warnings, index them with `--no-setext`.
 - **Memory for very large table-heavy files** — see section 8.

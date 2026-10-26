@@ -86,7 +86,7 @@
 | 情况 | 期望行为 |
 |---|---|
 | ATX 标题 `#`–`######` | 正常分节 |
-| Setext 标题（`===` / `---`） | 识别为 h1 / h2；选项 `setext: false`（CLI `--no-setext`）关闭，此时 `---` 为分隔线、`===` 为普通文字，用于转换器以 `---` 作分页符的文档 |
+| Setext 标题（`===` / `---`） | 识别为 h1 / h2；选项 `setext: false`（CLI `--no-setext`）关闭，设置随索引保存，未显式传入时沿用索引中的值（新索引默认开启），显式 `setext: true` / `--setext` 重新开启；此时 `---` 为分隔线、`===` 为普通文字，用于转换器以 `---` 作分页符的文档 |
 | 疑似分页的 setext 二级标题（标题文字跨多行或超过 120 码点） | 开启 setext 时在索引报告 `warnings` 中提示（CLI 打印并建议 `--no-setext`）；只检查本次解析的文档 |
 | 第一个标题之前的正文 | 生成 `kind: "preface"` 节点（PageIndex PDF 路径的 Preface 做法） |
 | 完全没有标题的文档 | 整篇作为一个根节点，标题取文件名；过长时按 §5.3 拆分 |
@@ -152,7 +152,7 @@ PageIndex MD 路径的简单 thinning（`min_node_token`）被此机制取代。
 - 单个 SQLite 文件存放：文档元数据、节点树、原文（按行或按节点）、摘要缓存、FTS 索引。
 - 驱动：`better-sqlite3`（**Claude 的选择**：稳定、同步 API 简单；`node:sqlite` 在 Node 24 仍为 experimental，可作为以后的可选后端）。存储层留接口，不把 SQL 散落各处。
 - 库根是一个磁盘目录；文档的**文件夹层级 = 相对路径的目录结构**（PageIndex 本地版不支持文件夹，这里直接用目录树补上）。
-- 增量：`index(root)` 扫描目录，按文件内容 hash 判断新增 / 修改 / 删除；只重建变化的文档。摘要按**节点内容 hash** 缓存，文档局部修改时未变节点的摘要复用。库内记录索引格式指纹（代码常量 `INDEX_FORMAT_VERSION` + 影响树形的建树参数：`maxNodeTokens`、`routingCost`、token 计数器标识、`setext`（仅关闭时记录，旧索引不因此重建））；指纹与本次不同时全部文档视为已修改并重建（报告带 `rebuilt`），摘要经内容 hash 缓存复用。
+- 增量：`index(root)` 扫描目录，按文件内容 hash 判断新增 / 修改 / 删除；只重建变化的文档。摘要按**节点内容 hash** 缓存，文档局部修改时未变节点的摘要复用。库内记录索引格式指纹（代码常量 `INDEX_FORMAT_VERSION` + 影响树形的建树参数：`maxNodeTokens`、`routingCost`、token 计数器标识、`setext`（仅关闭时记录，旧索引不因此重建；未显式传入时沿用已存值））；指纹与本次不同时全部文档视为已修改并重建（报告带 `rebuilt`），摘要经内容 hash 缓存复用。
 - 写入以文档为单位走事务，索引中途失败不留下半篇文档。
 - 并发（**Claude 的选择**）：SQLite 开 WAL；同一时刻只允许一个写进程（文件锁），读不受限。MCP server 默认只读服务一个已建好的库，提供 `--reindex-on-start` 选项；文件监听自动增量不在本期范围。
 - 扫描范围（**Claude 的选择**）：`.md`、`.markdown`；不含 `.mdx`（JSX 语法需另一套解析）；遵守各级 `.gitignore`、库根的可选 `.markindexignore` 与可配置的 ignore 规则（`ignore: string[]` / CLI 可重复的 `--ignore <pattern>`，gitignore 语法、相对库根）；新变为被忽略的文档在下次索引时按删除处理；不跟随符号链接。文档重命名按"删除 + 新增"处理，摘要因按节点内容 hash 缓存而自动复用。

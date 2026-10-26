@@ -38,8 +38,9 @@ export interface IndexOptions {
   /** optimizeTree `routingCost` (default ROUTING_COST_TOKENS). */
   routingCost?: number
   /**
-   * parseMarkdown `setext` (default true). Set false for converter output whose bare `---` lines are page breaks.
-   * Part of the index format fingerprint: changing it re-indexes every document.
+   * parseMarkdown `setext`. Set false for converter output whose bare `---` lines are page breaks.
+   * Stored in the index format fingerprint: when omitted, the value the index was built with is kept (true for a new
+   * index); an explicit value that differs from the stored one re-indexes every document.
    */
   setext?: boolean
   /**
@@ -108,6 +109,16 @@ function suspectSetextHeadings(doc: ParsedDoc): number[] {
   return out
 }
 
+/** The setext setting recorded in a stored fingerprint (true when absent or unreadable). */
+function storedSetext(stored: string | undefined): boolean {
+  if (stored === undefined) return true
+  try {
+    return (JSON.parse(stored) as { setext?: unknown }).setext !== false
+  } catch {
+    return true
+  }
+}
+
 const utf8 = new TextDecoder('utf-8', { fatal: true })
 
 /**
@@ -123,8 +134,9 @@ export async function indexLibrary(opts: IndexOptions): Promise<IndexReport> {
   const { store } = opts
   const countTokens = opts.countTokens ?? approxTokens
   const report: IndexReport = { added: [], updated: [], removed: [], unchanged: [], skipped: [], summaryErrors: [], warnings: [] }
-  const format = indexFormat(opts)
   const storedFormat = store.getMeta(FORMAT_KEY)
+  const setext = opts.setext ?? storedSetext(storedFormat)
+  const format = indexFormat({ ...opts, setext })
   const rebuild = storedFormat !== format && store.allDocPaths().length > 0
   if (rebuild) {
     report.rebuilt = {
@@ -172,8 +184,8 @@ export async function indexLibrary(opts: IndexOptions): Promise<IndexReport> {
       } catch {
         throw new Error('not valid utf-8 text')
       }
-      const doc = parseMarkdown(src, { setext: opts.setext })
-      const suspects = opts.setext === false ? [] : suspectSetextHeadings(doc)
+      const doc = parseMarkdown(src, { setext })
+      const suspects = setext ? suspectSetextHeadings(doc) : []
       const title = docTitle(doc, file.path)
       const tree = optimizeTree(buildTree(doc, { fileTitle: title, countTokens }), doc, {
         countTokens,

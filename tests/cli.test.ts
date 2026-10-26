@@ -71,6 +71,12 @@ describe('cli', () => {
       expect(JSON.parse(st.getMeta('index_format')!).setext).toBe(false)
       expect(st.getTree('pdf.md')!.map((n) => n.title)).toEqual(['pdf'])
       st.close()
+      const plain = JSON.parse((await tsx('index', root, '--json')).stdout)
+      expect(plain.rebuilt).toBeUndefined()
+      expect(plain.unchanged).toEqual(['pdf.md'])
+      const back = JSON.parse((await tsx('index', root, '--setext', '--json')).stdout)
+      expect(back.rebuilt.reason).toMatch(/index format changed/)
+      expect(back.warnings).toHaveLength(1)
     } finally {
       rmSync(root, { recursive: true, force: true })
     }

@@ -96,7 +96,8 @@ paragraph. CommonMark reads that as a setext heading, so the whole paragraph bec
 warns when it sees setext h2 headings whose text spans several lines or exceeds 120 characters (`warning <path>: …`
 on stdout, `warnings` in the JSON report). For such libraries pass `--no-setext` (also on
 `mcp --reindex-on-start`; `setext: false` in the library API): `---` then is a thematic break and `===` plain text.
-The setting is part of the index format, so changing it rebuilds the index.
+The setting is stored in the index: later runs without the flag (`index`, `mcp --reindex-on-start`,
+`Library.index()`) keep it; pass `--setext` (`setext: true`) to turn it back on. Changing it rebuilds the index.
 
 ## Library usage
 
