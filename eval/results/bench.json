@@ -1,67 +1,67 @@
 {
-  "createdAt": "2026-10-23T09:40:33.894Z",
+  "createdAt": "2026-10-26T07:10:05.374Z",
   "node": "v24.5.0",
   "platform": "darwin-arm64",
   "seed": 20261023,
   "fullIndex": {
-    "ms": 88396,
+    "ms": 167019,
     "added": 329,
     "skipped": [],
-    "peakRssMB": 1764
+    "peakRssMB": 1903.9
   },
   "noopReindex": {
-    "ms": 75,
+    "ms": 232,
     "unchanged": 329
   },
   "singleDocUpdate": {
-    "ms": 1402,
+    "ms": 2568,
     "target": "finance-en/JPM/10-K_2024.md",
     "updated": [
       "finance-en/JPM/10-K_2024.md"
     ],
     "unchanged": 328,
-    "peakRssMB": 880.8
+    "peakRssMB": 1014.3
   },
-  "dbSizeMB": 872,
+  "dbSizeMB": 872.1,
   "tools": {
     "browse_documents": {
       "calls": 60,
-      "p50ms": 0.1,
-      "p95ms": 0.26,
-      "maxMs": 1.26,
+      "p50ms": 0.2,
+      "p95ms": 0.51,
+      "maxMs": 3,
       "maxResponseChars": 4874,
       "errorEnvelopes": 0
     },
     "get_document": {
       "calls": 60,
-      "p50ms": 0.01,
-      "p95ms": 0.01,
-      "maxMs": 0.19,
+      "p50ms": 0.02,
+      "p95ms": 0.04,
+      "maxMs": 0.53,
       "maxResponseChars": 838,
       "errorEnvelopes": 0
     },
     "get_document_structure": {
       "calls": 60,
-      "p50ms": 0.09,
-      "p95ms": 0.84,
-      "maxMs": 2.4,
+      "p50ms": 0.18,
+      "p95ms": 2.33,
+      "maxMs": 4.41,
       "maxResponseChars": 94884,
       "errorEnvelopes": 0
     },
     "get_node_content": {
       "calls": 60,
-      "p50ms": 0.4,
-      "p95ms": 2.93,
-      "maxMs": 4.1,
+      "p50ms": 0.78,
+      "p95ms": 3.93,
+      "maxMs": 8.62,
       "maxResponseChars": 94918,
       "errorEnvelopes": 0
     },
     "search_documents": {
       "calls": 60,
-      "p50ms": 5.33,
-      "p95ms": 33.04,
-      "maxMs": 51.13,
-      "maxResponseChars": 7326,
+      "p50ms": 13.88,
+      "p95ms": 83.86,
+      "maxMs": 141.3,
+      "maxResponseChars": 6181,
       "errorEnvelopes": 0
     }
   },
@@ -150,7 +150,7 @@
         "p90": 36573,
         "p99": 94816,
         "max": 94895,
-        "mean": 10893
+        "mean": 10874
       },
       "nodesShown": {
         "n": 329,
@@ -173,11 +173,11 @@
         "min": 1099,
         "p25": 3817,
         "p50": 4716,
-        "p75": 19023,
+        "p75": 19010,
         "p90": 37587,
         "p99": 94816,
         "max": 94895,
-        "mean": 13681
+        "mean": 13641
       },
       "nodesShown": {
         "n": 329,
@@ -199,12 +199,12 @@
         "n": 329,
         "min": 1099,
         "p25": 4314,
-        "p50": 7419,
-        "p75": 19025,
+        "p50": 7377,
+        "p75": 19023,
         "p90": 38364,
         "p99": 94816,
         "max": 94895,
-        "mean": 14740
+        "mean": 14700
       },
       "nodesShown": {
         "n": 329,

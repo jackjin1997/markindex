@@ -323,14 +323,22 @@ document, scored as a miss because each question has exactly one gold.
 ## 8. Scale benchmark and proposed thresholds
 
 `npx tsx eval/bench.ts` on the full corpus (329 docs, 38.1 M approx. tokens, summaries OFF), Apple M4, 32 GB,
-Node 24.5, macOS. Raw numbers: [`results/bench.json`](results/bench.json).
+Node 24.5, macOS; index format v2, setext headings on (the default), re-run 2026-10-26 for v1.1. Raw numbers:
+[`results/bench.json`](results/bench.json).
+
+**Timings vary about 2× with machine load.** This run was taken on the same laptop as the first one (2026-10-23,
+pre-v2 code: full index 88.4 s, `search_documents` p95 33 ms) but with other work running (load average 4–6). To
+separate the code from the machine, the pre-v2 code (`3626ec7`) was re-timed right after it under the same
+conditions: 167.8 s for the full index, the same as v1.1's 167.0 s. So the slower numbers below are the machine,
+not a regression; the tree and DB are unchanged (same node counts, 872 MB). Peak RSS also varies between runs
+(1.65 GB and 1.90 GB in two v1.1 runs).
 
 | Measure | Result |
 |---|---|
-| Full index from empty DB | **88.4 s** (329 docs; ~430k tokens/s) |
-| Peak RSS during full index | **1 764 MB** |
-| No-op re-index (nothing changed: scan + hash 329 files) | 0.08 s |
-| Single-document update (`JPM/10-K_2024.md`, 397k tokens, one line appended), incl. scan of the library | **1.40 s**, peak RSS 881 MB |
+| Full index from empty DB | **167.0 s** (329 docs; ~230k tokens/s; 88.4 s on an idle machine, see above) |
+| Peak RSS during full index | **1 904 MB** |
+| No-op re-index (nothing changed: scan + hash 329 files) | 0.23 s |
+| Single-document update (`JPM/10-K_2024.md`, 397k tokens, one line appended), incl. scan of the library | **2.57 s**, peak RSS 1 014 MB |
 | DB size (SQLite + WAL) | **872 MB** (corpus 146 MB) — trigram FTS 519 MB, word FTS 193 MB, original lines 149 MB, nodes 8 MB |
 | Nodes | 38 329 (3 065 `chunk` nodes, 3 041 of them in finance) |
 
@@ -339,11 +347,14 @@ Tool latency, 60 calls each with seeded arguments drawn from the corpus (random 
 
 | Tool | p50 | p95 | max | largest response |
 |---|---:|---:|---:|---:|
-| `browse_documents` | 0.10 ms | 0.26 ms | 1.3 ms | 4.9k chars |
-| `get_document` | 0.01 ms | 0.01 ms | 0.2 ms | 0.8k chars |
-| `get_document_structure` | 0.09 ms | 0.84 ms | 2.4 ms | 94.9k chars (paginated) |
-| `get_node_content` | 0.40 ms | 2.93 ms | 4.1 ms | 94.9k chars (paginated) |
-| `search_documents` | 5.3 ms | 33.0 ms | 51 ms | 7.3k chars |
+| `browse_documents` | 0.20 ms | 0.51 ms | 3.0 ms | 4.9k chars |
+| `get_document` | 0.02 ms | 0.04 ms | 0.5 ms | 0.8k chars |
+| `get_document_structure` | 0.18 ms | 2.33 ms | 4.4 ms | 94.9k chars (paginated) |
+| `get_node_content` | 0.78 ms | 3.93 ms | 8.6 ms | 94.9k chars (paginated) |
+| `search_documents` | 13.9 ms | 83.9 ms | 141 ms | 6.2k chars |
+
+(The largest search response shrank from 7.3k to 6.2k chars because index format v2 — NFKC segmentation and capped
+titles — changes the ranking for some of the seeded queries.)
 
 Where the cost is: peak memory comes from building the mdast of the largest files — parsing `JPM/10-K_2020.md`
 (1.7 M chars, table-heavy) alone peaks at ~900 MB RSS and takes ~1 s. Search time is dominated by common English
@@ -354,17 +365,17 @@ terms over 38k nodes plus the trigram pass.
 
 | Measure | Proposed limit | Measured | Headroom |
 |---|---|---|---|
-| Full index | ≤ 5 min | 1.5 min | 3.4× |
-| Peak RSS, full index | ≤ 3 GB | 1.8 GB | 1.7× |
-| Single-document update (incl. library scan) | ≤ 5 s | 1.4 s | 3.6× |
-| No-op re-index | ≤ 2 s | 0.08 s | — |
-| `browse_documents`, `get_document` p95 | ≤ 10 ms | < 0.3 ms | — |
-| `get_document_structure`, `get_node_content` p95 | ≤ 50 ms | < 3 ms | — |
-| `search_documents` p95 | ≤ 200 ms | 33 ms | 6× |
+| Full index | ≤ 5 min | 2.8 min (1.5 min idle) | 1.8× (3.4×) |
+| Peak RSS, full index | ≤ 3 GB | 1.9 GB | 1.6× |
+| Single-document update (incl. library scan) | ≤ 5 s | 2.6 s (1.4 s idle) | 1.9× (3.6×) |
+| No-op re-index | ≤ 2 s | 0.23 s | — |
+| `browse_documents`, `get_document` p95 | ≤ 10 ms | < 0.6 ms | — |
+| `get_document_structure`, `get_node_content` p95 | ≤ 50 ms | < 4 ms | — |
+| `search_documents` p95 | ≤ 200 ms | 84 ms (33 ms idle) | 2.4× (6×) |
 | Any tool response | ≤ 95 000 chars | 94 918 | by construction |
 | DB size | ≤ 8× corpus bytes | 6.0× | 1.3× |
 
-The memory and DB-size limits are the tight ones. If they matter for your deployment, the two cheapest levers are
+The memory and DB-size limits are the tight ones (and, on a busy machine, full-index time). If they matter for your deployment, the two cheapest levers are
 (a) contentless FTS tables (the FTS content columns duplicate the stored lines: ~300 MB here) and (b) streaming
 the parse of very large files; neither is done in this version.
 
