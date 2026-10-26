@@ -1,7 +1,31 @@
 {
   "name": "markindex",
   "version": "0.1.0",
-  "description": "Build section trees from long Markdown documents for vectorless, agent-driven retrieval",
+  "description": "Vectorless, structure-first retrieval over large Markdown libraries for agents: section trees, mixed Chinese/English BM25 in SQLite, five read-only tools (AI SDK, MCP) and a built-in evidence loop",
+  "author": "Zexu Jin",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jackjin1997/markindex.git"
+  },
+  "homepage": "https://github.com/jackjin1997/markindex#readme",
+  "bugs": {
+    "url": "https://github.com/jackjin1997/markindex/issues"
+  },
+  "keywords": [
+    "markdown",
+    "rag",
+    "vectorless",
+    "retrieval",
+    "mcp",
+    "mcp-server",
+    "ai-agents",
+    "pageindex",
+    "bm25",
+    "sqlite",
+    "fts5",
+    "typescript",
+    "chinese"
+  ],
   "license": "MIT",
   "type": "module",
   "engines": {
@@ -21,8 +45,16 @@
   },
   "files": [
     "dist",
-    "THIRD_PARTY_NOTICES.md"
+    "README.md",
+    "README.zh-CN.md",
+    "LICENSE",
+    "THIRD_PARTY_NOTICES.md",
+    "CHANGELOG.md"
   ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
     "test": "vitest run",

@@ -23,6 +23,16 @@ English: [README.md](README.md)
 
 ## 安装
 
+MarkIndex 将以 `markindex` 为包名发布到 npm（0.1.0 尚未上架）。在此之前请从源码安装：
+
+```bash
+git clone https://github.com/jackjin1997/markindex.git && cd markindex
+npm install && npm run build
+node dist/cli.js --help          # 或 `npm link` 得到 `markindex` 命令
+```
+
+发布之后：
+
 ```bash
 npm install markindex          # 库 + CLI（Node.js >= 22.12）
 ```

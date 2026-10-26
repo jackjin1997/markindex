@@ -33,6 +33,16 @@ cited back as `[doc_path, L<start>-<end>]`.
 
 ## Install
 
+MarkIndex will be published on npm as `markindex` (0.1.0 is not on the registry yet). Until then, install from source:
+
+```bash
+git clone https://github.com/jackjin1997/markindex.git && cd markindex
+npm install && npm run build
+node dist/cli.js --help          # or `npm link` to get a `markindex` command
+```
+
+Once published:
+
 ```bash
 npm install markindex          # library + CLI (Node.js >= 22.12)
 npx markindex --help
