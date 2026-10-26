@@ -59,7 +59,8 @@
     "build": "tsc -p tsconfig.build.json",
     "test": "vitest run",
     "typecheck": "tsc --noEmit",
-    "prepublishOnly": "rm -rf dist && npm run build && npm test"
+    "prepublishOnly": "npm test",
+    "prepack": "node -e \"require('fs').rmSync('dist',{recursive:true,force:true})\" && npm run build"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.32.0",
