@@ -1,0 +1,49 @@
+name: Publish
+
+# Publishes to npm when a GitHub Release is published (tag vX.Y.Z must match package.json "version").
+# Auth is npm Trusted Publishing (OIDC): no NPM_TOKEN secret; provenance is attached automatically.
+# One-time setup on npmjs.com: package settings → Trusted Publisher → GitHub Actions,
+# user `jackjin1997`, repository `markindex`, workflow `publish.yml`.
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  id-token: write
+  contents: read
+
+concurrency:
+  group: publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          registry-url: 'https://registry.npmjs.org'
+          cache: npm
+
+      - name: Check tag matches package.json version
+        run: |
+          tag="${GITHUB_REF_NAME#v}"
+          version="$(node -p "require('./package.json').version")"
+          if [ "$tag" != "$version" ]; then
+            echo "::error::release tag v$tag does not match package.json version $version"
+            exit 1
+          fi
+
+      - name: Check npm supports trusted publishing (>= 11.5.1)
+        run: |
+          npm -v
+          node -e "const [a,b,c]=process.argv[1].split('.').map(Number); if (a<11||(a===11&&(b<5||(b===5&&c<1)))) { console.error('npm >= 11.5.1 required'); process.exit(1) }" "$(npm -v)"
+
+      - run: npm ci
+      - run: npx tsc --noEmit
+      # prepublishOnly runs the test suite; prepack cleans and rebuilds dist
+      - run: npm publish

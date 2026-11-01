@@ -275,6 +275,13 @@ npx tsx eval/claude-code-eval.ts --root eval/corpus --questions eval/questions.j
                                # agent eval with Claude Code over MCP (spends Claude usage; eval/README.md §7)
 ```
 
+### Releasing
+
+Releases are published to npm by [`.github/workflows/publish.yml`](.github/workflows/publish.yml) through npm
+Trusted Publishing (OIDC, no npm token; provenance attached). Bump `version` in `package.json`, move the
+`[Unreleased]` notes in `CHANGELOG.md` under the new version, push, then create a GitHub Release with tag
+`v<version>`; the workflow checks the tag against `package.json`, runs typecheck and tests, builds and publishes.
+
 ## License
 
 [MIT](LICENSE). PageIndex is also MIT-licensed; MarkIndex contains no PageIndex code, but ports its tree cost
