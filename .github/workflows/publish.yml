@@ -1,9 +1,10 @@
 name: Publish
 
-# Publishes to npm when a GitHub Release is published (tag vX.Y.Z must match package.json "version").
-# Auth is npm Trusted Publishing (OIDC): no NPM_TOKEN secret; provenance is attached automatically.
-# One-time setup on npmjs.com: package settings → Trusted Publisher → GitHub Actions,
-# user `jackjin1997`, repository `markindex`, workflow `publish.yml`.
+# On a published GitHub Release (tag vX.Y.Z = package.json "version" = server.json "version"):
+# 1. publishes to npm via Trusted Publishing (OIDC, no NPM_TOKEN secret; provenance attached automatically);
+#    one-time setup on npmjs.com: package settings → Trusted Publisher → GitHub Actions,
+#    user `jackjin1997`, repository `markindex`, workflow `publish.yml`;
+# 2. publishes server.json to the official MCP Registry with GitHub OIDC (namespace io.github.jackjin1997/*).
 
 on:
   release:
@@ -20,6 +21,9 @@ concurrency:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    env:
+      # Pinned on purpose; bump deliberately (see the MCP Registry GitHub Actions guide).
+      MCP_PUBLISHER_VERSION: v1.8.7
     steps:
       - uses: actions/checkout@v7
 
@@ -29,12 +33,13 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
           cache: npm
 
-      - name: Check tag matches package.json version
+      - name: Check tag matches package.json and server.json versions
         run: |
           tag="${GITHUB_REF_NAME#v}"
           version="$(node -p "require('./package.json').version")"
-          if [ "$tag" != "$version" ]; then
-            echo "::error::release tag v$tag does not match package.json version $version"
+          server="$(node -p "const s=require('./server.json'); s.version + ' ' + s.packages[0].version")"
+          if [ "$tag" != "$version" ] || [ "$server" != "$version $version" ]; then
+            echo "::error::tag v$tag, package.json $version and server.json ($server) must all match"
             exit 1
           fi
 
@@ -47,3 +52,26 @@ jobs:
       - run: npx tsc --noEmit
       # prepublishOnly runs the test suite; prepack cleans and rebuilds dist
       - run: npm publish
+
+      - name: Install cosign
+        uses: sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6 # v4.1.2
+
+      - name: Download and verify mcp-publisher
+        run: |
+          set -euo pipefail
+          archive="mcp-publisher_linux_amd64.tar.gz"
+          base_url="https://github.com/modelcontextprotocol/registry/releases/download/${MCP_PUBLISHER_VERSION}"
+          curl --fail --location --silent --show-error --output "$archive" "$base_url/$archive"
+          curl --fail --location --silent --show-error --output "$archive.sigstore.json" "$base_url/$archive.sigstore.json"
+          cosign verify-blob \
+            --bundle "$archive.sigstore.json" \
+            --certificate-identity "https://github.com/modelcontextprotocol/registry/.github/workflows/release.yml@refs/tags/${MCP_PUBLISHER_VERSION}" \
+            --certificate-oidc-issuer "https://token.actions.githubusercontent.com" \
+            "$archive"
+          tar xzf "$archive" mcp-publisher
+          rm -f "$archive" "$archive.sigstore.json"
+
+      - name: Publish to the MCP Registry
+        run: |
+          ./mcp-publisher login github-oidc
+          ./mcp-publisher publish

@@ -1,6 +1,7 @@
 {
   "name": "markindex",
-  "version": "0.1.0",
+  "version": "0.1.1",
+  "mcpName": "io.github.jackjin1997/markindex",
   "description": "Vectorless, structure-first retrieval over large Markdown libraries for agents: section trees, mixed Chinese/English BM25 in SQLite, five read-only tools (AI SDK, MCP) and a built-in evidence loop",
   "author": "Zexu Jin",
   "repository": {

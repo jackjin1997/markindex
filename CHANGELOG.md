@@ -7,6 +7,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-11-02
+
+### Added
+
+- Listed in the official MCP Registry as `io.github.jackjin1997/markindex` (`mcpName` in `package.json`,
+  `server.json` at the repository root). MCP clients that read the registry start the server as
+  `npx markindex mcp <docs_dir> --reindex-on-start`.
+- Releases are published from GitHub Actions through npm Trusted Publishing (OIDC, with provenance) and pushed
+  to the MCP Registry in the same workflow.
+
 ## [0.1.0] - 2026-10-26
 
 First release.
@@ -50,5 +60,6 @@ First release.
 - MarkIndex is an independent, unofficial implementation inspired by
   [VectifyAI/PageIndex](https://github.com/VectifyAI/PageIndex); see `THIRD_PARTY_NOTICES.md`.
 
-[Unreleased]: https://github.com/jackjin1997/markindex/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/jackjin1997/markindex/compare/v0.1.1...HEAD
+[0.1.1]: https://github.com/jackjin1997/markindex/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/jackjin1997/markindex/releases/tag/v0.1.0
