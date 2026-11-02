@@ -8,6 +8,8 @@ MarkIndex 把每篇 Markdown 按其自身章节解析成树，把树、原文行
 再给 Agent 提供 5 个只读工具，沿"库 → 文件夹 → 文档 → 章节"逐层导航，并带行号读取原文。
 不用 embedding、不用向量库、不靠猜测切块；文档自身的结构就是索引，每条证据都能以 `[doc_path, L起-止]` 的格式引用回原文。
 
+![MarkIndex 演示：索引 5 篇长文档、查看中文法规的目录树、中英文检索](docs/assets/demo.gif)
+
 > 受 [VectifyAI/PageIndex](https://github.com/VectifyAI/PageIndex) 启发，MarkIndex 是一个独立、非官方的
 > TypeScript 实现，专注 Markdown；与 VectifyAI 无隶属或背书关系。
 
@@ -110,7 +112,7 @@ const { evidence } = await retrieve(lib, '员工辞职需要提前多久通知�
 
 ## 接入 MCP
 
-先 `npx markindex index /path/to/docs`，然后：
+先 `npx markindex index /path/to/docs`，然后注册服务。MarkIndex 也已上架[官方 MCP Registry](https://registry.modelcontextprotocol.io)（`io.github.jackjin1997/markindex`），支持 Registry 的客户端可以直接从那里安装（启动命令为 `npx markindex mcp <docs_dir> --reindex-on-start`）。
 
 - Claude Code：`claude mcp add markindex -- npx markindex mcp /path/to/docs`
 - Cursor（`~/.cursor/mcp.json`）：

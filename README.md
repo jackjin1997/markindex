@@ -10,6 +10,8 @@ mixed Chinese/English BM25 index in one SQLite file, and gives an agent five rea
 database, no chunking guesswork: the document's own structure is the index, and every piece of evidence can be
 cited back as `[doc_path, L<start>-<end>]`.
 
+![MarkIndex demo: index five long documents, show a Chinese law's outline, search in Chinese and English](docs/assets/demo.gif)
+
 > Inspired by [VectifyAI/PageIndex](https://github.com/VectifyAI/PageIndex), MarkIndex is an independent,
 > unofficial TypeScript implementation focused on Markdown. It is not affiliated with or endorsed by VectifyAI.
 
@@ -178,7 +180,9 @@ Lower-level building blocks are exported too: `parseMarkdown`, `buildTree`, `opt
 
 ## MCP setup
 
-Build the index first (`npx markindex index /path/to/docs`), then register the server.
+Build the index first (`npx markindex index /path/to/docs`), then register the server. MarkIndex is also listed in the
+[official MCP Registry](https://registry.modelcontextprotocol.io) as `io.github.jackjin1997/markindex`, so registry-aware
+clients can install it from there (they start it as `npx markindex mcp <docs_dir> --reindex-on-start`).
 
 **Claude Code**
 
