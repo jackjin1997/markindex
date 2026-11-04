@@ -1,0 +1,39 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1280px; height: 640px; overflow: hidden; }
+  body { background: #0d1117; color: #e6edf3; font-family: -apple-system, "SF Pro Display", "Helvetica Neue", "PingFang SC", sans-serif;
+         display: flex; padding: 72px 80px; gap: 56px; }
+  .left { flex: 1.15; display: flex; flex-direction: column; justify-content: center; }
+  h1 { font-size: 92px; font-weight: 800; letter-spacing: -2px; }
+  h1 span { color: #58a6ff; }
+  .tag { font-size: 30px; line-height: 1.35; color: #c9d1d9; margin-top: 18px; }
+  .sub { font-size: 22px; color: #8b949e; margin-top: 14px; }
+  .chips { display: flex; gap: 12px; margin-top: 34px; flex-wrap: wrap; }
+  .chip { font-size: 20px; padding: 7px 16px; border: 1px solid #30363d; border-radius: 999px; color: #c9d1d9; background: #161b22; }
+  .install { margin-top: 30px; font: 24px "SF Mono", Menlo, monospace; color: #7ee787; }
+  .right { flex: 1; display: flex; align-items: center; }
+  .tree { width: 100%; background: #161b22; border: 1px solid #30363d; border-radius: 14px; padding: 28px 30px;
+          font: 19px/1.75 "SF Mono", Menlo, "PingFang SC", monospace; color: #c9d1d9; white-space: pre; }
+  .d { color: #8b949e; } .f { color: #d2a8ff; } .h { color: #58a6ff; } .hit { color: #0d1117; background: #f2cc60; border-radius: 4px; padding: 0 4px; }
+  .l { color: #7ee787; }
+</style></head>
+<body>
+  <div class="left">
+    <h1>Mark<span>Index</span></h1>
+    <div class="tag">Vectorless, structure-first retrieval over long Markdown libraries — for agents.</div>
+    <div class="sub">Section trees · 中英混排 BM25 · line-numbered citations</div>
+    <div class="chips"><div class="chip">MCP server</div><div class="chip">AI SDK tools</div><div class="chip">CLI</div><div class="chip">No embeddings</div></div>
+    <div class="install">$ npm i markindex</div>
+  </div>
+  <div class="right"><div class="tree"><span class="d">library/</span>
+├─ <span class="d">finance/</span>
+│  ├─ <span class="f">JPM/10-K_2019.md</span>
+│  └─ <span class="f">JPM/10-K_2020.md</span>
+└─ <span class="d">law/</span>
+   └─ <span class="f">劳动合同法.md</span>
+      ├─ <span class="h">第三章 劳动合同的履行和变更</span>
+      └─ <span class="hit">第四章 劳动合同的解除和终止</span>
+         <span class="l">L176-303</span></div></div>
+</body></html>
