@@ -3,3 +3,10 @@ dist
 eval/corpus
 .markindex
 .superpowers/
+eval/financebench/pdfs
+eval/financebench/md
+eval/financebench/runs
+eval/financebench/.venv
+eval/financebench/md-pages
+eval/financebench/data
+__pycache__/

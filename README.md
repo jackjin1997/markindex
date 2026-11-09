@@ -266,6 +266,12 @@ Chinese laws and encyclopedia articles), baseline results and scale benchmarks a
 73.3% hit and 209 lines (12.8% precision) for BM25 top-5 on the same questions, at ~3 agent turns per question
 ([details and caveats](eval/README.md#7-results-agent-mode-via-claude-code)).
 
+**FinanceBench (public benchmark):** on its 150 open-source questions about SEC filings, with all 367 filings of the
+benchmark in one library and the same agent setup, **92.0%** of the answers were correct after adjudication (88.7% by
+a three-judge majority). For reference, the FinanceBench paper reports 19% for GPT-4-Turbo with one shared vector
+store, and Mafin2.5 (PageIndex) reports 98.7%. The comparison is not controlled for the model or the grading
+([method, judges and caveats](eval/financebench/README.md)).
+
 ## Development
 
 ```bash

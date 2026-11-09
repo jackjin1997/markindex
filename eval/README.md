@@ -14,6 +14,7 @@ you can run it on any library — in particular on your own internal documents f
 - [8. Scale benchmark and proposed thresholds](#8-scale-benchmark-and-proposed-thresholds)
 - [9. Calibration of the defaults](#9-calibration-of-the-defaults)
 - [10. Issues found while evaluating](#10-issues-found-while-evaluating)
+- [11. Public benchmark: FinanceBench](#11-public-benchmark-financebench)
 
 ## 1. Running an evaluation on your own documents
 
@@ -453,3 +454,11 @@ expanding outlines, try `DEFAULT_STRUCTURE_DEPTH` 3.
   thematic break; stored in the index until `--setext` turns it back on; changing it rebuilds). If your internal documents come from a converter and
   `index` prints such warnings, index them with `--no-setext`.
 - **Memory for very large table-heavy files** — see section 8.
+
+## 11. Public benchmark: FinanceBench
+
+The 150 open-source FinanceBench questions about SEC filings, run with Claude Code (`claude-sonnet-5-5`) restricted
+to the five MarkIndex MCP tools and all 367 filings of the FinanceBench repository in one library, following
+Mafin2.5 / PageIndex's protocol: **92.0%** correct after adjudication, 88.7% by a three-judge majority, 88.0% with
+Mafin2.5's judge prompt alone. Method, judges, per-question results, failure analysis and the caveats of comparing
+with other systems are in [financebench/README.md](financebench/README.md).

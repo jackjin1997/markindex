@@ -160,6 +160,10 @@ const { evidence } = await retrieve(lib, '员工辞职需要提前多久通知�
 平均引用 15 行，其中 88.6% 落在标准答案区间内；同一批问题上 BM25 top-5 命中 73.3%、平均 209 行（精度 12.8%）。Agent 平均每题约 3 轮
 （[详情与局限](eval/README.md#7-results-agent-mode-via-claude-code)）。
 
+**FinanceBench（公开基准）**：在它的 150 道 SEC 财报公开题上，把基准仓库里全部 367 份财报放进同一个库、用同样的 agent 设置，
+复核后 **92.0%** 的答案正确（三个判分模型多数票为 88.7%）。作为参照，FinanceBench 论文中 GPT-4-Turbo 共用一个向量库时为 19%，
+Mafin2.5（PageIndex）自报 98.7%。这个对比没有控制模型和判分方式（[方法、判分与局限](eval/financebench/README.md)）。
+
 ## 许可
 
 [MIT](LICENSE)。PageIndex 同为 MIT；MarkIndex 不含其代码，但移植了其树成本模型、改写了其 Agent 工具描述、指令与提示词，特此致谢；

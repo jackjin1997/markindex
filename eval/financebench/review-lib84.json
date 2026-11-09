@@ -1,0 +1,51 @@
+{
+  "_about": "Manual review, for the run in results/lib84-sonnet.json, of questions that the judge majority marks wrong AND that Mafin2.5's human reviewers labeled BE (benchmark error), MVA (multiple valid approaches) or SEDC (same evidence, different conclusion). Such a question counts as correct only when our answer reaches the same conclusion as Mafin2.5's reviewed answer (agrees_with_mafin). Reviewed by the coding agent that ran the evaluation, not by a financial expert; the notes say what was compared. answer_sha1 is the first 12 hex digits of the SHA-1 of the reviewed answer; adjudicate.ts refuses an entry whose answer changed.",
+  "financebench_id_01902": {
+    "mafin_label": "MVA",
+    "agrees_with_mafin": true,
+    "answer_sha1": "a16fac6144a1",
+    "note": "Ranks Best Buy's domestic categories by revenue (Computing and Mobile Phones), as Mafin2.5 did; the gold answer ranks them by growth (Entertainment)."
+  },
+  "financebench_id_00585": {
+    "mafin_label": "BE",
+    "agrees_with_mafin": true,
+    "answer_sha1": "be7e0dbbb0a7",
+    "note": "Reports the 10-K's own effective tax rates, (0.6)% for FY2022 and 14.8% for FY2021, as Mafin2.5 did; the gold answer has the signs reversed."
+  },
+  "financebench_id_00005": {
+    "mafin_label": "BE",
+    "agrees_with_mafin": true,
+    "answer_sha1": "da6272fa3a26",
+    "note": "Working capital of $2,278M from total current assets and liabilities, the same figure as Mafin2.5; the gold answer uses an operating-items subset ($831M). All three say it is positive."
+  },
+  "financebench_id_00790": {
+    "mafin_label": "MVA",
+    "agrees_with_mafin": true,
+    "answer_sha1": "910d81663d61",
+    "note": "Concludes CVS is not capital-intensive from capex/revenue and PP&E/assets, as Mafin2.5 did; the gold answer says it is, from a low return on assets."
+  },
+  "financebench_id_01911": {
+    "mafin_label": "BE",
+    "agrees_with_mafin": false,
+    "answer_sha1": "053acde30b41",
+    "note": "Mafin2.5 subtracted rent and D&A from Adjusted EBITDAR and got a negative Adjusted EBIT (-3.25x coverage). Our agent left out rent and got +$15M and 0.03x. Counted wrong."
+  },
+  "financebench_id_00080": {
+    "mafin_label": "BE",
+    "agrees_with_mafin": true,
+    "answer_sha1": "605369330ca4",
+    "note": "Working capital of $12,416M with the caveat that customer funds dominate both sides, the same figure and caveat as Mafin2.5; the gold answer says $1.6B."
+  },
+  "financebench_id_00283": {
+    "mafin_label": "BE",
+    "agrees_with_mafin": true,
+    "answer_sha1": "245514fab133",
+    "note": "About $70M of Upjohn separation costs remain (10% of $700M), the same as Mafin2.5; the gold answer's 77.78 is 700 / 9."
+  },
+  "financebench_id_02419": {
+    "mafin_label": "SEDC",
+    "agrees_with_mafin": true,
+    "answer_sha1": "2522a8c2eac8",
+    "note": "No spin-off in progress as of Q2 2023 because the Upjohn separation closed in 2020, the same conclusion as Mafin2.5; the gold answer says Upjohn is being spun off."
+  }
+}
