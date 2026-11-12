@@ -1,0 +1,3671 @@
+{
+ "benchmark": "FinanceBench open-source (150)",
+ "protocol": "Mafin2.5: single library, judge prompt from VectifyAI/Mafin2.5-FinanceBench eval.py",
+ "model": "haiku",
+ "judge_model": "sonnet",
+ "server": "chunksearch",
+ "tools": [
+  "search_chunks",
+  "get_page_content"
+ ],
+ "created_at": "2026-11-12T03:16:36.905Z",
+ "summary": {
+  "overall": {
+   "n": 150,
+   "accuracy": 0.88,
+   "correct": 132,
+   "unjudged": 0,
+   "doc_hit": 0.88,
+   "page_hit": 0.74,
+   "mean_turns": 5.3533333333333335,
+   "cost_usd": 1.6076778899999997
+  },
+  "domain-relevant": {
+   "n": 50,
+   "accuracy": 0.88,
+   "correct": 44,
+   "unjudged": 0,
+   "doc_hit": 1,
+   "page_hit": 0.72,
+   "mean_turns": 5.74,
+   "cost_usd": 0.55873336
+  },
+  "metrics-generated": {
+   "n": 50,
+   "accuracy": 0.98,
+   "correct": 49,
+   "unjudged": 0,
+   "doc_hit": 0.96,
+   "page_hit": 0.94,
+   "mean_turns": 4.8,
+   "cost_usd": 0.5142383199999999
+  },
+  "novel-generated": {
+   "n": 50,
+   "accuracy": 0.78,
+   "correct": 39,
+   "unjudged": 0,
+   "doc_hit": 0.68,
+   "page_hit": 0.56,
+   "mean_turns": 5.52,
+   "cost_usd": 0.5347062099999997
+  }
+ },
+ "results": [
+  {
+   "id": "financebench_id_03029",
+   "question_type": "metrics-generated",
+   "turns": 4,
+   "cost_usd": 0.01504666,
+   "answer": "3M's FY2018 capital expenditure was $1,577 million, shown as \"Purchases of property, plant and equipment (PP&E)\" of (1,577) in the 2018 Consolidated Statement of Cash Flows (years ended December 31, 2018). This is the cash outflow for PP&E purchases, which the cash flow statement records as capex.",
+   "evidence": [
+    {
+     "doc_path": "3M/3M_2018_10K.md",
+     "start_line": 2324,
+     "end_line": 2324
+    },
+    {
+     "doc_path": "3M/3M_2018_10K.md",
+     "start_line": 2302,
+     "end_line": 2304
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_04672",
+   "question_type": "metrics-generated",
+   "turns": 5,
+   "cost_usd": 0.01579877,
+   "answer": "3M's year-end FY2018 net PP&E was $8.738 billion (USD millions 8,738: gross PP&E $24,873M less accumulated depreciation $16,135M), as reported on the Consolidated Balance Sheet at December 31, 2018.",
+   "evidence": [
+    {
+     "doc_path": "3M/3M_2018_10K.md",
+     "start_line": 2199,
+     "end_line": 2201
+    },
+    {
+     "doc_path": "3M/3M_2018_10K.md",
+     "start_line": 2185,
+     "end_line": 2185
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_00499",
+   "question_type": "domain-relevant",
+   "turns": 6,
+   "cost_usd": 0.01199503,
+   "answer": "Moderately, not heavily. In FY2022 3M spent $1,749M on PP&E purchases against $34,229M of net sales (about 5.1%), and net PP&E of $9,178M was about 19.8% of $46,455M total assets (net PP&E is about 27% of sales). Capex was about 0.96x depreciation and amortization ($1,831M), so it is roughly maintenance-level reinvestment with little expansion. These ratios describe a manufacturer with a meaningful but not dominant fixed-asset base; the library does not give an industry benchmark, so the label is my judgment from these ratios.",
+   "evidence": [
+    {
+     "doc_path": "3M/3M_2022_10K.md",
+     "start_line": 1846,
+     "end_line": 1868
+    },
+    {
+     "doc_path": "3M/3M_2022_10K.md",
+     "start_line": 1784,
+     "end_line": 1793
+    },
+    {
+     "doc_path": "3M/3M_2022_10K.md",
+     "start_line": 1503,
+     "end_line": 1515
+    },
+    {
+     "doc_path": "3M/3M_2022_10K.md",
+     "start_line": 1478,
+     "end_line": 1481
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_01226",
+   "question_type": "domain-relevant",
+   "turns": 6,
+   "cost_usd": 0.01301054,
+   "answer": "3M's GAAP total-company operating margin fell from 20.8% in 2021 to 19.1% in 2022 (-1.7 pts), with operating income down 11.3% to $6,539M on sales down 3.2% to $34,229M. The drop was driven mainly by special items, chiefly the $2,291M significant-litigation costs (Combat Arms Earplugs) and the $800M PFAS manufacturing exit charge, partly offset by a $2,724M gain on the Food Safety/Neogen divestiture. Excluding special items, adjusted margin fell from 22.2% to 20.8% (-1.4 pts), with underlying pressure from raw material and logistics costs and manufacturing productivity headwinds, partly offset by selling price actions and restructuring. Operating margin is a useful metric for 3M (the 10-K reports it at total and segment level), but GAAP margin is distorted by large special items, so the adjusted figure is needed to see the underlying trend.",
+   "evidence": [
+    {
+     "doc_path": "3M/3M_2022_10K.md",
+     "start_line": 815,
+     "end_line": 839
+    },
+    {
+     "doc_path": "3M/3M_2022_10K.md",
+     "start_line": 850,
+     "end_line": 863
+    },
+    {
+     "doc_path": "3M/3M_2022_10K.md",
+     "start_line": 1085,
+     "end_line": 1090
+    },
+    {
+     "doc_path": "3M/3M_2022_10K.md",
+     "start_line": 1162,
+     "end_line": 1162
+    },
+    {
+     "doc_path": "3M/3M_2022_10K.md",
+     "start_line": 1106,
+     "end_line": 1106
+    }
+   ],
+   "correct": true,
+   "page_hit": false,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_01865",
+   "question_type": "novel-generated",
+   "turns": 7,
+   "cost_usd": 0.01222432,
+   "answer": "Consumer. In 2022, excluding M&A (acquisitions contributed 0% to every segment, and divestitures are a separate line), 3M's organic sales grew 1.2% company-wide. Consumer was the only segment with negative organic growth, at -0.9%, while Safety and Industrial grew 1.0%, Transportation and Electronics 1.2%, and Health Care 3.2%. Consumer's total sales change was -3.9%, including -0.4% from divestitures and -2.6% from translation.",
+   "evidence": [
+    {
+     "doc_path": "3M/3M_2022_10K.md",
+     "start_line": 869,
+     "end_line": 874
+    },
+    {
+     "doc_path": "3M/3M_2022_10K.md",
+     "start_line": 854,
+     "end_line": 863
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_00807",
+   "question_type": "domain-relevant",
+   "turns": 5,
+   "cost_usd": 0.010262529999999999,
+   "answer": "Yes, the quick ratio is a relevant liquidity measure for 3M, but it does not indicate a clearly healthy position at June 30, 2023. Quick ratio = (cash $4,258M + marketable securities $56M + accounts receivable $4,947M) / total current liabilities $10,936M = 9,261 / 10,936 ≈ 0.85x. That is below 1.0x, meaning quick assets do not fully cover current liabilities without inventory or prepaids; the broader current ratio is 15,754 / 10,936 ≈ 1.44x, and the 0.85x figure is a tighter view. Short-term borrowings rose to $3,033M from $1,938M at December 31, 2022.",
+   "evidence": [
+    {
+     "doc_path": "3M/3M_2023Q2_10Q.md",
+     "start_line": 229,
+     "end_line": 257
+    },
+    {
+     "doc_path": "3M/3M_2023Q2_10Q.md",
+     "start_line": 230,
+     "end_line": 240
+    }
+   ],
+   "correct": false,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_00941",
+   "question_type": "domain-relevant",
+   "turns": 4,
+   "cost_usd": 0.00961009,
+   "answer": "As of Q2 2023 (quarter ended June 30, 2023), 3M's registered debt securities under Section 12(b) are three notes, all listed on the New York Stock Exchange: 1.500% Notes due 2026 (MMM26), 1.750% Notes due 2030 (MMM30), and 1.500% Notes due 2031 (MMM31). The cover page lists these alongside common stock, which is not a debt security.",
+   "evidence": [
+    {
+     "doc_path": "3M/3M_2023Q2_10Q.md",
+     "start_line": 58,
+     "end_line": 66
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_01858",
+   "question_type": "novel-generated",
+   "turns": 6,
+   "cost_usd": 0.01015974,
+   "answer": "Yes. 3M's cash dividends paid per share rose every year in the filings read: $2.54 (2013), $3.42 (2014), $4.10 (2015), $4.44 (2016), $4.70 (2017), $5.44 (2018). In Feb 2019 the board declared a $1.44 quarterly dividend, up 6%, its 61st consecutive year of increases. The one dip is in declared dividends for 2015 ($3.075 vs. $3.59 in 2014), which reflects timing: the Q1 2015 dividend was declared in December 2014, so 2015 declarations covered only three quarters.",
+   "evidence": [
+    {
+     "doc_path": "3M/3M_2015_10K.md",
+     "start_line": 463,
+     "end_line": 464
+    },
+    {
+     "doc_path": "3M/3M_2015_10K.md",
+     "start_line": 471,
+     "end_line": 471
+    },
+    {
+     "doc_path": "3M/3M_2018_10K.md",
+     "start_line": 1912,
+     "end_line": 1912
+    },
+    {
+     "doc_path": "3M/3M_2017_10K.md",
+     "start_line": 520,
+     "end_line": 521
+    },
+    {
+     "doc_path": "3M/3M_2017_10K.md",
+     "start_line": 528,
+     "end_line": 528
+    }
+   ],
+   "correct": true,
+   "page_hit": false,
+   "doc_hit": false
+  },
+  {
+   "id": "financebench_id_02987",
+   "question_type": "metrics-generated",
+   "turns": 5,
+   "cost_usd": 0.010345940000000001,
+   "answer": "FY2019 fixed asset turnover ≈ 24.26x. Total net revenues were $6,489M in FY2019, and average net PP&E was $267.5M ((253 + 282) / 2, with $253M at Dec 31, 2019 and $282M at Dec 31, 2018), so 6,489 / 267.5 = 24.26.",
+   "evidence": [
+    {
+     "doc_path": "Activision_Blizzard/ACTIVISIONBLIZZARD_2019_10K.md",
+     "start_line": 2335,
+     "end_line": 2335
+    },
+    {
+     "doc_path": "Activision_Blizzard/ACTIVISIONBLIZZARD_2019_10K.md",
+     "start_line": 2380,
+     "end_line": 2380
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_07966",
+   "question_type": "metrics-generated",
+   "turns": 6,
+   "cost_usd": 0.01101775,
+   "answer": "Activision Blizzard's FY2017–FY2019 average capex as a % of revenue is 1.9%. Capex (purchases of property/equipment in the cash flow statement) divided by total net revenues from the statement of operations was 2.2% for FY2017 ($155M / $7,017M), 1.7% for FY2018 ($131M / $7,500M), and 1.8% for FY2019 ($116M / $6,489M), averaging 1.9%.",
+   "evidence": [
+    {
+     "doc_path": "Activision_Blizzard/ACTIVISIONBLIZZARD_2019_10K.md",
+     "start_line": 2519,
+     "end_line": 2519
+    },
+    {
+     "doc_path": "Activision_Blizzard/ACTIVISIONBLIZZARD_2019_10K.md",
+     "start_line": 2380,
+     "end_line": 2380
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_04735",
+   "question_type": "metrics-generated",
+   "turns": 5,
+   "cost_usd": 0.01072719,
+   "answer": "FY2015 operating cash flow ratio = 1,469,502 / 2,213,556 = 0.66 (in thousands). Net cash provided by operating activities was $1,469,502K for the year ended November 27, 2015, and total current liabilities at that date were $2,213,556K.",
+   "evidence": [
+    {
+     "doc_path": "Adobe/ADOBE_2015_10K.md",
+     "start_line": 2330,
+     "end_line": 2330
+    },
+    {
+     "doc_path": "Adobe/ADOBE_2015_10K.md",
+     "start_line": 2142,
+     "end_line": 2142
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_07507",
+   "question_type": "metrics-generated",
+   "turns": 4,
+   "cost_usd": 0.00897856,
+   "answer": "Adobe's operating income rose 65.4% year over year, from $903,095K in FY2015 to $1,493,602K in FY2016 (($1,493,602 − $903,095) / $903,095 ≈ 65.4%), per the reported GAAP Consolidated Statement of Income.",
+   "evidence": [
+    {
+     "doc_path": "Adobe/ADOBE_2016_10K.md",
+     "start_line": 2278,
+     "end_line": 2278
+    },
+    {
+     "doc_path": "Adobe/ADOBE_2016_10K.md",
+     "start_line": 2259,
+     "end_line": 2259
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_03856",
+   "question_type": "metrics-generated",
+   "turns": 6,
+   "cost_usd": 0.010839399999999999,
+   "answer": "FY2017 operating cash flow ratio ≈ 0.83. Net cash provided by operating activities was $2,912,853K and total current liabilities at December 1, 2017 were $3,527,457K, so 2,912,853 / 3,527,457 = 0.8258, rounded to 0.83 (figures in thousands, as reported).",
+   "evidence": [
+    {
+     "doc_path": "Adobe/ADOBE_2017_10K.md",
+     "start_line": 2345,
+     "end_line": 2345
+    },
+    {
+     "doc_path": "Adobe/ADOBE_2017_10K.md",
+     "start_line": 2156,
+     "end_line": 2156
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_00438",
+   "question_type": "domain-relevant",
+   "turns": 6,
+   "cost_usd": 0.01195175,
+   "answer": "No. Adobe's FY2022 operating margin did not improve. It was 34.6% in FY2022 (operating income $6,098M / revenue $17,606M), down from 36.8% in FY2021 ($5,802M / $15,785M), a decline of about 2.1 points. It is above FY2020's 32.9% ($4,237M / $12,868M), so the trend is mixed over the period. Operating margin is a useful metric for Adobe: it reports one operating income line and its expenses are reported in the same income statement. The FY2022 decline reflects operating expenses rising 15% (R&D +18%, S&M +15%, G&A +12%) faster than revenue (+12%).",
+   "evidence": [
+    {
+     "doc_path": "Adobe/ADOBE_2022_10K.md",
+     "start_line": 1962,
+     "end_line": 1982
+    },
+    {
+     "doc_path": "Adobe/ADOBE_2022_10K.md",
+     "start_line": 1542,
+     "end_line": 1586
+    },
+    {
+     "doc_path": "Adobe/ADOBE_2022_10K.md",
+     "start_line": 1601,
+     "end_line": 1609
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_00591",
+   "question_type": "novel-generated",
+   "turns": 7,
+   "cost_usd": 0.011968900000000001,
+   "answer": "Yes. Computing free cash flow as operating cash flow minus purchases of property and equipment, and dividing by net income, conversion rose from about 101% in FY2020 to about 143% in FY2021 and about 155% in FY2022. FY2022 FCF was $7,396M ($7,838M - $442M) against net income of $4,756M; FY2021 was $6,882M ($7,230M - $348M) against $4,822M; FY2020 was $5,308M ($5,727M - $419M) against $5,260M. Adobe's 10-K does not report an FCF conversion metric, so this ratio is my calculation from the cash flow statement; the rising ratio is driven by operating cash flow growing faster than net income, mainly from deferred revenue.",
+   "evidence": [
+    {
+     "doc_path": "Adobe/ADOBE_2022_10K.md",
+     "start_line": 2094,
+     "end_line": 2096
+    },
+    {
+     "doc_path": "Adobe/ADOBE_2022_10K.md",
+     "start_line": 2111,
+     "end_line": 2111
+    },
+    {
+     "doc_path": "Adobe/ADOBE_2022_10K.md",
+     "start_line": 2117,
+     "end_line": 2117
+    },
+    {
+     "doc_path": "Adobe/ADOBE_2022_10K.md",
+     "start_line": 1703,
+     "end_line": 1703
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_01319",
+   "question_type": "domain-relevant",
+   "turns": 4,
+   "cost_usd": 0.00882391,
+   "answer": "0. AES Corporation's FY2022 Consolidated Statements of Operations has no restructuring line item (the lines run from revenue and cost of sales through G&A, interest, impairments, and other non-operating items, with no restructuring entry), so restructuring costs are not explicitly outlined on the income statement.",
+   "evidence": [
+    {
+     "doc_path": "AES_Corporation/AES_2022_10K.md",
+     "start_line": 4169,
+     "end_line": 4199
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_00540",
+   "question_type": "domain-relevant",
+   "turns": 8,
+   "cost_usd": 0.01255479,
+   "answer": "AES sold (turned over) its inventory roughly 12 times in FY2022. Using cost of sales of $10,069M and average inventory of $829.5M ((1,055 + 604) / 2), the turnover ratio is about 12.1x (about 30 days). On year-end inventory of $1,055M it is about 9.5x. Conventional inventory turnover is only of limited meaning for AES: its cost of sales includes depreciation, O&M, G&A, bad debt and derivative gains/losses, not just inventory consumed, and inventory (mainly fuel, raw materials and spare parts) is small at about 2.7% of total assets ($1,055M of $38,363M). The ratio is therefore a rough indicator, not a true sell-through measure.",
+   "evidence": [
+    {
+     "doc_path": "AES_Corporation/AES_2022_10K.md",
+     "start_line": 4176,
+     "end_line": 4179
+    },
+    {
+     "doc_path": "AES_Corporation/AES_2022_10K.md",
+     "start_line": 4097,
+     "end_line": 4103
+    },
+    {
+     "doc_path": "AES_Corporation/AES_2022_10K.md",
+     "start_line": 2654,
+     "end_line": 2656
+    },
+    {
+     "doc_path": "AES_Corporation/AES_2022_10K.md",
+     "start_line": 4500,
+     "end_line": 4505
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_10420",
+   "question_type": "metrics-generated",
+   "turns": 5,
+   "cost_usd": 0.014130489999999999,
+   "answer": "ROA ≈ -1.42% (-0.01 as a decimal). FY2022 net income (loss) was $(505)M, the consolidated 'NET INCOME (LOSS)' line. Average total assets were $35,663M ((38,363 + 32,963) / 2), so -505 / 35,663 = -0.0142. Net loss attributable to AES was $(546)M, which would give about -1.53%.",
+   "evidence": [
+    {
+     "doc_path": "AES_Corporation/AES_2022_10K.md",
+     "start_line": 4121,
+     "end_line": 4121
+    },
+    {
+     "doc_path": "AES_Corporation/AES_2022_10K.md",
+     "start_line": 4197,
+     "end_line": 4197
+    },
+    {
+     "doc_path": "AES_Corporation/AES_2022_10K.md",
+     "start_line": 4199,
+     "end_line": 4199
+    },
+    {
+     "doc_path": "AES_Corporation/AES_2022_10K.md",
+     "start_line": 4091,
+     "end_line": 4095
+    }
+   ],
+   "correct": false,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_06655",
+   "question_type": "metrics-generated",
+   "turns": 6,
+   "cost_usd": 0.01063339,
+   "answer": "Amazon's FY2017 DPO is 93.86 days. Average accounts payable is (25,309 + 34,616) / 2 = 29,962.5 million. FY2017 cost of sales is 111,934 million, and the change in inventory is 16,047 − 11,461 = 4,586 million, so the denominator is 116,520 million. DPO = 365 × 29,962.5 / 116,520 = 93.86 days, using the balance sheet's accounts payable and inventories and the income statement's cost of sales as the question specifies.",
+   "evidence": [
+    {
+     "doc_path": "Amazon/AMAZON_2017_10K.md",
+     "start_line": 1475,
+     "end_line": 1494
+    },
+    {
+     "doc_path": "Amazon/AMAZON_2017_10K.md",
+     "start_line": 1401,
+     "end_line": 1406
+    },
+    {
+     "doc_path": "Amazon/AMAZON_2017_10K.md",
+     "start_line": 973,
+     "end_line": 973
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_08135",
+   "question_type": "metrics-generated",
+   "turns": 3,
+   "cost_usd": 0.00821213,
+   "answer": "Amazon's total net sales rose 30.8% from FY2016 to FY2017: ($177,866M − $135,987M) / $135,987M = 30.8%, using the 'Total net sales' line of the Consolidated Statements of Operations.",
+   "evidence": [
+    {
+     "doc_path": "Amazon/AMAZON_2017_10K.md",
+     "start_line": 1401,
+     "end_line": 1404
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_08286",
+   "question_type": "metrics-generated",
+   "turns": 5,
+   "cost_usd": 0.00952988,
+   "answer": "$11,588 million. The FY2019 income statement reports Net income of $11,588M and no noncontrolling-interest line, so net income equals net income attributable to shareholders. Check: basic EPS of $23.46 × 494M basic shares ≈ $11,590M, consistent with this figure.",
+   "evidence": [
+    {
+     "doc_path": "Amazon/AMAZON_2019_10K.md",
+     "start_line": 1382,
+     "end_line": 1413
+    },
+    {
+     "doc_path": "Amazon/AMAZON_2019_10K.md",
+     "start_line": 1329,
+     "end_line": 1329
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_03882",
+   "question_type": "metrics-generated",
+   "turns": 6,
+   "cost_usd": 0.01041335,
+   "answer": "Amcor's FY2020 year-end net trade receivables were $1,615.9 million (as of June 30, 2020), taken directly from the Consolidated Balance Sheet line 'Trade receivables, net'; this is down from $1,864.3 million at June 30, 2019. The balance sheet shows no separate AR line, so this is the net AR figure used.",
+   "evidence": [
+    {
+     "doc_path": "Amcor/AMCOR_2020_10K.md",
+     "start_line": 1638,
+     "end_line": 1639
+    },
+    {
+     "doc_path": "Amcor/AMCOR_2020_10K.md",
+     "start_line": 1633,
+     "end_line": 1635
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_01935",
+   "question_type": "novel-generated",
+   "turns": 6,
+   "cost_usd": 0.01227998,
+   "answer": "The Amcor plc Form 8-K dated July 1, 2022 (event date June 30, 2022) reported a single item, Item 8.01 Other Events, with no financial results or other agenda items. On June 30, 2022, Amcor Finance (USA), Inc. (former issuer) and Amcor Flexibles North America, Inc. (substitute issuer), both wholly-owned subsidiaries of Amcor plc, entered into a Second Supplemental Indenture under the 2016 Indenture and a First Supplemental Indenture under the 2019 Indenture. Together they substitute Amcor Flexibles North America for Amcor Finance (USA) as issuer of the 3.625% Guaranteed Senior Notes due 2026 and 4.500% Guaranteed Senior Notes due 2028, and the substitute issuer assumes the former issuer's covenants.",
+   "evidence": [
+    {
+     "doc_path": "Amcor/AMCOR_2022_8K_2022-07-01.md",
+     "start_line": 82,
+     "end_line": 86
+    },
+    {
+     "doc_path": "Amcor/AMCOR_2022_8K_2022-07-01.md",
+     "start_line": 22,
+     "end_line": 22
+    },
+    {
+     "doc_path": "Amcor/AMCOR_2022_8K_2022-07-01.md",
+     "start_line": 88,
+     "end_line": 98
+    }
+   ],
+   "correct": true,
+   "page_hit": false,
+   "doc_hit": false
+  },
+  {
+   "id": "financebench_id_00799",
+   "question_type": "domain-relevant",
+   "turns": 4,
+   "cost_usd": 0.010188059999999999,
+   "answer": "Improved. Using the conventional quick ratio, (current assets − inventories) ÷ current liabilities, FY2023 is 3,095 ÷ 4,476 ≈ 0.69x, up from FY2022's 3,414 ÷ 5,103 ≈ 0.67x. The stricter cash + receivables ÷ current liabilities also rose, from 0.53x to 0.57x. The quick ratio is a reasonable liquidity metric to ask about Amcor, since it carries large inventories, but analysts usually pair it with the current ratio and net debt/EBITDA. Inventories fell from 2,439 to 2,213 and current liabilities fell from 5,103 to 4,476, so the ratio improved even though current assets dropped from 5,853 to 5,308.",
+   "evidence": [
+    {
+     "doc_path": "Amcor/AMCOR_2023_10K.md",
+     "start_line": 1573,
+     "end_line": 1583
+    },
+    {
+     "doc_path": "Amcor/AMCOR_2023_10K.md",
+     "start_line": 1596,
+     "end_line": 1602
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_01079",
+   "question_type": "domain-relevant",
+   "turns": 10,
+   "cost_usd": 0.01491852,
+   "answer": "FY2023: three acquisitions. (1) Aug 1, 2022: 100% of a Czech Republic flexible packaging plant company, $59M consideration (later identified as DGPack s.r.o. in the Q2 FY2023 10-Q); (2) Mar 17, 2023: 100% of a medical device packaging site in Shanghai, China, $60M including $20M contingent consideration; (3) May 31, 2023: a New Zealand manufacturer of automated protein packaging machines, $45M including $13M contingent consideration. Total about $164M. FY2022 and FY2021: no acquisitions are disclosed. Their acquisition/divestiture notes list only divestitures (FY2022: non-core Flexibles asset disposals; FY2021: a European hospital supplies business, India and Argentina non-core businesses, and the AMVIG stake). The Bemis acquisition (June 11, 2019) falls in FY2019, not FY2021–FY2022.",
+   "evidence": [
+    {
+     "doc_path": "Amcor/AMCOR_2023_10K.md",
+     "start_line": 1966,
+     "end_line": 1979
+    },
+    {
+     "doc_path": "Amcor/AMCOR_2022_10K.md",
+     "start_line": 2017,
+     "end_line": 2029
+    },
+    {
+     "doc_path": "Amcor/AMCOR_2021_10K.md",
+     "start_line": 2079,
+     "end_line": 2097
+    },
+    {
+     "doc_path": "Amcor/AMCOR_2021_10K.md",
+     "start_line": 2101,
+     "end_line": 2103
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_01148",
+   "question_type": "domain-relevant",
+   "turns": 5,
+   "cost_usd": 0.00890535,
+   "answer": "Amcor operates in the packaging industry. It describes itself as a global leader in developing and producing responsible packaging for food, beverage, pharmaceutical, medical, home and personal-care, and other consumer goods end markets, offering flexible packaging, rigid packaging containers, specialty cartons, and closures across two segments (Flexibles and Rigid Packaging).",
+   "evidence": [
+    {
+     "doc_path": "Amcor/AMCOR_2023_10K.md",
+     "start_line": 1752,
+     "end_line": 1754
+    },
+    {
+     "doc_path": "Amcor/AMCOR_2019_10K.md",
+     "start_line": 720,
+     "end_line": 722
+    }
+   ],
+   "correct": true,
+   "page_hit": false,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_00684",
+   "question_type": "domain-relevant",
+   "turns": 6,
+   "cost_usd": 0.0109051,
+   "answer": "No. Amcor's gross margin fell in FY2023, so the profile is not improving. Gross profit was $2,725M on net sales of $14,694M (18.5%), down from $2,820M on $14,544M (19.4%) in FY2022, and from $2,732M on $12,861M (21.2%) in FY2021. The 10-K attributes the decline mainly to the pass-through of higher raw material costs and to disposed operations. Gross margin is still a usable metric for Amcor, a manufacturer of flexible and rigid packaging with cost of sales of about 81% of revenue. The pass-through effect means the margin percentage moves with resin and other raw-material prices, so it understates the underlying operating performance, which the 10-K describes as favorable operating cost performance.",
+   "evidence": [
+    {
+     "doc_path": "Amcor/AMCOR_2023_10K.md",
+     "start_line": 1509,
+     "end_line": 1513
+    },
+    {
+     "doc_path": "Amcor/AMCOR_2023_10K.md",
+     "start_line": 974,
+     "end_line": 981
+    },
+    {
+     "doc_path": "Amcor/AMCOR_2023_10K.md",
+     "start_line": 919,
+     "end_line": 929
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_01936",
+   "question_type": "novel-generated",
+   "turns": 4,
+   "cost_usd": 0.009621379999999999,
+   "answer": "At December 31, 2022 (end of Q2 FY2023), Amcor's restructuring plan liability was $93 million: $81M employee costs, $2M fixed asset-related costs and $10M other costs. It is an accrual for unpaid restructuring costs, mainly from the Russia-Ukraine conflict restructuring and, to a lesser extent, the 2019 Bemis integration plan. The company expects most of it to be paid within twelve months, and it is recorded in other current and non-current liabilities. The liability rolled forward from $118M at June 30, 2022, with $2M of net charges, $25M of cash paid and $2M of unused amounts reversed.",
+   "evidence": [
+    {
+     "doc_path": "Amcor/AMCOR_2023Q2_10Q.md",
+     "start_line": 551,
+     "end_line": 563
+    },
+    {
+     "doc_path": "Amcor/AMCOR_2023Q2_10Q.md",
+     "start_line": 544,
+     "end_line": 549
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_01928",
+   "question_type": "novel-generated",
+   "turns": 4,
+   "cost_usd": 0.00947551,
+   "answer": "Amcor's fiscal 2023 (twelve months ended June 30, 2023) Adjusted EBITDA was $2,018 million, down from $2,117 million in fiscal 2022 (about -5%). The reconciliation table shows adjusted EBITDA of $2,018M for the twelve months ended June 30, 2023, after starting from reported EBITDA of $2,080M and adding back the non-GAAP items.",
+   "evidence": [
+    {
+     "doc_path": "Amcor/AMCOR_2023Q4_EARNINGS.md",
+     "start_line": 505,
+     "end_line": 531
+    },
+    {
+     "doc_path": "Amcor/AMCOR_2023Q4_EARNINGS.md",
+     "start_line": 503,
+     "end_line": 503
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_01930",
+   "question_type": "novel-generated",
+   "turns": 4,
+   "cost_usd": 0.00881186,
+   "answer": "Approximately 0% (flat). For fiscal 2023 vs FY2022, Amcor's comparable constant-currency growth in total net sales is \"—\" (nil). Reported net sales rose 1% (14,694 vs 14,544, $ million). Stripping out FX (-3 pts), raw material pass-through (+5 pts) and items affecting comparability (-1 pt) leaves 4 - 5 + 1 = 0%. The volume (-3%) and price/mix (+3%) components net to the same 0%.",
+   "evidence": [
+    {
+     "doc_path": "Amcor/AMCOR_2023Q4_EARNINGS.md",
+     "start_line": 427,
+     "end_line": 434
+    },
+    {
+     "doc_path": "Amcor/AMCOR_2023Q4_EARNINGS.md",
+     "start_line": 435,
+     "end_line": 436
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_03069",
+   "question_type": "metrics-generated",
+   "turns": 5,
+   "cost_usd": 0.00949773,
+   "answer": "FY2015 D&A margin ≈ 4.18%: D&A of $167M (cash flow statement) ÷ FY2015 net revenue of $3,991M (statement of operations) = 4.18%. The cash flow statement is the source for D&A, and the income statement is the source for revenue, so the margin uses the two statements as the question asks.",
+   "evidence": [
+    {
+     "doc_path": "AMD/AMD_2017_10K.md",
+     "start_line": 1965,
+     "end_line": 1965
+    },
+    {
+     "doc_path": "AMD/AMD_2017_10K.md",
+     "start_line": 1801,
+     "end_line": 1801
+    }
+   ],
+   "correct": true,
+   "page_hit": false,
+   "doc_hit": false
+  },
+  {
+   "id": "financebench_id_00222",
+   "question_type": "domain-relevant",
+   "turns": 4,
+   "cost_usd": 0.01662456,
+   "answer": "Yes, on the quick ratio. At Dec 31, 2022, AMD's quick assets were $9,981M (cash and equivalents $4,835M + short-term investments $1,020M + accounts receivable, net $4,126M), against total current liabilities of $6,369M, giving a quick ratio of about 1.57x (up from about 1.49x at Dec 25, 2021: $6,314M / $4,240M). Quick ratio is a relevant liquidity measure here because it excludes inventories ($3,771M) and prepaid/other current assets ($1,265M), which are less readily convertible to cash; a ratio above 1.0x means liquid assets cover current liabilities.",
+   "evidence": [
+    {
+     "doc_path": "AMD/AMD_2022_10K.md",
+     "start_line": 1676,
+     "end_line": 1699
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_00995",
+   "question_type": "domain-relevant",
+   "turns": 5,
+   "cost_usd": 0.011751249999999998,
+   "answer": "As of FY22, AMD sells its products across four segments. Data Center: AMD EPYC server CPUs, Instinct GPU accelerators, Xilinx FPGAs/Adaptive SoCs and Alveo accelerator cards, and Pensando DPUs. Client: Ryzen and Athlon desktop and notebook CPUs, Ryzen PRO/Threadripper PRO commercial CPUs, and chipsets (X670, B650, X570, etc.). Gaming: Radeon discrete GPUs (RX 7000/6000 series, Radeon PRO workstation GPUs) and semi-custom SoCs for PlayStation 5, Xbox Series X|S and Steam Deck. Embedded: embedded EPYC CPUs, Ryzen Embedded V- and R-Series APUs, and embedded FPGAs/Adaptive SoCs with development kits. This is stated in the product sections of the FY22 10-K, which list each product family under its segment.",
+   "evidence": [
+    {
+     "doc_path": "AMD/AMD_2022_10K.md",
+     "start_line": 253,
+     "end_line": 261
+    },
+    {
+     "doc_path": "AMD/AMD_2022_10K.md",
+     "start_line": 263,
+     "end_line": 284
+    },
+    {
+     "doc_path": "AMD/AMD_2022_10K.md",
+     "start_line": 286,
+     "end_line": 294
+    },
+    {
+     "doc_path": "AMD/AMD_2022_10K.md",
+     "start_line": 303,
+     "end_line": 307
+    },
+    {
+     "doc_path": "AMD/AMD_2022_10K.md",
+     "start_line": 313,
+     "end_line": 330
+    }
+   ],
+   "correct": true,
+   "page_hit": false,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_01198",
+   "question_type": "domain-relevant",
+   "turns": 3,
+   "cost_usd": 0.00949058,
+   "answer": "AMD's total net revenue rose from $16,434M in 2021 to $23,601M in 2022, an increase of $7,167M (about 44%). The increase was driven mainly by Embedded, up $4,306M from $246M to $4,552M because of the Xilinx acquisition (closed February 2022), and Data Center, up $2,349M from $3,694M to $6,043M on higher EPYC server processor sales. Gaming rose $1,198M on higher semi-custom console SoC demand. Client fell $686M (about 10%) on a 24% drop in unit shipments, partly offset by a 19% rise in average selling price.",
+   "evidence": [
+    {
+     "doc_path": "AMD/AMD_2022_10K.md",
+     "start_line": 1355,
+     "end_line": 1373
+    },
+    {
+     "doc_path": "AMD/AMD_2022_10K.md",
+     "start_line": 1379,
+     "end_line": 1379
+    },
+    {
+     "doc_path": "AMD/AMD_2022_10K.md",
+     "start_line": 1385,
+     "end_line": 1385
+    },
+    {
+     "doc_path": "AMD/AMD_2022_10K.md",
+     "start_line": 1398,
+     "end_line": 1398
+    },
+    {
+     "doc_path": "AMD/AMD_2022_10K.md",
+     "start_line": 1404,
+     "end_line": 1404
+    }
+   ],
+   "correct": true,
+   "page_hit": false,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_00917",
+   "question_type": "domain-relevant",
+   "turns": 6,
+   "cost_usd": 0.0123647,
+   "answer": "AMD's operating margin fell from about 22.2% in FY21 (operating income $3,648M on $16,434M revenue) to about 5.4% in FY22 (operating income $1,264M on $23,601M revenue), a drop of roughly 17 percentage points. The decline was driven mainly by amortization of acquisition-related intangibles from the Xilinx and Pensando deals (about $3.5B: $1.4B in cost of sales and $2.1B in operating expense), plus higher R&D (+$2.2B) and MG&A (+$888M), which outweighed 44% revenue growth. Operating margin is a useful metric for AMD, but the FY22 figure is heavily distorted by acquisition accounting, so the underlying operating performance is better read with that amortization excluded. Margin figures are my calculations from the reported numbers.",
+   "evidence": [
+    {
+     "doc_path": "AMD/AMD_2022_10K.md",
+     "start_line": 1244,
+     "end_line": 1246
+    },
+    {
+     "doc_path": "AMD/AMD_2022_10K.md",
+     "start_line": 1416,
+     "end_line": 1426
+    },
+    {
+     "doc_path": "AMD/AMD_2022_10K.md",
+     "start_line": 1367,
+     "end_line": 1373
+    },
+    {
+     "doc_path": "AMD/AMD_2022_10K.md",
+     "start_line": 1455,
+     "end_line": 1457
+    },
+    {
+     "doc_path": "AMD/AMD_2022_10K.md",
+     "start_line": 1410,
+     "end_line": 1410
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_01279",
+   "question_type": "domain-relevant",
+   "turns": 4,
+   "cost_usd": 0.00923753,
+   "answer": "Operations brought in the most cash in AMD's FY2022 (year ended December 31, 2022): operating activities provided $3,565 million, versus investing activities provided $1,999 million and financing activities used $3,264 million. Operating cash flow was the largest positive contributor and the only one of the three that was a source of cash larger than the others; financing was the largest outflow.",
+   "evidence": [
+    {
+     "doc_path": "AMD/AMD_2022_10K.md",
+     "start_line": 1502,
+     "end_line": 1504
+    },
+    {
+     "doc_path": "AMD/AMD_2022_10K.md",
+     "start_line": 1805,
+     "end_line": 1821
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_00563",
+   "question_type": "novel-generated",
+   "turns": 3,
+   "cost_usd": 0.00835583,
+   "answer": "Data Center. Excluding Embedded, Data Center net revenue rose from $3,694M in FY21 to $6,043M in FY22, up about 63.6%, versus Gaming at about +21.4% ($5,607M to $6,805M) and Client at about -10.0% ($6,887M to $6,201M). Data Center had the largest proportional increase.",
+   "evidence": [
+    {
+     "doc_path": "AMD/AMD_2022_10K.md",
+     "start_line": 2144,
+     "end_line": 2146
+    }
+   ],
+   "correct": true,
+   "page_hit": false,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_00757",
+   "question_type": "novel-generated",
+   "turns": 5,
+   "cost_usd": 0.00915903,
+   "answer": "Yes. AMD's FY2022 annual report (year ended December 31, 2022) discloses two major customers, each at least 10% of consolidated net revenue: Customer A at 16% (Gaming segment) and Customer B below 10% in 2022 (11% in 2021, Client segment). This is disclosed as a major-customer table in the segment note, which shows the concentration.",
+   "evidence": [
+    {
+     "doc_path": "AMD/AMD_2022_annualreport.md",
+     "start_line": 2232,
+     "end_line": 2244
+    }
+   ],
+   "correct": true,
+   "page_hit": false,
+   "doc_hit": false
+  },
+  {
+   "id": "financebench_id_00476",
+   "question_type": "domain-relevant",
+   "turns": 6,
+   "cost_usd": 0.010521009999999999,
+   "answer": "None. The American Express Company 2022 Form 10-K (fiscal year ended Dec 31, 2022) lists only one security under Section 12(b): Common Shares (par value $0.20), trading symbol AXP, on the New York Stock Exchange. The cover page also states 'Securities registered pursuant to section 12(g) of the Act: None.' No debt securities are shown as registered on a national exchange; the 10-K's exhibit 4.1 says the long-term debt instruments are omitted under Item 601(b)(4)(iii)(A) of Regulation S-K.",
+   "evidence": [
+    {
+     "doc_path": "American_Express/AMERICANEXPRESS_2022_10K.md",
+     "start_line": 52,
+     "end_line": 60
+    },
+    {
+     "doc_path": "American_Express/AMERICANEXPRESS_2022_10K.md",
+     "start_line": 5582,
+     "end_line": 5583
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_01028",
+   "question_type": "domain-relevant",
+   "turns": 5,
+   "cost_usd": 0.009770309999999999,
+   "answer": "American Express's 2022 geographic operations are the United States, EMEA (Europe, Middle East and Africa), APAC (Asia Pacific, Australia and New Zealand), and LACC (Latin America, Canada and the Caribbean). The United States dominated in 2022, with $41,396M of the $52,862M total revenues net of interest expense (about 78%), versus $4,871M for EMEA, $3,835M for APAC and $2,917M for LACC; the company itself frames its segments as primarily United States versus outside the United States.",
+   "evidence": [
+    {
+     "doc_path": "American_Express/AMERICANEXPRESS_2022_10K.md",
+     "start_line": 5345,
+     "end_line": 5367
+    },
+    {
+     "doc_path": "American_Express/AMERICANEXPRESS_2022_10K.md",
+     "start_line": 5260,
+     "end_line": 5260
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_00723",
+   "question_type": "domain-relevant",
+   "turns": 7,
+   "cost_usd": 0.011915640000000002,
+   "answer": "No. On the proxy pretax margin, 2022 is down from 2021 but up from 2020. Pretax income divided by total revenues net of interest expense was 18.1% in 2022 (9,585 / 52,862), versus 25.2% in 2021 (10,689 / 42,380) and 11.9% in 2020 (4,296 / 36,087). Measured after credit-loss provisions (50,680 / 43,799 / 31,357 for 2022 / 2021 / 2020), the pattern is the same: 18.9%, 24.4% and 13.7%. Operating margin is not a reported or useful metric here: AMEX's consolidated income statement has no operating-income line, and as a card issuer with a bank funding model its interest expense is an operating cost inside revenue, so pretax margin on net revenue is the closest measure. The 2022 decline is driven by higher Card Member rewards (14,002 vs 11,007), marketing and salaries, and by provisions swinging to a 2,182 charge from a 1,419 reserve release in 2021.",
+   "evidence": [
+    {
+     "doc_path": "American_Express/AMERICANEXPRESS_2022_10K.md",
+     "start_line": 3090,
+     "end_line": 3108
+    },
+    {
+     "doc_path": "American_Express/AMERICANEXPRESS_2022_10K.md",
+     "start_line": 5289,
+     "end_line": 5303
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_00720",
+   "question_type": "domain-relevant",
+   "turns": 6,
+   "cost_usd": 0.01194765,
+   "answer": "Gross margin is not a useful metric for American Express and is not reported: the income statement has no cost-of-sales or gross profit line, because AmEx is a card issuer and network whose costs are interest, Card Member rewards, provisions for credit losses, and operating expenses. The FY2022 pretax-income change was driven by revenue growth outpacing expenses: total revenues net of interest expense rose $10,482M (25%) to $52,862M, led by discount revenue (+$6,176M) and interest income (+$3,625M), but total expenses rose $7,985M (24%) to $41,095M, led by Card Member rewards (+$2,995M) and business development (+$1,181M), and provisions for credit losses swung from a $1,419M release to a $2,182M charge. Pretax income fell 10% to $9,585M from $10,689M, and net income fell to $7,514M from $8,060M. For reference only, my own proxy of revenues net of interest expense less Card Member rewards gives 73.5% in 2022 versus 74.0% in 2021 (computed, not reported by the company).",
+   "evidence": [
+    {
+     "doc_path": "American_Express/AMERICANEXPRESS_2022_10K.md",
+     "start_line": 3071,
+     "end_line": 3109
+    },
+    {
+     "doc_path": "American_Express/AMERICANEXPRESS_2022_10K.md",
+     "start_line": 1372,
+     "end_line": 1385
+    },
+    {
+     "doc_path": "American_Express/AMERICANEXPRESS_2022_10K.md",
+     "start_line": 1391,
+     "end_line": 1403
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_01351",
+   "question_type": "domain-relevant",
+   "turns": 3,
+   "cost_usd": 0.00820848,
+   "answer": "American Express's effective tax rate fell by 3.0 percentage points, from 24.6% in FY2021 to 21.6% in FY2022. The 10-K attributes the decline mainly to discrete tax benefits in 2022 from resolving prior-year tax items.",
+   "evidence": [
+    {
+     "doc_path": "American_Express/AMERICANEXPRESS_2022_10K.md",
+     "start_line": 1488,
+     "end_line": 1490
+    }
+   ],
+   "correct": true,
+   "page_hit": false,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_01964",
+   "question_type": "novel-generated",
+   "turns": 6,
+   "cost_usd": 0.010677180000000001,
+   "answer": "Customer deposits were the largest liability on American Express's 2022 Consolidated Balance Sheet at $110,239 million (about $110.2 billion), ahead of total other liabilities ($37,350M, the next-largest line), long-term debt ($42,573M), accounts payable ($12,133M) and short-term borrowings ($1,348M). Justification: it is the largest single line item among the liabilities reported on that statement.",
+   "evidence": [
+    {
+     "doc_path": "American_Express/AMERICANEXPRESS_2022_10K.md",
+     "start_line": 3170,
+     "end_line": 3177
+    },
+    {
+     "doc_path": "American_Express/AMERICANEXPRESS_2022_10K.md",
+     "start_line": 3153,
+     "end_line": 3162
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_01981",
+   "question_type": "novel-generated",
+   "turns": 4,
+   "cost_usd": 0.00854009,
+   "answer": "Yes. The 2022 10-K says Card Member retention \"remained high\" in 2022, and net card fees rose 17% year-over-year as new card acquisitions reached record levels. The filing gives no numeric retention or attrition rate, so \"able to retain\" rests on this qualitative statement.",
+   "evidence": [
+    {
+     "doc_path": "American_Express/AMERICANEXPRESS_2022_10K.md",
+     "start_line": 1337,
+     "end_line": 1339
+    },
+    {
+     "doc_path": "American_Express/AMERICANEXPRESS_2022_10K.md",
+     "start_line": 1336,
+     "end_line": 1336
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_05718",
+   "question_type": "metrics-generated",
+   "turns": 4,
+   "cost_usd": 0.00923387,
+   "answer": "American Water Works paid $389 million in cash dividends in FY2020, or about $0.389 billion. The consolidated statement of cash flows shows 'Dividends paid' of (389) for 2020, up from (353) in 2019.",
+   "evidence": [
+    {
+     "doc_path": "American_Water_Works/AMERICANWATERWORKS_2020_10K.md",
+     "start_line": 2853,
+     "end_line": 2853
+    },
+    {
+     "doc_path": "American_Water_Works/AMERICANWATERWORKS_2020_10K.md",
+     "start_line": 2214,
+     "end_line": 2214
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_04254",
+   "question_type": "metrics-generated",
+   "turns": 6,
+   "cost_usd": 0.00977783,
+   "answer": "FY2021 unadjusted EBITDA for American Water Works is $1,832 million: operating income of $1,196M from the income statement plus depreciation and amortization of $636M from the cash flow statement (which matches the income statement's D&A line).",
+   "evidence": [
+    {
+     "doc_path": "American_Water_Works/AMERICANWATERWORKS_2021_10K.md",
+     "start_line": 2817,
+     "end_line": 2824
+    },
+    {
+     "doc_path": "American_Water_Works/AMERICANWATERWORKS_2021_10K.md",
+     "start_line": 2889,
+     "end_line": 2889
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_00070",
+   "question_type": "domain-relevant",
+   "turns": 4,
+   "cost_usd": 0.009222649999999999,
+   "answer": "No. At December 31, 2022, American Water Works had negative working capital of about $(1,561) million: total current assets of $1,250M less total current liabilities of $2,811M. The main driver is short-term debt of $1,175M, plus a current portion of long-term debt of $281M. Working capital is computable from the balance sheet, so the metric applies here.",
+   "evidence": [
+    {
+     "doc_path": "American_Water_Works/AMERICANWATERWORKS_2022_10K.md",
+     "start_line": 2742,
+     "end_line": 2751
+    },
+    {
+     "doc_path": "American_Water_Works/AMERICANWATERWORKS_2022_10K.md",
+     "start_line": 2693,
+     "end_line": 2702
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_02608",
+   "question_type": "metrics-generated",
+   "turns": 5,
+   "cost_usd": 0.01029478,
+   "answer": "FY2015–FY2017 3-year average net profit margin ≈ 2.8%. Net profit margin = net earnings attributable to Best Buy shareholders ÷ revenue: FY2017 1,228/39,403 = 3.12%; FY2016 897/39,528 = 2.27%; FY2015 1,233/40,339 = 3.06%; average = 2.81%. Justification: taken from the FY2017 10-K consolidated statements of earnings (revenue and net earnings for each of the three fiscal years). Using net earnings including noncontrolling interests gives the same 2.8%.",
+   "evidence": [
+    {
+     "doc_path": "Best_Buy/BESTBUY_2017_10K.md",
+     "start_line": 2274,
+     "end_line": 2293
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_04417",
+   "question_type": "metrics-generated",
+   "turns": 4,
+   "cost_usd": 0.00880074,
+   "answer": "$5,409 million. Best Buy's FY2019 10-K consolidated balance sheet (fiscal year ended February 2, 2019) reports Merchandise inventories of $5,409 million, the FY2019 year-end figure.",
+   "evidence": [
+    {
+     "doc_path": "Best_Buy/BESTBUY_2019_10K.md",
+     "start_line": 2153,
+     "end_line": 2153
+    },
+    {
+     "doc_path": "Best_Buy/BESTBUY_2019_10K.md",
+     "start_line": 2146,
+     "end_line": 2146
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_00685",
+   "question_type": "domain-relevant",
+   "turns": 10,
+   "cost_usd": 0.01767608,
+   "answer": "Yes, on a percentage-point basis. Consolidated gross profit as a % of revenue ran 22.4% (FY2015), 23.3% (FY2016), 24.0% (FY2017), 23.4% (FY2018), 23.2% (FY2019), 23.0% (FY2020), 22.4% (FY2021), 22.5% (FY2022), and 21.4% (FY2023). Year-over-year moves were +0.9, +0.7, -0.6, -0.2, -0.2, -0.6, +0.1 and -1.1 points, so no single year moved more than about 1.1 points. Gross margin is a relevant metric for Best Buy, which reports it as a headline consolidated figure and discusses it in MD&A. Caveat: if the 2% threshold is read as a relative change rather than percentage points, FY2023 (-4.9%), FY2016 (+4.0%) and FY2017 (+3.0%) exceed it. FY2024 and FY2025 annual figures were not found in the library, so the series ends at FY2023.",
+   "evidence": [
+    {
+     "doc_path": "Best_Buy/BESTBUY_2023_10K.md",
+     "start_line": 1053,
+     "end_line": 1054
+    },
+    {
+     "doc_path": "Best_Buy/BESTBUY_2021_10K.md",
+     "start_line": 1022,
+     "end_line": 1023
+    },
+    {
+     "doc_path": "Best_Buy/BESTBUY_2019_10K.md",
+     "start_line": 1162,
+     "end_line": 1163
+    },
+    {
+     "doc_path": "Best_Buy/BESTBUY_2017_10K.md",
+     "start_line": 1237,
+     "end_line": 1238
+    }
+   ],
+   "correct": true,
+   "page_hit": false,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_01077",
+   "question_type": "domain-relevant",
+   "turns": 5,
+   "cost_usd": 0.01098337,
+   "answer": "FY2023: no acquisitions are disclosed in the FY2023 10-K. FY2022: two, Current Health Ltd. (care-at-home technology, closed Nov 2, 2021, $389M net cash) and Two Peaks, LLC d/b/a Yardbird Furniture (direct-to-consumer outdoor furniture, closed Nov 4, 2021, $79M net cash). FY2021: none. The FY2021 10-K acquisitions note lists only earlier deals, GreatCall (FY2019), and CST and BioSensics (FY2020). Justification: the FY2023 10-K's acquisitions note covers only the FY2022 deals, and the FY2021 10-K's acquisitions note lists no FY2021 deal.",
+   "evidence": [
+    {
+     "doc_path": "Best_Buy/BESTBUY_2023_10K.md",
+     "start_line": 2242,
+     "end_line": 2251
+    },
+    {
+     "doc_path": "Best_Buy/BESTBUY_2022_10K.md",
+     "start_line": 2066,
+     "end_line": 2081
+    },
+    {
+     "doc_path": "Best_Buy/BESTBUY_2021_10K.md",
+     "start_line": 2181,
+     "end_line": 2201
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_01275",
+   "question_type": "domain-relevant",
+   "turns": 3,
+   "cost_usd": 0.0089337,
+   "answer": "Operations brought in the most cash in FY2023: operating activities provided $1,824M, versus investing activities using $962M and financing activities using $1,806M. Operating cash flow was the only positive contributor, while investing (-$962M) lost less than financing (-$1,806M).",
+   "evidence": [
+    {
+     "doc_path": "Best_Buy/BESTBUY_2023_10K.md",
+     "start_line": 1324,
+     "end_line": 1331
+    },
+    {
+     "doc_path": "Best_Buy/BESTBUY_2023_10K.md",
+     "start_line": 1337,
+     "end_line": 1345
+    }
+   ],
+   "correct": true,
+   "page_hit": false,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_00288",
+   "question_type": "novel-generated",
+   "turns": 7,
+   "cost_usd": 0.01256032,
+   "answer": "Yes. Best Buy's cash and cash equivalents fell from $1,874M at FY2023 year-end (January 28, 2023) to $1,093M at Q2 FY2024 (July 29, 2023), a decrease of $781M (about 41.7%). The 10-Q attributes the decline to inventory purchases and payments, dividends, and capital expenditures, partly offset by earnings. Best Buy was the company I matched to the question, since the question does not name one.",
+   "evidence": [
+    {
+     "doc_path": "Best_Buy/BESTBUY_2024Q2_10Q.md",
+     "start_line": 154,
+     "end_line": 158
+    },
+    {
+     "doc_path": "Best_Buy/BESTBUY_2024Q2_10Q.md",
+     "start_line": 1100,
+     "end_line": 1108
+    },
+    {
+     "doc_path": "Best_Buy/BESTBUY_2024Q2_10Q.md",
+     "start_line": 391,
+     "end_line": 395
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_00460",
+   "question_type": "novel-generated",
+   "turns": 6,
+   "cost_usd": 0.011985720000000002,
+   "answer": "Yes, the count fell. At the end of Q2 fiscal 2024 (July 29, 2023) Best Buy-branded U.S. stores (Domestic segment) numbered 907, down from 930 at the end of Q2 fiscal 2023 (July 30, 2022), a decrease of 23. Including Canadian Best Buy stores (128 vs. 127), Best Buy-branded stores went from 1,057 to 1,035 (-22). Across all Domestic and International stores, the total fell from 1,142 to 1,129 (-13). This comes from the Q2 FY2024 10-Q store roll-forward tables, which show the closures and openings in each period.",
+   "evidence": [
+    {
+     "doc_path": "Best_Buy/BESTBUY_2024Q2_10Q.md",
+     "start_line": 906,
+     "end_line": 913
+    },
+    {
+     "doc_path": "Best_Buy/BESTBUY_2024Q2_10Q.md",
+     "start_line": 1001,
+     "end_line": 1007
+    }
+   ],
+   "correct": false,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_01902",
+   "question_type": "novel-generated",
+   "turns": 6,
+   "cost_usd": 0.01047072,
+   "answer": "Computing and Mobile Phones was the top Domestic (USA) category in Q2 FY2024 (quarter ended July 29, 2023), with $3,674M of revenue, or 41% of the $8,890M Domestic total, ahead of Consumer Electronics at $2,658M. It was the largest category by revenue in the 10-Q's product-category table.",
+   "evidence": [
+    {
+     "doc_path": "Best_Buy/BESTBUY_2024Q2_10Q.md",
+     "start_line": 718,
+     "end_line": 726
+    },
+    {
+     "doc_path": "Best_Buy/BESTBUY_2024Q2_10Q.md",
+     "start_line": 921,
+     "end_line": 931
+    }
+   ],
+   "correct": false,
+   "page_hit": false,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_04660",
+   "question_type": "metrics-generated",
+   "turns": 3,
+   "cost_usd": 0.008450339999999999,
+   "answer": "Working capital ratio ≈ 1.73 (FY2016 total current assets $1,001,425K ÷ total current liabilities $577,464K = 1.734, rounded to 1.73). Both figures are from Square, Inc.'s (Block) consolidated balance sheet as of December 31, 2016.",
+   "evidence": [
+    {
+     "doc_path": "Block/BLOCK_2016_10K.md",
+     "start_line": 2042,
+     "end_line": 2042
+    },
+    {
+     "doc_path": "Block/BLOCK_2016_10K.md",
+     "start_line": 2058,
+     "end_line": 2058
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_03838",
+   "question_type": "metrics-generated",
+   "turns": 4,
+   "cost_usd": 0.00910849,
+   "answer": "101.5%. Total net revenue rose from $4,713,500K in FY2019 to $9,497,578K in FY2020, so growth = (9,497,578 − 4,713,500) / 4,713,500 ≈ 101.5%. The income statement shows this increase, driven mainly by Bitcoin revenue ($516,465K to $4,571,543K) alongside growth in transaction-based and subscription revenue.",
+   "evidence": [
+    {
+     "doc_path": "Block/BLOCK_2020_10K.md",
+     "start_line": 2404,
+     "end_line": 2410
+    },
+    {
+     "doc_path": "Block/BLOCK_2019_10K.md",
+     "start_line": 2077,
+     "end_line": 2083
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_07661",
+   "question_type": "metrics-generated",
+   "turns": 4,
+   "cost_usd": 0.00889931,
+   "answer": "Block (Square, Inc.) generated $381.6 million in net cash provided by operating activities in FY2020 ($381,603 thousand). This is the figure in the FY2020 10-K consolidated statement of cash flows, and the MD&A cash flow table reports the same amount.",
+   "evidence": [
+    {
+     "doc_path": "Block/BLOCK_2020_10K.md",
+     "start_line": 2575,
+     "end_line": 2575
+    },
+    {
+     "doc_path": "Block/BLOCK_2020_10K.md",
+     "start_line": 2048,
+     "end_line": 2048
+    },
+    {
+     "doc_path": "Block/BLOCK_2020_10K.md",
+     "start_line": 2060,
+     "end_line": 2060
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_10285",
+   "question_type": "metrics-generated",
+   "turns": 6,
+   "cost_usd": 0.00986602,
+   "answer": "Boeing's net property, plant and equipment at December 31, 2018 was $12,645 million, per the Consolidated Statements of Financial Position, which lists it as a separate balance sheet line (up from $12,672 million in 2017).",
+   "evidence": [
+    {
+     "doc_path": "Boeing/BOEING_2018_10K.md",
+     "start_line": 1741,
+     "end_line": 1741
+    },
+    {
+     "doc_path": "Boeing/BOEING_2018_10K.md",
+     "start_line": 1729,
+     "end_line": 1729
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_00517",
+   "question_type": "domain-relevant",
+   "turns": 7,
+   "cost_usd": 0.011267659999999999,
+   "answer": "Yes. Three of Boeing's reportable segments each exceed 20% of FY2022 total revenues of $66,608M: Commercial Airplanes $25,867M (38.8%), Defense, Space & Security $23,162M (34.8%), and Global Services $17,611M (26.4%). Boeing Capital ($199M, 0.3%) and unallocated items/eliminations (−$231M) do not. The 10-K reports revenue by these segments, which are organized by products and services, and does not give a finer product/service dollar split, so the test was applied to segments.",
+   "evidence": [
+    {
+     "doc_path": "Boeing/BOEING_2022_10K.md",
+     "start_line": 1909,
+     "end_line": 1917
+    },
+    {
+     "doc_path": "Boeing/BOEING_2022_10K.md",
+     "start_line": 1964,
+     "end_line": 1973
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_01091",
+   "question_type": "domain-relevant",
+   "turns": 6,
+   "cost_usd": 0.01220934,
+   "answer": "Yes. Boeing's FY2022 10-K (Note 21, Legal Proceedings) discloses two ongoing matters it singles out, both with no estimable loss range: (1) remaining lawsuits from the Lion Air Flight 610 and Ethiopian Airlines Flight 302 accidents and the 737 MAX, where the company says it cannot reasonably estimate losses not covered by insurance; and (2) an arbitration with Embraer over the terminated 2019 joint-venture agreements, expected to finish in late 2023 or early 2024. The note says its general belief that proceedings will not have a material effect applies 'except as described below,' so these two are the matters it flags as potentially significant. Its 2022 settlements (a $219 shareholder derivative recovery received in Q2 2022 and a $200 SEC civil penalty paid in October 2022) are resolved, not ongoing.",
+   "evidence": [
+    {
+     "doc_path": "Boeing/BOEING_2022_10K.md",
+     "start_line": 3786,
+     "end_line": 3790
+    },
+    {
+     "doc_path": "Boeing/BOEING_2022_10K.md",
+     "start_line": 3773,
+     "end_line": 3777
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_00678",
+   "question_type": "domain-relevant",
+   "turns": 7,
+   "cost_usd": 0.01299312,
+   "answer": "Yes, but only modestly, and only on a derived basis. Boeing does not report gross margin itself. Computing it as total revenues minus cost of products and cost of services from the consolidated statement of operations: 2022 gross profit is $3,530M on $66,608M revenue (5.3%), up from $3,049M on $62,286M (4.9%) in 2021, and sharply up from a loss of $5,642M (-9.7%) in 2020. The roughly 40 bps gain is thin and driven by program accounting. Gross margin is a weak metric for Boeing because reach-forward losses and abnormal production costs flow through cost of products, and 2022 still ended with a $3,547M loss from operations, so operating and core-loss measures are more informative.",
+   "evidence": [
+    {
+     "doc_path": "Boeing/BOEING_2022_10K.md",
+     "start_line": 1666,
+     "end_line": 1680
+    },
+    {
+     "doc_path": "Boeing/BOEING_2022_10K.md",
+     "start_line": 739,
+     "end_line": 758
+    },
+    {
+     "doc_path": "Boeing/BOEING_2022_10K.md",
+     "start_line": 1553,
+     "end_line": 1561
+    },
+    {
+     "doc_path": "Boeing/BOEING_2022_10K.md",
+     "start_line": 1079,
+     "end_line": 1085
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_01290",
+   "question_type": "domain-relevant",
+   "turns": 8,
+   "cost_usd": 0.01163538,
+   "answer": "Boeing's primary customers in FY2022 are commercial airlines (the Commercial Airplanes segment sells principally to the commercial airline industry worldwide) and the U.S. government (including foreign military sales). U.S. government revenue was 40% of FY2022 consolidated revenue of $66,608M. Non-U.S. customers accounted for $27,374M and U.S. customers for $39,218M. The 10-K states Boeing derives a significant portion of its revenue from a limited number of commercial airlines.",
+   "evidence": [
+    {
+     "doc_path": "Boeing/BOEING_2022_10K.md",
+     "start_line": 3829,
+     "end_line": 3829
+    },
+    {
+     "doc_path": "Boeing/BOEING_2022_10K.md",
+     "start_line": 309,
+     "end_line": 309
+    },
+    {
+     "doc_path": "Boeing/BOEING_2022_10K.md",
+     "start_line": 166,
+     "end_line": 168
+    },
+    {
+     "doc_path": "Boeing/BOEING_2022_10K.md",
+     "start_line": 3813,
+     "end_line": 3825
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_00464",
+   "question_type": "novel-generated",
+   "turns": 5,
+   "cost_usd": 0.00931912,
+   "answer": "Yes. Boeing's 10-K states that the airline industry 'has been cyclical and very competitive and has experienced significant profit swings,' and that demand for its commercial aircraft and services is driven by airline profitability, traffic growth, and macroeconomic conditions. Significant deterioration in the global economy or the airline industry could reduce orders and deliveries, so the business is cyclical through its dependence on airline demand (stated in the FY2021 10-K; the same language appears in the FY2019 10-K).",
+   "evidence": [
+    {
+     "doc_path": "Boeing/BOEING_2021_10K.md",
+     "start_line": 361,
+     "end_line": 361
+    },
+    {
+     "doc_path": "Boeing/BOEING_2019_10K.md",
+     "start_line": 336,
+     "end_line": 336
+    }
+   ],
+   "correct": true,
+   "page_hit": false,
+   "doc_hit": false
+  },
+  {
+   "id": "financebench_id_00494",
+   "question_type": "novel-generated",
+   "turns": 6,
+   "cost_usd": 0.01032982,
+   "answer": "The library has no FY2023 filing. The closest source is Boeing's FY2022 10-K, which describes 2023 plans: the 787 is currently at low rates and is expected to gradually increase to 5 per month in 2023; the 777X is paused and expected to resume production in 2023; and the 737 is stabilizing at 31 per month, with gradual increases planned based on market demand and supply chain capacity (no specific 737 target rate is given). Because the filing is FY2022, these are plans as of that report, not FY2023 results.",
+   "evidence": [
+    {
+     "doc_path": "Boeing/BOEING_2022_10K.md",
+     "start_line": 326,
+     "end_line": 326
+    },
+    {
+     "doc_path": "Boeing/BOEING_2022_10K.md",
+     "start_line": 324,
+     "end_line": 324
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_00585",
+   "question_type": "novel-generated",
+   "turns": 6,
+   "cost_usd": 0.01864684,
+   "answer": "Boeing's effective tax rate moved from a 14.8% expense in FY2021 to a (0.6)% rate in FY2022, a benefit-side swing of about 15.4 points. In FY2022 it recorded $31M of income tax expense on a $5,022M pre-tax loss, so the tax line was a small expense despite the loss, driven mainly by a $1,199M valuation allowance. (The FY2022 10-K's reconciliation shows the FY2021 rate as 14.7%, a rounding difference from the 14.8% in the FY2021 10-K's summary table.)",
+   "evidence": [
+    {
+     "doc_path": "Boeing/BOEING_2022_10K.md",
+     "start_line": 685,
+     "end_line": 691
+    },
+    {
+     "doc_path": "Boeing/BOEING_2022_10K.md",
+     "start_line": 2362,
+     "end_line": 2373
+    },
+    {
+     "doc_path": "Boeing/BOEING_2022_10K.md",
+     "start_line": 2325,
+     "end_line": 2347
+    },
+    {
+     "doc_path": "Boeing/BOEING_2021_10K.md",
+     "start_line": 753,
+     "end_line": 758
+    }
+   ],
+   "correct": false,
+   "page_hit": false,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_03473",
+   "question_type": "metrics-generated",
+   "turns": 6,
+   "cost_usd": 0.0124132,
+   "answer": "FY2017 ROA ≈ 1.46%. Consolidated net income of $1,283M divided by average total assets of $87,583M (($87,896M + $87,270M) / 2) gives 1.4648%, rounded to 1.46%. Consolidated net income was used because the question asks for net income and total assets are consolidated; using net income attributable to shareowners ($1,248M) would give about 1.42%.",
+   "evidence": [
+    {
+     "doc_path": "Coca_Cola/COCACOLA_2017_10K.md",
+     "start_line": 2418,
+     "end_line": 2420
+    },
+    {
+     "doc_path": "Coca_Cola/COCACOLA_2017_10K.md",
+     "start_line": 2499,
+     "end_line": 2499
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_09724",
+   "question_type": "metrics-generated",
+   "turns": 5,
+   "cost_usd": 0.00917962,
+   "answer": "FY2021 COGS % margin = 39.7% (cost of goods sold $15,357M ÷ net operating revenues $38,655M = 0.3973). Cost of goods sold as a share of revenue, from the FY2021 consolidated statement of income; the implied gross margin is 60.3%.",
+   "evidence": [
+    {
+     "doc_path": "Coca_Cola/COCACOLA_2021_10K.md",
+     "start_line": 1915,
+     "end_line": 1919
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_06272",
+   "question_type": "metrics-generated",
+   "turns": 4,
+   "cost_usd": 0.00985018,
+   "answer": "0.80 (about 79.82%). FY2022 cash dividends paid were $7,616M and net income attributable to shareowners of The Coca-Cola Company was $9,542M, so 7,616 / 9,542 = 0.7982, which rounds to 0.80.",
+   "evidence": [
+    {
+     "doc_path": "Coca_Cola/COCACOLA_2022_10K.md",
+     "start_line": 2067,
+     "end_line": 2067
+    },
+    {
+     "doc_path": "Coca_Cola/COCACOLA_2022_10K.md",
+     "start_line": 1936,
+     "end_line": 1936
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_10130",
+   "question_type": "metrics-generated",
+   "turns": 6,
+   "cost_usd": 0.01038396,
+   "answer": "FY2020 DPO for Corning is 63.86 days. Average accounts payable is (1,174 + 1,587) / 2 = 1,380.5. The denominator is FY2020 COGS of 7,772 plus the inventory increase of 118 (2,438 − 2,320), giving 7,890. So 365 × 1,380.5 / 7,890 = 63.86. Balance sheet and income statement figures are in $ millions.",
+   "evidence": [
+    {
+     "doc_path": "Corning/CORNING_2020_10K.md",
+     "start_line": 2613,
+     "end_line": 2613
+    },
+    {
+     "doc_path": "Corning/CORNING_2020_10K.md",
+     "start_line": 2600,
+     "end_line": 2600
+    },
+    {
+     "doc_path": "Corning/CORNING_2020_10K.md",
+     "start_line": 2533,
+     "end_line": 2533
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_02981",
+   "question_type": "metrics-generated",
+   "turns": 4,
+   "cost_usd": 0.009366010000000001,
+   "answer": "FY2019–FY2021 3-year average unadjusted operating margin for Corning = 10.3%. Operating income / net sales: FY2019 1,306 / 11,503 = 11.4%; FY2020 509 / 11,303 = 4.5%; FY2021 2,112 / 14,082 = 15.0%; simple average = (11.35% + 4.50% + 15.00%) / 3 ≈ 10.3%. Operating income is the GAAP line as reported in the consolidated statements of income, with no adjustments.",
+   "evidence": [
+    {
+     "doc_path": "Corning/CORNING_2021_10K.md",
+     "start_line": 2520,
+     "end_line": 2528
+    },
+    {
+     "doc_path": "Corning/CORNING_2021_10K.md",
+     "start_line": 2537,
+     "end_line": 2537
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_01346",
+   "question_type": "domain-relevant",
+   "turns": 3,
+   "cost_usd": 0.008429329999999999,
+   "answer": "Corning's effective tax rate rose by 2.7 percentage points, from 20.2% in FY2021 to 22.9% in FY2022. The FY2022 10-K's Note 7 rate reconciliation reports both years' effective tax rates directly.",
+   "evidence": [
+    {
+     "doc_path": "Corning/CORNING_2022_10K.md",
+     "start_line": 3000,
+     "end_line": 3019
+    },
+    {
+     "doc_path": "Corning/CORNING_2022_10K.md",
+     "start_line": 952,
+     "end_line": 970
+    }
+   ],
+   "correct": true,
+   "page_hit": false,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_00005",
+   "question_type": "domain-relevant",
+   "turns": 6,
+   "cost_usd": 0.01064258,
+   "answer": "Yes. Corning had positive working capital of $2,278 million at December 31, 2022 (current ratio 1.4:1), down from $2,853 million in 2021. Total current assets of $7,453 million less total current liabilities of $5,175 million gives $2,278 million, matching the company's reported figure.",
+   "evidence": [
+    {
+     "doc_path": "Corning/CORNING_2022_10K.md",
+     "start_line": 1319,
+     "end_line": 1323
+    },
+    {
+     "doc_path": "Corning/CORNING_2022_10K.md",
+     "start_line": 2286,
+     "end_line": 2303
+    }
+   ],
+   "correct": false,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_04209",
+   "question_type": "metrics-generated",
+   "turns": 5,
+   "cost_usd": 0.00961589,
+   "answer": "Costco's total assets at the end of FY2021 (August 29, 2021) were $59,268 million, as reported on the consolidated balance sheet; this is the \"TOTAL ASSETS\" line, which also equals total liabilities and equity of $59,268 million.",
+   "evidence": [
+    {
+     "doc_path": "Costco/COSTCO_2021_10K.md",
+     "start_line": 1196,
+     "end_line": 1210
+    },
+    {
+     "doc_path": "Costco/COSTCO_2021_10K.md",
+     "start_line": 1234,
+     "end_line": 1235
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_05915",
+   "question_type": "metrics-generated",
+   "turns": 5,
+   "cost_usd": 0.009675369999999999,
+   "answer": "FY2018 fixed asset turnover ≈ 17.98x. Total revenues of $194,579M divided by average net PP&E of $10,820.5M ((11,349 + 10,292) / 2) gives 17.98. Net PP&E is taken from the property and equipment note, which ties to the balance sheet.",
+   "evidence": [
+    {
+     "doc_path": "CVS_Health/CVSHEALTH_2018_10K.md",
+     "start_line": 7935,
+     "end_line": 7941
+    },
+    {
+     "doc_path": "CVS_Health/CVSHEALTH_2018_10K.md",
+     "start_line": 8348,
+     "end_line": 8357
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_00790",
+   "question_type": "domain-relevant",
+   "turns": 6,
+   "cost_usd": 0.01209396,
+   "answer": "No. CVS was not capital-intensive in FY2022. Gross capex was $2,727M (purchases of property and equipment), about 0.8% of $322,467M total revenues and about 17% of $16,177M operating cash flow. Depreciation and amortization was $4,247M (about 1.3% of revenue), and net property and equipment was $13,117M. Capex was also only about 0.6x D&A, so the asset base is not growing heavily. The company's own filing describes capex as 'relatively consistent at approximately $2.7 billion.'",
+   "evidence": [
+    {
+     "doc_path": "CVS_Health/CVSHEALTH_2022_10K.md",
+     "start_line": 3321,
+     "end_line": 3325
+    },
+    {
+     "doc_path": "CVS_Health/CVSHEALTH_2022_10K.md",
+     "start_line": 2051,
+     "end_line": 2055
+    },
+    {
+     "doc_path": "CVS_Health/CVSHEALTH_2022_10K.md",
+     "start_line": 3360,
+     "end_line": 3360
+    },
+    {
+     "doc_path": "CVS_Health/CVSHEALTH_2022_10K.md",
+     "start_line": 3609,
+     "end_line": 3618
+    },
+    {
+     "doc_path": "CVS_Health/CVSHEALTH_2022_10K.md",
+     "start_line": 2632,
+     "end_line": 2632
+    }
+   ],
+   "correct": false,
+   "page_hit": false,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_01107",
+   "question_type": "domain-relevant",
+   "turns": 7,
+   "cost_usd": 0.015157360000000002,
+   "answer": "Yes. CVS Health's 10-Ks for 2020, 2021 and 2022 all disclose ongoing material litigation: the opioid litigation (In re National Prescription Opiate Litigation MDL No. 2804, state AG suits, and DOJ/DEA subpoenas and CIDs), PBM drug-pricing and rebate class actions and AG suits, usual-and-customary overcharging suits, and False Claims Act qui tam cases (Behnke, Bassan/Omnicare, Gill). The 2022 filing quantifies the largest matters: a $651 million Ohio opioid judgment (August 2022, under appeal), and a December 2022 opioid settlement with state AGs and subdivisions of up to about $4.3 billion in remediation plus $625 million in fees, with a $5.2 billion pre-tax opioid charge in Q3 2022 and $99 million in Q4 2022. The company says it is defending the rest and cannot estimate the range of possible loss for all opioid matters.",
+   "evidence": [
+    {
+     "doc_path": "CVS_Health/CVSHEALTH_2022_10K.md",
+     "start_line": 5767,
+     "end_line": 5769
+    },
+    {
+     "doc_path": "CVS_Health/CVSHEALTH_2022_10K.md",
+     "start_line": 5744,
+     "end_line": 5754
+    },
+    {
+     "doc_path": "CVS_Health/CVSHEALTH_2021_10K.md",
+     "start_line": 5638,
+     "end_line": 5642
+    },
+    {
+     "doc_path": "CVS_Health/CVSHEALTH_2020_10K.md",
+     "start_line": 5692,
+     "end_line": 5696
+    },
+    {
+     "doc_path": "CVS_Health/CVSHEALTH_2022_10K.md",
+     "start_line": 5782,
+     "end_line": 5786
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_01244",
+   "question_type": "domain-relevant",
+   "turns": 9,
+   "cost_usd": 0.0117608,
+   "answer": "Yes, inferred from the FY2022 10-K: CVS paid its quarterly cash dividend of $0.55 per share throughout 2022, and it has paid cash dividends every quarter since becoming a public company, so a Q2 2022 payment is implied. Total 2022 dividends paid were $2,907 million. The library has no Q2 2022 10-Q, so the Q2-only amount is not directly stated.",
+   "evidence": [
+    {
+     "doc_path": "CVS_Health/CVSHEALTH_2022_10K.md",
+     "start_line": 1884,
+     "end_line": 1888
+    },
+    {
+     "doc_path": "CVS_Health/CVSHEALTH_2022_10K.md",
+     "start_line": 3335,
+     "end_line": 3336
+    },
+    {
+     "doc_path": "CVS_Health/CVSHEALTH_2022_10K.md",
+     "start_line": 2744,
+     "end_line": 2746
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_00839",
+   "question_type": "novel-generated",
+   "turns": 7,
+   "cost_usd": 0.01172277,
+   "answer": "Yes. The new CEO, Mary N. Dillon (appointed Foot Locker President and CEO effective September 1, 2022), was CEO of Ulta Beauty, a specialty retailer like Foot Locker, from July 2013 through June 2021, and served as its Executive Chair from June 2021 through June 2022. Her prior CEO role was at a beauty retailer rather than an athletic footwear retailer, so the match is similar in format but not in product category. The library's latest CEO appointment is Dillon's, so this is the most recent one it covers.",
+   "evidence": [
+    {
+     "doc_path": "Foot_Locker/FOOTLOCKER_2022_8K_dated_2022-08-19.md",
+     "start_line": 78,
+     "end_line": 80
+    },
+    {
+     "doc_path": "Foot_Locker/FOOTLOCKER_2022_8K_dated_2022-08-19.md",
+     "start_line": 524,
+     "end_line": 524
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_00822",
+   "question_type": "novel-generated",
+   "turns": 5,
+   "cost_usd": 0.01070691,
+   "answer": "Yes, two examples in the library. Foot Locker 2022 (annual meeting May 18, 2022): Richard A. Johnson had 16,105,005 votes against, about 22.8% of votes for or against him (54,484,293 for). The other nine nominees ranged from 294,935 (Drosos, ~0.5%) to 6,074,467 (Young, ~10.1%). Ulta Beauty 2023 (8-K dated June 7, 2023): Michelle L. Collins had 2,367,127 votes against (5.80%), while the other three nominees were at 0.12%–0.81% (Little 0.81%, Smith 0.67%, Petz 0.12%). Both are outliers because their against votes are several times the other nominees' levels.",
+   "evidence": [
+    {
+     "doc_path": "Foot_Locker/FOOTLOCKER_2022_8K_dated-2022-05-20.md",
+     "start_line": 83,
+     "end_line": 100
+    },
+    {
+     "doc_path": "Ulta_Beauty/ULTABEAUTY_2023_8K_dated-2023-06-07.md",
+     "start_line": 92,
+     "end_line": 96
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_04103",
+   "question_type": "metrics-generated",
+   "turns": 6,
+   "cost_usd": 0.01220305,
+   "answer": "FY2019 cash conversion cycle ≈ -3.70 days. Using FY2019 COGS $11,108.4M, net sales $16,865.2M, average inventory $1,600.75M, average receivables $1,681.95M and average payables $2,800.15M, DIO ≈ 52.60, DSO ≈ 36.40, and DPO ≈ 92.70 (denominator COGS + inventory change = 11,108.4 + (-82.9) = 11,025.5), so CCC = 52.60 + 36.40 - 92.70 = -3.70. Negative because payables are held longer than inventory and receivables combined.",
+   "evidence": [
+    {
+     "doc_path": "General_Mills/GENERALMILLS_2019_10K.md",
+     "start_line": 2169,
+     "end_line": 2180
+    },
+    {
+     "doc_path": "General_Mills/GENERALMILLS_2019_10K.md",
+     "start_line": 2092,
+     "end_line": 2093
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_03471",
+   "question_type": "metrics-generated",
+   "turns": 3,
+   "cost_usd": 0.00834238,
+   "answer": "General Mills's FY2020 working capital ratio is 0.68 (total current assets $5,121.3M ÷ total current liabilities $7,491.5M ≈ 0.6836, using the May 31, 2020 balance sheet).",
+   "evidence": [
+    {
+     "doc_path": "General_Mills/GENERALMILLS_2020_10K.md",
+     "start_line": 1962,
+     "end_line": 1982
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_04854",
+   "question_type": "metrics-generated",
+   "turns": 3,
+   "cost_usd": 0.00868499,
+   "answer": "FY2020 free cash flow for General Mills is $3,215.4 million: net cash provided by operating activities of $3,676.2M minus purchases of land, buildings, and equipment (capex) of $460.8M.",
+   "evidence": [
+    {
+     "doc_path": "General_Mills/GENERALMILLS_2020_10K.md",
+     "start_line": 1057,
+     "end_line": 1057
+    },
+    {
+     "doc_path": "General_Mills/GENERALMILLS_2020_10K.md",
+     "start_line": 1075,
+     "end_line": 1075
+    }
+   ],
+   "correct": true,
+   "page_hit": false,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_10136",
+   "question_type": "metrics-generated",
+   "turns": 5,
+   "cost_usd": 0.00987671,
+   "answer": "FY2022 retention ratio ≈ 0.54. Calculated as (Net earnings attributable to General Mills − Dividends paid) ÷ Net earnings attributable to General Mills = (2,707.3 − 1,244.5) ÷ 2,707.3 = 1,462.8 ÷ 2,707.3 ≈ 0.54, i.e., about 54% of FY2022 earnings were retained, with the rest paid out as dividends.",
+   "evidence": [
+    {
+     "doc_path": "General_Mills/GENERALMILLS_2022_10K.md",
+     "start_line": 1444,
+     "end_line": 1444
+    },
+    {
+     "doc_path": "General_Mills/GENERALMILLS_2022_10K.md",
+     "start_line": 1286,
+     "end_line": 1286
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_00956",
+   "question_type": "domain-relevant",
+   "turns": 5,
+   "cost_usd": 0.00933997,
+   "answer": "No. JnJ's FY2022 financials show low, not high, growth: reported worldwide sales rose only 1.3% to $94.9B (from $93.8B in 2021), with operational growth of 6.1% offset by an unfavorable currency impact of (4.8)%, and net earnings fell 14.1% to $17.9B (EPS down 13.8% to $6.73). Growth was modest and earnings declined, so the profile is that of a mature, stable company, not a high-growth one.",
+   "evidence": [
+    {
+     "doc_path": "Johnson_Johnson/JOHNSON_JOHNSON_2022_10K.md",
+     "start_line": 851,
+     "end_line": 858
+    },
+    {
+     "doc_path": "Johnson_Johnson/JOHNSON_JOHNSON_2022Q4_EARNINGS.md",
+     "start_line": 22,
+     "end_line": 24
+    },
+    {
+     "doc_path": "Johnson_Johnson/JOHNSON_JOHNSON_2022Q4_EARNINGS.md",
+     "start_line": 41,
+     "end_line": 46
+    },
+    {
+     "doc_path": "Johnson_Johnson/JOHNSON_JOHNSON_2022_10K.md",
+     "start_line": 866,
+     "end_line": 866
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_00669",
+   "question_type": "domain-relevant",
+   "turns": 7,
+   "cost_usd": 0.01236297,
+   "answer": "FY2022 gross margin fell about 0.9 percentage points, from 68.2% in 2021 to 67.3% in 2022 (gross profit $63,854M on sales of $94,943M, versus $63,920M on $93,775M). Cost of products sold rose to 32.7% of sales from 31.8%, driven by one-time COVID-19 vaccine manufacturing exit costs, currency impacts in Pharmaceutical, and commodity inflation in MedTech and Consumer Health, partly offset by Consumer Health supply chain benefits. Gross margin is a useful metric for J&J, though blended across Pharmaceutical, MedTech and Consumer Health segments with different margin profiles; the filing does not break gross margin out by segment. Intangible amortization in cost of products sold also fell to $4.3B from $4.7B, a partial offset.",
+   "evidence": [
+    {
+     "doc_path": "Johnson_Johnson/JOHNSON_JOHNSON_2022_10K.md",
+     "start_line": 1629,
+     "end_line": 1633
+    },
+    {
+     "doc_path": "Johnson_Johnson/JOHNSON_JOHNSON_2022_10K.md",
+     "start_line": 1077,
+     "end_line": 1087
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_00711",
+   "question_type": "domain-relevant",
+   "turns": 8,
+   "cost_usd": 0.01201839,
+   "answer": "About 2.7 times in FY2022. Cost of products sold of $31,089M divided by average inventories of $11,435M ((12,483 + 10,387) / 2) gives an inventory turnover of about 2.72x, or roughly 134 days of inventory (365 / 2.72). On ending inventory alone it is 2.49x. Conventional inventory turnover is meaningful for J&J: it is a manufacturer of pharmaceuticals and medical devices with substantial physical inventory ($12.5B, of which $8.7B finished goods), and cost of products sold is a reported line item. The ratio is a reasonable measure, though the long production cycles for goods in process and the 2022 build in finished goods (up from $6.5B to $8.7B) pull it down. Inventory is stated at the lower of cost or net realizable value under FIFO.",
+   "evidence": [
+    {
+     "doc_path": "Johnson_Johnson/JOHNSON_JOHNSON_2022_10K.md",
+     "start_line": 2061,
+     "end_line": 2070
+    },
+    {
+     "doc_path": "Johnson_Johnson/JOHNSON_JOHNSON_2022_10K.md",
+     "start_line": 1629,
+     "end_line": 1633
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_00651",
+   "question_type": "novel-generated",
+   "turns": 6,
+   "cost_usd": 0.011082700000000001,
+   "answer": "Yes, on a like-for-like basis. FY2022 adjusted EPS grew 3.6% to $10.15. The January 2023 guidance called for adjusted EPS of $10.45–$10.65 (midpoint $10.55, +4.0% at midpoint, range +3.0% to +5.0%), an acceleration from 3.6%. The July 2023 guidance, which included Consumer Health, raised this to $10.70–$10.80 (midpoint $10.75, +6.0%). The August 2023 post-Kenvue guidance ($10.00–$10.10, midpoint $10.05, +12.5%) is restated to exclude Consumer Health and is not comparable to the prior base, so it is not a clean measure of acceleration.",
+   "evidence": [
+    {
+     "doc_path": "Johnson_Johnson/JOHNSON_JOHNSON_2023_8K_dated-2023-08-30.md",
+     "start_line": 182,
+     "end_line": 183
+    },
+    {
+     "doc_path": "Johnson_Johnson/JOHNSON_JOHNSON_2022Q4_EARNINGS.md",
+     "start_line": 186,
+     "end_line": 189
+    },
+    {
+     "doc_path": "Johnson_Johnson/JOHNSON_JOHNSON_2022Q4_EARNINGS.md",
+     "start_line": 24,
+     "end_line": 24
+    },
+    {
+     "doc_path": "Johnson_Johnson/JOHNSON_JOHNSON_2023_8K_dated-2023-08-30.md",
+     "start_line": 204,
+     "end_line": 204
+    }
+   ],
+   "correct": false,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_01484",
+   "question_type": "novel-generated",
+   "turns": 4,
+   "cost_usd": 0.00918453,
+   "answer": "U.S. sales grew 3.0% in FY2022 ($48.6B vs. $47.2B), while international sales declined 0.6% ($46.4B vs. $46.6B). U.S. sales outgrew international sales by about 3.6 percentage points, since the U.S. grew and international shrank, mainly due to negative currency impact on international results.",
+   "evidence": [
+    {
+     "doc_path": "Johnson_Johnson/JOHNSON_JOHNSON_2022_10K.md",
+     "start_line": 864,
+     "end_line": 864
+    },
+    {
+     "doc_path": "Johnson_Johnson/JOHNSON_JOHNSON_2022_10K.md",
+     "start_line": 851,
+     "end_line": 858
+    },
+    {
+     "doc_path": "Johnson_Johnson/JOHNSON_JOHNSON_2022_10K.md",
+     "start_line": 868,
+     "end_line": 868
+    }
+   ],
+   "correct": true,
+   "page_hit": false,
+   "doc_hit": false
+  },
+  {
+   "id": "financebench_id_01488",
+   "question_type": "novel-generated",
+   "turns": 4,
+   "cost_usd": 0.00899875,
+   "answer": "The Consumer Health business (later Kenvue Inc.) will be presented as a discontinued operation from August 30, 2023 onward. Following the completion of the Kenvue exchange offer, J&J reports Consumer Health financial results as discontinued operations, including a gain of approximately $20 billion in Q3 2023, and the company now describes itself as a Pharmaceutical and MedTech business.",
+   "evidence": [
+    {
+     "doc_path": "Johnson_Johnson/JOHNSON_JOHNSON_2023_8K_dated-2023-08-30.md",
+     "start_line": 127,
+     "end_line": 127
+    },
+    {
+     "doc_path": "Johnson_Johnson/JOHNSON_JOHNSON_2023_8K_dated-2023-08-30.md",
+     "start_line": 83,
+     "end_line": 83
+    },
+    {
+     "doc_path": "Johnson_Johnson/JOHNSON_JOHNSON_2023_8K_dated-2023-08-30.md",
+     "start_line": 123,
+     "end_line": 123
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_01490",
+   "question_type": "novel-generated",
+   "turns": 4,
+   "cost_usd": 0.00929947,
+   "answer": "JnJ will recognize a gain of approximately $20 billion in the third quarter of 2023 from the separation of its Consumer Health business (Kenvue). The August 30, 2023 press release says that because the exchange offer finalized the separation, Consumer Health is now presented as discontinued operations, including that gain.",
+   "evidence": [
+    {
+     "doc_path": "Johnson_Johnson/JOHNSON_JOHNSON_2023_8K_dated-2023-08-30.md",
+     "start_line": 127,
+     "end_line": 127
+    },
+    {
+     "doc_path": "Johnson_Johnson/JOHNSON_JOHNSON_2023_8K_dated-2023-08-30.md",
+     "start_line": 83,
+     "end_line": 83
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_01491",
+   "question_type": "novel-generated",
+   "turns": 5,
+   "cost_usd": 0.0097648,
+   "answer": "$13.2 billion. As of the August 30, 2023 press release, J&J said it \"secured $13.2 billion in cash proceeds from the Kenvue debt offering and initial public offering\" and retained a 9.5% equity stake in Kenvue.",
+   "evidence": [
+    {
+     "doc_path": "Johnson_Johnson/JOHNSON_JOHNSON_2023_8K_dated-2023-08-30.md",
+     "start_line": 113,
+     "end_line": 119
+    },
+    {
+     "doc_path": "Johnson_Johnson/JOHNSON_JOHNSON_2023_8K_dated-2023-08-30.md",
+     "start_line": 206,
+     "end_line": 206
+    },
+    {
+     "doc_path": "Johnson_Johnson/JOHNSON_JOHNSON_2023_8K_dated-2023-08-30.md",
+     "start_line": 83,
+     "end_line": 83
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_01487",
+   "question_type": "novel-generated",
+   "turns": 4,
+   "cost_usd": 0.0092532,
+   "answer": "Yes. JnJ's reported net earnings as a percent of sales rose from 20.0% in Q2 2022 (4,814 / 24,020) to 20.1% in Q2 2023 (5,144 / 25,530), a 0.1-percentage-point increase, per the Condensed Consolidated Statement of Earnings in the Q2 2023 earnings release. (On an adjusted basis, net earnings to sales was flat at 28.8% in both periods.)",
+   "evidence": [
+    {
+     "doc_path": "Johnson_Johnson/JOHNSON_JOHNSON_2023Q2_EARNINGS.md",
+     "start_line": 273,
+     "end_line": 285
+    },
+    {
+     "doc_path": "Johnson_Johnson/JOHNSON_JOHNSON_2023Q2_EARNINGS.md",
+     "start_line": 289,
+     "end_line": 291
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_00299",
+   "question_type": "novel-generated",
+   "turns": 5,
+   "cost_usd": 0.00950954,
+   "answer": "Corporate segment, with a net revenue of $(473) million in Q1 2021 (managed basis), the lowest of JPM's segments. Among the four reportable business segments alone, the lowest was Commercial Banking at $2,393 million. Segment net revenue for Q1 2021 was CCB $12,517M, CIB $14,605M, CB $2,393M, AWM $4,077M, and Corporate $(473)M, for a firmwide total of $33,119M.",
+   "evidence": [
+    {
+     "doc_path": "JPMorgan/JPMORGAN_2021Q1_10Q.md",
+     "start_line": 904,
+     "end_line": 915
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_02119",
+   "question_type": "novel-generated",
+   "turns": 5,
+   "cost_usd": 0.0107867,
+   "answer": "About $82.31 per common share (approx. $82). Using the 3/31/2021 balance sheet, common stockholders' equity of $249,151M divided by 3,027.1M period-end common shares gives $82.31, which matches the reported book value per share. This is a book-value estimate: it assumes assets realize their carrying value and ignores the $31,563M of preferred stock, which would be paid out first in a liquidation.",
+   "evidence": [
+    {
+     "doc_path": "JPMorgan/JPMORGAN_2021Q1_10Q.md",
+     "start_line": 145,
+     "end_line": 146
+    },
+    {
+     "doc_path": "JPMorgan/JPMORGAN_2021Q1_10Q.md",
+     "start_line": 169,
+     "end_line": 170
+    },
+    {
+     "doc_path": "JPMorgan/JPMORGAN_2021Q1_10Q.md",
+     "start_line": 4114,
+     "end_line": 4121
+    }
+   ],
+   "correct": false,
+   "page_hit": false,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_00206",
+   "question_type": "domain-relevant",
+   "turns": 7,
+   "cost_usd": 0.0110051,
+   "answer": "Not applicable. JPMorgan does not report gross margin, and no JPM filing in the library mentions it. Its consolidated income statement has no cost-of-sales or COGS line. Revenue is split into noninterest revenue ($61,985M) and net interest income ($66,710M), giving total net revenue of $128,695M in 2022. Expenses are reported by nature (compensation $41,636M, occupancy, technology, professional services, marketing, other) plus a provision for credit losses, so there is no gross profit to measure year over year. The 2021 and 2020 figures show the same structure.",
+   "evidence": [
+    {
+     "doc_path": "JPMorgan/JPMORGAN_2022_10K.md",
+     "start_line": 7944,
+     "end_line": 7973
+    },
+    {
+     "doc_path": "JPMorgan/JPMORGAN_2022_10K.md",
+     "start_line": 3296,
+     "end_line": 3318
+    }
+   ],
+   "correct": true,
+   "page_hit": false,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_00394",
+   "question_type": "novel-generated",
+   "turns": 6,
+   "cost_usd": 0.010028619999999999,
+   "answer": "Corporate & Investment Bank had the highest net income among JPM's business segments in Q2 2022, at $3,725 million (vs. $3,100M for Consumer & Community Banking, $1,004M for Asset & Wealth Management, $994M for Commercial Banking, and a $(174)M loss for Corporate). The three-months-ended-June-30-2022 segment table in the Q2 2022 10-Q reports these figures on a managed basis.",
+   "evidence": [
+    {
+     "doc_path": "JPMorgan/JPMORGAN_2022Q2_10Q.md",
+     "start_line": 1049,
+     "end_line": 1056
+    },
+    {
+     "doc_path": "JPMorgan/JPMORGAN_2022Q2_10Q.md",
+     "start_line": 1058,
+     "end_line": 1064
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_02049",
+   "question_type": "novel-generated",
+   "turns": 5,
+   "cost_usd": 0.00922901,
+   "answer": "Yes. Average total VaR fell to $47 million for the three months ended June 30, 2023, from $54 million in the same period of 2022, a decrease of $7 million. The filing attributes the decline mainly to risk reductions in Credit Portfolio VaR and fixed income.",
+   "evidence": [
+    {
+     "doc_path": "JPMorgan/JPMORGAN_2023Q2_10Q.md",
+     "start_line": 4393,
+     "end_line": 4393
+    },
+    {
+     "doc_path": "JPMorgan/JPMORGAN_2023Q2_10Q.md",
+     "start_line": 4413,
+     "end_line": 4413
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_10499",
+   "question_type": "metrics-generated",
+   "turns": 7,
+   "cost_usd": 0.01133073,
+   "answer": "Kraft Heinz's FY2019 inventory turnover ratio is 6.25. FY2019 cost of products sold was $16,830M, and average inventory was (2,721 + 2,667) / 2 = $2,694M, so 16,830 / 2,694 = 6.247, which rounds to 6.25.",
+   "evidence": [
+    {
+     "doc_path": "Kraft_Heinz/KRAFTHEINZ_2019_10K.md",
+     "start_line": 1770,
+     "end_line": 1770
+    },
+    {
+     "doc_path": "Kraft_Heinz/KRAFTHEINZ_2019_10K.md",
+     "start_line": 1699,
+     "end_line": 1699
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_04412",
+   "question_type": "metrics-generated",
+   "turns": 4,
+   "cost_usd": 0.01013697,
+   "answer": "Asset turnover ≈ 1.33. FY2020 total net sales of $65,398M divided by average total assets of $49,119M ((50,710 + 47,528) / 2) = 1.331, rounded to 1.33.",
+   "evidence": [
+    {
+     "doc_path": "Lockheed_Martin/LOCKHEEDMARTIN_2020_10K.md",
+     "start_line": 2069,
+     "end_line": 2069
+    },
+    {
+     "doc_path": "Lockheed_Martin/LOCKHEEDMARTIN_2020_10K.md",
+     "start_line": 1986,
+     "end_line": 1986
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_03031",
+   "question_type": "metrics-generated",
+   "turns": 3,
+   "cost_usd": 0.00838499,
+   "answer": "Lockheed Martin's FY2021 net working capital is $5,818 million: total current assets of $19,815 million less total current liabilities of $13,997 million, both as of December 31, 2021, per the consolidated balance sheet.",
+   "evidence": [
+    {
+     "doc_path": "Lockheed_Martin/LOCKHEEDMARTIN_2021_10K.md",
+     "start_line": 1989,
+     "end_line": 1995
+    },
+    {
+     "doc_path": "Lockheed_Martin/LOCKHEEDMARTIN_2021_10K.md",
+     "start_line": 2003,
+     "end_line": 2009
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_03718",
+   "question_type": "metrics-generated",
+   "turns": 3,
+   "cost_usd": 0.00939369,
+   "answer": "Lockheed Martin's 2-year total net sales CAGR from FY2020 to FY2022 is 0.4%. Total net sales rose from $65,398M in 2020 to $65,984M in 2022, so CAGR = (65,984 / 65,398)^(1/2) − 1 ≈ 0.45%, which rounds to 0.4%. This uses the Consolidated Statements of Earnings.",
+   "evidence": [
+    {
+     "doc_path": "Lockheed_Martin/LOCKHEEDMARTIN_2022_10K.md",
+     "start_line": 1884,
+     "end_line": 1886
+    },
+    {
+     "doc_path": "Lockheed_Martin/LOCKHEEDMARTIN_2022_10K.md",
+     "start_line": 1878,
+     "end_line": 1882
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_04171",
+   "question_type": "metrics-generated",
+   "turns": 4,
+   "cost_usd": 0.00833859,
+   "answer": "USD 302.6 million. The FY2018 consolidated balance sheet (December 31, 2018, in thousands) lists Accounts payable of $302,578 thousand, separate from Construction payable ($311,793 thousand), so the accounts payable line is $302.6 million.",
+   "evidence": [
+    {
+     "doc_path": "MGM_Resorts/MGMRESORTS_2018_10K.md",
+     "start_line": 1968,
+     "end_line": 1968
+    },
+    {
+     "doc_path": "MGM_Resorts/MGMRESORTS_2018_10K.md",
+     "start_line": 1943,
+     "end_line": 1949
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_03849",
+   "question_type": "metrics-generated",
+   "turns": 12,
+   "cost_usd": 0.015509519999999999,
+   "answer": "FY2018–FY2020 3-year average capex as % of revenue: 7.9%. Capex ÷ total revenues was 12.6% (FY2018: $1,486.8M ÷ $11,763.1M), 5.7% (FY2019: $739.0M ÷ $12,899.7M) and 5.2% (FY2020: $270.6M ÷ $5,162.1M); their simple average is 7.87%, which rounds to 7.9%. Capex is the 'Capital expenditures, net of construction payable' line in the cash flow statement, and revenue is the total 'Revenues' line in the statement of operations, which includes reimbursed costs.",
+   "evidence": [
+    {
+     "doc_path": "MGM_Resorts/MGMRESORTS_2020_10K.md",
+     "start_line": 2198,
+     "end_line": 2198
+    },
+    {
+     "doc_path": "MGM_Resorts/MGMRESORTS_2020_10K.md",
+     "start_line": 2095,
+     "end_line": 2102
+    },
+    {
+     "doc_path": "MGM_Resorts/MGMRESORTS_2019_10K.md",
+     "start_line": 2061,
+     "end_line": 2061
+    },
+    {
+     "doc_path": "MGM_Resorts/MGMRESORTS_2019_10K.md",
+     "start_line": 1958,
+     "end_line": 1965
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_01254",
+   "question_type": "domain-relevant",
+   "turns": 5,
+   "cost_usd": 0.00965263,
+   "answer": "Yes. MGM Resorts paid dividends to common shareholders in FY2022: it maintained an annual dividend of $0.01 per share throughout 2022, and the 2022 statement of stockholders' equity shows dividends declared and paid to common shareholders of $4,048 thousand ($0.01 per share) for the year ended December 31, 2022.",
+   "evidence": [
+    {
+     "doc_path": "MGM_Resorts/MGMRESORTS_2022_10K.md",
+     "start_line": 1082,
+     "end_line": 1084
+    },
+    {
+     "doc_path": "MGM_Resorts/MGMRESORTS_2022_10K.md",
+     "start_line": 2251,
+     "end_line": 2251
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_00382",
+   "question_type": "novel-generated",
+   "turns": 4,
+   "cost_usd": 0.01019364,
+   "answer": "Las Vegas Strip Resorts had the highest EBITDAR contribution for MGM in FY2022, at $3,142,308 thousand (about $3.1 billion), ahead of Regional Operations at $1,294,630 thousand, MGM China at $(203,136) thousand, and Corporate and other at $(736,548) thousand. The 2022 10-K segment table shows Las Vegas Strip Resorts as the largest positive contributor.",
+   "evidence": [
+    {
+     "doc_path": "MGM_Resorts/MGMRESORTS_2022_10K.md",
+     "start_line": 1395,
+     "end_line": 1398
+    },
+    {
+     "doc_path": "MGM_Resorts/MGMRESORTS_2022_10K.md",
+     "start_line": 1403,
+     "end_line": 1405
+    }
+   ],
+   "correct": true,
+   "page_hit": false,
+   "doc_hit": false
+  },
+  {
+   "id": "financebench_id_01911",
+   "question_type": "novel-generated",
+   "turns": 8,
+   "cost_usd": 0.01227812,
+   "answer": "About 2.52x (FY2022, in $ thousands: EBIT $1,498,753 = income before income taxes $903,799 + interest expense $594,954; divided by interest expense $594,954). MGM does not report an \"Adjusted EBIT\" measure; its filings report Adjusted EBITDAR. Using the same denominator and operating income ($1,439,372) as the numerator gives about 2.42x instead. The 2.52x figure is my computation from the standard EBIT definition, not a reported figure.",
+   "evidence": [
+    {
+     "doc_path": "MGM_Resorts/MGMRESORTS_2022_10K.md",
+     "start_line": 3642,
+     "end_line": 3648
+    },
+    {
+     "doc_path": "MGM_Resorts/MGMRESORTS_2022_10K.md",
+     "start_line": 1559,
+     "end_line": 1569
+    }
+   ],
+   "correct": false,
+   "page_hit": false,
+   "doc_hit": false
+  },
+  {
+   "id": "financebench_id_01912",
+   "question_type": "novel-generated",
+   "turns": 4,
+   "cost_usd": 0.00953557,
+   "answer": "MGM China had the worst FY2022 topline performance: its net revenues fell 44% year over year, from $1,210.8M in 2021 to $673.6M in 2022 (a $537.2M decline). Over the same period Las Vegas Strip Resorts rose 77% and Regional Operations rose 12%, because the MGM China results were hit by Macau travel and entry restrictions and property closures.",
+   "evidence": [
+    {
+     "doc_path": "MGM_Resorts/MGMRESORTS_2022_10K.md",
+     "start_line": 1252,
+     "end_line": 1252
+    },
+    {
+     "doc_path": "MGM_Resorts/MGMRESORTS_2022_10K.md",
+     "start_line": 1276,
+     "end_line": 1284
+    }
+   ],
+   "correct": true,
+   "page_hit": false,
+   "doc_hit": false
+  },
+  {
+   "id": "financebench_id_00407",
+   "question_type": "novel-generated",
+   "turns": 4,
+   "cost_usd": 0.0096645,
+   "answer": "Corporate bonds. At June 30, 2023, MGM's short-term investments totaled $507,726 thousand, and corporate bonds were $416,420 thousand of that (about 82%), the largest category ahead of U.S. government securities ($57,696K), U.S. agency securities ($29,049K), and commercial paper and certificates of deposit ($4,561K). The question is read as the June 30, 2023 balance (end of H1 FY2023), from the Q2 2023 10-Q.",
+   "evidence": [
+    {
+     "doc_path": "MGM_Resorts/MGMRESORTS_2023Q2_10Q.md",
+     "start_line": 474,
+     "end_line": 479
+    },
+    {
+     "doc_path": "MGM_Resorts/MGMRESORTS_2023Q2_10Q.md",
+     "start_line": 458,
+     "end_line": 458
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_04700",
+   "question_type": "metrics-generated",
+   "turns": 4,
+   "cost_usd": 0.015167090000000001,
+   "answer": "FY2016 total cost of revenue for Microsoft was $32,780 million (product $17,880M + service and other $14,900M), per the FY2016 income statement. Cost of revenue is reported as a line item on the consolidated income statement for the year ended June 30, 2016.",
+   "evidence": [
+    {
+     "doc_path": "Microsoft/MICROSOFT_2016_10K.md",
+     "start_line": 1870,
+     "end_line": 1892
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_00552",
+   "question_type": "domain-relevant",
+   "turns": 5,
+   "cost_usd": 0.009501820000000001,
+   "answer": "No. Microsoft's total debt on the balance sheet fell from $49,781M at June 30, 2022 to $47,237M at June 30, 2023, a decrease of $2,544M (about 5%). Current portion of long-term debt rose from $2,749M to $5,247M, but long-term debt fell from $47,032M to $41,990M, more than offsetting it.",
+   "evidence": [
+    {
+     "doc_path": "Microsoft/MICROSOFT_2023_10K.md",
+     "start_line": 2131,
+     "end_line": 2138
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_04458",
+   "question_type": "metrics-generated",
+   "turns": 5,
+   "cost_usd": 0.01029126,
+   "answer": "FY2015 unadjusted EBITDA margin ≈ 5.43%. Unadjusted EBITDA = operating income $305,826K + D&A of property, equipment and intangibles $62,283K = $368,109K; divided by revenues of $6,779,511K gives 5.43%. Streaming and DVD content amortization are excluded from D&A because they are operating costs in cost of revenues.",
+   "evidence": [
+    {
+     "doc_path": "Netflix/NETFLIX_2015_10K.md",
+     "start_line": 1365,
+     "end_line": 1370
+    },
+    {
+     "doc_path": "Netflix/NETFLIX_2015_10K.md",
+     "start_line": 1437,
+     "end_line": 1437
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_03282",
+   "question_type": "metrics-generated",
+   "turns": 3,
+   "cost_usd": 0.008305169999999999,
+   "answer": "Netflix's total current liabilities at December 31, 2017 were $5,466,312 thousand, or about $5,466.3 million. The balance sheet reports this total directly, and it equals the sum of current content liabilities ($4,173,041K), accounts payable ($359,555K), accrued expenses ($315,094K) and deferred revenue ($618,622K).",
+   "evidence": [
+    {
+     "doc_path": "Netflix/NETFLIX_2017_10K.md",
+     "start_line": 1528,
+     "end_line": 1534
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_04302",
+   "question_type": "metrics-generated",
+   "turns": 4,
+   "cost_usd": 0.00931175,
+   "answer": "55.1% — the three-year average of cost of sales as a % of revenues for FY2016–FY2018 is (53.8% + 55.4% + 56.2%) / 3 ≈ 55.1%, using Cost of sales / Revenues each year: FY2016 $17,405M / $32,376M = 53.8%; FY2017 $19,038M / $34,350M = 55.4%; FY2018 $20,441M / $36,397M = 56.2%.",
+   "evidence": [
+    {
+     "doc_path": "Nike/NIKE_2019_10K.md",
+     "start_line": 1743,
+     "end_line": 1745
+    },
+    {
+     "doc_path": "Nike/NIKE_2017_10K.md",
+     "start_line": 1927,
+     "end_line": 1929
+    }
+   ],
+   "correct": true,
+   "page_hit": false,
+   "doc_hit": false
+  },
+  {
+   "id": "financebench_id_03531",
+   "question_type": "metrics-generated",
+   "turns": 4,
+   "cost_usd": 0.008767539999999999,
+   "answer": "Nike had total current assets of $16,525 million at May 31, 2019, per the Consolidated Balance Sheets in its FY2019 10-K (the figure is the sum of cash $4,466M, short-term investments $197M, receivables $4,272M, inventories $5,622M and prepaid/other $1,968M).",
+   "evidence": [
+    {
+     "doc_path": "Nike/NIKE_2019_10K.md",
+     "start_line": 1803,
+     "end_line": 1813
+    },
+    {
+     "doc_path": "Nike/NIKE_2019_10K.md",
+     "start_line": 1801,
+     "end_line": 1801
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_04080",
+   "question_type": "metrics-generated",
+   "turns": 4,
+   "cost_usd": 0.010020669999999999,
+   "answer": "Nike's FY2021 inventory turnover is 3.46x: COGS of $24,576M divided by average inventory of $7,110.5M ((6,854 + 7,367) / 2), with inventories and cost of sales taken from the FY2021 10-K financial statements.",
+   "evidence": [
+    {
+     "doc_path": "Nike/NIKE_2021_10K.md",
+     "start_line": 1973,
+     "end_line": 1973
+    },
+    {
+     "doc_path": "Nike/NIKE_2021_10K.md",
+     "start_line": 1907,
+     "end_line": 1907
+    },
+    {
+     "doc_path": "Nike/NIKE_2021_10K.md",
+     "start_line": 1965,
+     "end_line": 1967
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_01163",
+   "question_type": "domain-relevant",
+   "turns": 4,
+   "cost_usd": 0.009426879999999999,
+   "answer": "Operations brought in the most cash in FY2023: net cash provided by operating activities was +$5,841 million, versus +$564 million from investing and −$7,447 million from financing. Operations was the largest positive contributor and the only one that generated cash for the year, while financing was the largest outflow, driven mainly by $5.48 billion of share repurchases.",
+   "evidence": [
+    {
+     "doc_path": "Nike/NIKE_2023_10K.md",
+     "start_line": 1538,
+     "end_line": 1540
+    },
+    {
+     "doc_path": "Nike/NIKE_2023_10K.md",
+     "start_line": 1549,
+     "end_line": 1549
+    },
+    {
+     "doc_path": "Nike/NIKE_2023_10K.md",
+     "start_line": 1540,
+     "end_line": 1540
+    }
+   ],
+   "correct": true,
+   "page_hit": false,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_00080",
+   "question_type": "domain-relevant",
+   "turns": 4,
+   "cost_usd": 0.01274961,
+   "answer": "Yes. At December 31, 2022, PayPal's working capital was positive at about $12,416 million: total current assets of $57,517M less total current liabilities of $45,101M. The result is positive because current assets exceed current liabilities, though it is inflated by customer funds ($36,357M of funds receivable against $40,107M of funds payable), so excluding those items gives about $16,166M ($21,160M less $4,994M), still positive.",
+   "evidence": [
+    {
+     "doc_path": "Paypal/PAYPAL_2022_10K.md",
+     "start_line": 1894,
+     "end_line": 1915
+    }
+   ],
+   "correct": false,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_04980",
+   "question_type": "metrics-generated",
+   "turns": 7,
+   "cost_usd": 0.01058678,
+   "answer": "PepsiCo's FY2021 capital spending was $4.625 billion ($4,625 million, shown as (4,625) in investing activities on the cash flow statement for the fiscal year ended December 25, 2021). This is the gross \"Capital spending\" line, before the $166 million of sales of property, plant and equipment, which the statement lists separately.",
+   "evidence": [
+    {
+     "doc_path": "PepsiCo/PEPSICO_2021_10K.md",
+     "start_line": 1890,
+     "end_line": 1892
+    },
+    {
+     "doc_path": "PepsiCo/PEPSICO_2021_10K.md",
+     "start_line": 1864,
+     "end_line": 1866
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_01009",
+   "question_type": "domain-relevant",
+   "turns": 3,
+   "cost_usd": 0.00925495,
+   "answer": "PepsiCo's FY2022 10-K describes seven reportable segments spanning these geographies: (1) United States and Canada, covering Frito-Lay North America, Quaker Foods North America and PepsiCo Beverages North America; (2) Latin America; (3) Europe; (4) Africa, Middle East and South Asia (AMESA); and (5) Asia Pacific, Australia and New Zealand, and China region (APAC). The filing says the company serves customers in more than 200 countries and territories, and these five regions are the geographic footprint behind its segment reporting.",
+   "evidence": [
+    {
+     "doc_path": "PepsiCo/PEPSICO_2022_10K.md",
+     "start_line": 172,
+     "end_line": 182
+    },
+    {
+     "doc_path": "PepsiCo/PEPSICO_2022_10K.md",
+     "start_line": 191,
+     "end_line": 193
+    },
+    {
+     "doc_path": "PepsiCo/PEPSICO_2022_10K.md",
+     "start_line": 166,
+     "end_line": 168
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_00735",
+   "question_type": "domain-relevant",
+   "turns": 9,
+   "cost_usd": 0.01289753,
+   "answer": "No. Neither FY2022 nor FY2021 10-K names any specific material ongoing legal battle. Both Item 3 (Legal Proceedings) sections say PepsiCo is party to a variety of litigation, claims, legal or regulatory proceedings, and that management believes the final outcome will not have a material adverse effect on financial condition, results of operations or cash flows. The risk factor lists generic matter types (advertising, product labels, personal injury, IP, privacy, employment, tax) without describing any particular case. The FY2022 commitments and contingencies note only says PepsiCo is subject to various claims and contingencies and recognizes liabilities when a loss is probable and estimable.",
+   "evidence": [
+    {
+     "doc_path": "PepsiCo/PEPSICO_2022_10K.md",
+     "start_line": 666,
+     "end_line": 668
+    },
+    {
+     "doc_path": "PepsiCo/PEPSICO_2021_10K.md",
+     "start_line": 665,
+     "end_line": 667
+    },
+    {
+     "doc_path": "PepsiCo/PEPSICO_2022_10K.md",
+     "start_line": 617,
+     "end_line": 619
+    },
+    {
+     "doc_path": "PepsiCo/PEPSICO_2021_10K.md",
+     "start_line": 614,
+     "end_line": 616
+    },
+    {
+     "doc_path": "PepsiCo/PEPSICO_2022_10K.md",
+     "start_line": 2511,
+     "end_line": 2513
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_01328",
+   "question_type": "domain-relevant",
+   "turns": 6,
+   "cost_usd": 0.00997919,
+   "answer": "0. PepsiCo's FY2022 Consolidated Statement of Income has no separate restructuring line. Its lines are Net Revenue ($86,392M), Cost of sales, SG&A ($34,459M), Gain associated with the Juice Transaction ($(3,321)M), and Impairment of intangible assets ($3,166M). Restructuring and impairment charges of $411M appear only in the notes and cash-flow statement, not as an income-statement line item.",
+   "evidence": [
+    {
+     "doc_path": "PepsiCo/PEPSICO_2022_10K.md",
+     "start_line": 1874,
+     "end_line": 1889
+    }
+   ],
+   "correct": false,
+   "page_hit": false,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_03620",
+   "question_type": "metrics-generated",
+   "turns": 4,
+   "cost_usd": 0.00965709,
+   "answer": "FY2022 unadjusted EBITDA less capex = $9,068 million. Unadjusted EBITDA is operating profit of $11,512M plus D&A of $2,763M = $14,275M; less capital spending of $5,207M gives $9,068M. Operating profit is taken as reported, with no adjustment for the $3,321M Juice Transaction gain or the $3,166M intangible impairment on the income statement.",
+   "evidence": [
+    {
+     "doc_path": "PepsiCo/PEPSICO_2022_10K.md",
+     "start_line": 1882,
+     "end_line": 1882
+    },
+    {
+     "doc_path": "PepsiCo/PEPSICO_2022_10K.md",
+     "start_line": 1946,
+     "end_line": 1946
+    },
+    {
+     "doc_path": "PepsiCo/PEPSICO_2022_10K.md",
+     "start_line": 1969,
+     "end_line": 1969
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_04481",
+   "question_type": "metrics-generated",
+   "turns": 4,
+   "cost_usd": 0.00965478,
+   "answer": "FY2022 unadjusted EBITDA margin for PepsiCo is about 16.52%. Unadjusted EBITDA = Operating Profit $11,512M + D&A $2,763M = $14,275M, divided by Net Revenue $86,392M = 16.52%. Operating Profit is used as reported, so it includes the $3,321M Juice Transaction gain and the $3,166M impairment of intangible assets.",
+   "evidence": [
+    {
+     "doc_path": "PepsiCo/PEPSICO_2022_10K.md",
+     "start_line": 1876,
+     "end_line": 1882
+    },
+    {
+     "doc_path": "PepsiCo/PEPSICO_2022_10K.md",
+     "start_line": 1946,
+     "end_line": 1946
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_01482",
+   "question_type": "novel-generated",
+   "turns": 4,
+   "cost_usd": 0.009280229999999999,
+   "answer": "The shareholder proposal for a congruency report on net-zero emissions policies was defeated. Votes: 19,718,780 For, 977,228,788 Against, 23,200,321 Abstain, and 172,969,325 broker non-votes. It failed because Against votes far exceeded For votes; For was about 1.9% of the votes cast (For + Against + Abstain, excluding broker non-votes).",
+   "evidence": [
+    {
+     "doc_path": "PepsiCo/PEPSICO_2023_8K_dated-2023-05-05.md",
+     "start_line": 185,
+     "end_line": 191
+    },
+    {
+     "doc_path": "PepsiCo/PEPSICO_2023_8K_dated-2023-05-05.md",
+     "start_line": 94,
+     "end_line": 96
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_00705",
+   "question_type": "novel-generated",
+   "turns": 4,
+   "cost_usd": 0.00907082,
+   "answer": "By $400 million: on May 26, 2023 PepsiCo replaced its $3.8 billion five-year unsecured revolving credit agreement (dated May 27, 2022) with a new $4.2 billion five-year unsecured revolving credit agreement ($4,200,000,000 − $3,800,000,000 = $400,000,000). The 8-K also notes the new facility can be increased to up to $4.95 billion, but that is an option, not the increase made on that date.",
+   "evidence": [
+    {
+     "doc_path": "PepsiCo/PEPSICO_2023_8K_dated-2023-05-30.md",
+     "start_line": 99,
+     "end_line": 101
+    },
+    {
+     "doc_path": "PepsiCo/PEPSICO_2023_8K_dated-2023-05-30.md",
+     "start_line": 92,
+     "end_line": 100
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_00882",
+   "question_type": "novel-generated",
+   "turns": 4,
+   "cost_usd": 0.009416859999999999,
+   "answer": "As of May 26, 2023, PepsiCo may borrow up to $8.4 billion in total: $4.2 billion under a new 364-day unsecured revolving credit agreement and $4.2 billion under a new five-year unsecured revolving credit agreement, both entered into on May 26, 2023. The two agreements replaced the $3.8 billion 364-day and $3.8 billion five-year agreements from May 27, 2022, which were terminated effective May 26, 2023 with no outstanding borrowings.",
+   "evidence": [
+    {
+     "doc_path": "PepsiCo/PEPSICO_2023_8K_dated-2023-05-30.md",
+     "start_line": 97,
+     "end_line": 97
+    },
+    {
+     "doc_path": "PepsiCo/PEPSICO_2023_8K_dated-2023-05-30.md",
+     "start_line": 101,
+     "end_line": 101
+    },
+    {
+     "doc_path": "PepsiCo/PEPSICO_2023_8K_dated-2023-05-30.md",
+     "start_line": 95,
+     "end_line": 95
+    },
+    {
+     "doc_path": "PepsiCo/PEPSICO_2023_8K_dated-2023-05-30.md",
+     "start_line": 99,
+     "end_line": 99
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_01474",
+   "question_type": "novel-generated",
+   "turns": 4,
+   "cost_usd": 0.009450179999999999,
+   "answer": "PepsiCo raised FY2023 guidance to 8% organic revenue growth (from 6%) and 9% core constant currency EPS growth (from 8%), which implies core EPS of $7.27 (from $7.20). Management attributed the raise to a strong start to the year: Q1 organic revenue grew 14.3% and core constant currency EPS grew 18%, and its categories and geographies remained resilient.",
+   "evidence": [
+    {
+     "doc_path": "PepsiCo/PEPSICO_2023Q1_EARNINGS.md",
+     "start_line": 36,
+     "end_line": 38
+    },
+    {
+     "doc_path": "PepsiCo/PEPSICO_2023Q1_EARNINGS.md",
+     "start_line": 98,
+     "end_line": 98
+    },
+    {
+     "doc_path": "PepsiCo/PEPSICO_2023Q1_EARNINGS.md",
+     "start_line": 30,
+     "end_line": 32
+    },
+    {
+     "doc_path": "PepsiCo/PEPSICO_2023Q1_EARNINGS.md",
+     "start_line": 108,
+     "end_line": 108
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_01476",
+   "question_type": "novel-generated",
+   "turns": 3,
+   "cost_usd": 0.008456169999999999,
+   "answer": "PepsiCo raised its FY2023 core constant currency EPS growth guidance by 1 percentage point, from 8% to 9%, in its Q1 2023 release (April 25, 2023). The release states the company \"now expects\" 9 percent core constant currency EPS growth, previously 8 percent.",
+   "evidence": [
+    {
+     "doc_path": "PepsiCo/PEPSICO_2023Q1_EARNINGS.md",
+     "start_line": 98,
+     "end_line": 98
+    },
+    {
+     "doc_path": "PepsiCo/PEPSICO_2023Q1_EARNINGS.md",
+     "start_line": 38,
+     "end_line": 38
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_00302",
+   "question_type": "novel-generated",
+   "turns": 5,
+   "cost_usd": 0.00981423,
+   "answer": "Yes. Pfizer's net PP&E rose from $13,745M at Dec 31, 2020 to $14,882M at Dec 31, 2021, an increase of $1,137M (about 8.3%), per the FY2021 10-K. The FY2020 10-K reported FY20 net PP&E as $13,900M, so the FY20 base differs between filings; the FY21 10-K's comparative figure is used here, and the increase is still positive against the originally reported $13,900M ($982M).",
+   "evidence": [
+    {
+     "doc_path": "Pfizer/PFIZER_2021_10K.md",
+     "start_line": 4124,
+     "end_line": 4134
+    },
+    {
+     "doc_path": "Pfizer/PFIZER_2020_10K.md",
+     "start_line": 4355,
+     "end_line": 4367
+    },
+    {
+     "doc_path": "Pfizer/PFIZER_2021_10K.md",
+     "start_line": 4142,
+     "end_line": 4148
+    }
+   ],
+   "correct": true,
+   "page_hit": false,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_00702",
+   "question_type": "novel-generated",
+   "turns": 6,
+   "cost_usd": 0.011112219999999999,
+   "answer": "Yes. The main non-standard event was the July 31, 2019 formation of the GSK Consumer Healthcare joint venture, which produced a pre-tax gain of $8,086M ($5.4B after tax). That gain lifted 2019 net income attributable to Pfizer to $16,273M, up from $11,153M in 2018. Excluding the after-tax gain, net income would be roughly $10.9B, below 2018. A smaller one-time item was a $82M favorable legal settlement in royalty-related income in Q2 2019, which is not material by comparison.",
+   "evidence": [
+    {
+     "doc_path": "Pfizer/PFIZER_2019_10K.md",
+     "start_line": 6310,
+     "end_line": 6316
+    },
+    {
+     "doc_path": "Pfizer/PFIZER_2019_10K.md",
+     "start_line": 5479,
+     "end_line": 5490
+    },
+    {
+     "doc_path": "Pfizer/PFIZER_2019_10K.md",
+     "start_line": 6697,
+     "end_line": 6702
+    }
+   ],
+   "correct": true,
+   "page_hit": false,
+   "doc_hit": false
+  },
+  {
+   "id": "financebench_id_02416",
+   "question_type": "novel-generated",
+   "turns": 5,
+   "cost_usd": 0.01058875,
+   "answer": "Hospira, Anacor, and Medivation. The FY2016 Pfizer 10-K names these as Pfizer's main acquisitions: Hospira (acquired September 3, 2015), Anacor (June 24, 2016), and Medivation (September 28, 2016). Since the question doesn't name a year, I read it as the FY2016 10-K, the filing where these three deals are the principal acquisitions.",
+   "evidence": [
+    {
+     "doc_path": "Pfizer/PFIZER_2016_10K.md",
+     "start_line": 3988,
+     "end_line": 3988
+    },
+    {
+     "doc_path": "Pfizer/PFIZER_2016_10K.md",
+     "start_line": 8359,
+     "end_line": 8359
+    }
+   ],
+   "correct": false,
+   "page_hit": false,
+   "doc_hit": false
+  },
+  {
+   "id": "financebench_id_00283",
+   "question_type": "novel-generated",
+   "turns": 6,
+   "cost_usd": 0.0105678,
+   "answer": "About $355 million remaining. Pfizer's 2019 10-K says it expects total costs of about $500 million to fully separate Upjohn, of which $145 million was already incurred in 2019, leaving roughly $355 million (500 − 145) still to be spent. The filing does not state the $355 million figure itself; it is derived from the $500 million total and the $145 million already incurred.",
+   "evidence": [
+    {
+     "doc_path": "Pfizer/PFIZER_2019_10K.md",
+     "start_line": 2478,
+     "end_line": 2478
+    },
+    {
+     "doc_path": "Pfizer/PFIZER_2019_10K.md",
+     "start_line": 1236,
+     "end_line": 1236
+    }
+   ],
+   "correct": false,
+   "page_hit": false,
+   "doc_hit": false
+  },
+  {
+   "id": "financebench_id_00724",
+   "question_type": "novel-generated",
+   "turns": 8,
+   "cost_usd": 0.01416251,
+   "answer": "Developed Rest of World had the largest percentage drop in Pfizer's Q2 2023 revenues vs. Q2 2022. Its revenues fell 74% reported ($5,034M to $1,305M), or 72% operationally. For comparison, Developed Europe fell 56% ($5,480M to $2,415M), Emerging Markets fell 53% ($6,006M to $2,828M), and the U.S. fell 45% ($11,222M to $6,185M). The regional table in the Q2 2023 earnings release gives these figures directly.",
+   "evidence": [
+    {
+     "doc_path": "Pfizer/PFIZER_2023Q2_EARNINGS.md",
+     "start_line": 771,
+     "end_line": 774
+    },
+    {
+     "doc_path": "Pfizer/PFIZER_2023Q2_EARNINGS.md",
+     "start_line": 1000,
+     "end_line": 1002
+    },
+    {
+     "doc_path": "Pfizer/PFIZER_2023Q2_EARNINGS.md",
+     "start_line": 696,
+     "end_line": 699
+    }
+   ],
+   "correct": true,
+   "page_hit": false,
+   "doc_hit": false
+  },
+  {
+   "id": "financebench_id_02419",
+   "question_type": "novel-generated",
+   "turns": 6,
+   "cost_usd": 0.01101806,
+   "answer": "No. Pfizer's Q2 2023 10-Q (quarter ended July 2, 2023) discloses no pending or announced spin-off of a business segment. The only spin-offs it describes are already completed: the Upjohn Business spin-off and combination with Mylan (Viatris) in November 2020, and GSK's July 2022 demerger of the Consumer Healthcare JV into Haleon, in which Pfizer retains a 32% equity-method stake with a $11.2 billion carrying value at July 2, 2023.",
+   "evidence": [
+    {
+     "doc_path": "Pfizer/Pfizer_2023Q2_10Q.md",
+     "start_line": 593,
+     "end_line": 593
+    },
+    {
+     "doc_path": "Pfizer/Pfizer_2023Q2_10Q.md",
+     "start_line": 597,
+     "end_line": 610
+    },
+    {
+     "doc_path": "Pfizer/Pfizer_2023Q2_10Q.md",
+     "start_line": 1634,
+     "end_line": 1641
+    }
+   ],
+   "correct": false,
+   "page_hit": false,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_00746",
+   "question_type": "domain-relevant",
+   "turns": 6,
+   "cost_usd": 0.010112659999999999,
+   "answer": "None. Ulta Beauty has no debt securities registered under Section 12(b) on a national securities exchange in FY2023. The only security it registers under 12(b) is its common stock (ULTA, par value $0.01), listed on The NASDAQ Global Select Market; the 10-K cover also states Section 12(g) registration is 'None'.",
+   "evidence": [
+    {
+     "doc_path": "Ulta_Beauty/ULTABEAUTY_2023_10K.md",
+     "start_line": 60,
+     "end_line": 68
+    },
+    {
+     "doc_path": "Ulta_Beauty/ULTABEAUTY_2023_8K_dated-2023-06-07.md",
+     "start_line": 34,
+     "end_line": 36
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_00521",
+   "question_type": "domain-relevant",
+   "turns": 7,
+   "cost_usd": 0.01116302,
+   "answer": "Ulta Beauty made no acquisitions in FY2022 or FY2021 according to its goodwill roll-forward, which shows zero acquisitions in both years (goodwill stayed at $10,870K). The library has no fiscal 2023 10-K (its 2023 10-K covers fiscal 2022, ended January 28, 2023), so FY2023 acquisitions cannot be confirmed from the documents. The only partnership it describes, with Target (Ulta Beauty at Target shop-in-shop), is a commercial partnership, not an acquisition.",
+   "evidence": [
+    {
+     "doc_path": "Ulta_Beauty/ULTABEAUTY_2023_10K.md",
+     "start_line": 2361,
+     "end_line": 2369
+    },
+    {
+     "doc_path": "Ulta_Beauty/ULTABEAUTY_2023_10K.md",
+     "start_line": 323,
+     "end_line": 326
+    }
+   ],
+   "correct": false,
+   "page_hit": false,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_00601",
+   "question_type": "novel-generated",
+   "turns": 13,
+   "cost_usd": 0.016348929999999998,
+   "answer": "No FY2023 SG&A-to-net-sales reduction with a stated driver turns up for General Mills, the company the library's top hits point to, which reported SG&A up 80 basis points as a percent of net sales (to ~17.4%) on $353M higher SG&A, driven by media/advertising, valuation adjustments, compensation and charitable contributions. The closest FY2023 reduction I found is Walmart's Sam's Club segment, where operating expenses as a percent of segment net sales fell 97 basis points, attributed to higher sales (leverage); Walmart's consolidated operating/SG&A ratio rose 23 bps (20.8% to 21.0%) in FY2023. Ulta's 40 bps SG&A leverage (lower marketing) is for its fiscal 2022, not FY2023. The question's premise may therefore not match the library, or may refer to a company not covered here.",
+   "evidence": [
+    {
+     "doc_path": "General_Mills/GENERALMILLS_2023_10K.md",
+     "start_line": 672,
+     "end_line": 674
+    },
+    {
+     "doc_path": "Walmart/WALMART_2023_10K.md",
+     "start_line": 1337,
+     "end_line": 1337
+    },
+    {
+     "doc_path": "Walmart/WALMART_2023_10K.md",
+     "start_line": 1086,
+     "end_line": 1092
+    },
+    {
+     "doc_path": "Ulta_Beauty/ULTABEAUTY_2023_10K.md",
+     "start_line": 1271,
+     "end_line": 1279
+    }
+   ],
+   "correct": false,
+   "page_hit": false,
+   "doc_hit": false
+  },
+  {
+   "id": "financebench_id_00603",
+   "question_type": "novel-generated",
+   "turns": 7,
+   "cost_usd": 0.01189208,
+   "answer": "Merchandise inventories, net rose $104.2 million (7.0%) to $1.6 billion at January 28, 2023, from $1.5 billion a year earlier. Management attributed the increase to about $54 million from 47 new stores opened since January 29, 2022, about $25 million from new key brand launches, and about $25 million from higher inventory costs. Caveat: the library's FY2023 10-K (file named 2023_10K) is for Ulta's fiscal 2022, which ended January 28, 2023; no document in the library covers the year ended February 3, 2024, so this is the closest match to the question.",
+   "evidence": [
+    {
+     "doc_path": "Ulta_Beauty/ULTABEAUTY_2023_10K.md",
+     "start_line": 1422,
+     "end_line": 1428
+    },
+    {
+     "doc_path": "Ulta_Beauty/ULTABEAUTY_2023_10K.md",
+     "start_line": 1418,
+     "end_line": 1418
+    }
+   ],
+   "correct": true,
+   "page_hit": false,
+   "doc_hit": false
+  },
+  {
+   "id": "financebench_id_00605",
+   "question_type": "novel-generated",
+   "turns": 9,
+   "cost_usd": 0.013807630000000001,
+   "answer": "Cannot be determined from the library. It contains no FY2023 full-year repurchase data and no Q3 or Q4 FY2023 filing. The FY2023 10-K and Q3/Q4 FY2023 releases are absent; the 10-K present covers fiscal 2022 (year ended Jan 28, 2023). The only FY2023 spend figure found is for the first half: Repurchase of common shares was $559,011K in the 26 weeks ended July 29, 2023 (2024Q2 release). Q4 FY2023 repurchases and full-year FY2023 total spend are not in the documents, so the percentage cannot be computed.",
+   "evidence": [
+    {
+     "doc_path": "Ulta_Beauty/ULTABEAUTY_2024Q2_EARNINGS.md",
+     "start_line": 307,
+     "end_line": 321
+    },
+    {
+     "doc_path": "Ulta_Beauty/ULTABEAUTY_2023_10K.md",
+     "start_line": 1015,
+     "end_line": 1028
+    }
+   ],
+   "correct": false,
+   "page_hit": false,
+   "doc_hit": false
+  },
+  {
+   "id": "financebench_id_00606",
+   "question_type": "novel-generated",
+   "turns": 10,
+   "cost_usd": 0.01460367,
+   "answer": "Increased, but the library has no full-year FY2023 wages-to-net-sales figure, so this is based on partial-year commentary. Store payroll and benefits were a stated deleverage driver in FY2023 Q1 (SG&A rose to 23.2% of net sales from 21.4%) and in the first six months of FY2023 (SG&A rose to 23.5% from 22.3%, with higher store payroll and benefits cited). The library's FY2023 10-K covers fiscal 2022 (ended Jan 28, 2023), which reports only a 20 bp deleverage in store payroll and benefits as a share of net sales. No Q3 or Q4 FY2023 release or full-year FY2023 10-K was found.",
+   "evidence": [
+    {
+     "doc_path": "Ulta_Beauty/ULTABEAUTY_2023Q2_EARNINGS.md",
+     "start_line": 66,
+     "end_line": 68
+    },
+    {
+     "doc_path": "Ulta_Beauty/ULTABEAUTY_2023Q1_EARNINGS.md",
+     "start_line": 48,
+     "end_line": 48
+    },
+    {
+     "doc_path": "Ulta_Beauty/ULTABEAUTY_2023Q2_EARNINGS.md",
+     "start_line": 50,
+     "end_line": 50
+    },
+    {
+     "doc_path": "Ulta_Beauty/ULTABEAUTY_2023_10K.md",
+     "start_line": 1279,
+     "end_line": 1279
+    }
+   ],
+   "correct": true,
+   "page_hit": false,
+   "doc_hit": false
+  },
+  {
+   "id": "financebench_id_00859",
+   "question_type": "novel-generated",
+   "turns": 4,
+   "cost_usd": 0.0093411,
+   "answer": "Cross currency swaps had the highest notional value among Verizon's FY2021 derivatives used to manage foreign currency and interest rate exposure, at $32,502 million at December 31, 2021 (versus $19,779M for interest rate swaps, $1,000M for forward starting interest rate swaps, and $932M for foreign exchange forwards). The notional-amounts table lists these four instruments as its outstanding derivatives.",
+   "evidence": [
+    {
+     "doc_path": "Verizon/VERIZON_2021_10K.md",
+     "start_line": 3770,
+     "end_line": 3779
+    },
+    {
+     "doc_path": "Verizon/VERIZON_2021_10K.md",
+     "start_line": 3840,
+     "end_line": 3842
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_02024",
+   "question_type": "novel-generated",
+   "turns": 6,
+   "cost_usd": 0.00994978,
+   "answer": "As of the FY2021 10-K, Verizon expected benefit payments to retirees in 2024 of $1,097 million for pension benefits and $862 million for health care and life, a total of $1,959 million. The table in the FY2021 10-K's \"Estimated Future Benefit Payments\" section lists these expected 2024 amounts by benefit type.",
+   "evidence": [
+    {
+     "doc_path": "Verizon/VERIZON_2021_10K.md",
+     "start_line": 4281,
+     "end_line": 4292
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_00216",
+   "question_type": "domain-relevant",
+   "turns": 5,
+   "cost_usd": 0.010540279999999999,
+   "answer": "Verizon's FY2022 quick ratio is about 0.54x: (cash $2,605M + accounts receivable, net $24,506M) / total current liabilities $50,171M = $27,111M / $50,171M. A ratio below 1.0 means quick assets do not cover current liabilities, so on this measure alone Verizon does not look strongly liquid. The quick ratio is still a relevant measure for Verizon, but it should be read with its cash generation: operating cash flow was $37,141M in 2022, and current liabilities include $9,963M of debt maturing within one year. The filing gives no marketable securities line, so the calculation excludes them.",
+   "evidence": [
+    {
+     "doc_path": "Verizon/VERIZON_2022_10K.md",
+     "start_line": 2233,
+     "end_line": 2259
+    },
+    {
+     "doc_path": "Verizon/VERIZON_2022_10K.md",
+     "start_line": 1617,
+     "end_line": 1632
+    },
+    {
+     "doc_path": "Verizon/VERIZON_2022_10K.md",
+     "start_line": 1806,
+     "end_line": 1817
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_00215",
+   "question_type": "domain-relevant",
+   "turns": 6,
+   "cost_usd": 0.01065619,
+   "answer": "Yes. In FY2022 Verizon spent $23,087M on capital expenditures (including capitalized software), about 16.9% of its $136,835M total operating revenues ($23,087 / $136,835). That is about 1.35x its $17,099M depreciation and amortization, and capex absorbed about 62% of its $37,141M operating cash flow, leaving $14,054M of free cash flow. Heavy ongoing network investment relative to revenue and cash flow makes it capital intensive.",
+   "evidence": [
+    {
+     "doc_path": "Verizon/VERIZON_2022_10K.md",
+     "start_line": 1805,
+     "end_line": 1807
+    },
+    {
+     "doc_path": "Verizon/VERIZON_2022_10K.md",
+     "start_line": 2166,
+     "end_line": 2166
+    },
+    {
+     "doc_path": "Verizon/VERIZON_2022_10K.md",
+     "start_line": 2171,
+     "end_line": 2171
+    }
+   ],
+   "correct": true,
+   "page_hit": false,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_00566",
+   "question_type": "domain-relevant",
+   "turns": 6,
+   "cost_usd": 0.01010946,
+   "answer": "No. Verizon's balance-sheet debt fell slightly in 2022. Total debt (current plus long-term, including commercial paper) was $150,639M at Dec 31, 2022, versus $150,868M at Dec 31, 2021, a decrease of $229M (about 0.2%). Long-term debt dropped from $143,425M to $140,676M, while debt maturing within one year rose from $7,443M to $9,963M; the decline in long-term debt more than offset the rise in current debt.",
+   "evidence": [
+    {
+     "doc_path": "Verizon/VERIZON_2022_10K.md",
+     "start_line": 3190,
+     "end_line": 3198
+    },
+    {
+     "doc_path": "Verizon/VERIZON_2022_10K.md",
+     "start_line": 3169,
+     "end_line": 3175
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_06247",
+   "question_type": "metrics-generated",
+   "turns": 5,
+   "cost_usd": 0.010203499999999999,
+   "answer": "FY2018 DPO for Walmart ≈ 42.69 days. Average accounts payable = (46,092 + 41,433) / 2 = 43,762.5; COGS FY2018 = 373,396; change in inventory = 43,783 − 43,046 = 737; DPO = 365 × 43,762.5 / (373,396 + 737) = 15,973,312.5 / 374,133 = 42.69. Inputs come from the FY2018 consolidated income statement (cost of sales) and consolidated balance sheet (accounts payable, inventories) in the Walmart FY2018 10-K, in $ millions.",
+   "evidence": [
+    {
+     "doc_path": "Walmart/WALMART_2018_10K.md",
+     "start_line": 2111,
+     "end_line": 2111
+    },
+    {
+     "doc_path": "Walmart/WALMART_2018_10K.md",
+     "start_line": 2185,
+     "end_line": 2185
+    },
+    {
+     "doc_path": "Walmart/WALMART_2018_10K.md",
+     "start_line": 2202,
+     "end_line": 2202
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_04784",
+   "question_type": "metrics-generated",
+   "turns": 4,
+   "cost_usd": 0.009114500000000001,
+   "answer": "The FY2018→FY2019 change in unadjusted operating income margin is +0.2 percentage points. Operating margin on total revenues rose from 4.1% (20,437 / 500,343 = 4.08%) in FY2018 to 4.3% (21,957 / 514,405 = 4.27%) in FY2019, based on the consolidated statement of income in the FY2019 10-K.",
+   "evidence": [
+    {
+     "doc_path": "Walmart/WALMART_2019_10K.md",
+     "start_line": 1896,
+     "end_line": 1904
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "financebench_id_06741",
+   "question_type": "metrics-generated",
+   "turns": 6,
+   "cost_usd": 0.01086972,
+   "answer": "FY2018–FY2020 3-year average unadjusted EBITDA margin for Walmart is 6.2%. Unadjusted EBITDA (operating income + D&A) over total revenues was 6.02% (FY2020), 6.34% (FY2019) and 6.19% (FY2018), giving a simple average of 6.19%, which rounds to 6.2%. Using net sales as the denominator also rounds to 6.2%. Inputs: operating income 20,568 / 21,957 / 20,437 and D&A 10,987 / 10,678 / 10,529 ($ millions).",
+   "evidence": [
+    {
+     "doc_path": "Walmart/WALMART_2020_10K.md",
+     "start_line": 1833,
+     "end_line": 1839
+    },
+    {
+     "doc_path": "Walmart/WALMART_2020_10K.md",
+     "start_line": 2014,
+     "end_line": 2014
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  }
+ ]
+}

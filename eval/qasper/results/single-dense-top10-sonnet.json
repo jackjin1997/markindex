@@ -1,0 +1,4267 @@
+{
+ "benchmark": "QASPER test v0.3, 150 sampled questions (seed 2027)",
+ "protocol": "retrieve-then-read baseline: top-10 pages of dense retrieval in one prompt, no tools; judge prompt from VectifyAI/Mafin2.5-FinanceBench eval.py",
+ "retrieval": {
+  "method": "dense",
+  "model": "BAAI/bge-base-en-v1.5",
+  "subset": "all",
+  "questions": 150,
+  "chunks": 11823,
+  "evidence_page_recall": {
+   "@1": 0.24,
+   "@3": 0.6133,
+   "@5": 0.8,
+   "@10": 0.9733,
+   "@20": 1
+  },
+  "right_filing_recall": {
+   "@1": 1,
+   "@3": 1,
+   "@5": 1,
+   "@10": 1,
+   "@20": 1
+  }
+ },
+ "top_k": 10,
+ "model": "sonnet",
+ "judge_model": "sonnet",
+ "created_at": "2026-11-12T06:37:19.302Z",
+ "summary": {
+  "overall": {
+   "n": 150,
+   "accuracy": 0.9333333333333333,
+   "correct": 140,
+   "unjudged": 0,
+   "doc_hit": 0.9933333333333333,
+   "page_hit": 0.9333333333333333,
+   "mean_turns": 1,
+   "cost_usd": 7.968948700000005
+  },
+  "extractive": {
+   "n": 91,
+   "accuracy": 0.967032967032967,
+   "correct": 88,
+   "unjudged": 0,
+   "doc_hit": 0.989010989010989,
+   "page_hit": 0.9230769230769231,
+   "mean_turns": 1,
+   "cost_usd": 4.834819800000001
+  },
+  "free_form": {
+   "n": 37,
+   "accuracy": 0.8648648648648649,
+   "correct": 32,
+   "unjudged": 0,
+   "doc_hit": 1,
+   "page_hit": 0.918918918918919,
+   "mean_turns": 1,
+   "cost_usd": 1.9553119999999997
+  },
+  "yes_no": {
+   "n": 22,
+   "accuracy": 0.9090909090909091,
+   "correct": 20,
+   "unjudged": 0,
+   "doc_hit": 1,
+   "page_hit": 1,
+   "mean_turns": 1,
+   "cost_usd": 1.1788169
+  }
+ },
+ "results": [
+  {
+   "id": "qasper_f2b1e87f61c6",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.0641809,
+   "answer": "On SParC the baselines are the two models released by Yu et al. (2019b): (1) Context-dependent Seq2Seq (CD-Seq2Seq), adapted from Suhr et al. (2018) with a bi-LSTM schema encoder and a decoder that selects between SQL keywords and column headers; and (2) SyntaxSQL-con, adapted from context-agnostic SyntaxSQLNet using bi-LSTMs to encode interaction history and a column attention mechanism. On Spider, baselines include SyntaxSQLNet (Yu et al. 2018), Lee et al. (2019) recursive decoding, Bogin et al. (2019) graph neural network schema encoding, and Guo et al. (2019) IRNet, which achieves state-of-the-art by using an intermediate representation. On ATIS, the comparison is Suhr et al. (2018). The paper reports a 7% question match and 11% interaction match gain over the previous state of the art on SParC.",
+   "evidence": [
+    {
+     "doc_path": "papers/1909.00786.md",
+     "start_line": 134,
+     "end_line": 138
+    },
+    {
+     "doc_path": "papers/1909.00786.md",
+     "start_line": 10,
+     "end_line": 12
+    },
+    {
+     "doc_path": "papers/1909.00786.md",
+     "start_line": 24,
+     "end_line": 24
+    },
+    {
+     "doc_path": "papers/1909.00786.md",
+     "start_line": 150,
+     "end_line": 150
+    },
+    {
+     "doc_path": "papers/1909.00786.md",
+     "start_line": 160,
+     "end_line": 160
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_1f053f338df6",
+   "question_type": "yes_no",
+   "turns": 1,
+   "cost_usd": 0.0604569,
+   "answer": "Yes, but only partly. Because there was no gold-standard evaluation set for sentences extracted from Wikipedia, they evaluated the extraction qualitatively by manually inspecting a few extracted sentences (Tamil ones machine-translated to English via Google Translate for comparison). They also evaluated the extracted pairs extrinsically, by training SMT and NMT systems with and without the extracted pairs and comparing BLEU, which rose 11.03% for en–ta and 14.7% for en–hi.",
+   "evidence": [
+    {
+     "doc_path": "papers/1806.09652.md",
+     "start_line": 86,
+     "end_line": 86
+    },
+    {
+     "doc_path": "papers/1806.09652.md",
+     "start_line": 96,
+     "end_line": 98
+    },
+    {
+     "doc_path": "papers/1806.09652.md",
+     "start_line": 110,
+     "end_line": 110
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_99f898eb9153",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.0612009,
+   "answer": "The learned encoder is fixed and used as a representation extractor on 10 downstream tasks (evaluated with SentEval): semantic relatedness (SICK-R) and entailment (SICK-E), paraphrase detection (MSRP), question-type classification (TREC), five sentiment/subjectivity datasets (movie review sentiment MR and SST, customer product reviews CR, subjectivity/objectivity SUBJ, opinion polarity MPQA), semantic textual similarity (STS14), and SNLI.",
+   "evidence": [
+    {
+     "doc_path": "papers/1710.10380.md",
+     "start_line": 114,
+     "end_line": 114
+    },
+    {
+     "doc_path": "papers/1710.10380.md",
+     "start_line": 118,
+     "end_line": 118
+    },
+    {
+     "doc_path": "papers/1710.10380.md",
+     "start_line": 98,
+     "end_line": 98
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_92fc94a4999d",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.05466,
+   "answer": "Translation accuracy is measured with the BLEU score. For example, the ART teacher Transformer reaches 33.26/27.30/31.29 BLEU on IWSLT14 De-En and WMT14 En-De/De-En, and the ablations and improvements over baselines are reported in BLEU points.",
+   "evidence": [
+    {
+     "doc_path": "papers/1909.06708.md",
+     "start_line": 74,
+     "end_line": 74
+    },
+    {
+     "doc_path": "papers/1909.06708.md",
+     "start_line": 90,
+     "end_line": 90
+    },
+    {
+     "doc_path": "papers/1909.06708.md",
+     "start_line": 98,
+     "end_line": 98
+    },
+    {
+     "doc_path": "papers/1909.06708.md",
+     "start_line": 118,
+     "end_line": 118
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_4748a50c96ac",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.048788,
+   "answer": "Bing Liu's dataset was used for evaluation. It has three manually aspect-annotated review datasets from three domains: computers, wireless routers, and speakers. (Separately, the sentiment model was trained on 1.2 million 1/3/5-star Electronics reviews from the SNAP Amazon Dataset.)",
+   "evidence": [
+    {
+     "doc_path": "papers/1709.04491.md",
+     "start_line": 64,
+     "end_line": 66
+    },
+    {
+     "doc_path": "papers/1709.04491.md",
+     "start_line": 62,
+     "end_line": 62
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_d6b0c71721ed",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.055973999999999996,
+   "answer": "Three datasets, one per task: (1) the XKCD color dataset (McMahan & Stone's version) for the color-naming reference game; (2) the Caltech–UCSD Birds dataset (Welinder et al.) with natural language descriptions from Reed et al., for the bird-image reference game; (3) a newly collected driving-game dataset from pairs of human Amazon Mechanical Turk workers (382 games, 5 road layouts, over 2000 messages, split into 282 training and 100 test games).",
+   "evidence": [
+    {
+     "doc_path": "papers/1704.06960.md",
+     "start_line": 116,
+     "end_line": 118
+    },
+    {
+     "doc_path": "papers/1704.06960.md",
+     "start_line": 120,
+     "end_line": 122
+    },
+    {
+     "doc_path": "papers/1704.06960.md",
+     "start_line": 130,
+     "end_line": 130
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_ab8b0e6912a7",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.055260000000000004,
+   "answer": "The pages give no single absolute margin over the prior state of the art. The paper claims the best E2E result on Librispeech test sets, comparable to wav2letter Transformer on test-clean and better on test-other, with a smaller model (75M vs 210M parameters). It reports about a 10% relative gain over the ESPnet baseline it builds on (from the better architecture and masking), and a 4.5% relative gain on TedLium2 from semantic masking on top of SpecAugment. The exact WER numbers are in Table 1, which is not included in the pages.",
+   "evidence": [
+    {
+     "doc_path": "papers/1912.03010.md",
+     "start_line": 90,
+     "end_line": 90
+    },
+    {
+     "doc_path": "papers/1912.03010.md",
+     "start_line": 100,
+     "end_line": 100
+    },
+    {
+     "doc_path": "papers/1912.03010.md",
+     "start_line": 12,
+     "end_line": 12
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_5c1755974981",
+   "question_type": "yes_no",
+   "turns": 1,
+   "cost_usd": 0.05433,
+   "answer": "No. The supervised approach does not outperform previous work. The paper reports its results are lower than those of Wenzina and Kaiser's rule-based method (75% recall, 88% precision on asthma chapter 4), and describes its performance as still inferior to manually created extraction rules. When the previous approach is applied to the authors' own annotated corpus, its recall is 39%, and over all activities in its own corpus it is 56%. The contribution is establishing baselines with more domain-independent features.",
+   "evidence": [
+    {
+     "doc_path": "papers/1706.04206.md",
+     "start_line": 98,
+     "end_line": 98
+    },
+    {
+     "doc_path": "papers/1706.04206.md",
+     "start_line": 104,
+     "end_line": 104
+    },
+    {
+     "doc_path": "papers/1706.04206.md",
+     "start_line": 36,
+     "end_line": 36
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_138ad61b43c8",
+   "question_type": "free_form",
+   "turns": 1,
+   "cost_usd": 0.050768,
+   "answer": "By extending it with a machine-learning classifier and simple health-specific features. The authors used Botometer (built for political bot detection) as a base, fed its score into a gradient boosting classifier (with SMOTE for class imbalance), and added features not used by Botometer: tweet diversity, URL score, mean daily posts, topic heterogeneity (LDA), mean post length, profile-picture face detection, and person name in user name. This raised the 'bot' class F1 from 0.361 (Botometer alone) to 0.700.",
+   "evidence": [
+    {
+     "doc_path": "papers/1909.13184.md",
+     "start_line": 36,
+     "end_line": 36
+    },
+    {
+     "doc_path": "papers/1909.13184.md",
+     "start_line": 38,
+     "end_line": 42
+    },
+    {
+     "doc_path": "papers/1909.13184.md",
+     "start_line": 56,
+     "end_line": 56
+    },
+    {
+     "doc_path": "papers/1909.13184.md",
+     "start_line": 68,
+     "end_line": 68
+    },
+    {
+     "doc_path": "papers/1909.13184.md",
+     "start_line": 12,
+     "end_line": 12
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_61e96abdc924",
+   "question_type": "yes_no",
+   "turns": 1,
+   "cost_usd": 0.054141999999999996,
+   "answer": "Not explicitly. The paper names metaphor as a third FL form, but its datasets are binary irony/sarcasm vs. literal, plus a sentiment-score task (SemEval-2015 Task 11) whose tweets mix irony, sarcasm and metaphor. The model is not designed or evaluated to detect overlapping forms (e.g., metaphor and irony) in the same text. It claims to capture FL 'in many of its forms' with a single end-to-end RCNN-RoBERTa model, and the related work says prior systems were never evaluated on more than one type.",
+   "evidence": [
+    {
+     "doc_path": "papers/1911.10401.md",
+     "start_line": 100,
+     "end_line": 100
+    },
+    {
+     "doc_path": "papers/1911.10401.md",
+     "start_line": 42,
+     "end_line": 42
+    },
+    {
+     "doc_path": "papers/1911.10401.md",
+     "start_line": 26,
+     "end_line": 26
+    },
+    {
+     "doc_path": "papers/1911.10401.md",
+     "start_line": 70,
+     "end_line": 70
+    },
+    {
+     "doc_path": "papers/1911.10401.md",
+     "start_line": 48,
+     "end_line": 48
+    }
+   ],
+   "correct": false,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_6df57a21ca87",
+   "question_type": "free_form",
+   "turns": 1,
+   "cost_usd": 0.061074,
+   "answer": "The paper uses a word-level BIO labelling scheme (Beginning, Inside, Outside) with a domain-specific set of 11 concept labels: abb (abbreviations, e.g. TRL), grp (groups/individuals, e.g. Systems Engineers), syscon (system concepts, mostly physical: hardware, software, product), opcon (operational concepts, e.g. decision analysis process), seterm (generic SE terms not syscon/opcon, e.g. project, mission, audit), event (e.g. Pre-Phase A, Phase A), org (e.g. NASA), art (artifacts/instruments, e.g. AS1300), cardinal (numerical values), loc (location-like entities, e.g. facilities), and mea (measures/features/behaviors, e.g. cost, risk, feasibility). About 3700 sentences were annotated at the word-token level with a domain expert.",
+   "evidence": [
+    {
+     "doc_path": "papers/2003.11687.md",
+     "start_line": 34,
+     "end_line": 56
+    },
+    {
+     "doc_path": "papers/2003.11687.md",
+     "start_line": 24,
+     "end_line": 24
+    },
+    {
+     "doc_path": "papers/2003.11687.md",
+     "start_line": 78,
+     "end_line": 78
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_713e1c7b0ab1",
+   "question_type": "yes_no",
+   "turns": 1,
+   "cost_usd": 0.055708,
+   "answer": "Yes. The authors benchmarked baselines on HotelRec for two tasks, rating prediction (Mean, HFT, TransNet, TransNet-Ext; MSE/RMSE) and top-k recommendation (RAND, POP, ItemKNN, UserKNN, PureSVD, GMF, MLP, NeuMF; HR/NDCG). They used the 5-core and 20-core subsets with an 80/10/10 train/validation/test split.",
+   "evidence": [
+    {
+     "doc_path": "papers/2002.06854.md",
+     "start_line": 76,
+     "end_line": 84
+    },
+    {
+     "doc_path": "papers/2002.06854.md",
+     "start_line": 88,
+     "end_line": 114
+    },
+    {
+     "doc_path": "papers/2002.06854.md",
+     "start_line": 122,
+     "end_line": 130
+    },
+    {
+     "doc_path": "papers/2002.06854.md",
+     "start_line": 140,
+     "end_line": 140
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_a98ae529b473",
+   "question_type": "free_form",
+   "turns": 1,
+   "cost_usd": 0.054905999999999996,
+   "answer": "Three task groups: (1) Neural machine translation: WMT 2014 En-De (~4.5M sentence pairs; newstest2013 for validation, newstest2014 for test), IWSLT 2015 En-Vi (~133K pairs; tst2012 validation, tst2013 test), and IWSLT 2014 De-En (160K training pairs, ~7K validation and test sentences). (2) Image captioning: Microsoft COCO 2014 (MSCOCO, Karpathy splits, 123,287 images, 5,000 images each for validation and test). (3) Language modeling: enwiki8 (100M bytes of Wikipedia text; 90M train, 5M validation, 5M test).",
+   "evidence": [
+    {
+     "doc_path": "papers/1912.11637.md",
+     "start_line": 66,
+     "end_line": 68
+    },
+    {
+     "doc_path": "papers/1912.11637.md",
+     "start_line": 80,
+     "end_line": 80
+    },
+    {
+     "doc_path": "papers/1912.11637.md",
+     "start_line": 90,
+     "end_line": 90
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_00f507053c47",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.052386,
+   "answer": "They evaluate four criteria: fluency (human 3-scale rating of grammaticality on 1,000 contexts), relevance (embedding-based metrics: Average, Extrema, Greedy), diversity (Distinct-1 and Distinct-2), and originality (ratio of generated responses not appearing in the training set). They also run a human side-by-side comparison against baselines.",
+   "evidence": [
+    {
+     "doc_path": "papers/1806.07042.md",
+     "start_line": 128,
+     "end_line": 130
+    },
+    {
+     "doc_path": "papers/1806.07042.md",
+     "start_line": 138,
+     "end_line": 138
+    },
+    {
+     "doc_path": "papers/1806.07042.md",
+     "start_line": 148,
+     "end_line": 148
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_ec39120fb879",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.059848,
+   "answer": "They use Wikidata (not raw Wikipedia text) as the source. They process the official dumps into (entity, type) tuples from the instance_of triplet (e.g., Boston → City). They keep only aliases shorter than seven tokens, and if an alias has multiple types they keep the six most popular by sitelink count to drop infrequent meanings. They then move from fine-grained to coarse-grained types (e.g., Artist/Painter → Person, River/Mountain → Location) by traversing the subclass_of hierarchy up to the target NER types. They also filter irrelevant types (e.g., genome names, diseases), yielding about one million records.",
+   "evidence": [
+    {
+     "doc_path": "papers/2004.04060.md",
+     "start_line": 58,
+     "end_line": 58
+    },
+    {
+     "doc_path": "papers/2004.04060.md",
+     "start_line": 60,
+     "end_line": 60
+    },
+    {
+     "doc_path": "papers/2004.04060.md",
+     "start_line": 104,
+     "end_line": 104
+    },
+    {
+     "doc_path": "papers/2004.04060.md",
+     "start_line": 52,
+     "end_line": 54
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_fcf9377fc3fc",
+   "question_type": "free_form",
+   "turns": 1,
+   "cost_usd": 0.056906,
+   "answer": "Neither is a clear winner. On the Wikipedia (WNC) test, human evaluation shows modular is better at reducing bias (and has higher accuracy), while concurrent produces more fluent output, preserves meaning better, and has higher BLEU. The same pattern holds on out-of-domain real-world media: modular reduces bias more, concurrent better preserves meaning and fluency.",
+   "evidence": [
+    {
+     "doc_path": "papers/1911.09709.md",
+     "start_line": 158,
+     "end_line": 158
+    },
+    {
+     "doc_path": "papers/1911.09709.md",
+     "start_line": 172,
+     "end_line": 172
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_1e582319df17",
+   "question_type": "free_form",
+   "turns": 1,
+   "cost_usd": 0.0563,
+   "answer": "The provided pages do not state the average number of speakers in the dataset. Table 3 (Data Statistics) is only referenced by caption, and its contents are not shown. The text only says that conversations vary in the number of speakers (Figure 3, context length 15), without giving an average.",
+   "evidence": [
+    {
+     "doc_path": "papers/1709.04005.md",
+     "start_line": 170,
+     "end_line": 170
+    }
+   ],
+   "correct": false,
+   "page_hit": false,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_5d5c25d68988",
+   "question_type": "free_form",
+   "turns": 1,
+   "cost_usd": 0.055358,
+   "answer": "The paper gives no numeric similarity score. It says that manually selected features are similar across related applications in different domains. Table 4 illustrates this for three event-extraction applications (bio-molecular interactions, financial events, Twitter calendar events). Despite the domain differences, the applications share similar sets of feature classes, and the authors appear to have identified them independently.",
+   "evidence": [
+    {
+     "doc_path": "papers/2002.03056.md",
+     "start_line": 100,
+     "end_line": 100
+    },
+    {
+     "doc_path": "papers/2002.03056.md",
+     "start_line": 222,
+     "end_line": 222
+    },
+    {
+     "doc_path": "papers/2002.03056.md",
+     "start_line": 88,
+     "end_line": 90
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_0dbb5309d2be",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.051121999999999994,
+   "answer": "The pages do not name specific datasets. They say the model is evaluated on two tasks: an information extraction task (entity typing) and a text denoising task, where it outperforms prior work. The dataset names are not given in the provided pages.",
+   "evidence": [
+    {
+     "doc_path": "papers/1610.00479.md",
+     "start_line": 12,
+     "end_line": 12
+    },
+    {
+     "doc_path": "papers/1610.00479.md",
+     "start_line": 272,
+     "end_line": 272
+    }
+   ],
+   "correct": false,
+   "page_hit": false,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_a064337bafca",
+   "question_type": "free_form",
+   "turns": 1,
+   "cost_usd": 0.05068600000000001,
+   "answer": "The phonetic spellings analyzed were: ain (ain't), dese (these), yeen (you ain't), ard (alright), inna (in a / in the), and asl (as hell, an intensifier). Of the geographically distinctive words, ain, ard, asl, inna, and yeen are classed as non-standard phonetic spellings. Dese is listed as a phonetic spelling in the word list, but it is not in the later class summary.",
+   "evidence": [
+    {
+     "doc_path": "papers/1609.02075.md",
+     "start_line": 38,
+     "end_line": 52
+    },
+    {
+     "doc_path": "papers/1609.02075.md",
+     "start_line": 60,
+     "end_line": 60
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_28e50459da60",
+   "question_type": "free_form",
+   "turns": 1,
+   "cost_usd": 0.053908,
+   "answer": "The pages give no exact accuracy numbers (Tables 2/3 are not shown in the text). Qualitatively: the improved model (RNNwA + n-gram) gains about 0.5% accuracy on English and about 2% on Spanish and Arabic over RNNwA. It outperforms the state-of-the-art method of BIBREF3 on English and is competitive on Spanish and Arabic. Plain RNNwA beats the max-pooling RNN model on English and Arabic and matches it on Spanish.",
+   "evidence": [
+    {
+     "doc_path": "papers/1908.09919.md",
+     "start_line": 76,
+     "end_line": 76
+    },
+    {
+     "doc_path": "papers/1908.09919.md",
+     "start_line": 74,
+     "end_line": 74
+    },
+    {
+     "doc_path": "papers/1908.09919.md",
+     "start_line": 86,
+     "end_line": 86
+    },
+    {
+     "doc_path": "papers/1908.09919.md",
+     "start_line": 12,
+     "end_line": 12
+    }
+   ],
+   "correct": false,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_63cdac43a643",
+   "question_type": "free_form",
+   "turns": 1,
+   "cost_usd": 0.055782,
+   "answer": "The Fluent Speech Commands data was collected via crowdsourcing. Each speaker recorded every wording for each intent twice, with phrases presented in random order. Participants consented to data release and gave demographic info (age range, gender, speaking ability), which is released anonymized with the dataset. The phrases (248 in total) were decided beforehand by asking Fluent.ai employees, native and non-native English speakers, how they would express each intent. A separate set of crowdsourcers validated the data, and audios judged unintelligible or containing the wrong phrase were removed.",
+   "evidence": [
+    {
+     "doc_path": "papers/1904.03670.md",
+     "start_line": 56,
+     "end_line": 58
+    },
+    {
+     "doc_path": "papers/1904.03670.md",
+     "start_line": 52,
+     "end_line": 52
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_64f7337970e8",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.047678,
+   "answer": "Initially, n-gram statistical models were used (for speech recognition in the Let's Go bus information system), followed by a statistical language model trained on an artificial corpus, with a robust parser based on an extended Context Free Grammar. Later data-driven approaches used MaxEnt classifiers (Srinivas et al., 2008) and semi-continuous HMMs for acoustic models.",
+   "evidence": [
+    {
+     "doc_path": "papers/1803.08419.md",
+     "start_line": 54,
+     "end_line": 54
+    },
+    {
+     "doc_path": "papers/1803.08419.md",
+     "start_line": 56,
+     "end_line": 56
+    },
+    {
+     "doc_path": "papers/1803.08419.md",
+     "start_line": 60,
+     "end_line": 60
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_97055ab0227e",
+   "question_type": "yes_no",
+   "turns": 1,
+   "cost_usd": 0.05399399999999999,
+   "answer": "Yes. Human evaluation was conducted: three educated volunteers annotated query-reply pairs pointwise (0 bad, 1 borderline, 2 good) in a random, blind fashion, on 79 randomly chosen test samples, with inter-annotator agreement of Fleiss' κ = 0.2824. The full ensemble outperformed the retrieval system by +13.6% in average human scores.",
+   "evidence": [
+    {
+     "doc_path": "papers/1610.07149.md",
+     "start_line": 144,
+     "end_line": 144
+    },
+    {
+     "doc_path": "papers/1610.07149.md",
+     "start_line": 150,
+     "end_line": 150
+    },
+    {
+     "doc_path": "papers/1610.07149.md",
+     "start_line": 154,
+     "end_line": 154
+    },
+    {
+     "doc_path": "papers/1610.07149.md",
+     "start_line": 212,
+     "end_line": 212
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_3567241b3faf",
+   "question_type": "free_form",
+   "turns": 1,
+   "cost_usd": 0.043624,
+   "answer": "Japanese showed the strongest male-default tendency: female pronouns were only 0.196% of its translations, the lowest of any language (Chinese was next at 1.865%).",
+   "evidence": [
+    {
+     "doc_path": "papers/1809.02208.md",
+     "start_line": 204,
+     "end_line": 204
+    }
+   ],
+   "correct": false,
+   "page_hit": false,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_2749fb1725a2",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.055078,
+   "answer": "The trusted set is handcrafted rather than filtered from the training data: a template 'The [PROFESSION] finished [his|her] work.' is filled with 194 professions (from the US labour statistics list of BIBREF4, simplified by removing field-specific adjectives), giving 388 gender-balanced sentences (one masculine and one feminine per profession). These are translated into each target language via an MT first pass followed by manual checking. A no-overlap variant removes professions occurring in WinoMT (216 sentences) and is padded back to 388 with balanced adjective-based sentences such as 'The tall [man|woman] finished [his|her] work.'",
+   "evidence": [
+    {
+     "doc_path": "papers/2004.04498.md",
+     "start_line": 106,
+     "end_line": 110
+    },
+    {
+     "doc_path": "papers/2004.04498.md",
+     "start_line": 114,
+     "end_line": 116
+    },
+    {
+     "doc_path": "papers/2004.04498.md",
+     "start_line": 26,
+     "end_line": 26
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_ec62df859ad9",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.055178000000000005,
+   "answer": "Script event prediction is evaluated on the standard multiple choice narrative cloze (MCNC) dataset: given an event context, the model must choose the most reasonable subsequent event from a candidate list, and performance is measured by accuracy. Following SGNN (the state-of-the-art framework), the authors keep SGNN and only replace its input event embeddings with their intent- and sentiment-enhanced embeddings. They report >1.5% accuracy gain in single-model and >1.4% in multi-model integration comparisons (significant at p<0.05).",
+   "evidence": [
+    {
+     "doc_path": "papers/1909.05190.md",
+     "start_line": 148,
+     "end_line": 150
+    },
+    {
+     "doc_path": "papers/1909.05190.md",
+     "start_line": 152,
+     "end_line": 152
+    },
+    {
+     "doc_path": "papers/1909.05190.md",
+     "start_line": 202,
+     "end_line": 202
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_76f90c889262",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.049539999999999994,
+   "answer": "FEVER is described as the largest fact-checking dataset, with around 185k claims (185,445 validated claims in another paper's count) drawn from a corpus of 5.4M Wikipedia articles.",
+   "evidence": [
+    {
+     "doc_path": "papers/1910.07154.md",
+     "start_line": 18,
+     "end_line": 18
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_597d3fc9b8c0",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.050014,
+   "answer": "Fluency was measured by human evaluation: three native English speakers rated the fluency (grammaticality) and naturalness of the questions from both systems (the top 500 questions selected by averaged LM score vs. Serban et al.'s) on a 4-point scale where 4 is best, and the average ratings were compared. (Separately, for automatic selection, fluency of candidate questions was estimated by the averaged score of a 4-gram Kneser-Ney language model trained on Gigaword.)",
+   "evidence": [
+    {
+     "doc_path": "papers/1610.03807.md",
+     "start_line": 60,
+     "end_line": 60
+    },
+    {
+     "doc_path": "papers/1610.03807.md",
+     "start_line": 62,
+     "end_line": 62
+    },
+    {
+     "doc_path": "papers/1610.03807.md",
+     "start_line": 46,
+     "end_line": 50
+    }
+   ],
+   "correct": false,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_363a24ecb8ab",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.049378,
+   "answer": "BAE is compared against a single baseline attack, TextFooler (synonym replacement using a fixed word embedding space). The comparison is run on three target classifiers: word-LSTM, word-CNN, and a fine-tuned BERT base-uncased classifier, across seven text classification datasets. BAE attacks are almost always stronger than TextFooler, except that TextFooler is often stronger than BAE-R and BAE-I against the BERT classifier.",
+   "evidence": [
+    {
+     "doc_path": "papers/2004.01970.md",
+     "start_line": 82,
+     "end_line": 84
+    },
+    {
+     "doc_path": "papers/2004.01970.md",
+     "start_line": 86,
+     "end_line": 88
+    },
+    {
+     "doc_path": "papers/2004.01970.md",
+     "start_line": 20,
+     "end_line": 20
+    },
+    {
+     "doc_path": "papers/2004.01970.md",
+     "start_line": 12,
+     "end_line": 12
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_74a17eb3bf1d",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.055084,
+   "answer": "The paper used case-insensitive 4-gram BLEU as the automatic metric (with statistical significance tests at p<0.05 and p<0.01 against the baseline). It also ran a subjective human evaluation of translation faithfulness on CH-EN: five human evaluators scored 500 randomly sampled source sentences' translations on a 0-5 scale.",
+   "evidence": [
+    {
+     "doc_path": "papers/1805.09960.md",
+     "start_line": 124,
+     "end_line": 124
+    },
+    {
+     "doc_path": "papers/1805.09960.md",
+     "start_line": 160,
+     "end_line": 160
+    },
+    {
+     "doc_path": "papers/1805.09960.md",
+     "start_line": 208,
+     "end_line": 210
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_8da8c4651979",
+   "question_type": "free_form",
+   "turns": 1,
+   "cost_usd": 0.057076,
+   "answer": "Removing the __eou__ (end-of-utterance) and __eot__ (end-of-turn) tags significantly degrades performance on Ubuntu Dialogue Corpus V2 (Table 7 gives the exact numbers, which are not in the provided text). A case study shows the tags carry useful information: __eou__ captures utterance boundaries and __eot__ captures turn boundaries. This lets ESIM implicitly exploit the multi-turn structure, and the model trained with tags succeeded on a context-response pair where the model without tags failed.",
+   "evidence": [
+    {
+     "doc_path": "papers/1802.02614.md",
+     "start_line": 132,
+     "end_line": 134
+    },
+    {
+     "doc_path": "papers/1802.02614.md",
+     "start_line": 138,
+     "end_line": 138
+    },
+    {
+     "doc_path": "papers/1802.02614.md",
+     "start_line": 98,
+     "end_line": 98
+    },
+    {
+     "doc_path": "papers/1802.02614.md",
+     "start_line": 122,
+     "end_line": 122
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_baaa6ad7148b",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.050818,
+   "answer": "The paper does not give a single list, but it characterizes the usual approaches of the period as logical (and logic/knowledge-based) ones, in contrast to the Croatian group's cybernetic approach. Examples: Bar-Hillel's logical approach, extended by Reformatsky's team at the Steklov Institute (French-, English- and Hungarian-Russian algorithms), and Kulagina and Melchuk's logical, knowledge-heavy processing with a logical intermediate language ('Interlingua') modelling common-sense knowledge, requiring formalization of human thought via philosophical logic. Laszlo and Petrović knew that logicians and linguists were working on ever more sophisticated problems, but concluded that a cybernetic approach (analogy between machines and the nervous system, entropy-based coding) would be better.",
+   "evidence": [
+    {
+     "doc_path": "papers/1908.08917.md",
+     "start_line": 12,
+     "end_line": 12
+    },
+    {
+     "doc_path": "papers/1908.08917.md",
+     "start_line": 32,
+     "end_line": 32
+    },
+    {
+     "doc_path": "papers/1908.08917.md",
+     "start_line": 28,
+     "end_line": 28
+    },
+    {
+     "doc_path": "papers/1908.08917.md",
+     "start_line": 36,
+     "end_line": 36
+    },
+    {
+     "doc_path": "papers/1908.08917.md",
+     "start_line": 56,
+     "end_line": 56
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_8de0e1fdcca8",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.049684,
+   "answer": "They use a proprietary, in-house dataset of more than 70,000 US English phone conversations (average 11 minutes, some over an hour; ~62.4M words) in domains such as account inquiries, refunds and cancellations, annotated with an intent library of 313 intents (~169 examples each). For evaluation they sampled 500 rescored intent annotations from the cancellations and refunds domain, judged by two annotators (250 each).",
+   "evidence": [
+    {
+     "doc_path": "papers/1908.07888.md",
+     "start_line": 140,
+     "end_line": 142
+    },
+    {
+     "doc_path": "papers/1908.07888.md",
+     "start_line": 148,
+     "end_line": 148
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_e6204daf4efe",
+   "question_type": "free_form",
+   "turns": 1,
+   "cost_usd": 0.05241,
+   "answer": "They used both a manual and an automatic evaluation. Manually, each generated speech was scored 0–3 on a list of criteria including grammatical correctness (average 2.3 out of 3). Automatically, they POS-tagged each sentence of the generated speech and checked whether any sentence in the entire corpus had the same POS tag sequence. A match doesn't guarantee correct grammar and no match doesn't prove an error, but it is a pointer; unmatched sentences were output for manual inspection.",
+   "evidence": [
+    {
+     "doc_path": "papers/1601.03313.md",
+     "start_line": 138,
+     "end_line": 138
+    },
+    {
+     "doc_path": "papers/1601.03313.md",
+     "start_line": 134,
+     "end_line": 134
+    },
+    {
+     "doc_path": "papers/1601.03313.md",
+     "start_line": 146,
+     "end_line": 146
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_2dba0b83fc22",
+   "question_type": "yes_no",
+   "turns": 1,
+   "cost_usd": 0.051816,
+   "answer": "Yes. The paper runs human evaluations on Mechanical Turk: 450 randomly sampled test conversations, where workers pick which of the three models' responses (Seq2Seq, VAE, RL) best mitigates hate speech (effectiveness) and which model has the most diverse responses. In a second human evaluation, workers also saw human-written responses alongside the generated ones, and chose the human-written ones as most effective and diverse 70% or more of the time.",
+   "evidence": [
+    {
+     "doc_path": "papers/1909.04251.md",
+     "start_line": 154,
+     "end_line": 154
+    },
+    {
+     "doc_path": "papers/1909.04251.md",
+     "start_line": 166,
+     "end_line": 166
+    },
+    {
+     "doc_path": "papers/1909.04251.md",
+     "start_line": 170,
+     "end_line": 170
+    },
+    {
+     "doc_path": "papers/1909.04251.md",
+     "start_line": 200,
+     "end_line": 200
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_90eeb1b27f84",
+   "question_type": "free_form",
+   "turns": 1,
+   "cost_usd": 0.050114,
+   "answer": "The previous best reported result was that of yih-EtAl:2015:ACL-IJCNLP (Yih et al., 2015). The paper's model (joint entity linking + relation extraction + unstructured inference) reaches 53.3% F1 on WebQuestions and beats it with one-tailed t-test significance p < 0.05.",
+   "evidence": [
+    {
+     "doc_path": "papers/1603.00957.md",
+     "start_line": 132,
+     "end_line": 132
+    },
+    {
+     "doc_path": "papers/1603.00957.md",
+     "start_line": 12,
+     "end_line": 12
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_1dc5bf9dca7d",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.047585999999999996,
+   "answer": "The dataset contains 670 tweets. The paper analyzes 980 person, location, and organization annotations (457 PERSON, 282 LOCATION, 241 ORGANIZATION) that were annotated within these 670 tweets.",
+   "evidence": [
+    {
+     "doc_path": "papers/1912.07940.md",
+     "start_line": 32,
+     "end_line": 32
+    },
+    {
+     "doc_path": "papers/1912.07940.md",
+     "start_line": 24,
+     "end_line": 24
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_b8bbdc3987bb",
+   "question_type": "yes_no",
+   "turns": 1,
+   "cost_usd": 0.051788,
+   "answer": "No. The paper does not compare the system to other existing systems. The evaluation covers only the proposed system itself: out-of-context questions on Bench'It (macro precision/recall/F-1 of 64.14%/64.33%/63.46%) and its coreference module on CALOR (F-1 55.77%). The only comparison is the coreference model's 68.8% F-1 for English, and it notes comparable French measurements are unavailable. Individual components were evaluated outside the scope of the work.",
+   "evidence": [
+    {
+     "doc_path": "papers/1909.11980.md",
+     "start_line": 92,
+     "end_line": 96
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_4c7ec282697f",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.051012,
+   "answer": "The weak supervision signal is the title of each Baidu Baike sample, used as a pseudo entity label. The roughly 6 million auto-crawled sentences have no actual named entity labels, so each sample's title is treated as a pseudo label for NER pre-training.",
+   "evidence": [
+    {
+     "doc_path": "papers/1908.05908.md",
+     "start_line": 70,
+     "end_line": 70
+    },
+    {
+     "doc_path": "papers/1908.05908.md",
+     "start_line": 12,
+     "end_line": 12
+    },
+    {
+     "doc_path": "papers/1908.05908.md",
+     "start_line": 42,
+     "end_line": 42
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_7de0b2df60d3",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.052278,
+   "answer": "The ENE (Extended Named Entities) tag set includes 200 fine-grained categories tailored for Wikipedia articles; annotators picked up to 6 of these 200 labels per article.",
+   "evidence": [
+    {
+     "doc_path": "papers/1909.06502.md",
+     "start_line": 26,
+     "end_line": 26
+    },
+    {
+     "doc_path": "papers/1909.06502.md",
+     "start_line": 38,
+     "end_line": 38
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_5d790459b05c",
+   "question_type": "free_form",
+   "turns": 1,
+   "cost_usd": 0.046828,
+   "answer": "The two baseline methods are the approach of BIBREF19 (cosine similarity loss with margin plus semantic regularization, i.e. the Salvador et al.-style joint embedding) and the AdaMine approach of Carvalho et al. (BIBREF17, triplet loss with semantic loss). The paper trains its model under both objectives and compares against these baselines.",
+   "evidence": [
+    {
+     "doc_path": "papers/1911.01770.md",
+     "start_line": 62,
+     "end_line": 62
+    },
+    {
+     "doc_path": "papers/1911.01770.md",
+     "start_line": 84,
+     "end_line": 86
+    },
+    {
+     "doc_path": "papers/1911.01770.md",
+     "start_line": 12,
+     "end_line": 12
+    },
+    {
+     "doc_path": "papers/1911.01770.md",
+     "start_line": 98,
+     "end_line": 98
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_079e654c9750",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.05018,
+   "answer": "Three undergraduate annotators independently labelled each tweet with one of the speech act categories. The final training label was the one the majority of annotators agreed upon (7,563 tweets in total).",
+   "evidence": [
+    {
+     "doc_path": "papers/1605.05156.md",
+     "start_line": 34,
+     "end_line": 34
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_94c22f72665d",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.056358,
+   "answer": "They test LSTMs on counter languages (formal languages requiring counting, i.e., beyond finite-state/regular). Theoretically, LSTMs are characterized as real-time counter machines (between general and simplified counter languages, strictly more powerful than regular languages). Empirically, they train language models on a counting language (a^n b^n-style strings) and test generalization to longer strings, and also test string reversal (seq2seq) as a memory-demanding formal language task.",
+   "evidence": [
+    {
+     "doc_path": "papers/1906.01615.md",
+     "start_line": 156,
+     "end_line": 162
+    },
+    {
+     "doc_path": "papers/1906.01615.md",
+     "start_line": 258,
+     "end_line": 260
+    },
+    {
+     "doc_path": "papers/1906.01615.md",
+     "start_line": 276,
+     "end_line": 282
+    },
+    {
+     "doc_path": "papers/1906.01615.md",
+     "start_line": 10,
+     "end_line": 12
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_91d4fd5796c1",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.05635999999999999,
+   "answer": "The models are trained on text classification tasks using five benchmark datasets: SST (SST-1 and SST-2 movie reviews), IMDB (movie reviews), MDSD (Multi-Domain Sentiment Dataset product reviews: Books, DVDs, Electronics, Kitchen), RN (Reuters news topic classification), and QC (question classification). They are grouped into three multi-task scenarios: Multi-Cardinality (SST-1, SST-2, IMDB), Multi-Domain (Books, DVDs, Electronics, Kitchen), and Multi-Objective (IMDB, RN, QC; sentiment, topic, and question type).",
+   "evidence": [
+    {
+     "doc_path": "papers/1707.02892.md",
+     "start_line": 134,
+     "end_line": 140
+    },
+    {
+     "doc_path": "papers/1707.02892.md",
+     "start_line": 204,
+     "end_line": 204
+    },
+    {
+     "doc_path": "papers/1707.02892.md",
+     "start_line": 52,
+     "end_line": 56
+    },
+    {
+     "doc_path": "papers/1707.02892.md",
+     "start_line": 12,
+     "end_line": 12
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_e3c2b6fcf77a",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.056956,
+   "answer": "They introduce two novel sequence-level variants of knowledge distillation, in addition to the standard word-level KD (Word-KD) they also experiment with: (1) Sequence-level knowledge distillation (Seq-KD), where the student is trained on the teacher's beam-search output (approximating the teacher's sequence distribution by its mode); and (2) Sequence-level interpolation (Seq-Inter), where the student is trained on the beam-search hypothesis from the teacher that has the highest similarity (smoothed sentence-level BLEU) to the gold target sequence, mixing teacher output with the original data.",
+   "evidence": [
+    {
+     "doc_path": "papers/1606.07947.md",
+     "start_line": 164,
+     "end_line": 164
+    },
+    {
+     "doc_path": "papers/1606.07947.md",
+     "start_line": 12,
+     "end_line": 12
+    },
+    {
+     "doc_path": "papers/1606.07947.md",
+     "start_line": 90,
+     "end_line": 90
+    },
+    {
+     "doc_path": "papers/1606.07947.md",
+     "start_line": 102,
+     "end_line": 106
+    },
+    {
+     "doc_path": "papers/1606.07947.md",
+     "start_line": 172,
+     "end_line": 172
+    }
+   ],
+   "correct": true,
+   "page_hit": false,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_7ba6330d105f",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.05209,
+   "answer": "The paper evaluates with ROUGE (standard ROUGE toolkit), reporting Rouge-1, Rouge-2 and Rouge-4 recall on DUC2004 Task 2, using the same settings as SumRepo (Hong et al.) for comparability. Results are in Table 1: the global + new-TF-IDF variant beats all but the DPP model on Rouge-1 recall, and global + N-first beats all models on Rouge-2 recall.",
+   "evidence": [
+    {
+     "doc_path": "papers/1708.07690.md",
+     "start_line": 84,
+     "end_line": 84
+    },
+    {
+     "doc_path": "papers/1708.07690.md",
+     "start_line": 104,
+     "end_line": 104
+    },
+    {
+     "doc_path": "papers/1708.07690.md",
+     "start_line": 134,
+     "end_line": 134
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_610fc593638c",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.05571799999999999,
+   "answer": "The paper says the state-of-the-art approach (BIBREF8, the attentive neural model) combines learned representations with hand-crafted features such as lexical and syntactic features. The paper also notes these features are mostly about syntactic-head or topic information, and that they rely heavily on system or human annotations.",
+   "evidence": [
+    {
+     "doc_path": "papers/1804.08000.md",
+     "start_line": 18,
+     "end_line": 18
+    },
+    {
+     "doc_path": "papers/1804.08000.md",
+     "start_line": 106,
+     "end_line": 106
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_311f9971d61b",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.056459999999999996,
+   "answer": "SARI is an overall simplification metric that compares the predicted simplification against both the source sentence and the reference simplifications. It is the average of F1 scores for three n-gram operations (additions, keeps, and deletions), each averaged over n-gram orders 1 to 4.",
+   "evidence": [
+    {
+     "doc_path": "papers/1910.02677.md",
+     "start_line": 82,
+     "end_line": 82
+    },
+    {
+     "doc_path": "papers/1910.02677.md",
+     "start_line": 80,
+     "end_line": 80
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_fe1a74449847",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.05286199999999999,
+   "answer": "The pages only say the dataset (the data collected via Unfun.me) and the analysis code are publicly available online, cited as reference BIBREF9. The exact URL or repository is not given in the provided text. The game itself is at http://unfun.me.",
+   "evidence": [
+    {
+     "doc_path": "papers/1901.03253.md",
+     "start_line": 72,
+     "end_line": 72
+    },
+    {
+     "doc_path": "papers/1901.03253.md",
+     "start_line": 192,
+     "end_line": 192
+    },
+    {
+     "doc_path": "papers/1901.03253.md",
+     "start_line": 44,
+     "end_line": 44
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_211c242c028b",
+   "question_type": "yes_no",
+   "turns": 1,
+   "cost_usd": 0.052076,
+   "answer": "No. The paper does not describe any review being translated into both languages. The two corpora are built separately: Catalan reviews were crawled from Booking.com (568 collected, 567 annotated), while Basque reviews came from other websites (343 collected and annotated). Reviews were filtered by language identification to remove Spanish or mixed-language ones, and no translations are mentioned.",
+   "evidence": [
+    {
+     "doc_path": "papers/1803.08614.md",
+     "start_line": 38,
+     "end_line": 40
+    },
+    {
+     "doc_path": "papers/1803.08614.md",
+     "start_line": 72,
+     "end_line": 72
+    },
+    {
+     "doc_path": "papers/1803.08614.md",
+     "start_line": 24,
+     "end_line": 24
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_fe52b093735b",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.049824,
+   "answer": "For knowledge authoring, KALM is compared against the knowledge extraction systems SEMAFOR, SLING, and the Stanford KBP system (KALM reaches 95.6% accuracy, much higher than these). For question answering, KALM-QA is compared against the state-of-the-art machine learning approach on MetaQA, the Variational Reasoning Network (BIBREF14), where KALM-QA reaches 100% accuracy. Related QA systems discussed are Memory Network, ATHENA and PowerAqua, and OpenIE is listed among extraction tools.",
+   "evidence": [
+    {
+     "doc_path": "papers/1905.00840.md",
+     "start_line": 82,
+     "end_line": 84
+    },
+    {
+     "doc_path": "papers/1905.00840.md",
+     "start_line": 30,
+     "end_line": 30
+    },
+    {
+     "doc_path": "papers/1905.00840.md",
+     "start_line": 98,
+     "end_line": 98
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_361f330d3232",
+   "question_type": "yes_no",
+   "turns": 1,
+   "cost_usd": 0.056538,
+   "answer": "Yes. The paper jointly learns ZP prediction (cast as a sequence labelling task) and translation in a single end-to-end model, and its conclusion explicitly says it does this by leveraging multi-task learning.",
+   "evidence": [
+    {
+     "doc_path": "papers/1909.00369.md",
+     "start_line": 168,
+     "end_line": 168
+    },
+    {
+     "doc_path": "papers/1909.00369.md",
+     "start_line": 22,
+     "end_line": 22
+    },
+    {
+     "doc_path": "papers/1909.00369.md",
+     "start_line": 12,
+     "end_line": 12
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_0d42bd759c84",
+   "question_type": "yes_no",
+   "turns": 1,
+   "cost_usd": 0.055716,
+   "answer": "Yes. The paper shows one-sentence-bag examples (Table 1 has two, one correctly and one wrongly labeled by distant supervision; Table 6 is a case study where each bag contains one sentence). It also evaluates on one-sentence bags only (80% of NYT): SeG's AUC gain over PCNN+ATT (+0.13) is larger than its gain on the full dataset, and PCNN+ATT scores slightly below plain PCNN, which supports the claim that selective attention is vulnerable to one-sentence bags.",
+   "evidence": [
+    {
+     "doc_path": "papers/1911.11899.md",
+     "start_line": 154,
+     "end_line": 154
+    },
+    {
+     "doc_path": "papers/1911.11899.md",
+     "start_line": 212,
+     "end_line": 212
+    },
+    {
+     "doc_path": "papers/1911.11899.md",
+     "start_line": 22,
+     "end_line": 22
+    },
+    {
+     "doc_path": "papers/1911.11899.md",
+     "start_line": 196,
+     "end_line": 196
+    },
+    {
+     "doc_path": "papers/1911.11899.md",
+     "start_line": 158,
+     "end_line": 160
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_389cc454ac97",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.052576,
+   "answer": "They use Wikipedia statements and their citations as pivots. A statement with a citation (only the first citation if several; sources limited to web pages, newspaper articles, press and press releases) becomes the summary. The body of the cited page becomes the document. The article title plus the section titles of the statement form a keyword query (e.g., \"Marina Beach, Incidents\"). This gave over 2,000,000 raw examples, which were filtered by rules: unigram recall of summary tokens in the document ≥ 0.5, length and sentence-count limits (5th–95th percentile), and an extractive oracle Rouge-2 recall > 0.2. This leaves WikiRef with 280,724 examples.",
+   "evidence": [
+    {
+     "doc_path": "papers/1911.03324.md",
+     "start_line": 18,
+     "end_line": 18
+    },
+    {
+     "doc_path": "papers/1911.03324.md",
+     "start_line": 86,
+     "end_line": 90
+    },
+    {
+     "doc_path": "papers/1911.03324.md",
+     "start_line": 96,
+     "end_line": 96
+    },
+    {
+     "doc_path": "papers/1911.03324.md",
+     "start_line": 220,
+     "end_line": 220
+    },
+    {
+     "doc_path": "papers/1911.03324.md",
+     "start_line": 224,
+     "end_line": 224
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_1d263356692e",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.056606,
+   "answer": "The framework generates the two primary categories of Chinese classical poetry, SHI and CI. For SHI it covers the two major forms, Jueju (four lines) and Lvshi (eight lines), each with Wuyan (5-character lines) and Qiyan (7-character lines) variants. For CI it covers the 121 most frequent forms (Cipai), which make up 80% of CCPC1.0, all with a single model.",
+   "evidence": [
+    {
+     "doc_path": "papers/2003.11528.md",
+     "start_line": 58,
+     "end_line": 58
+    },
+    {
+     "doc_path": "papers/2003.11528.md",
+     "start_line": 44,
+     "end_line": 44
+    },
+    {
+     "doc_path": "papers/2003.11528.md",
+     "start_line": 54,
+     "end_line": 54
+    },
+    {
+     "doc_path": "papers/2003.11528.md",
+     "start_line": 174,
+     "end_line": 174
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_af45ff2c4209",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.055964,
+   "answer": "They experimented with a logistic regression classifier (no regularization, one per language) using only three features plus a bias term: target/source perplexity ratio from a character-level LSTM language model, normalized edit distance, and a binary indicator of whether the edit is purely numeric. It reached F1 ≈ 0.9 in 10-fold cross validation on annotated edits for English, Chinese and Japanese. The pages mention no other classifier by name, though Table 2 is titled as a cross-validation result of 'typo edit classifiers' (plural), so other classifiers may be reported there.",
+   "evidence": [
+    {
+     "doc_path": "papers/1911.12893.md",
+     "start_line": 146,
+     "end_line": 148
+    },
+    {
+     "doc_path": "papers/1911.12893.md",
+     "start_line": 34,
+     "end_line": 34
+    },
+    {
+     "doc_path": "papers/1911.12893.md",
+     "start_line": 122,
+     "end_line": 130
+    },
+    {
+     "doc_path": "papers/1911.12893.md",
+     "start_line": 178,
+     "end_line": 178
+    },
+    {
+     "doc_path": "papers/1911.12893.md",
+     "start_line": 196,
+     "end_line": 196
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_740cc392c0c8",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.046194,
+   "answer": "Only Twitter is represented as the social media platform. The paper pairs Twitter (4.14 billion words) as its social media dataset with web-crawled data from the Common Crawl (16.65 billion words), which is a web source rather than a social media platform.",
+   "evidence": [
+    {
+     "doc_path": "papers/2004.00809.md",
+     "start_line": 18,
+     "end_line": 18
+    },
+    {
+     "doc_path": "papers/2004.00809.md",
+     "start_line": 30,
+     "end_line": 30
+    },
+    {
+     "doc_path": "papers/2004.00809.md",
+     "start_line": 12,
+     "end_line": 12
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_8f00859f74fc",
+   "question_type": "free_form",
+   "turns": 1,
+   "cost_usd": 0.053666,
+   "answer": "The provided pages do not give a numerical margin for SEPT over the previous state of the art. They say SEPT achieves a new state-of-the-art result on scientific NER (SCIERC) compared to existing transformer-based systems, with an advantage especially in recall. Table 1 holds the actual scores but its contents are not included. The only quantified gaps are that SCIIE beats BiLSTM by almost 3.0% F1 with ELMo and by only 0.5% with SciBERT.",
+   "evidence": [
+    {
+     "doc_path": "papers/1911.03353.md",
+     "start_line": 28,
+     "end_line": 28
+    },
+    {
+     "doc_path": "papers/1911.03353.md",
+     "start_line": 96,
+     "end_line": 98
+    },
+    {
+     "doc_path": "papers/1911.03353.md",
+     "start_line": 10,
+     "end_line": 12
+    }
+   ],
+   "correct": false,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_1dcfcfa46dbc",
+   "question_type": "free_form",
+   "turns": 1,
+   "cost_usd": 0.057558,
+   "answer": "The paper gives no formal or quantitative definition of \"complexity\" or \"confusability\". They are used descriptively. Complex mentions are hard entity types (e.g., work-of-art/creative-work) and multi-token mentions. Such mentions can take any surface form (unseen, same as a person name, abbreviated, or with unreliable capitalization), so models need a deep, generalized understanding of context to find boundaries and assign types. Confusing mentions are those that are hard to disambiguate among fine-grained types because they share the same surface form (e.g., language vs. NORP, like \"Dutch\" and \"English\"). Hardness is operationalized empirically as entity types showing larger F1 gains (>3% absolute for Cross or Att) over Baseline.",
+   "evidence": [
+    {
+     "doc_path": "papers/1908.11046.md",
+     "start_line": 144,
+     "end_line": 144
+    },
+    {
+     "doc_path": "papers/1908.11046.md",
+     "start_line": 148,
+     "end_line": 148
+    },
+    {
+     "doc_path": "papers/1908.11046.md",
+     "start_line": 154,
+     "end_line": 154
+    },
+    {
+     "doc_path": "papers/1908.11046.md",
+     "start_line": 126,
+     "end_line": 126
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_9dcc10a4a325",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.050559999999999994,
+   "answer": "{\"answer\":\"They evaluate supervised systems on 6 sentence classification tasks: paraphrase identification (MSRP), movie review sentiment (MR), product reviews (CR), subjectivity classification (SUBJ), opinion polarity (MPQA), and question type classification (TREC). A logistic regression classifier is trained on top of the sentence representations (10-fold cross-validation when no train-test split is predefined).\",\"evidence\":[{\"doc_path\":\"papers/1602.03483.md\",\"start_line\":96,\"end_line\":96\"},{\"doc_path\":\"papers/1602.03483.md\",\"start_line\":92,\"end_line\":92\"}]}",
+   "evidence": [],
+   "correct": true,
+   "page_hit": false,
+   "doc_hit": false
+  },
+  {
+   "id": "qasper_e5be900e70ea",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.054248000000000005,
+   "answer": "Training sets range from 89K to over 5M sentence pairs: de-en >5M (high-resource), en-fr 219,777 (low/medium), cs-en 114,243 (low), eu-en 89,413 (extremely low). Additionally, de-en subsets of 200K, 500K, 1M and 2M pairs were used, and unsupervised NMT used 50K to 10M monolingual sentences per language.",
+   "evidence": [
+    {
+     "doc_path": "papers/1909.13466.md",
+     "start_line": 124,
+     "end_line": 126
+    },
+    {
+     "doc_path": "papers/1909.13466.md",
+     "start_line": 130,
+     "end_line": 132
+    },
+    {
+     "doc_path": "papers/1909.13466.md",
+     "start_line": 160,
+     "end_line": 160
+    },
+    {
+     "doc_path": "papers/1909.13466.md",
+     "start_line": 188,
+     "end_line": 188
+    },
+    {
+     "doc_path": "papers/1909.13466.md",
+     "start_line": 184,
+     "end_line": 184
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_bbfe7e131ed7",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.05351,
+   "answer": "ICD-10 is the International Classification of Diseases, 10th revision, the terminology used to code the medical causes of death in French death certificates (e.g., the term \"insuffisance cardiaque aigue\" has ICD-10 code I509). In the task, each line of a certificate can receive zero to multiple ICD-10 codes. The paper's dictionaries contained 3,539 ICD-10 codes (run 2) and 6,392 ICD-10 codes (run 1).",
+   "evidence": [
+    {
+     "doc_path": "papers/1807.03674.md",
+     "start_line": 16,
+     "end_line": 16
+    },
+    {
+     "doc_path": "papers/1807.03674.md",
+     "start_line": 26,
+     "end_line": 26
+    },
+    {
+     "doc_path": "papers/1807.03674.md",
+     "start_line": 34,
+     "end_line": 34
+    },
+    {
+     "doc_path": "papers/1807.03674.md",
+     "start_line": 48,
+     "end_line": 48
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_8ad5ebca2f69",
+   "question_type": "yes_no",
+   "turns": 1,
+   "cost_usd": 0.05235999999999999,
+   "answer": "Yes. QBM is compared against baselines: the Q-Q matching baselines (Q-Q Max and Q-Q Mean, built on hCNN) and the query-bag matching baseline Bag-Con (concatenating the bag's questions). QBM performs best, with R10@1 gains of 0.05 on AliMe and 0.03 on Quora over the strongest baseline.",
+   "evidence": [
+    {
+     "doc_path": "papers/1911.02747.md",
+     "start_line": 96,
+     "end_line": 96
+    },
+    {
+     "doc_path": "papers/1911.02747.md",
+     "start_line": 86,
+     "end_line": 88
+    },
+    {
+     "doc_path": "papers/1911.02747.md",
+     "start_line": 26,
+     "end_line": 26
+    },
+    {
+     "doc_path": "papers/1911.02747.md",
+     "start_line": 82,
+     "end_line": 82
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_f40e23adc824",
+   "question_type": "yes_no",
+   "turns": 1,
+   "cost_usd": 0.05564,
+   "answer": "Yes. Besides the intrinsic evaluation (parallelizing audio and text embeddings), the embeddings were tested on a downstream application, spoken document retrieval, on LibriSpeech (100 queries, chapters as documents, MAP metric). AUD-(ph+se) gave better retrieval performance than phonetic-only AUD-ph, including for chapters that did not contain the query.",
+   "evidence": [
+    {
+     "doc_path": "papers/1807.08089.md",
+     "start_line": 130,
+     "end_line": 132
+    },
+    {
+     "doc_path": "papers/1807.08089.md",
+     "start_line": 140,
+     "end_line": 140
+    },
+    {
+     "doc_path": "papers/1807.08089.md",
+     "start_line": 136,
+     "end_line": 136
+    },
+    {
+     "doc_path": "papers/1807.08089.md",
+     "start_line": 12,
+     "end_line": 12
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_a3ba21341f0c",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.051246,
+   "answer": "Three abstractive sequence-to-sequence/language models were trained: Conv2Conv, Transformer, and TransformerLM (the language-model variant of the Transformer). They were implemented with fairseq and tensor2tensor, and inputs were coarsely preselected with Tf-Idf and limited to 2K tokens.",
+   "evidence": [
+    {
+     "doc_path": "papers/2002.06851.md",
+     "start_line": 82,
+     "end_line": 82
+    },
+    {
+     "doc_path": "papers/2002.06851.md",
+     "start_line": 92,
+     "end_line": 92
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_4a201b8b9cc5",
+   "question_type": "free_form",
+   "turns": 1,
+   "cost_usd": 0.055642,
+   "answer": "The new metric is the Neighbour Similarity Test (NST), a distributional-quality metric inspired by the Identity of Indiscernibles. It takes each entity's N nearest neighbours in the vector space and averages the Jaccard index between the entity's set of characteristics (predicate-object pairs) and each neighbour's. The paper also introduces a companion Type and Category Test (TCT), which uses sets of types and categories instead of characteristics.",
+   "evidence": [
+    {
+     "doc_path": "papers/1803.07828.md",
+     "start_line": 74,
+     "end_line": 78
+    },
+    {
+     "doc_path": "papers/1803.07828.md",
+     "start_line": 82,
+     "end_line": 82
+    },
+    {
+     "doc_path": "papers/1803.07828.md",
+     "start_line": 12,
+     "end_line": 12
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_9925e7d8757e",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.05808,
+   "answer": "Thomas Merriam proposed a modification to Spedding's original attribution of Henry VIII: re-attributing several parts of supposedly Fletcher's scenes back to Shakespeare and vice versa. This was based on confidence intervals and principal component analysis of frequencies of selected function words in Shakespeare's and Fletcher's plays, the CUSUM technique on selected function words and lines ending with an extra unstressed syllable, and principal component analysis of the 64 most frequent words. Examples include a shift of authorship within scene 2.2 at line 1164, the shift in scene 3.2 at line 2200 rather than 2081, and mixed authorship after line 2081 in scene 3.2 and in act 4.",
+   "evidence": [
+    {
+     "doc_path": "papers/1911.05652.md",
+     "start_line": 26,
+     "end_line": 26
+    },
+    {
+     "doc_path": "papers/1911.05652.md",
+     "start_line": 80,
+     "end_line": 80
+    },
+    {
+     "doc_path": "papers/1911.05652.md",
+     "start_line": 88,
+     "end_line": 90
+    },
+    {
+     "doc_path": "papers/1911.05652.md",
+     "start_line": 12,
+     "end_line": 12
+    },
+    {
+     "doc_path": "papers/1911.05652.md",
+     "start_line": 100,
+     "end_line": 100
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_f741d32b9263",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.049684,
+   "answer": "They evaluated two complementary baselines: (1) multilingual word embeddings (MultiCCA) with a one-layer CNN classifier on top (embeddings frozen), and (2) joint multilingual sentence embeddings (multi-encoder/decoder trained on aligned MT corpora, Europarl and UN versions) with a one-hidden-layer MLP classifier. Both were tested in zero-shot, targeted, and joint multilingual settings.",
+   "evidence": [
+    {
+     "doc_path": "papers/1805.09821.md",
+     "start_line": 50,
+     "end_line": 50
+    },
+    {
+     "doc_path": "papers/1805.09821.md",
+     "start_line": 62,
+     "end_line": 62
+    },
+    {
+     "doc_path": "papers/1805.09821.md",
+     "start_line": 66,
+     "end_line": 66
+    },
+    {
+     "doc_path": "papers/1805.09821.md",
+     "start_line": 70,
+     "end_line": 70
+    },
+    {
+     "doc_path": "papers/1805.09821.md",
+     "start_line": 90,
+     "end_line": 90
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_708f5f83a3c3",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.05325,
+   "answer": "The paper considers two machine learning approaches: support vector regression (SVR) on TF-IDF features (word bi-grams and character quad-grams), and a pre-trained language model (ULMFiT) with transfer learning, fine-tuned for Big Five classification. Each was trained on both the large low-reliability dataset (D_LR) and the small high-reliability dataset (D_HR), giving four models: SVR(D_LR), LM(D_LR), SVR(D_HR), LM(D_HR). SVR was chosen after comparing other scikit-learn regressors (RandomForestRegressor, LinearSVR, KNeighborsRegressor) by cross-validated grid search, and a dummy regressor predicting the mean served as baseline.",
+   "evidence": [
+    {
+     "doc_path": "papers/1910.09916.md",
+     "start_line": 58,
+     "end_line": 62
+    },
+    {
+     "doc_path": "papers/1910.09916.md",
+     "start_line": 66,
+     "end_line": 66
+    },
+    {
+     "doc_path": "papers/1910.09916.md",
+     "start_line": 112,
+     "end_line": 116
+    },
+    {
+     "doc_path": "papers/1910.09916.md",
+     "start_line": 120,
+     "end_line": 120
+    },
+    {
+     "doc_path": "papers/1910.09916.md",
+     "start_line": 108,
+     "end_line": 108
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_420862798054",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.052904,
+   "answer": "They evaluate on the SICK (Sentences Involving Compositional Knowledge) dataset, about 10,000 English sentence pairs annotated for relatedness and entailment. It is used for two tasks: semantic relatedness (Pearson correlation) and textual entailment (accuracy).",
+   "evidence": [
+    {
+     "doc_path": "papers/1603.09405.md",
+     "start_line": 104,
+     "end_line": 104
+    },
+    {
+     "doc_path": "papers/1603.09405.md",
+     "start_line": 136,
+     "end_line": 136
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_fa5f5f58f627",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.054574,
+   "answer": "They used BLEU to evaluate the imaginators' generation performance and accuracy (the ratio of correctly classified samples among all samples) to evaluate the arbitrator's wait-or-reply classification.",
+   "evidence": [
+    {
+     "doc_path": "papers/2002.09616.md",
+     "start_line": 158,
+     "end_line": 158
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_c47312f2ca83",
+   "question_type": "free_form",
+   "turns": 1,
+   "cost_usd": 0.052928,
+   "answer": "The model is trained on Amazon's own customer behavior (search log) data: 11 months of search logs for training and 1 month for evaluation. They sample 54 billion query-product training pairs, which are preprocessed (grouped by query-product pair with aggregated counts as weights) into 650 million rows. Per purchased pair, they target 6 impressed-but-not-purchased and 7 random products.",
+   "evidence": [
+    {
+     "doc_path": "papers/1907.00937.md",
+     "start_line": 82,
+     "end_line": 84
+    },
+    {
+     "doc_path": "papers/1907.00937.md",
+     "start_line": 88,
+     "end_line": 88
+    },
+    {
+     "doc_path": "papers/1907.00937.md",
+     "start_line": 12,
+     "end_line": 12
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_2e70d25f1435",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.050806000000000004,
+   "answer": "On the EDGAR dataset (28,445 documents, 5 filing types), splitting documents into chunks beat feeding the whole document (the one-chunk benchmark). The BiLSTM-with-attention model plus a linear classifier reached 97.97% test accuracy, a 1.1% improvement over the benchmark. The model with an SVM classifier reached 98.11%, a 0.4% improvement. Document type \"EX-99.1\" was misclassified most often, and was frequently confused with \"EX-10.1\". The BiLSTM also made the document embedding clusters more clearly separated than Doc2Vec alone.",
+   "evidence": [
+    {
+     "doc_path": "papers/1912.06905.md",
+     "start_line": 106,
+     "end_line": 110
+    },
+    {
+     "doc_path": "papers/1912.06905.md",
+     "start_line": 102,
+     "end_line": 102
+    },
+    {
+     "doc_path": "papers/1912.06905.md",
+     "start_line": 82,
+     "end_line": 82
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_ebe1084a06ab",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.05247,
+   "answer": "The paper's baselines are sentence-level NMT models (no context): a recurrent (RNN/Nematus) sentence-level baseline and a Transformer-based sentence-level baseline. In addition, a concatenative context-aware baseline (concat22, similar to BIBREF5, which concatenates the previous sentence) is used as a simple comparison for the multi-encoder models (s-hier, s-hier-to-2, s-t-hier, and their .tied variants) based on BIBREF9, and the Transformer model of BIBREF8. The best model, s-hier-to-2.tied, gains +16 percentage points accuracy over the (sentence-level) baseline.",
+   "evidence": [
+    {
+     "doc_path": "papers/1810.02268.md",
+     "start_line": 48,
+     "end_line": 48
+    },
+    {
+     "doc_path": "papers/1810.02268.md",
+     "start_line": 118,
+     "end_line": 120
+    },
+    {
+     "doc_path": "papers/1810.02268.md",
+     "start_line": 166,
+     "end_line": 166
+    },
+    {
+     "doc_path": "papers/1810.02268.md",
+     "start_line": 184,
+     "end_line": 184
+    },
+    {
+     "doc_path": "papers/1810.02268.md",
+     "start_line": 190,
+     "end_line": 190
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_7a212a34e9db",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.054403999999999994,
+   "answer": "Four NLP task types, across seven datasets: Sentiment Classification (SST-2), Paraphrase Similarity Matching (MRPC, QQP), Natural Language Inference (MNLI-m, MNLI-mm, QNLI, RTE), and Machine Reading Comprehension (RACE). The GLUE tasks are evaluated on the GLUE test server, and RACE is reported separately in Table 3.",
+   "evidence": [
+    {
+     "doc_path": "papers/1908.09355.md",
+     "start_line": 28,
+     "end_line": 28
+    },
+    {
+     "doc_path": "papers/1908.09355.md",
+     "start_line": 134,
+     "end_line": 136
+    },
+    {
+     "doc_path": "papers/1908.09355.md",
+     "start_line": 190,
+     "end_line": 190
+    },
+    {
+     "doc_path": "papers/1908.09355.md",
+     "start_line": 162,
+     "end_line": 162
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_a064d01d45a3",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.05341800000000001,
+   "answer": "The paper's related work discusses these existing annotation tools: Stanford manual annotation tool (lightweight, but no result analysis or system recommendation); Knowtator (general-task, biomedical ontology-linked, simple inter-annotator evaluation but cannot show detailed disagreed labels); WordFreak (system recommendation and active learning, but no post-annotation analysis); Gate (web-based collaborative annotation framework with shared text storage); Brat (web-based, powerful annotation and visualization, but no result analysis); Anafora and Atomic (web-based, lightweight, but no automatic annotation or quality analysis); and WebAnno (automatic suggestions and quality monitoring such as inter-annotator agreement, data curation and progress monitoring, but compares disagreements only per sentence in the interface and needs a server).",
+   "evidence": [
+    {
+     "doc_path": "papers/1711.03759.md",
+     "start_line": 38,
+     "end_line": 38
+    },
+    {
+     "doc_path": "papers/1711.03759.md",
+     "start_line": 40,
+     "end_line": 40
+    },
+    {
+     "doc_path": "papers/1711.03759.md",
+     "start_line": 18,
+     "end_line": 18
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_b537832bba2e",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.052898,
+   "answer": "The paper uses five text classification datasets from Zhang et al. (2015): AGNews (news classification, 4 classes), Yelp (sentiment, 5 classes), Amazon (sentiment, 5 classes), DBPedia (Wikipedia article classification, 14 classes), and Yahoo (question and answer categorization, 10 classes). Yelp and Amazon classes are merged because they share semantics (product ratings), giving 33 classes in total.",
+   "evidence": [
+    {
+     "doc_path": "papers/1906.01076.md",
+     "start_line": 78,
+     "end_line": 78
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_5f25b57a1765",
+   "question_type": "free_form",
+   "turns": 1,
+   "cost_usd": 0.050108,
+   "answer": "They are not hand-programmed rules; they are cues fed as inputs into a probabilistic ML-based model. Face tracking, face identification, SSL, speaker identification and the CSS TF masks are combined in a statistical model that computes the speaker ID posterior. Face identification uses a CNN-based face embedding (Microsoft Face API) with a learned linear classifier, while face tracking is a more classical algorithm (face detection plus color-based mean-shift low-level tracking) with hand-designed adaptations. So it is a mix: a model-based integration of multiple modalities, with some components (tracking) engineered rather than learned.",
+   "evidence": [
+    {
+     "doc_path": "papers/1912.04979.md",
+     "start_line": 94,
+     "end_line": 94
+    },
+    {
+     "doc_path": "papers/1912.04979.md",
+     "start_line": 138,
+     "end_line": 138
+    },
+    {
+     "doc_path": "papers/1912.04979.md",
+     "start_line": 142,
+     "end_line": 142
+    },
+    {
+     "doc_path": "papers/1912.04979.md",
+     "start_line": 156,
+     "end_line": 156
+    },
+    {
+     "doc_path": "papers/1912.04979.md",
+     "start_line": 176,
+     "end_line": 176
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_c7f43c95db3d",
+   "question_type": "yes_no",
+   "turns": 1,
+   "cost_usd": 0.060582,
+   "answer": "Yes. The paper trains and evaluates both Word2Vec architectures, skip-gram (SG) and continuous bag-of-words (CBOW), with the different noise distributions (Uni^{3/4}, Sub^{L1}, Sub^{L2}), using a modified word2vec tool. SG is used in the main experiments (window 5, 10 negative samples, initial learning rate 0.025).",
+   "evidence": [
+    {
+     "doc_path": "papers/1910.09362.md",
+     "start_line": 128,
+     "end_line": 128
+    },
+    {
+     "doc_path": "papers/1910.09362.md",
+     "start_line": 152,
+     "end_line": 152
+    },
+    {
+     "doc_path": "papers/1910.09362.md",
+     "start_line": 28,
+     "end_line": 28
+    },
+    {
+     "doc_path": "papers/1910.09362.md",
+     "start_line": 190,
+     "end_line": 190
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_bab4e8881f4d",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.05492,
+   "answer": "The paper treats the following as state-of-the-art baselines: (1) the character-aware neural language model of Kim et al. (2016) (CNN over character embeddings feeding an RNN), state of the art as a language model on alphabetic languages; (2) Hierarchical attention networks, the state-of-the-art RNN-based document classifier; and (3) fastText, the state-of-the-art baseline for text classification (word-embedding version, no bigrams). A classical bi-directional LSTM with word embeddings is also compared, but it is described as basic rather than state-of-the-art.",
+   "evidence": [
+    {
+     "doc_path": "papers/1708.03312.md",
+     "start_line": 76,
+     "end_line": 82
+    },
+    {
+     "doc_path": "papers/1708.03312.md",
+     "start_line": 12,
+     "end_line": 12
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_d9e7633004ed",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.050968000000000006,
+   "answer": "The new dataset is trilingual, containing English, French, and Arabic tweets (about 13,000 tweets annotated in total).",
+   "evidence": [
+    {
+     "doc_path": "papers/1908.11049.md",
+     "start_line": 44,
+     "end_line": 44
+    },
+    {
+     "doc_path": "papers/1908.11049.md",
+     "start_line": 162,
+     "end_line": 162
+    },
+    {
+     "doc_path": "papers/1908.11049.md",
+     "start_line": 24,
+     "end_line": 24
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_42269ed04e98",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.054832,
+   "answer": "Documents (and queries) are represented as normalized bag-of-words (BOW) vectors, following Word Mover's Distance. Each word's weight is modified to incorporate inverse document frequency (idf) so common terms get less importance. Each word is associated with a neural word embedding vector (word2vec skip-gram trained on 25M PubMed titles and abstracts), and similarity is computed between individual query words and document words rather than via a centroid.",
+   "evidence": [
+    {
+     "doc_path": "papers/1608.01972.md",
+     "start_line": 42,
+     "end_line": 42
+    },
+    {
+     "doc_path": "papers/1608.01972.md",
+     "start_line": 58,
+     "end_line": 60
+    },
+    {
+     "doc_path": "papers/1608.01972.md",
+     "start_line": 64,
+     "end_line": 64
+    },
+    {
+     "doc_path": "papers/1608.01972.md",
+     "start_line": 36,
+     "end_line": 36
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_ba406e07c33a",
+   "question_type": "free_form",
+   "turns": 1,
+   "cost_usd": 0.05048,
+   "answer": "Not clearly. The paper says granularity of IUs largely affects both quality and latency, but larger is not simply better. Using segments (smaller IUs) instead of sub-sentences cuts latency by about 20% (23.13→18.65) with only a slight BLEU drop (47.61→47.27), and the effect of discarding tokens differs by granularity: for sub-sentences more discarding lowers quality, while for segments it improves quality and latency. Larger context for anticipation is more robust than aggressive anticipation, but coarser granularity mainly costs latency for marginal quality gain.",
+   "evidence": [
+    {
+     "doc_path": "papers/1907.12984.md",
+     "start_line": 188,
+     "end_line": 188
+    },
+    {
+     "doc_path": "papers/1907.12984.md",
+     "start_line": 186,
+     "end_line": 186
+    },
+    {
+     "doc_path": "papers/1907.12984.md",
+     "start_line": 12,
+     "end_line": 12
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_aa7c5386aedf",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.055482000000000004,
+   "answer": "They compare against the rule-based TN model as the baseline (the fully developed system with 45 groups and ~300 patterns), evaluating the proposed hybrid rule-based + multi-head self-attention system against it on the golden set (sentence accuracy improves by over 1.5%). They also compare 7 neural model setups: the proposed configuration (w2v embeddings, 1's padding, 30-character window, focal-style loss, mask), a BERT-embedding variant, 0's padding, maximum-sentence-length window, cross-entropy loss, no mask, and data expansion. Seq2seq models are discussed only as related work and not compared experimentally.",
+   "evidence": [
+    {
+     "doc_path": "papers/1911.04128.md",
+     "start_line": 36,
+     "end_line": 36
+    },
+    {
+     "doc_path": "papers/1911.04128.md",
+     "start_line": 74,
+     "end_line": 74
+    },
+    {
+     "doc_path": "papers/1911.04128.md",
+     "start_line": 82,
+     "end_line": 82
+    },
+    {
+     "doc_path": "papers/1911.04128.md",
+     "start_line": 68,
+     "end_line": 68
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_c2497552cf26",
+   "question_type": "free_form",
+   "turns": 1,
+   "cost_usd": 0.051718,
+   "answer": "They used 200 videos: 10 YouTube channels × 2 playlists per channel × 10 randomly downloaded videos per playlist. These were split into 1,268 miniclips, with 14,769 actions annotated (4,340 visible).",
+   "evidence": [
+    {
+     "doc_path": "papers/1906.04236.md",
+     "start_line": 60,
+     "end_line": 60
+    },
+    {
+     "doc_path": "papers/1906.04236.md",
+     "start_line": 164,
+     "end_line": 164
+    },
+    {
+     "doc_path": "papers/1906.04236.md",
+     "start_line": 26,
+     "end_line": 26
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_af948ea91136",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.052532,
+   "answer": "HotPotQA has over 113k Wikipedia-based question-answer pairs. The paper combines the training set (90,564) and development set (7,405) and randomly splits the result 80%/10%/10% into train/dev/test.",
+   "evidence": [
+    {
+     "doc_path": "papers/2004.02143.md",
+     "start_line": 128,
+     "end_line": 128
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_da10e3cefbbd",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.051296,
+   "answer": "Phoenix builds on several advances over earlier event data: (1) improvements in news collection, with real-time web scraping of 450 English-language news sites every hour (plus aggressive acquisition of historical material), replacing manual aggregator downloads; (2) improved event coding software, moving from shallow parsing (TABARI) to deep parsing with open-source NLP (CoreNLP) and the PETRARCH/PETRARCH2 coders; (3) a modular, composable, reproducible, daily-updated processing pipeline, deployable via EL:DIABLO and hypnos, with aggressive versioning of software and dictionaries; and (4) the most up-to-date actor dictionaries of any machine-coded event dataset. Together these make the data near-real-time, transparent and replicable, more accurate, and nearly zero marginal cost to generate.",
+   "evidence": [
+    {
+     "doc_path": "papers/1612.00866.md",
+     "start_line": 12,
+     "end_line": 12
+    },
+    {
+     "doc_path": "papers/1612.00866.md",
+     "start_line": 42,
+     "end_line": 42
+    },
+    {
+     "doc_path": "papers/1612.00866.md",
+     "start_line": 116,
+     "end_line": 116
+    },
+    {
+     "doc_path": "papers/1612.00866.md",
+     "start_line": 64,
+     "end_line": 64
+    },
+    {
+     "doc_path": "papers/1612.00866.md",
+     "start_line": 182,
+     "end_line": 182
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_de0d135b94ba",
+   "question_type": "free_form",
+   "turns": 1,
+   "cost_usd": 0.050615999999999994,
+   "answer": "The Rotten Tomatoes dataset contains 3,731 movies (about 99.8 reviews per movie on average), split into 2,458 movies for training, 536 for development, and 737 for testing.",
+   "evidence": [
+    {
+     "doc_path": "papers/1909.02322.md",
+     "start_line": 94,
+     "end_line": 94
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_0778cbbd093f",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.051984,
+   "answer": "Argumentative zoning (AZ), also called rhetorical sentence classification, is the process of assigning a rhetorical status to sentences extracted from scientific articles. It follows Teufel et al.'s annotation scheme, which covers argumentation, metadiscourse and relatedness to other work, and yields seven categories assigned to full sentences: aim, contrast, own, background, other, basis and textual. It gives readers discourse context so scientific ideas can be better linked, compared and analyzed.",
+   "evidence": [
+    {
+     "doc_path": "papers/1703.10152.md",
+     "start_line": 18,
+     "end_line": 18
+    },
+    {
+     "doc_path": "papers/1703.10152.md",
+     "start_line": 12,
+     "end_line": 12
+    },
+    {
+     "doc_path": "papers/1703.10152.md",
+     "start_line": 66,
+     "end_line": 66
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_036c40042435",
+   "question_type": "yes_no",
+   "turns": 1,
+   "cost_usd": 0.047386,
+   "answer": "No. The MAE dataset was collected from a large number of e-commerce sites (using the Diffbot Product API), not from a single website, covering over 2.2 million product items across diverse categories.",
+   "evidence": [
+    {
+     "doc_path": "papers/1711.11118.md",
+     "start_line": 22,
+     "end_line": 22
+    },
+    {
+     "doc_path": "papers/1711.11118.md",
+     "start_line": 62,
+     "end_line": 62
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_a59e86a15405",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.059534,
+   "answer": "The paper uses the English portion of the CoNLL 2012 data, which consists of 3,492 documents (using the standard CoNLL 2012 shared task split). The pages give the total document count; they do not give a separate size for the training split alone.",
+   "evidence": [
+    {
+     "doc_path": "papers/1704.04451.md",
+     "start_line": 144,
+     "end_line": 144
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_42279c3a202a",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.05144800000000001,
+   "answer": "The pages do not list the three variants explicitly (the definitions fall outside the retrieved text). The Wilcoxon discussion implies they differ in training:test ratio and number of samples: a 9:1 ratio with 20 samples, a 9:1 ratio with 10 samples, and a 2:1 ratio (the sample count for this one is not stated, likely 10). The paper compares these three sequential variants against three cross-validation variants (stratified/blocked, etc.).",
+   "evidence": [
+    {
+     "doc_path": "papers/1803.05160.md",
+     "start_line": 184,
+     "end_line": 184
+    },
+    {
+     "doc_path": "papers/1803.05160.md",
+     "start_line": 74,
+     "end_line": 74
+    },
+    {
+     "doc_path": "papers/1803.05160.md",
+     "start_line": 124,
+     "end_line": 124
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_37ac705166fa",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.04976,
+   "answer": "Two metrics were used: (1) MAE, the Mean Absolute Error between predicted and ground-truth agreed prices; and (2) Accuracy±k, the percentage of cases where the predicted price lies within k percent of the ground truth, with k=5 and k=10 (Accuracy±5 and Accuracy±10). They were computed for models trained with different fractions f of the negotiation seen (0.0, 0.2, 0.4, 0.6, 0.8, 1.0).",
+   "evidence": [
+    {
+     "doc_path": "papers/2004.02363.md",
+     "start_line": 58,
+     "end_line": 58
+    },
+    {
+     "doc_path": "papers/2004.02363.md",
+     "start_line": 86,
+     "end_line": 86
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_0f9c1586f1b4",
+   "question_type": "yes_no",
+   "turns": 1,
+   "cost_usd": 0.049432,
+   "answer": "Yes. The paper includes a neural abstractive baseline, nn-abs, and compares it with its word extraction model nn-we. nn-we consistently outperforms the purely abstractive nn-abs, since picking words from the document is easier than decoding over an open vocabulary. In the human evaluation, nn-se and ilp were significantly better than nn-abs.",
+   "evidence": [
+    {
+     "doc_path": "papers/1603.07252.md",
+     "start_line": 130,
+     "end_line": 130
+    },
+    {
+     "doc_path": "papers/1603.07252.md",
+     "start_line": 134,
+     "end_line": 134
+    },
+    {
+     "doc_path": "papers/1603.07252.md",
+     "start_line": 140,
+     "end_line": 140
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_bdae851d4cf1",
+   "question_type": "free_form",
+   "turns": 1,
+   "cost_usd": 0.054197999999999996,
+   "answer": "The paper evaluates simple dialogue baselines (Lead-3, MIDDLE-n, LONGEST-n, LONGER-THAN-n, MOST-ACTIVE-PERSON; LONGEST-3 is the best) and several summarization models: Pointer Generator, Transformer (OpenNMT), Fast Abs RL and its Enhanced variant, and LightConv and DynamicConv (fairseq), each trained from scratch or with GPT-2 pretrained embeddings. Models were trained on dialogues only or on news+dialogues, with or without a separator token. DynamicConv with GPT-2 embeddings trained on news+dialogues with a separator performed best by ROUGE.",
+   "evidence": [
+    {
+     "doc_path": "papers/1911.12237.md",
+     "start_line": 52,
+     "end_line": 62
+    },
+    {
+     "doc_path": "papers/1911.12237.md",
+     "start_line": 80,
+     "end_line": 88
+    },
+    {
+     "doc_path": "papers/1911.12237.md",
+     "start_line": 70,
+     "end_line": 72
+    },
+    {
+     "doc_path": "papers/1911.12237.md",
+     "start_line": 110,
+     "end_line": 110
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_e459760879f6",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.050722,
+   "answer": "Besides sentiment classification, the paper evaluates attribute transfer on two other tasks: (a) product category classification (logistic classifier, accuracy) and (b) review headline generation (LSTM decoder, perplexity). Fixed attribute encodings learned from the sentiment model are used as input to these tasks.",
+   "evidence": [
+    {
+     "doc_path": "papers/1908.09590.md",
+     "start_line": 108,
+     "end_line": 108
+    },
+    {
+     "doc_path": "papers/1908.09590.md",
+     "start_line": 150,
+     "end_line": 150
+    },
+    {
+     "doc_path": "papers/1908.09590.md",
+     "start_line": 160,
+     "end_line": 160
+    },
+    {
+     "doc_path": "papers/1908.09590.md",
+     "start_line": 28,
+     "end_line": 28
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_5e29f16d7302",
+   "question_type": "free_form",
+   "turns": 1,
+   "cost_usd": 0.05126,
+   "answer": "The pages give no single exact count of extra instances. After preprocessing they have 532,542 parallel sentence pairs (6,105 documents) from which instances are extracted via back-translation in French, German and Czech. The best setting (2-votes, where two back-translations agree) yields an extra dataset about 10 times smaller than Shi et al. (2017)'s data, which relied on additional training data and intra-sentential instances. The exact numbers are only in Figure 2, which is not given as text.",
+   "evidence": [
+    {
+     "doc_path": "papers/1808.10290.md",
+     "start_line": 70,
+     "end_line": 70
+    },
+    {
+     "doc_path": "papers/1808.10290.md",
+     "start_line": 36,
+     "end_line": 36
+    },
+    {
+     "doc_path": "papers/1808.10290.md",
+     "start_line": 124,
+     "end_line": 124
+    }
+   ],
+   "correct": false,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_3588988f2230",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.049775999999999994,
+   "answer": "They used three ontologies: the Wine Ontology, the Consumer Electronics Ontology, and the Disease Ontology. The Wine Ontology was used for the first experiments (52 wine individuals), the Consumer Electronics Ontology for the second set (30 development individuals), and the Disease Ontology for the third set (200 development classes).",
+   "evidence": [
+    {
+     "doc_path": "papers/1811.00051.md",
+     "start_line": 472,
+     "end_line": 476
+    },
+    {
+     "doc_path": "papers/1811.00051.md",
+     "start_line": 480,
+     "end_line": 480
+    },
+    {
+     "doc_path": "papers/1811.00051.md",
+     "start_line": 526,
+     "end_line": 530
+    },
+    {
+     "doc_path": "papers/1811.00051.md",
+     "start_line": 562,
+     "end_line": 564
+    },
+    {
+     "doc_path": "papers/1811.00051.md",
+     "start_line": 12,
+     "end_line": 12
+    }
+   ],
+   "correct": true,
+   "page_hit": false,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_1ce6c09cf886",
+   "question_type": "yes_no",
+   "turns": 1,
+   "cost_usd": 0.051276,
+   "answer": "Partly, but only as a practical convention. The authors acknowledge that a binary representation of gender does not capture the complexities of gender or represent transgender identities, and they model gender as a continuous value between 0 and 1. However, they threshold at 0.5 to produce 'male' and 'female' sex labels, because the training datasets and evaluation benchmarks use this binary label system.",
+   "evidence": [
+    {
+     "doc_path": "papers/1905.01347.md",
+     "start_line": 52,
+     "end_line": 52
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_76e17e648a4d",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.051199999999999996,
+   "answer": "The authors say the methods can easily be extended to other identity problems such as racial bias, and to different tasks such as sentiment analysis, by following similar steps. The abstract also says they can correct model bias in other scenarios.",
+   "evidence": [
+    {
+     "doc_path": "papers/1808.07231.md",
+     "start_line": 118,
+     "end_line": 118
+    },
+    {
+     "doc_path": "papers/1808.07231.md",
+     "start_line": 12,
+     "end_line": 12
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_a9cae57f494d",
+   "question_type": "free_form",
+   "turns": 1,
+   "cost_usd": 0.049257999999999996,
+   "answer": "Three TV series are considered: \"The Journey of Flower\", \"Nirvana in Fire\" and \"Good Time\", the hottest TV series from summer to fall 2015, collected from Douban (5000 labeled reviews for each series).",
+   "evidence": [
+    {
+     "doc_path": "papers/1611.02378.md",
+     "start_line": 58,
+     "end_line": 58
+    },
+    {
+     "doc_path": "papers/1611.02378.md",
+     "start_line": 158,
+     "end_line": 158
+    },
+    {
+     "doc_path": "papers/1611.02378.md",
+     "start_line": 82,
+     "end_line": 82
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_cfcf94b81589",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.049080000000000006,
+   "answer": "Two datasets: (1) the public Visual7W dataset (built on Visual Genome images; multi-choice questions, 327,939 QA pairs on 47,300 images) for conventional close-domain VQA, and (2) a self-generated open-domain VQA dataset of 16,850 question-answer pairs on 8,425 Visual7W test-split images, created from ConceptNet-based templates, since no public open-domain VQA dataset exists.",
+   "evidence": [
+    {
+     "doc_path": "papers/1712.00733.md",
+     "start_line": 158,
+     "end_line": 158
+    },
+    {
+     "doc_path": "papers/1712.00733.md",
+     "start_line": 162,
+     "end_line": 164
+    },
+    {
+     "doc_path": "papers/1712.00733.md",
+     "start_line": 168,
+     "end_line": 168
+    },
+    {
+     "doc_path": "papers/1712.00733.md",
+     "start_line": 214,
+     "end_line": 214
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_235c7c7ca719",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.052586,
+   "answer": "The five cyberbullying criteria are: (1) aggressive language (aggr), (2) repetition (rep), (3) harmful intent (harm), (4) visibility among peers (peer), and (5) power imbalance (power). The paper found that all available definitions in the literature contained a strict subset of these criteria, and annotators labeled each one.",
+   "evidence": [
+    {
+     "doc_path": "papers/2004.01820.md",
+     "start_line": 48,
+     "end_line": 48
+    },
+    {
+     "doc_path": "papers/2004.01820.md",
+     "start_line": 92,
+     "end_line": 102
+    },
+    {
+     "doc_path": "papers/2004.01820.md",
+     "start_line": 12,
+     "end_line": 12
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_252599e53f52",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.056192000000000006,
+   "answer": "MetaLDA uses two data augmentation techniques, both based on introducing auxiliary variables, to get local conjugacy and a closed-form Gibbs sampler. One augments Gamma ratio 1 with Beta random variables q_d, which are then approximated by a product. The pages only name the Beta-variable augmentation explicitly; the second technique's details (Gamma ratio 2 / the auxiliary variables for sampling) are not spelled out in the provided text.",
+   "evidence": [
+    {
+     "doc_path": "papers/1709.06365.md",
+     "start_line": 66,
+     "end_line": 66
+    },
+    {
+     "doc_path": "papers/1709.06365.md",
+     "start_line": 72,
+     "end_line": 72
+    },
+    {
+     "doc_path": "papers/1709.06365.md",
+     "start_line": 12,
+     "end_line": 12
+    },
+    {
+     "doc_path": "papers/1709.06365.md",
+     "start_line": 216,
+     "end_line": 216
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_6cad6f074b04",
+   "question_type": "free_form",
+   "turns": 1,
+   "cost_usd": 0.05217000000000001,
+   "answer": "The model extends the standard ENAMEX type (organization, location, person) by adding a fourth class, facility (FAC). The final keyword list consisted of 4 classes: location (LOC), organization (ORG), person (PERSON) and facility (FAC).",
+   "evidence": [
+    {
+     "doc_path": "papers/1912.10162.md",
+     "start_line": 98,
+     "end_line": 98
+    },
+    {
+     "doc_path": "papers/1912.10162.md",
+     "start_line": 12,
+     "end_line": 12
+    },
+    {
+     "doc_path": "papers/1912.10162.md",
+     "start_line": 20,
+     "end_line": 20
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_78f8dad0f1ac",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.075302,
+   "answer": "User satisfaction is estimated by a classifier trained on the Satisfaction task (a separate-parameter model component trained with the Dialogue and Feedback tasks). It predicts a satisfaction score from the conversation context, essentially classifying the tone of the partner's response. Training data came from crowdworkers who rated each bot response 1-5: rating 1 = dissatisfied (negative), higher ratings = satisfied (positive), and rating 2 discarded for cleaner separation. At deployment, if the predicted score is above a threshold t, the user's reply becomes a new Dialogue example; otherwise the bot asks for feedback. With only 1k training examples this classifier beat model-uncertainty methods and a regular-expression baseline by up to 0.28 and 0.42 F1 points, respectively.",
+   "evidence": [
+    {
+     "doc_path": "papers/1901.05415.md",
+     "start_line": 74,
+     "end_line": 74
+    },
+    {
+     "doc_path": "papers/1901.05415.md",
+     "start_line": 52,
+     "end_line": 52
+    },
+    {
+     "doc_path": "papers/1901.05415.md",
+     "start_line": 120,
+     "end_line": 120
+    },
+    {
+     "doc_path": "papers/1901.05415.md",
+     "start_line": 128,
+     "end_line": 128
+    },
+    {
+     "doc_path": "papers/1901.05415.md",
+     "start_line": 84,
+     "end_line": 84
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_6606160e210d",
+   "question_type": "yes_no",
+   "turns": 1,
+   "cost_usd": 0.049895999999999996,
+   "answer": "Partly. The induced categories were scored automatically against a human-created gold-standard categorization of 33 categories (not by human judges). The induced feature types, and their association with categories, were evaluated by crowd-sourced native speakers in intruder-detection tasks (feature coherence and feature relevance), where BCF's output was judged more coherent and relevant than the baselines. Native speakers also translated the non-English model output for the qualitative figures.",
+   "evidence": [
+    {
+     "doc_path": "papers/1902.08830.md",
+     "start_line": 152,
+     "end_line": 152
+    },
+    {
+     "doc_path": "papers/1902.08830.md",
+     "start_line": 36,
+     "end_line": 36
+    },
+    {
+     "doc_path": "papers/1902.08830.md",
+     "start_line": 162,
+     "end_line": 162
+    },
+    {
+     "doc_path": "papers/1902.08830.md",
+     "start_line": 270,
+     "end_line": 272
+    },
+    {
+     "doc_path": "papers/1902.08830.md",
+     "start_line": 328,
+     "end_line": 328
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_d3fb0d84d763",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.05426400000000001,
+   "answer": "The paper forecasts winners of contests, i.e. events on a set date where several contenders compete and one winner is chosen. It covers 10 event types: Oscars (Best Actor, Actress, Film, Director, 2009–2016), 2016 US presidential primaries (Republican and Democratic, by state), 2016 US presidential elections, 2014 Indian general elections, Eurovision finals, Ballon d'Or, and sporting finals (Tennis Grand Slams, Rugby, Cricket and Football World Cups). The winner is the contender with the highest aggregated share of positive-veridicality tweets.",
+   "evidence": [
+    {
+     "doc_path": "papers/1707.07212.md",
+     "start_line": 114,
+     "end_line": 114
+    },
+    {
+     "doc_path": "papers/1707.07212.md",
+     "start_line": 40,
+     "end_line": 42
+    },
+    {
+     "doc_path": "papers/1707.07212.md",
+     "start_line": 12,
+     "end_line": 12
+    },
+    {
+     "doc_path": "papers/1707.07212.md",
+     "start_line": 122,
+     "end_line": 124
+    }
+   ],
+   "correct": false,
+   "page_hit": false,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_cfe21b979a6c",
+   "question_type": "free_form",
+   "turns": 1,
+   "cost_usd": 0.06041,
+   "answer": "The encoder is a standard Transformer encoder made of M stacked encoder blocks. Each block has a self-attention module (multi-head attention) and a two-layer feed-forward network. It takes the source tokens X = (x_1,...,x_L) as input and outputs H_e^M, which the decoder uses. The pre-trained model used is BART-large.",
+   "evidence": [
+    {
+     "doc_path": "papers/2003.13028.md",
+     "start_line": 48,
+     "end_line": 52
+    },
+    {
+     "doc_path": "papers/2003.13028.md",
+     "start_line": 60,
+     "end_line": 62
+    },
+    {
+     "doc_path": "papers/2003.13028.md",
+     "start_line": 42,
+     "end_line": 42
+    },
+    {
+     "doc_path": "papers/2003.13028.md",
+     "start_line": 196,
+     "end_line": 196
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_5a7d1ae6796e",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.054709999999999995,
+   "answer": "The paper compares FinBERT and M-BERT against previously proposed Finnish baselines for each task. For POS tagging and dependency parsing, the baseline is the strongest earlier parser (BIBREF22) and the recent ELMo-based transition parser (BIBREF33, transition-based vs graph-based architectures with ELMo/BERT). For text classification, the baseline is fastText with subword-enriched Wikipedia embeddings. For probing, they replicate M-BERT results from BIBREF47. The paper also uses the Udify parser. M-BERT largely fails to beat these earlier methods, while FinBERT surpasses them all.",
+   "evidence": [
+    {
+     "doc_path": "papers/1912.07076.md",
+     "start_line": 136,
+     "end_line": 142
+    },
+    {
+     "doc_path": "papers/1912.07076.md",
+     "start_line": 160,
+     "end_line": 162
+    },
+    {
+     "doc_path": "papers/1912.07076.md",
+     "start_line": 10,
+     "end_line": 12
+    },
+    {
+     "doc_path": "papers/1912.07076.md",
+     "start_line": 210,
+     "end_line": 212
+    },
+    {
+     "doc_path": "papers/1912.07076.md",
+     "start_line": 196,
+     "end_line": 198
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_82b93ecd2397",
+   "question_type": "free_form",
+   "turns": 1,
+   "cost_usd": 0.054150000000000004,
+   "answer": "Adding user embeddings (uernn) gave the biggest gain among all user-specific variants, raising AUC from about 0.80 to 0.81 per a related-work description of the paper; the provided pages state that uernn is best and that all variants improve over the plain RNN, but the exact AUC numbers (Table 3) are not shown in the text, only masked placeholders.",
+   "evidence": [
+    {
+     "doc_path": "papers/1708.03699.md",
+     "start_line": 68,
+     "end_line": 70
+    },
+    {
+     "doc_path": "papers/1908.06024.md",
+     "start_line": 92,
+     "end_line": 94
+    },
+    {
+     "doc_path": "papers/1708.03699.md",
+     "start_line": 12,
+     "end_line": 12
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_80d6b9123a10",
+   "question_type": "yes_no",
+   "turns": 1,
+   "cost_usd": 0.050106,
+   "answer": "Yes. They collected datasets of English and German news articles from Reuters, cleaned them (removing author/editor meta information), stored title, body and date in a local database and a Pandas data frame, and built a per-person daily mention time-series dictionary from the extracted person entities. The English corpus has a dictionary of 106,848 entries and the German one 163,788.",
+   "evidence": [
+    {
+     "doc_path": "papers/1809.06083.md",
+     "start_line": 44,
+     "end_line": 44
+    },
+    {
+     "doc_path": "papers/1809.06083.md",
+     "start_line": 54,
+     "end_line": 54
+    },
+    {
+     "doc_path": "papers/1809.06083.md",
+     "start_line": 12,
+     "end_line": 12
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_9b536f442820",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.04859,
+   "answer": "Adversarial examples are generated in the BERT embedding space (not on the discrete text) using a white-box method that follows Goodfellow et al. / Miyato et al.: the perturbation r_adv is computed from the gradient of the loss, via a linear approximation of log p(y|x;θ) around x, with size controlled by ε. The perturbation is added to the input embeddings (x + r_adv), the perturbed embeddings are fed through the BERT encoder to compute the adversarial loss -log p(y|x+r_adv;θ), and this is summed with the loss on real examples. For ASC, the [CLS] token embedding is not perturbed, only the word vectors.",
+   "evidence": [
+    {
+     "doc_path": "papers/2001.11316.md",
+     "start_line": 64,
+     "end_line": 74
+    },
+    {
+     "doc_path": "papers/2001.11316.md",
+     "start_line": 54,
+     "end_line": 54
+    },
+    {
+     "doc_path": "papers/2001.11316.md",
+     "start_line": 84,
+     "end_line": 84
+    },
+    {
+     "doc_path": "papers/2001.11316.md",
+     "start_line": 20,
+     "end_line": 20
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_7caeb5ef6f29",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.058165999999999995,
+   "answer": "Besides removing SC/BN, the authors explore two further inference optimizations for SNDCNN-50: (1) frame skipping, skipping and duplicating two thirds of frames, which cuts computation 3x and gives a 47.2% latency reduction with no WER degradation for SNDCNN-50; and (2) multi-threaded lazy computation, where one thread runs the front part (input/hidden layers) and another runs the output layer, computing only the outputs needed by the decoding graph, which gives a 10.8% latency reduction. Together they speed up SNDCNN-50 by up to 58%.",
+   "evidence": [
+    {
+     "doc_path": "papers/1910.01992.md",
+     "start_line": 104,
+     "end_line": 106
+    },
+    {
+     "doc_path": "papers/1910.01992.md",
+     "start_line": 110,
+     "end_line": 110
+    },
+    {
+     "doc_path": "papers/1910.01992.md",
+     "start_line": 114,
+     "end_line": 114
+    },
+    {
+     "doc_path": "papers/1910.01992.md",
+     "start_line": 12,
+     "end_line": 12
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_0871827cfece",
+   "question_type": "free_form",
+   "turns": 1,
+   "cost_usd": 0.052851999999999996,
+   "answer": "Yes. Besides RACE (RACE-M and RACE-H), the paper also reports results on SemEval Task 11, ROCStories, MCTest, and the COIN Task 1 development set (Table 6). The abstract and experiment section emphasize RACE, but the table captions show these additional datasets.",
+   "evidence": [
+    {
+     "doc_path": "papers/1901.09381.md",
+     "start_line": 100,
+     "end_line": 100
+    },
+    {
+     "doc_path": "papers/1901.09381.md",
+     "start_line": 92,
+     "end_line": 94
+    },
+    {
+     "doc_path": "papers/1901.09381.md",
+     "start_line": 104,
+     "end_line": 106
+    }
+   ],
+   "correct": true,
+   "page_hit": false,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_64c45fdb536a",
+   "question_type": "yes_no",
+   "turns": 1,
+   "cost_usd": 0.053992,
+   "answer": "Partly. They compare only against two baselines: Moses (a widely used, state-of-the-art open-source SMT toolkit) and a reproduced attention-based NMT system (Bahdanau et al.), which is the first stage of their own system. They do not compare against other recent state-of-the-art NMT models. On NIST the two-stage system beats the NMT baseline by 0.9 BLEU and the SMT baseline by 1.1; on IWSLT it beats NMT by 2.4 BLEU but is still worse than SMT.",
+   "evidence": [
+    {
+     "doc_path": "papers/1710.01789.md",
+     "start_line": 114,
+     "end_line": 116
+    },
+    {
+     "doc_path": "papers/1710.01789.md",
+     "start_line": 126,
+     "end_line": 126
+    },
+    {
+     "doc_path": "papers/1710.01789.md",
+     "start_line": 118,
+     "end_line": 118
+    }
+   ],
+   "correct": false,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_59a3d4cdd1c3",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.05288799999999999,
+   "answer": "The post-processing steps are: (1) special token replacement, restoring <NUMBER> and <DATE> tokens (including patterns like <NUMBER> / <NUMBER>) with the corresponding numbers from the source sentences; (2) quotes fixing, making quotes match the source sentences; (3) a Moses-based recaser that converts lower-cased output back to real cases; and (4) patch-up, copying capitalized named entities from the source to the end of the translation if they are missing.",
+   "evidence": [
+    {
+     "doc_path": "papers/1908.05925.md",
+     "start_line": 106,
+     "end_line": 118
+    },
+    {
+     "doc_path": "papers/1908.05925.md",
+     "start_line": 122,
+     "end_line": 124
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_c8f8ecac23a9",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.053894,
+   "answer": "The paper uses BLEU as its quantitative metric: the best model is chosen by highest test BLEU (e.g., English→Pidgin: supervised BPE 24.29, supervised word-level 17.73, unsupervised 5.18; Pidgin→English: supervised word-level 24.67, unsupervised 7.93, supervised BPE 13.00). It also includes a qualitative evaluation, with translations rated by L1 (native) speakers.",
+   "evidence": [
+    {
+     "doc_path": "papers/2003.12660.md",
+     "start_line": 36,
+     "end_line": 36
+    },
+    {
+     "doc_path": "papers/2003.12660.md",
+     "start_line": 52,
+     "end_line": 54
+    },
+    {
+     "doc_path": "papers/2003.12660.md",
+     "start_line": 56,
+     "end_line": 58
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_72dbdd11b655",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.05665,
+   "answer": "Crowdworkers annotate the properties with fill-in templates. First, they were shown a seed knowledge sentence K_i and annotated the two properties being compared using a template (e.g., for K_2 'The smaller its mass is, the greater its acceleration...'). Then a second set of workers, shown the authored question, filled a second template annotating how those K_i properties were expressed in the question Q_i. So both K_i and Q_i carry property annotations, which serve as supervision for semantic-parsing approaches.",
+   "evidence": [
+    {
+     "doc_path": "papers/1909.03553.md",
+     "start_line": 48,
+     "end_line": 52
+    },
+    {
+     "doc_path": "papers/1909.03553.md",
+     "start_line": 58,
+     "end_line": 58
+    },
+    {
+     "doc_path": "papers/1909.03553.md",
+     "start_line": 18,
+     "end_line": 18
+    },
+    {
+     "doc_path": "papers/1909.03553.md",
+     "start_line": 142,
+     "end_line": 142
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_8e26c471ca0e",
+   "question_type": "free_form",
+   "turns": 1,
+   "cost_usd": 0.055378,
+   "answer": "They sum them. The char n-gram embeddings of a word are encoded into a single vector (charn-MS-vec) using simplified multi-dimensional self-attention (an element-wise weighted sum of the n-gram embeddings). This vector is added to the standard word embedding, and the sum is the input to the RNN (e.g., for 'the' with 3-grams: 'th', 'the', 'he$').",
+   "evidence": [
+    {
+     "doc_path": "papers/1906.05506.md",
+     "start_line": 48,
+     "end_line": 48
+    },
+    {
+     "doc_path": "papers/1906.05506.md",
+     "start_line": 56,
+     "end_line": 56
+    },
+    {
+     "doc_path": "papers/1906.05506.md",
+     "start_line": 136,
+     "end_line": 136
+    },
+    {
+     "doc_path": "papers/1906.05506.md",
+     "start_line": 26,
+     "end_line": 26
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_f381b0ef6932",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.050792,
+   "answer": "The paper does not give a single number, but it says its model (81.3% accuracy, F-score 0.8 at document level) is comparable to the state-of-the-art English systems for CEFR-level readability classification, citing BIBREF9 and BIBREF12. The authors note that a direct comparison is difficult because of differences in language, datasets and number of classes.",
+   "evidence": [
+    {
+     "doc_path": "papers/1603.08868.md",
+     "start_line": 80,
+     "end_line": 80
+    },
+    {
+     "doc_path": "papers/1603.08868.md",
+     "start_line": 12,
+     "end_line": 12
+    },
+    {
+     "doc_path": "papers/1603.08868.md",
+     "start_line": 22,
+     "end_line": 22
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_26e32f24fe0c",
+   "question_type": "yes_no",
+   "turns": 1,
+   "cost_usd": 0.054006,
+   "answer": "Yes. HIRE takes all of the encoder's hidden states as input, from the initial embedding H_0 through every layer output H_1..H_l (all 24 layers for RoBERTa-Large). It weights each one with a dynamically computed contribution score (softmax, summing to 1) and combines them into a complementary representation, which is then fused with the final-layer output.",
+   "evidence": [
+    {
+     "doc_path": "papers/1911.01940.md",
+     "start_line": 56,
+     "end_line": 56
+    },
+    {
+     "doc_path": "papers/1911.01940.md",
+     "start_line": 58,
+     "end_line": 64
+    },
+    {
+     "doc_path": "papers/1911.01940.md",
+     "start_line": 54,
+     "end_line": 54
+    },
+    {
+     "doc_path": "papers/1911.01940.md",
+     "start_line": 124,
+     "end_line": 124
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_c4b621f573bb",
+   "question_type": "yes_no",
+   "turns": 1,
+   "cost_usd": 0.05584800000000001,
+   "answer": "No. Character-level models generally do not outperform the oracle with access to explicit morphological analysis; they lag it in nearly all languages (Table 2). The gap is small, but it suggests there is value in modeling morphology. The char-lstm only comes closer to the oracle in agglutinative languages than in fusional ones. Its weakness is disambiguating words from context, especially under case syncretism. Adding only morphological case (gold or predicted) closes the gap with the full oracle.",
+   "evidence": [
+    {
+     "doc_path": "papers/1808.09180.md",
+     "start_line": 24,
+     "end_line": 24
+    },
+    {
+     "doc_path": "papers/1808.09180.md",
+     "start_line": 84,
+     "end_line": 84
+    },
+    {
+     "doc_path": "papers/1808.09180.md",
+     "start_line": 136,
+     "end_line": 136
+    },
+    {
+     "doc_path": "papers/1808.09180.md",
+     "start_line": 12,
+     "end_line": 12
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_0ef114d24a7a",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.049479999999999996,
+   "answer": "They test two prior style transfer approaches that handle multiple attributes: Multi-Attribute Style Transfer (MAST, BIBREF11), which uses back-translation plus an auto-encoding loss, and Adversarial Style Transfer (AdvST, BIBREF12), which also mixes back-translation with auto-encoding and adds adversarial training to disentangle content and style. Both performed poorly on content fidelity, being inferior or merely comparable to the rule-based baseline.",
+   "evidence": [
+    {
+     "doc_path": "papers/1901.09501.md",
+     "start_line": 94,
+     "end_line": 96
+    },
+    {
+     "doc_path": "papers/1901.09501.md",
+     "start_line": 118,
+     "end_line": 118
+    },
+    {
+     "doc_path": "papers/1901.09501.md",
+     "start_line": 124,
+     "end_line": 124
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_78c7318b2218",
+   "question_type": "free_form",
+   "turns": 1,
+   "cost_usd": 0.055681999999999995,
+   "answer": "They evaluate on two chitchat dialogue datasets/tasks: PersonaChat and Wizard of Wikipedia. For PersonaChat they use human-model chat logs (100 conversations per model) from the ConvAI2 competition (LIC, HF, KV), from prior controllable-generation work (RC, INQ, INT), plus newly collected logs for Polyencoder (PE), and human-human logs. For Wizard of Wikipedia they use the original paper's human-model logs (100 conversations per model) on unseen test topics for the GK, RK, GU, RU models. Self-chat logs are also used.",
+   "evidence": [
+    {
+     "doc_path": "papers/1909.03087.md",
+     "start_line": 92,
+     "end_line": 92
+    },
+    {
+     "doc_path": "papers/1909.03087.md",
+     "start_line": 96,
+     "end_line": 102
+    },
+    {
+     "doc_path": "papers/1909.03087.md",
+     "start_line": 110,
+     "end_line": 110
+    },
+    {
+     "doc_path": "papers/1909.03087.md",
+     "start_line": 32,
+     "end_line": 32
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_c17ece1dad42",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.047106,
+   "answer": "Twitter and Reddit users with a BD diagnosis are identified automatically via self-reported diagnosis statements (e.g., 'I was diagnosed with BD-I last week'), extending the diagnosis patterns and BD terms from BIBREF47. Blogs by affected individuals are identified manually, and their authors are contacted for informed consent.",
+   "evidence": [
+    {
+     "doc_path": "papers/1906.01010.md",
+     "start_line": 36,
+     "end_line": 36
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_15aeda407ae3",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.052466,
+   "answer": "The paper uses BERT (specifically pretrained BERT-Base for the ARSC dataset) as its pretrained language representation. BERT's masked language model and next sentence prediction objectives give word and sentence representations in a single pretrained transformer, and the sentence representation is fed into a softmax layer for classification. GloVe embeddings are used only as an ablation baseline, not as the main representation.",
+   "evidence": [
+    {
+     "doc_path": "papers/1908.08788.md",
+     "start_line": 58,
+     "end_line": 58
+    },
+    {
+     "doc_path": "papers/1908.08788.md",
+     "start_line": 70,
+     "end_line": 70
+    },
+    {
+     "doc_path": "papers/1908.08788.md",
+     "start_line": 80,
+     "end_line": 80
+    },
+    {
+     "doc_path": "papers/1908.08788.md",
+     "start_line": 64,
+     "end_line": 64
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_d6a815d24c46",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.051025999999999995,
+   "answer": "They used the OpenSubtitles dataset. Question-answer dialogue pairs were extracted from it (first sentence ends with a question mark, second does not, and follows within 20 seconds). From the 14M-pair corpus provided by the OpenNMT project, they used 5M dialogue entries.",
+   "evidence": [
+    {
+     "doc_path": "papers/1803.02914.md",
+     "start_line": 54,
+     "end_line": 54
+    },
+    {
+     "doc_path": "papers/1803.02914.md",
+     "start_line": 46,
+     "end_line": 46
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_6e63db22a2a3",
+   "question_type": "free_form",
+   "turns": 1,
+   "cost_usd": 0.050103999999999996,
+   "answer": "The constraint is a hard morphological one applied at training time: the self-learning models (Artetxe et al. and Ruder et al.) may align two words in an iteration only if they share the same morphosyntactic category (UniMorph tag). This restricts training data to word forms present in UniMorph, yet still improves performance for every Romance language pair and many Slavic pairs.",
+   "evidence": [
+    {
+     "doc_path": "papers/1909.02855.md",
+     "start_line": 122,
+     "end_line": 122
+    },
+    {
+     "doc_path": "papers/1909.02855.md",
+     "start_line": 12,
+     "end_line": 12
+    },
+    {
+     "doc_path": "papers/1909.02855.md",
+     "start_line": 22,
+     "end_line": 22
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_8ffae517bc0e",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.049437999999999996,
+   "answer": "Applications in Overton are presented as a schema plus data files, not custom model code. The schema has two elements: (1) data payloads, similar to a relational schema, which describe the input data, and (2) model tasks, which describe the tasks to be accomplished. It defines the model's input, output and coarse-grained data flow (what the model computes, not how), while supervision sources are given separately as data. Engineers build, maintain and monitor applications by manipulating these data files rather than writing deep learning code.",
+   "evidence": [
+    {
+     "doc_path": "papers/1909.05372.md",
+     "start_line": 34,
+     "end_line": 34
+    },
+    {
+     "doc_path": "papers/1909.05372.md",
+     "start_line": 30,
+     "end_line": 30
+    },
+    {
+     "doc_path": "papers/1909.05372.md",
+     "start_line": 36,
+     "end_line": 36
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_c53b036eff43",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.065222,
+   "answer": "On PTB, the proposed models beat their baselines. Character-level (BPC, lower is better): GRURNTN 1.39→1.33 (0.06 absolute, 4.32% relative) over GRURNN; LSTMRNTN 1.37→1.34 (0.03 absolute, 2.22% relative) over LSTMRNN. Word-level (PPL): GRURNTN 97.78→87.38 (10.4 absolute, 10.63% relative) over GRURNN; LSTMRNTN 108.26→96.97 (11.29 absolute, 10.42% relative) over LSTMRNN.",
+   "evidence": [
+    {
+     "doc_path": "papers/1706.02222.md",
+     "start_line": 176,
+     "end_line": 176
+    },
+    {
+     "doc_path": "papers/1706.02222.md",
+     "start_line": 182,
+     "end_line": 182
+    },
+    {
+     "doc_path": "papers/1706.02222.md",
+     "start_line": 200,
+     "end_line": 200
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_3d5b4aa1ce99",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.051042000000000004,
+   "answer": "They used three OWL ontologies: the Wine Ontology, the m-piro ontology (museum exhibits, Greek archaeology domain), and the Disease Ontology. Wine tests wide OWL construct variety, m-piro has been used to show NaturalOWL's high-quality texts with manual resources, and the Disease Ontology was built by biomedical experts as a real-world test case.",
+   "evidence": [
+    {
+     "doc_path": "papers/1810.13414.md",
+     "start_line": 424,
+     "end_line": 428
+    },
+    {
+     "doc_path": "papers/1810.13414.md",
+     "start_line": 570,
+     "end_line": 572
+    },
+    {
+     "doc_path": "papers/1810.13414.md",
+     "start_line": 764,
+     "end_line": 764
+    }
+   ],
+   "correct": true,
+   "page_hit": false,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_68f1df3fb070",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.058027999999999996,
+   "answer": "They compare against two previous methods: the subword (BPE) approach of Sennrich, Haddow and Birch (2015b), which is the main baseline on both RNN and Transformer architectures, and the fully character-based NMT of Lee, Cho and Hofmann (2016). The suffix-prediction system beats the subword method by 1.75 BLEU (RNN) and 1.47 (Transformer) on news, and by 0.68 BLEU on e-commerce. It beats the character-based method by 0.97 BLEU on news with RNN.",
+   "evidence": [
+    {
+     "doc_path": "papers/1801.03615.md",
+     "start_line": 192,
+     "end_line": 192
+    },
+    {
+     "doc_path": "papers/1801.03615.md",
+     "start_line": 210,
+     "end_line": 210
+    },
+    {
+     "doc_path": "papers/1801.03615.md",
+     "start_line": 178,
+     "end_line": 178
+    },
+    {
+     "doc_path": "papers/1801.03615.md",
+     "start_line": 158,
+     "end_line": 160
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_11f9c207476a",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.051758,
+   "answer": "They evaluated on the Clinical TempEval corpus (2016 THYME data), which is based on 600 clinical notes and pathology reports from cancer patients at the Mayo Clinic, manually de-identified and annotated with times, events and temporal relations; it is split into training, development and testing portions.",
+   "evidence": [
+    {
+     "doc_path": "papers/1603.09381.md",
+     "start_line": 64,
+     "end_line": 64
+    },
+    {
+     "doc_path": "papers/1603.09381.md",
+     "start_line": 98,
+     "end_line": 98
+    },
+    {
+     "doc_path": "papers/1603.09381.md",
+     "start_line": 18,
+     "end_line": 18
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_c7d3bccee59a",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.048364,
+   "answer": "They plan to use character-based Convolutional Neural Networks (CNNs) and Recurrent Neural Networks, specifically Long Short-Term Memory networks (LSTMs), with CNNs combined with LSTMs as a particularly promising approach. Afterwards they will explore adding domain knowledge, e.g. domain-specific word embeddings fed to the CNNs, and Tree-Structured LSTMs. These are meant to handle out-of-vocabulary words and long-distance dependencies that Ngram language models cannot.",
+   "evidence": [
+    {
+     "doc_path": "papers/1705.10272.md",
+     "start_line": 48,
+     "end_line": 52
+    },
+    {
+     "doc_path": "papers/1705.10272.md",
+     "start_line": 42,
+     "end_line": 42
+    },
+    {
+     "doc_path": "papers/1705.10272.md",
+     "start_line": 46,
+     "end_line": 46
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_9e9aa8af4b49",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.056971999999999995,
+   "answer": "The baseline is a previously used audio captioning method (from BIBREF3) based on an encoder-decoder with attention. Input is a sequence of 64 log mel-band energies. The encoder is three bi-directional GRU layers (256 units each), followed by a feed-forward attention mechanism, a GRU decoder, and a feed-forward network with softmax that outputs a word probability distribution at each time-step. It is trained on the development split for 150 epochs with cross-entropy loss and Adam, using each audio sample five times with its five captions as targets. It is evaluated on the evaluation and testing splits with BLEU1-4, METEOR, CIDEr and ROUGE-L.",
+   "evidence": [
+    {
+     "doc_path": "papers/1910.09387.md",
+     "start_line": 70,
+     "end_line": 70
+    },
+    {
+     "doc_path": "papers/1910.09387.md",
+     "start_line": 74,
+     "end_line": 74
+    },
+    {
+     "doc_path": "papers/1910.09387.md",
+     "start_line": 76,
+     "end_line": 76
+    },
+    {
+     "doc_path": "papers/1910.09387.md",
+     "start_line": 72,
+     "end_line": 72
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_452e2d7d7d9e",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.048651999999999994,
+   "answer": "Yes. The paper uses GloVe pre-trained word embeddings (trained on a large tweet corpus: 2B tweets, 27B tokens, 1.2M vocab, uncased; size 200) for the BoWV baseline and to initialize the CNN, LSTM and FastText models. It compares this against random initialization, and random initialization turned out slightly better when combined with GBDT.",
+   "evidence": [
+    {
+     "doc_path": "papers/1706.00188.md",
+     "start_line": 40,
+     "end_line": 40
+    },
+    {
+     "doc_path": "papers/1706.00188.md",
+     "start_line": 32,
+     "end_line": 32
+    },
+    {
+     "doc_path": "papers/1706.00188.md",
+     "start_line": 48,
+     "end_line": 48
+    },
+    {
+     "doc_path": "papers/1706.00188.md",
+     "start_line": 30,
+     "end_line": 30
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_a836ab8eb5a7",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.049442,
+   "answer": "They use a manually-curated dataset of publicly disclosed vulnerabilities in 205 distinct open-source Java projects, mapped to the commits that fixed them (provided by BIBREF23). It is split by repository into train/validation/test sets of 808, 265, and 264 commits. For RQ4 the training split is augmented with commits mined via regex matching on commit messages from the same projects, bringing it to 1493 commits. Word2vec embeddings are separately pre-trained on a corpus of the top 1000 Java GitHub repositories.",
+   "evidence": [
+    {
+     "doc_path": "papers/1911.07620.md",
+     "start_line": 78,
+     "end_line": 78
+    },
+    {
+     "doc_path": "papers/1911.07620.md",
+     "start_line": 82,
+     "end_line": 82
+    },
+    {
+     "doc_path": "papers/1911.07620.md",
+     "start_line": 142,
+     "end_line": 142
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_3a25f82512d5",
+   "question_type": "yes_no",
+   "turns": 1,
+   "cost_usd": 0.051727999999999996,
+   "answer": "Yes. The programme plans to gather and openly publish large datasets: the Icelandic Gigaword Corpus (1.3 billion running words, tagged and lemmatised) will be updated with new data and released yearly, and for ASR, large-scale radio and television transcripts plus open historical data sets will be gathered and prepared for publication. All deliverables will be published under open licenses.",
+   "evidence": [
+    {
+     "doc_path": "papers/2003.09244.md",
+     "start_line": 110,
+     "end_line": 112
+    },
+    {
+     "doc_path": "papers/2003.09244.md",
+     "start_line": 160,
+     "end_line": 162
+    },
+    {
+     "doc_path": "papers/2003.09244.md",
+     "start_line": 26,
+     "end_line": 26
+    },
+    {
+     "doc_path": "papers/2003.09244.md",
+     "start_line": 222,
+     "end_line": 222
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_2974237446d0",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.048262,
+   "answer": "They define a rumour following the Cambridge dictionary: information of doubtful or unconfirmed truth. Accordingly, information in a social media message that is not confirmed by trusted news wire (i.e., is novel relative to it) is treated as an indication of a rumour.",
+   "evidence": [
+    {
+     "doc_path": "papers/1611.06322.md",
+     "start_line": 56,
+     "end_line": 56
+    },
+    {
+     "doc_path": "papers/1611.06322.md",
+     "start_line": 66,
+     "end_line": 66
+    },
+    {
+     "doc_path": "papers/1611.06322.md",
+     "start_line": 24,
+     "end_line": 24
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_71fd0efea1b4",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.050606,
+   "answer": "The paper gives no single aggregate metric. It judges learning mainly by (1) the accuracy of LGI's textizer-based text output, e.g. 72.7% digit-classification accuracy for the 'this is …' syntax after 50,000 training steps, where the textizer rounds the output and maps it to symbols instead of using softmax; (2) qualitative checks that the predicted text and imagined or manipulated images are correct (right morphology, direction, position, size, identity) at the proper time, shown in Figures 3-7; and (3) the number of training steps needed to learn each new syntax (e.g. 1000 steps for 'the size is big/small' vs 200 for the 'not' version), which shows cumulative learning.",
+   "evidence": [
+    {
+     "doc_path": "papers/1905.07562.md",
+     "start_line": 54,
+     "end_line": 54
+    },
+    {
+     "doc_path": "papers/1905.07562.md",
+     "start_line": 52,
+     "end_line": 52
+    },
+    {
+     "doc_path": "papers/1905.07562.md",
+     "start_line": 56,
+     "end_line": 56
+    },
+    {
+     "doc_path": "papers/1905.07562.md",
+     "start_line": 60,
+     "end_line": 60
+    },
+    {
+     "doc_path": "papers/1905.07562.md",
+     "start_line": 42,
+     "end_line": 42
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_4367617c0b8c",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.052413999999999995,
+   "answer": "The state-of-the-art approach is the LSTM-based WSD model of BIBREF4 (Yuan et al., 2016), which pre-trains an LSTM language model on a very large unlabelled corpus (100 billion words, 1M-word vocabulary) and uses it to generate sense vectors. The FOFE model achieves comparable performance to it at much lower computational cost (about 3 days of training versus roughly 4.5 months for the LSTM reimplementation by BIBREF9).",
+   "evidence": [
+    {
+     "doc_path": "papers/1902.10246.md",
+     "start_line": 18,
+     "end_line": 18
+    },
+    {
+     "doc_path": "papers/1902.10246.md",
+     "start_line": 78,
+     "end_line": 82
+    },
+    {
+     "doc_path": "papers/1902.10246.md",
+     "start_line": 12,
+     "end_line": 12
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_8126c6b8a0ca",
+   "question_type": "free_form",
+   "turns": 1,
+   "cost_usd": 0.05184,
+   "answer": "Three automatic metrics were used: (1) EM_outline, the exact-match accuracy of the whole generated outline (both section boundaries and headings must exactly match the ground truth); (2) EM_sec, the exact-match accuracy of section boundary prediction only; and (3) Rouge_head, which uses Rouge-1 (uni-gram recall against reference headings) computed only for the correctly predicted sections.",
+   "evidence": [
+    {
+     "doc_path": "papers/1905.10039.md",
+     "start_line": 220,
+     "end_line": 228
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_641fe5dc9361",
+   "question_type": "free_form",
+   "turns": 1,
+   "cost_usd": 0.047356,
+   "answer": "Sentences are \"lexically overlapping\" when they share words. In WorldTree, each explanation sentence must be explicitly lexically connected (i.e., share words) with the question, the answer, or another sentence in the explanation; this lexically-connected set of sentences is called an explanation graph. The authors also note that such shared-word links can cause semantic drift when unrelated pieces of knowledge are erroneously connected.",
+   "evidence": [
+    {
+     "doc_path": "papers/1802.03052.md",
+     "start_line": 98,
+     "end_line": 98
+    },
+    {
+     "doc_path": "papers/1802.03052.md",
+     "start_line": 170,
+     "end_line": 170
+    },
+    {
+     "doc_path": "papers/1802.03052.md",
+     "start_line": 62,
+     "end_line": 62
+    },
+    {
+     "doc_path": "papers/1802.03052.md",
+     "start_line": 52,
+     "end_line": 52
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_c7ffef8bf010",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.051522,
+   "answer": "They use two corpora spanning five languages: LibriSpeech (960-hour English, the high-resource source language used for pre-training) and GlobalPhone (French, German, Czech, Spanish, used as the low-resource target languages).",
+   "evidence": [
+    {
+     "doc_path": "papers/1707.06519.md",
+     "start_line": 66,
+     "end_line": 68
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_5d0a3f8ca388",
+   "question_type": "free_form",
+   "turns": 1,
+   "cost_usd": 0.056448,
+   "answer": "The word reward γ is treated as the single parameter of a globally-normalized model and trained post hoc, with the base NMT model fixed. The gradient of the globally-normalized negative log-likelihood w.r.t. γ is computed using the 1-best translation from decoding, which gives the familiar perceptron update (γ is adjusted by the difference between the reference's and the 1-best translation's lengths). The update is done on batches of sentences rather than single sentences (batch gradient descent, which was more stable than SGD), using a small dev set (e.g., 1000 sentences). Training stops when the update is below 0.03 or after 25 epochs. The tuning is quick, taking minutes to hours.",
+   "evidence": [
+    {
+     "doc_path": "papers/1808.10006.md",
+     "start_line": 84,
+     "end_line": 88
+    },
+    {
+     "doc_path": "papers/1808.10006.md",
+     "start_line": 104,
+     "end_line": 104
+    },
+    {
+     "doc_path": "papers/1808.10006.md",
+     "start_line": 26,
+     "end_line": 26
+    },
+    {
+     "doc_path": "papers/1808.10006.md",
+     "start_line": 140,
+     "end_line": 140
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_371433bd3fb5",
+   "question_type": "free_form",
+   "turns": 1,
+   "cost_usd": 0.046484,
+   "answer": "Data-driven models generally respond poorly: they rank low in perceived appropriateness and lag behind rule-based and commercial systems. They rarely politely refuse (only Neuralconvo and Cleverbot ever do). Instead they often give flirtatious responses (the clean Seq2Seq, 44%) or retaliatory ones followed by flirtation (the IR approach, 38%). Two data-driven systems, one being the clean Seq2Seq, were not rated significantly higher than the adult-bot negative baselines.",
+   "evidence": [
+    {
+     "doc_path": "papers/1909.04387.md",
+     "start_line": 80,
+     "end_line": 80
+    },
+    {
+     "doc_path": "papers/1909.04387.md",
+     "start_line": 12,
+     "end_line": 12
+    },
+    {
+     "doc_path": "papers/1909.04387.md",
+     "start_line": 92,
+     "end_line": 92
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_9d963d385bd4",
+   "question_type": "extractive",
+   "turns": 1,
+   "cost_usd": 0.048504,
+   "answer": "They use the English Penn Treebank (PTB) for constituency and dependency parsing, and the SPMRL treebanks (multilingual) as well. Results are reported on the PTB and SPMRL test sets, with the PTB dev set used for model comparison.",
+   "evidence": [
+    {
+     "doc_path": "papers/1907.01339.md",
+     "start_line": 92,
+     "end_line": 92
+    },
+    {
+     "doc_path": "papers/1907.01339.md",
+     "start_line": 88,
+     "end_line": 88
+    },
+    {
+     "doc_path": "papers/1907.01339.md",
+     "start_line": 96,
+     "end_line": 98
+    }
+   ],
+   "correct": true,
+   "page_hit": false,
+   "doc_hit": true
+  },
+  {
+   "id": "qasper_de689a17b0b9",
+   "question_type": "free_form",
+   "turns": 1,
+   "cost_usd": 0.049266,
+   "answer": "Three annotators: a team of three volunteers (named in the acknowledgements as Maria, Raphael and Anastasia) annotated the tweets. Disagreements were resolved by majority agreement above 66%, with one author reviewing fully contested tweets with two extra human judges.",
+   "evidence": [
+    {
+     "doc_path": "papers/2003.07459.md",
+     "start_line": 50,
+     "end_line": 50
+    },
+    {
+     "doc_path": "papers/2003.07459.md",
+     "start_line": 112,
+     "end_line": 112
+    }
+   ],
+   "correct": true,
+   "page_hit": true,
+   "doc_hit": true
+  }
+ ]
+}

@@ -10,3 +10,7 @@ eval/financebench/.venv
 eval/financebench/md-pages
 eval/financebench/data
 __pycache__/
+eval/qasper/data
+eval/qasper/md
+eval/qasper/md-pages
+eval/qasper/runs

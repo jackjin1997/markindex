@@ -1,0 +1,65 @@
+{
+ "bm25": {
+  "method": "bm25",
+  "model": null,
+  "subset": "all",
+  "questions": 150,
+  "chunks": 11823,
+  "evidence_page_recall": {
+   "@1": 0.1267,
+   "@3": 0.5,
+   "@5": 0.7933,
+   "@10": 0.9733,
+   "@20": 0.9867
+  },
+  "right_filing_recall": {
+   "@1": 1.0,
+   "@3": 1.0,
+   "@5": 1.0,
+   "@10": 1.0,
+   "@20": 1.0
+  }
+ },
+ "dense": {
+  "method": "dense",
+  "model": "BAAI/bge-base-en-v1.5",
+  "subset": "all",
+  "questions": 150,
+  "chunks": 11823,
+  "evidence_page_recall": {
+   "@1": 0.24,
+   "@3": 0.6133,
+   "@5": 0.8,
+   "@10": 0.9733,
+   "@20": 1.0
+  },
+  "right_filing_recall": {
+   "@1": 1.0,
+   "@3": 1.0,
+   "@5": 1.0,
+   "@10": 1.0,
+   "@20": 1.0
+  }
+ },
+ "hybrid": {
+  "method": "hybrid",
+  "model": "BAAI/bge-base-en-v1.5",
+  "subset": "all",
+  "questions": 150,
+  "chunks": 11823,
+  "evidence_page_recall": {
+   "@1": 0.1867,
+   "@3": 0.5467,
+   "@5": 0.8067,
+   "@10": 0.9733,
+   "@20": 0.9933
+  },
+  "right_filing_recall": {
+   "@1": 1.0,
+   "@3": 1.0,
+   "@5": 1.0,
+   "@10": 1.0,
+   "@20": 1.0
+  }
+ }
+}
