@@ -272,6 +272,13 @@ a three-judge majority). For reference, the FinanceBench paper reports 19% for G
 store, and Mafin2.5 (PageIndex) reports 98.7%. The comparison is not controlled for the model or the grading
 ([method, judges and caveats](eval/financebench/README.md)).
 
+**Controlled baselines (same model, same judge):** on the same questions the MarkIndex agent scores 88.0% with one
+judge, against 67.3% for the same model reading the top-20 pages of a dense retriever in one prompt, at 40% of the
+cost. The gain comes from the agent loop over a cheap keyword index, not from the tree: an agent over flat BM25
+chunks scores 89.3%, and MarkIndex without its navigation tools scores the same 88.0%. On
+[QASPER](eval/qasper/README.md), where single-shot retrieval already finds the evidence, all setups perform alike
+(89-93%). [Tables and tests](eval/financebench/README.md#controlled-baselines-same-model-same-judge).
+
 ## Development
 
 ```bash

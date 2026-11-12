@@ -4,7 +4,7 @@
  *   npm run build
  *   npx tsx eval/financebench/run.ts --root eval/financebench/md --out eval/financebench/runs/<name>.json \
  *     (--all | --sample <n> | --ids id1,id2) [--model sonnet] [--judge-model sonnet] [--concurrency 3] \
- *     [--max-turns 30] [--timeout-sec 600] [--db <index.db>]
+ *     [--max-turns 30] [--timeout-sec 600] [--db <index.db>] [--only-tools search_documents,get_node_content]
  *
  * Setup follows VectifyAI's Mafin2.5 FinanceBench protocol: every converted filing sits in ONE library (the agent is
  * not told which document to use), and answers are judged with Mafin2.5's own `check_answer_equivalence` prompt
@@ -14,6 +14,11 @@
  * Besides answer accuracy the report has evidence-page recall: whether any cited line range overlaps one of the
  * pages FinanceBench lists as evidence (converted with md-pages/<doc>.json).
  * The report is rewritten after every question and an existing report is resumed (finished ids are skipped).
+ *
+ * `--only-tools` is for ablations: the listed MarkIndex tools stay, the other ones are removed from the model's
+ * context (`--disallowedTools`). Prompt, server and server instructions are unchanged.
+ * `--flat-chunks <chunks.db>` is the agentic baseline: the same loop, prompt and judge, but the agent's tools come
+ * from flat_server.ts (BM25 over the flat page chunks of baseline_retrieve.py, reading by page) instead of MarkIndex.
  */
 import { spawn } from 'node:child_process'
 import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
@@ -21,13 +26,15 @@ import { tmpdir } from 'node:os'
 import { join, resolve } from 'node:path'
 import { parseArgs } from 'node:util'
 import { mcpConfigFor, parseClaudeOutput, type ClaudeOutput } from '../lib/claude-code.js'
+import { FLAT_TOOLS } from './flat_server.js'
 
 const HERE = import.meta.dirname
 const KILL_GRACE_MS = 10_000
 const log = (s: string) => process.stderr.write(`${s}\n`)
+const MARKINDEX_TOOLS = ['browse_documents', 'get_document', 'get_document_structure', 'get_node_content', 'search_documents']
 
 interface FbEvidence { doc_name: string; evidence_page_num: number }
-interface FbQuestion {
+export interface FbQuestion {
   financebench_id: string
   company: string
   doc_name: string
@@ -40,7 +47,7 @@ interface FbQuestion {
 interface DocInfo { doc_name: string; company: string }
 interface Cited { doc_path: string; start_line: number; end_line: number }
 
-interface Result {
+export interface Result {
   id: string
   question_type: string
   question: string
@@ -58,9 +65,12 @@ interface Result {
   error?: string
 }
 
-export const AGENT_PROMPT = (question: string) => `You are a financial analyst answering a question from a library of public-company filings (10-K, 10-Q, 8-K, earnings releases). The library is organized in one folder per company; every document starts with front matter (company, doc_type, period) and every page with an "<!-- page N -->" line.
+const FILINGS_INTRO =
+  'You are a financial analyst answering a question from a library of public-company filings (10-K, 10-Q, 8-K, earnings releases). The library is organized in one folder per company; every document starts with front matter (company, doc_type, period) and every page with an "<!-- page N -->" line.'
 
-Use ONLY the markindex MCP tools to find the right document and the passages that answer the question, read them, and compute the answer when a calculation is needed. Base the answer only on what you read.
+export const AGENT_PROMPT = (question: string, server = 'markindex', intro = FILINGS_INTRO) => `${intro}
+
+Use ONLY the ${server} MCP tools to find the right document and the passages that answer the question, read them, and compute the answer when a calculation is needed. Base the answer only on what you read.
 
 When done, reply with ONLY a JSON object (no prose, no code fence):
 {"answer":"<concise final answer, with the numbers and a one-sentence justification>","evidence":[{"doc_path":"...","start_line":N,"end_line":N}]}
@@ -153,7 +163,7 @@ export function runClaude(args: string[], cwd: string, timeoutMs: number): Promi
 
 const folder = (company: string) => company.replace(/[^A-Za-z0-9]+/g, '_').replace(/^_+|_+$/g, '')
 
-function summarize(results: Result[]) {
+export function summarize(results: Result[]) {
   const by = (pred: (r: Result) => boolean) => {
     const rs = results.filter(pred)
     const judged = rs.filter((r) => r.correct !== null)
@@ -188,17 +198,31 @@ async function main() {
       'timeout-sec': { type: 'string', default: '600' },
       db: { type: 'string' },
       cli: { type: 'string' },
+      'only-tools': { type: 'string' },
+      'flat-chunks': { type: 'string' },
+      base: { type: 'string', default: HERE },
     },
   })
   if (!v.root || !v.out) throw new Error('--root and --out are required')
   const root = resolve(v.root)
   const out = resolve(v.out)
+  // benchmark folder with data/open.jsonl, data/docs.jsonl, md-pages/ and, for other benchmarks, prompt.json
+  const base = resolve(v.base!)
+  const promptFile = join(base, 'prompt.json')
+  const cfg = existsSync(promptFile) ? (JSON.parse(readFileSync(promptFile, 'utf8')) as { benchmark?: string; agent_intro?: string }) : {}
   const cli = v.cli ? resolve(v.cli) : join(HERE, '..', '..', 'dist', 'cli.js')
-  if (!existsSync(cli)) throw new Error(`${cli} not found: run npm run build`)
+  const flat = v['flat-chunks'] ? resolve(v['flat-chunks']) : undefined
+  if (flat && (v['only-tools'] || v.db)) throw new Error('--flat-chunks cannot be combined with --only-tools or --db')
+  if (flat ? !existsSync(flat) : !existsSync(cli)) throw new Error(flat ? `${flat} not found: run baseline_retrieve.py chunk` : `${cli} not found: run npm run build`)
+  const serverName = flat ? 'chunksearch' : 'markindex'
+  const tools = flat ? FLAT_TOOLS : v['only-tools'] ? v['only-tools'].split(',').map((t) => t.trim()) : MARKINDEX_TOOLS
+  const unknown = flat ? [] : tools.filter((t) => !MARKINDEX_TOOLS.includes(t))
+  if (unknown.length || !tools.length) throw new Error(`--only-tools: unknown tool ${unknown.join(', ')}; known: ${MARKINDEX_TOOLS.join(', ')}`)
+  const removed = flat ? [] : MARKINDEX_TOOLS.filter((t) => !tools.includes(t)).map((t) => `mcp__markindex__${t}`)
 
-  const all = readFileSync(join(HERE, 'data/open.jsonl'), 'utf8').trim().split('\n').map((l) => JSON.parse(l) as FbQuestion)
+  const all = readFileSync(join(base, 'data/open.jsonl'), 'utf8').trim().split('\n').map((l) => JSON.parse(l) as FbQuestion)
   const docs = new Map(
-    readFileSync(join(HERE, 'data/docs.jsonl'), 'utf8').trim().split('\n').map((l) => {
+    readFileSync(join(base, 'data/docs.jsonl'), 'utf8').trim().split('\n').map((l) => {
       const d = JSON.parse(l) as DocInfo
       return [d.doc_name, d]
     }),
@@ -220,7 +244,7 @@ async function main() {
       q.financebench_id,
       q.evidence.map((e) => {
         const company = docs.get(e.doc_name)?.company ?? q.company
-        const pages = JSON.parse(readFileSync(join(HERE, 'md-pages', `${e.doc_name}.json`), 'utf8')) as Record<string, [number, number]>
+        const pages = JSON.parse(readFileSync(join(base, 'md-pages', `${e.doc_name}.json`), 'utf8')) as Record<string, [number, number]>
         const r = pages[String(e.evidence_page_num)]
         if (!r) throw new Error(`${q.financebench_id}: page ${e.evidence_page_num} missing in ${e.doc_name}`)
         return { doc_path: `${folder(company)}/${e.doc_name}.md`, start: r[0], end: r[1] }
@@ -236,16 +260,26 @@ async function main() {
 
   const work = mkdtempSync(join(tmpdir(), 'markindex-fb-'))
   const mcpConfig = join(work, 'mcp.json')
-  writeFileSync(mcpConfig, JSON.stringify(mcpConfigFor(cli, root, v.db ? resolve(v.db) : undefined)))
+  const flatConfig = () => ({
+    mcpServers: {
+      chunksearch: {
+        command: join(HERE, '..', '..', 'node_modules', '.bin', 'tsx'),
+        args: [join(HERE, 'flat_server.ts'), '--db', flat!, '--root', root, '--pages', join(base, 'md-pages')],
+      },
+    },
+  })
+  writeFileSync(mcpConfig, JSON.stringify(flat ? flatConfig() : mcpConfigFor(cli, root, v.db ? resolve(v.db) : undefined)))
   const timeoutMs = Number(v['timeout-sec']) * 1000
   const order = new Map(all.map((q, i) => [q.financebench_id, i]))
   const save = () => {
     results.sort((a, b) => order.get(a.id)! - order.get(b.id)!)
     const report = {
-      benchmark: 'FinanceBench open-source (150)',
+      benchmark: cfg.benchmark ?? 'FinanceBench open-source (150)',
       protocol: 'Mafin2.5: single library, judge prompt from VectifyAI/Mafin2.5-FinanceBench eval.py',
       model: v.model,
       judge_model: v['judge-model'],
+      server: serverName,
+      tools,
       created_at: new Date().toISOString(),
       summary: summarize(results),
       results,
@@ -255,12 +289,13 @@ async function main() {
 
   const one = async (q: FbQuestion): Promise<Result> => {
     const agentArgs = [
-      '-p', AGENT_PROMPT(q.question),
+      '-p', AGENT_PROMPT(q.question, serverName, cfg.agent_intro),
       '--tools', '',
       '--setting-sources', '',
       '--mcp-config', mcpConfig,
       '--strict-mcp-config',
-      '--allowedTools', 'mcp__markindex__*',
+      '--allowedTools', `mcp__${serverName}__*`,
+      ...(removed.length ? ['--disallowedTools', removed.join(',')] : []),
       '--output-format', 'json',
       '--max-turns', String(v['max-turns']),
       '--model', v.model!,

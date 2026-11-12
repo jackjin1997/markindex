@@ -164,6 +164,11 @@ const { evidence } = await retrieve(lib, '员工辞职需要提前多久通知�
 复核后 **92.0%** 的答案正确（三个判分模型多数票为 88.7%）。作为参照，FinanceBench 论文中 GPT-4-Turbo 共用一个向量库时为 19%，
 Mafin2.5（PageIndex）自报 98.7%。这个对比没有控制模型和判分方式（[方法、判分与局限](eval/financebench/README.md)）。
 
+**同模型、同判分的对照**：同样的题目上，MarkIndex agent 在单个判分模型下为 88.0%；同一个模型一次性读入向量检索的前 20 页为 67.3%，
+花费是前者的 2.5 倍。提升来自 agent 循环加低成本的关键词索引，而不是章节树：agent 用普通 BM25 分块也能到 89.3%，
+MarkIndex 去掉导航工具后同样是 88.0%。在 [QASPER](eval/qasper/README.md) 上，一次性检索本来就能找到证据，各种设置表现相近（89%–93%）。
+[表格与检验](eval/financebench/README.md#controlled-baselines-same-model-same-judge)。
+
 ## 许可
 
 [MIT](LICENSE)。PageIndex 同为 MIT；MarkIndex 不含其代码，但移植了其树成本模型、改写了其 Agent 工具描述、指令与提示词，特此致谢；

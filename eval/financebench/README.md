@@ -45,6 +45,58 @@ What the columns mean:
 The two runs land on the same adjudicated score, but they are not identical: two questions flip in each direction
 between them (listed under "Where it fails"). Read differences of a few points between runs or setups as noise.
 
+### Controlled baselines: same model, same judge
+
+What does the same library give other retrieval setups? All rows below use the 150 questions, all 367 filings in one
+library, `claude-sonnet-5-5` unless noted, and one judge (Mafin2.5's prompt run by `claude-sonnet-5-5`). Runs of
+2026-11-12.
+
+| Setup | Model | Accuracy | Right filing cited | Evidence page cited | Mean turns | Cost |
+|---|---|---:|---:|---:|---:|---:|
+| Single shot, BM25, top-10 pages in one prompt | Sonnet 5.5 | 24.0% | 24.7% | 13.3% | 1 | $11.77 |
+| Single shot, dense (bge-base-en-v1.5), top-10 pages | Sonnet 5.5 | 53.3% | 58.0% | 31.3% | 1 | $11.88 |
+| Single shot, dense, top-20 pages | Sonnet 5.5 | 67.3% | 74.0% | 44.7% | 1 | $21.35 |
+| Agent over flat page chunks (BM25 search + read page) | Sonnet 5.5 | 89.3% | 90.7% | 71.3% | 3.9 | $7.07 |
+| Agent, MarkIndex with `search_documents` + `get_node_content` only | Sonnet 5.5 | 88.0% | 88.0% | 70.0% | 4.2 | $8.50 |
+| **Agent, MarkIndex, five tools** (the run above) | Sonnet 5.5 | 88.0% | 88.7% | 68.0% | 5.4 | $8.45 |
+| Agent over flat page chunks | Haiku 5.5 | 88.0% | 88.0% | 74.0% | 5.4 | $1.61 |
+| Agent, MarkIndex, five tools | Haiku 5.5 | 90.7% | 91.3% | 78.7% | 6.4 | $1.69 |
+
+What this shows, with exact McNemar tests on paired outcomes ([`compare.py`](compare.py)):
+
+- **The agent loop is what beats single-shot retrieval.** The MarkIndex agent is 20.7 points above the strongest
+  single-shot setup (34 questions only the agent gets right, 3 the other way, p = 1.2e-7) at 40% of its cost.
+  With the question as the query, BM25 has an evidence page in its top 10 for 14% of the questions and the dense
+  retriever for 34% ([`results/retrieval-recall.json`](results/retrieval-recall.json)); an agent that writes its own
+  queries and reads on gets to 88-89% over the same kind of keyword index.
+- **The tree-navigation tools do not add accuracy here.** Without `browse_documents`, `get_document` and
+  `get_document_structure` the agent scores the same 88.0% (3 questions each way) in 1.2 fewer turns.
+- **The section tree does not beat flat chunks here.** An agent with a plain BM25 search over page chunks and a
+  read-page tool ([`flat_server.ts`](flat_server.ts)) reaches 89.3% with Sonnet (4 against 6 discordant questions,
+  p = 0.75). With Haiku MarkIndex is ahead, 90.7% against 88.0%, but 5 against 1 discordant questions is not
+  significant (p = 0.22).
+- **A small model is enough.** Haiku 5.5 with MarkIndex costs $1.69 for the 150 questions including the judge.
+- **Indexing cost.** MarkIndex indexes the 367 filings from scratch in 233 s on one CPU process (Apple M4) with no
+  model call. Embedding the 205,542 chunks of the dense baseline took about five hours on the same machine's GPU.
+  The flat BM25 baseline is as cheap to index as MarkIndex.
+
+So on this benchmark MarkIndex's accuracy comes from giving an agent a cheap lexical index with line-addressed
+reading, not from the tree. [`../qasper`](../qasper/README.md) repeats the comparison on research papers, where
+single-shot retrieval already finds the evidence and all setups perform alike.
+
+Caveats: the baselines have one judge (no Opus re-judges, majority or adjudication), so compare them with the 88.0%
+column, not with 92.0%. The dense retriever is an open model of moderate size without a reranker. In the tool
+ablation the server instructions still mention the removed tools. Per-question files:
+`results/single-*.json`, `results/agent-*.json`.
+
+**How the baselines are built.** [`baseline_retrieve.py`](baseline_retrieve.py) cuts every page into chunks of at
+most 1,200 characters with a "company | document type | period" header, ranks them with SQLite FTS5 BM25, with
+`BAAI/bge-base-en-v1.5` embeddings or with both (reciprocal rank fusion), and turns chunk ranks into page ranks.
+[`baseline.ts`](baseline.ts) puts the top-k pages into one prompt with no tools. [`flat_server.ts`](flat_server.ts)
+is an MCP server over the same chunks with two tools, `search_chunks` and `get_page_content`; it uses MarkIndex's
+snippet length and response budget, and `run.ts --flat-chunks` runs the same agent loop, prompt and judge over it.
+`run.ts --only-tools` removes MarkIndex tools from the model's context.
+
 ### Context: other results on the same 150 questions
 
 | System | Accuracy | Graded by | Source |
@@ -59,7 +111,7 @@ between them (listed under "Where it fails"). Read differences of a few points b
 Read this table with care:
 
 - **It is not a controlled comparison of retrieval methods.** The paper's numbers come from GPT-4-Turbo in 2023.
-  The model matters at least as much as the retrieval layer, and no same-model vector-RAG baseline has been run yet.
+  The model matters at least as much as the retrieval layer. For same-model baselines see the section above.
 - **Grading differs.** Mafin2.5's 98.7% is 148 of 150 answers labeled AL / BE / MVA / SEDC by its reviewers, after
   human review of every answer. Ours is graded by LLM judges. Mafin2.5's labels are borrowed only for the questions
   they flagged, and only where our answer agrees with theirs.
@@ -141,3 +193,22 @@ npx tsx eval/financebench/adjudicate.ts --run eval/financebench/runs/full150.jso
 
 `adjudicate.ts` stops with the list of flagged questions to review (with their answer hashes) until the review file
 covers them. `run.ts --sample 10` runs every 15th question, which is enough to check a setup before a full run.
+
+The controlled baselines (the dense index needs a GPU or patience; each answer run spends $7-21 of Claude usage):
+
+```bash
+cd eval/financebench
+uv pip install -p .venv/bin/python numpy sentence-transformers
+.venv/bin/python -I baseline_retrieve.py chunk                      # runs/baseline/chunks.db
+.venv/bin/python -I baseline_retrieve.py embed                      # resumable; about 5 h on an Apple M4 GPU
+.venv/bin/python -I baseline_retrieve.py search --method dense      # also bm25, hybrid; prints recall
+cd ../..
+npx tsx eval/financebench/baseline.ts --retrieval eval/financebench/runs/baseline/retrieval-dense.json --top-k 20 --all --out eval/financebench/runs/single-dense-top20.json
+npx tsx eval/financebench/run.ts --root eval/financebench/md --flat-chunks eval/financebench/runs/baseline/chunks.db --all --out eval/financebench/runs/agent-flat.json
+npx tsx eval/financebench/run.ts --root eval/financebench/md --db eval/financebench/runs/lib.db --only-tools search_documents,get_node_content --all --out eval/financebench/runs/agent-search-read.json
+python3 eval/financebench/compare.py eval/financebench/runs/full150.json eval/financebench/runs/single-dense-top20.json eval/financebench/runs/agent-flat.json
+python3 eval/financebench/publish.py eval/financebench/runs/agent-flat.json eval/financebench/results/agent-flat-sonnet.json   # shareable copy
+```
+
+`baseline.ts --dry-run` builds every prompt and prints their sizes without calling a model. Add `--model haiku` to
+`run.ts` for the Haiku rows.

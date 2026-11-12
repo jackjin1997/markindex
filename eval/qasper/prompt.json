@@ -1,0 +1,6 @@
+{
+  "benchmark": "QASPER test v0.3, 150 sampled questions (seed 2027)",
+  "agent_intro": "You are a research assistant answering a question about a research paper from a library of NLP papers. The library has one folder, papers/, with one Markdown file per paper; every document starts with front matter (title, arxiv_id) and every page with an \"<!-- page N -->\" line.",
+  "single_intro": "You are a research assistant answering a question about a research paper from a library of NLP papers.",
+  "single_pages": "The pages may come from different papers; use the ones that answer the question."
+}
