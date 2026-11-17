@@ -7,6 +7,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+### Fixed
+
+- `search_documents` no longer slows down with the size of the library. The ranking query read the stored text of
+  every matching section before applying the limit; it now ranks on the full-text index alone and loads only the
+  sections it returns. On a 19 GB index (100,195 documents) a search went from about 34 s to about 0.3 s, with
+  identical results. No schema change, so existing indexes need no rebuild.
+
 ## [0.1.2] - 2026-11-09
 
 No code changes; this release refreshes the README shown on npm.
