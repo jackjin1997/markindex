@@ -119,6 +119,44 @@ describe('searchNodes', () => {
     expect(paths({ limit: 2 })).toHaveLength(2)
   })
 
+  it('folder scope stops at the path separator', async () => {
+    await lib({
+      'x/a.md': '# A\n\nplatypus\n',
+      'x-/b.md': '# B\n\nplatypus\n',
+      'x.y/c.md': '# C\n\nplatypus\n',
+      'x0/d.md': '# D\n\nplatypus\n',
+      'x.md': '# E\n\nplatypus\n',
+      '文档/f.md': '# F\n\nplatypus\n',
+      '文档集/g.md': '# G\n\nplatypus\n',
+    })
+    const paths = (folder: string) => searchNodes(store, 'platypus', { folder }).map((h) => h.docPath).sort()
+    expect(paths('x')).toEqual(['x/a.md'])
+    expect(paths('x.y')).toEqual(['x.y/c.md'])
+    expect(paths('文档')).toEqual(['文档/f.md'])
+    expect(paths('nope')).toEqual([])
+  })
+
+  it('scope is applied before the limit, for bm25 and for the trigram fallback', async () => {
+    const files: Record<string, string> = { 'in/weak.md': '# Notes\n\nA remark that mentions platypus once, and the code QZ-77131.\n' }
+    for (let i = 0; i < 12; i++) files[`out/strong${i}.md`] = `# Platypus platypus\n\nplatypus platypus platypus QZ-77131 QZ-77131\n`
+    await lib(files)
+    expect(searchNodes(store, 'platypus', { limit: 3 }).every((h) => h.docPath.startsWith('out/'))).toBe(true)
+    for (const scope of [{ folder: 'in' }, { docPath: 'in/weak.md' }]) {
+      expect(searchNodes(store, 'platypus', { ...scope, limit: 3 }).map((h) => [h.docPath, h.via])).toEqual([['in/weak.md', 'bm25']])
+      expect(searchNodes(store, 'Z-7713', { ...scope, limit: 3 }).map((h) => [h.docPath, h.via])).toEqual([['in/weak.md', 'trigram']])
+    }
+  })
+
+  it('equal scores come back in a stable order', async () => {
+    const files: Record<string, string> = {}
+    for (let i = 0; i < 8; i++) files[`same/d${i}.md`] = '# Same\n\nplatypus\n'
+    await lib(files)
+    const first = searchNodes(store, 'platypus', { limit: 5 }).map((h) => h.docPath)
+    expect(first).toHaveLength(5)
+    for (let i = 0; i < 3; i++) expect(searchNodes(store, 'platypus', { limit: 5 }).map((h) => h.docPath)).toEqual(first)
+    expect(searchNodes(store, 'platypus', { limit: 3 }).map((h) => h.docPath)).toEqual(first.slice(0, 3))
+  })
+
   it('snippet length bounded and taken from original text', async () => {
     const long = `${'前缀文字'.repeat(200)} NEEDLE-term ${'后缀'.repeat(300)}`
     await lib({ 'a.md': md('A', [['S', long], ['T', 'x']]) })

@@ -36,12 +36,21 @@ interface Row {
   rank: number
 }
 
+/**
+ * Scope as a filter on FTS rowids, taken from `nodes` (its primary key starts with doc_path). The unary plus keeps
+ * FTS5 from treating the list as rowid lookups, which would evaluate the MATCH once per listed row. A folder is the
+ * range of paths starting with "folder/": '0' is the character after '/', and TEXT compares bytewise.
+ */
 function scopeClause(opts: SearchOptions): { sql: string; params: string[] } {
-  if (opts.docPath !== undefined && opts.docPath !== '') return { sql: 'AND f.doc_path = ?', params: [opts.docPath] }
+  if (opts.docPath !== undefined && opts.docPath !== '') {
+    return { sql: 'AND +rowid IN (SELECT fts_rowid FROM nodes WHERE doc_path = ?)', params: [opts.docPath] }
+  }
   const folder = (opts.folder ?? '').replace(/^\/+|\/+$/g, '')
   if (folder === '') return { sql: '', params: [] }
-  const prefix = `${folder}/`
-  return { sql: 'AND substr(f.doc_path, 1, length(?)) = ?', params: [prefix, prefix] }
+  return {
+    sql: 'AND +rowid IN (SELECT fts_rowid FROM nodes WHERE doc_path >= ? AND doc_path < ?)',
+    params: [`${folder}/`, `${folder}0`],
+  }
 }
 
 /** Quoted tokens of a segmentQuery() expression, un-escaped. */
@@ -119,14 +128,22 @@ export function searchNodes(store: Store, query: string, opts: SearchOptions = {
     })
   }
 
+  // Rank on the FTS index alone and only then fetch the stored rows of the `limit` winners. Selecting doc_path or
+  // joining `nodes` in the ranking query would read the stored text of every matching node before the LIMIT, which
+  // on a multi-GB library is seconds of disk reads per search.
   const run = (table: 'fts_words' | 'fts_tri', match: string, rankExpr: string): Row[] => {
     try {
       return db
         .prepare(
-          `SELECT f.doc_path AS doc_path, f.node_id AS node_id, n.json AS json, ${rankExpr} AS rank
-           FROM ${table} f JOIN nodes n ON n.doc_path = f.doc_path AND n.node_id = f.node_id
-           WHERE ${table} MATCH ? ${scope.sql}
-           ORDER BY rank LIMIT ?`,
+          `SELECT f.doc_path AS doc_path, f.node_id AS node_id, n.json AS json, t.rank AS rank
+           FROM (
+             SELECT rowid AS id, ${rankExpr} AS rank FROM ${table}
+             WHERE ${table} MATCH ? ${scope.sql}
+             ORDER BY rank, id LIMIT ?
+           ) t
+           JOIN ${table} f ON f.rowid = t.id
+           JOIN nodes n ON n.doc_path = f.doc_path AND n.node_id = f.node_id
+           ORDER BY t.rank, t.id`,
         )
         .all(match, ...scope.params, limit) as Row[]
     } catch {
