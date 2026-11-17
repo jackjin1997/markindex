@@ -7,6 +7,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+## [0.1.3] - 2026-11-17
+
 ### Fixed
 
 - `search_documents` no longer slows down with the size of the library. The ranking query read the stored text of
@@ -79,7 +81,8 @@ First release.
 - MarkIndex is an independent, unofficial implementation inspired by
   [VectifyAI/PageIndex](https://github.com/VectifyAI/PageIndex); see `THIRD_PARTY_NOTICES.md`.
 
-[Unreleased]: https://github.com/jackjin1997/markindex/compare/v0.1.2...HEAD
+[Unreleased]: https://github.com/jackjin1997/markindex/compare/v0.1.3...HEAD
+[0.1.3]: https://github.com/jackjin1997/markindex/compare/v0.1.2...v0.1.3
 [0.1.2]: https://github.com/jackjin1997/markindex/compare/v0.1.1...v0.1.2
 [0.1.1]: https://github.com/jackjin1997/markindex/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/jackjin1997/markindex/releases/tag/v0.1.0
