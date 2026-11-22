@@ -466,7 +466,7 @@ with other systems are in [financebench/README.md](financebench/README.md).
 
 ## 12. Experiments with a decision model
 
-Four tests of 2026-11-22 with a non-generative decision model (TypeSafe's Jev) placed in front of or inside the
+Tests of 2026-11-22 with a non-generative decision model (TypeSafe's Jev) placed in front of or inside the
 retrieval. None of it is part of the package; the code lives under `eval/`.
 
 | Test | Result | Where |
@@ -475,5 +475,9 @@ retrieval. None of it is part of the package; the code lives under `eval/`.
 | Pick the filing and the sections from titles alone (FinanceBench) | evidence page in the first ten pages 66.7%, against 34.0% for dense retrieval | [financebench/README.md](financebench/README.md#navigating-by-section-titles-with-a-decision-model) |
 | Answer in one call from those pages | 72.0%, against 53.3% for dense retrieval and 88.0% for the agent | same |
 | Give the agent the same routing as a tool | 86.7% against 90.7% without it, 0.8 fewer turns | same |
+| Score all titles of a filing in one request | 71.3% at ten pages, right page first 49.3% against 28.0%, under 10 requests per question instead of about 340 | same |
+| Control: the same model reranks dense top-100 pages | 73.3% at ten pages, level with the titles; five pages from each reach 89.3% | same |
 
-The model helps where finding the evidence is the bottleneck, and not where the agent already finds it.
+The model helps where finding the evidence is the bottleneck, and not where the agent already finds it. On
+FinanceBench the gain over dense retrieval comes from the model as a judge: reranked dense pages find the
+evidence as often as title navigation does. The tree makes it cheaper and puts the right page first more often.
