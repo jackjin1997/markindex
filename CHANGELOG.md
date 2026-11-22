@@ -7,6 +7,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-11-23
+
 ### Added
 
 - Optional reranking of `search_documents` results, off by default and experimental. `markindex mcp <root> --rerank
@@ -94,7 +96,8 @@ First release.
 - MarkIndex is an independent, unofficial implementation inspired by
   [VectifyAI/PageIndex](https://github.com/VectifyAI/PageIndex); see `THIRD_PARTY_NOTICES.md`.
 
-[Unreleased]: https://github.com/jackjin1997/markindex/compare/v0.1.3...HEAD
+[Unreleased]: https://github.com/jackjin1997/markindex/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/jackjin1997/markindex/compare/v0.1.3...v0.2.0
 [0.1.3]: https://github.com/jackjin1997/markindex/compare/v0.1.2...v0.1.3
 [0.1.2]: https://github.com/jackjin1997/markindex/compare/v0.1.1...v0.1.2
 [0.1.1]: https://github.com/jackjin1997/markindex/compare/v0.1.0...v0.1.1
