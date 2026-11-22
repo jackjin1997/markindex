@@ -3,8 +3,9 @@ import { join, resolve } from 'node:path'
 import { assertLibraryRoot } from './library/scan.js'
 import { indexLibrary, type IndexOptions, type IndexReport } from './library/indexer.js'
 import { openStore, type Store } from './store/db.js'
-import type { ToolName } from './tools/contract.js'
-import { runTool } from './tools/impl.js'
+import type { RerankOptions } from './rerank/types.js'
+import { TOOL_CONTRACT, TOOL_CONTRACT_RERANKED, type ToolContract, type ToolName } from './tools/contract.js'
+import { runTool, runToolReranked } from './tools/impl.js'
 
 export interface OpenLibraryOptions {
   /** Library root directory (the folder of Markdown files). */
@@ -13,12 +14,20 @@ export interface OpenLibraryOptions {
   dbFile?: string
   /** Defaults to true: agents only read, and a read-only store never waits on (or blocks) an indexer. */
   readonly?: boolean
+  /**
+   * Off by default. With a reranker, `search_documents` has it score the keyword hits and returns the best, and
+   * the tool takes an optional `intent` (see `Library.contract`). The reranker decides where the text goes:
+   * `jevReranker()` sends the question and the candidate sections to a hosted model.
+   */
+  rerank?: RerankOptions
 }
 
 export interface Library {
   readonly store: Store
   /** Absolute library root. */
   readonly root: string
+  /** Descriptions and input schemas of the tools as this library serves them: `TOOL_CONTRACT`, or `TOOL_CONTRACT_RERANKED` with a reranker. */
+  readonly contract: ToolContract
   /** Runs an agent tool and returns its JSON envelope. Never rejects, whatever the name or arguments. */
   callTool(name: ToolName, args: unknown): Promise<string>
   /**
@@ -44,11 +53,13 @@ export function openLibrary(opts: OpenLibraryOptions): Library {
     throw new Error(`No MarkIndex index at ${dbFile}. Build it first with \`markindex index ${root}\`.`)
   }
   const store = openStore(dbFile, { readonly })
+  const { rerank } = opts
   return {
     store,
     root,
+    contract: rerank ? TOOL_CONTRACT_RERANKED : TOOL_CONTRACT,
     async callTool(name, args) {
-      return runTool(store, name, args)
+      return rerank ? runToolReranked(store, name, args, rerank) : runTool(store, name, args)
     },
     async index(indexOpts = {}) {
       if (!readonly) return indexLibrary({ ...indexOpts, root, store })

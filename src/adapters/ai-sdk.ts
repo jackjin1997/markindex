@@ -1,14 +1,14 @@
 import { tool, type Tool } from 'ai'
 import type { Library } from '../library.js'
-import { TOOL_CONTRACT, type ToolName } from '../tools/contract.js'
+import type { ToolName } from '../tools/contract.js'
 
 /**
  * The five agent tools as Vercel AI SDK tools, backed by `lib.callTool`. Each `execute` resolves to the JSON
  * envelope string (never rejects), so the model always sees a structured result.
  */
 export function createAiSdkTools(lib: Library): Record<ToolName, Tool> {
-  const entries = (Object.keys(TOOL_CONTRACT) as ToolName[]).map((name) => {
-    const contract = TOOL_CONTRACT[name]
+  const entries = (Object.keys(lib.contract) as ToolName[]).map((name) => {
+    const contract = lib.contract[name]
     return [
       name,
       tool({

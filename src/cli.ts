@@ -10,6 +10,7 @@ import type { Aggregate, Summary } from './eval/score.js'
 import { indexLibrary, type IndexReport } from './library/indexer.js'
 import { assertLibraryRoot } from './library/scan.js'
 import { defaultDbFile, openLibrary } from './library.js'
+import { jevConfigFromEnv, jevReranker } from './rerank/jev.js'
 import { estimateSummaryCost } from './llm/summarize.js'
 import { ProviderError, resolveSummaryModel } from './llm/provider.js'
 import { parseRateLimit } from './llm/rate-limit.js'
@@ -126,9 +127,13 @@ function searchCommand(root: string, query: string, o: { db?: string; folder?: s
   }
 }
 
-async function mcpCommand(root: string, o: { db?: string; reindexOnStart?: boolean; setext?: boolean; ignore: string[] }) {
+async function mcpCommand(root: string, o: { db?: string; reindexOnStart?: boolean; setext?: boolean; ignore: string[]; rerank?: string; rerankPool?: string }) {
   root = resolve(root)
   assertLibraryRoot(root)
+  if (o.rerank !== undefined && o.rerank !== 'jev') throw new Error(`Unknown reranker "${o.rerank}": --rerank takes jev`)
+  // Fails here, before anything is served, when no key is set.
+  const jev = o.rerank === 'jev' ? jevConfigFromEnv() : undefined
+  const rerank = jev ? { reranker: jevReranker({ config: jev }), ...(o.rerankPool ? { pool: int(o.rerankPool, '--rerank-pool') } : {}) } : undefined
   const dbFile = resolve(o.db ?? defaultDbFile(root))
   if (o.reindexOnStart) {
     const store = openStore(dbFile)
@@ -145,11 +150,12 @@ async function mcpCommand(root: string, o: { db?: string; reindexOnStart?: boole
   if (!o.reindexOnStart && !existsSync(dbFile)) {
     throw new Error(`No MarkIndex index at ${dbFile}. Run \`markindex index ${root}\` first (or pass --reindex-on-start).`)
   }
-  const lib = openLibrary({ root, dbFile })
+  const lib = openLibrary({ root, dbFile, rerank })
   const server = createMcpServer(lib)
   process.on('exit', () => lib.close())
   await server.connect(new StdioServerTransport())
   err(`markindex MCP server ready (stdio), library: ${root}`)
+  if (jev) err(`markindex: search reranking is on (${jev.model}): every search sends its question and the text of up to 50 matching sections to ${jev.url}`)
 }
 
 const collect = (value: string, previous: string[]) => [...previous, value]
@@ -287,6 +293,8 @@ export function buildProgram(): Command {
     .option('--ignore <pattern>', 'with --reindex-on-start: pattern to leave out (repeatable, see `index --ignore`)', collect, [])
     .option('--setext', 'with --reindex-on-start: turn setext headings back on (see `index --setext`)')
     .option('--no-setext', 'with --reindex-on-start: index without setext headings (see `index --no-setext`)')
+    .option('--rerank <name>', 'rerank search results with a hosted model; `jev` (TypeSafe Jev) is the only one. Off by default: it sends section text to that service and needs TYPESAFE_API_KEY, OPENROUTER_API_KEY, or JEV_BASE_URL + JEV_API_KEY')
+    .option('--rerank-pool <n>', 'with --rerank: keyword hits scored per search (1-50, default 50)')
     .action(mcpCommand)
   program
     .command('eval <root>')

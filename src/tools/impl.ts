@@ -4,7 +4,9 @@ import type { Store } from '../store/db.js'
 import { searchNodes } from '../store/search.js'
 import { walk } from '../tree/build.js'
 import type { DocumentRecord, TreeNode } from '../types.js'
-import { TOOL_CONTRACT, type ToolInput, type ToolName } from './contract.js'
+import { bestWindow, orderByScore, queryTerms } from '../rerank/passages.js'
+import type { RerankCandidate, RerankOptions, Reranker } from '../rerank/types.js'
+import { TOOL_CONTRACT, TOOL_CONTRACT_RERANKED, type ToolInput, type ToolName } from './contract.js'
 import { failure, jsonSize, splitByBudget, success, type Envelope, type NextSteps } from './envelope.js'
 import { similarNames } from './similar.js'
 
@@ -497,18 +499,40 @@ function getContent(store: Store, input: ToolInput<'get_node_content'>): Envelop
 
 // ── search_documents ──
 
-function search(store: Store, input: ToolInput<'search_documents'>): Envelope {
-  let docPath: string | undefined
-  let folder: string | undefined
+interface SearchRow {
+  doc_path: string
+  node_id: string
+  title_path: string[]
+  start_line: number
+  end_line: number
+  snippet: string
+  score: number
+  via: 'bm25' | 'trigram'
+  /** Set by a reranker (see runToolReranked). */
+  relevance?: number
+}
+interface SearchScope {
+  docPath?: string
+  folder?: string
+}
+
+/** The document or folder a search is restricted to, or the error envelope for one that does not exist. */
+function searchScope(store: Store, input: ToolInput<'search_documents'>): SearchScope | { error: Envelope } {
   if (input.doc_path !== undefined) {
     const r = resolveDoc(store, input.doc_path)
-    if ('error' in r) return r.error
-    docPath = r.doc.path
-  } else if (input.folder !== undefined) {
-    folder = normFolder(input.folder)
-    if (!folderExists(store, folder)) return folderNotFound(store, folder)
+    if ('error' in r) return r
+    return { docPath: r.doc.path }
   }
-  const hits = searchNodes(store, input.query, { docPath, folder, limit: input.limit }).map((h) => ({
+  if (input.folder !== undefined) {
+    const folder = normFolder(input.folder)
+    if (!folderExists(store, folder)) return { error: folderNotFound(store, folder) }
+    return { folder }
+  }
+  return {}
+}
+
+function searchRows(store: Store, query: string, scope: SearchScope, limit: number): SearchRow[] {
+  return searchNodes(store, query, { ...scope, limit }).map((h) => ({
     doc_path: h.docPath,
     node_id: h.nodeId,
     title_path: h.titlePath,
@@ -518,10 +542,19 @@ function search(store: Store, input: ToolInput<'search_documents'>): Envelope {
     score: h.score,
     via: h.via,
   }))
+}
+
+function search(store: Store, input: ToolInput<'search_documents'>): Envelope {
+  const scope = searchScope(store, input)
+  if ('error' in scope) return scope.error
+  return searchEnvelope(input.query, scope, searchRows(store, input.query, scope, input.limit))
+}
+
+function searchEnvelope(query: string, { docPath, folder }: SearchScope, hits: SearchRow[], extra: Record<string, unknown> = {}): Envelope {
   const scope = docPath !== undefined ? { doc_path: docPath } : folder ? { folder } : {}
   const make = (results: typeof hits): Envelope =>
     success(
-      { query: input.query, ...scope, results },
+      { query, ...scope, results, ...extra },
       results.length
         ? {
             summary: `Found ${results.length} matching node(s).`,
@@ -540,4 +573,76 @@ function search(store: Store, input: ToolInput<'search_documents'>): Envelope {
           },
     )
   return fitList(hits, make).env
+}
+
+// ── search_documents with a reranker ──
+
+const RERANK_POOL = 50
+const RERANK_MAX_CHARS = 8_000
+const RERANK_TIMEOUT_MS = 8_000
+
+/**
+ * runTool() for a library opened with a reranker (contract: TOOL_CONTRACT_RERANKED). `search_documents` takes
+ * `pool` keyword hits, has the reranker score a passage of each against `intent` (or the query) and returns the
+ * `limit` best. Every other tool goes to runTool() unchanged. Never rejects: if the reranker fails, times out
+ * or scores nothing, the keyword order is returned and `rerank.scored` is 0.
+ */
+export async function runToolReranked(store: Store, name: unknown, args: unknown, opts: RerankOptions): Promise<string> {
+  if (name !== 'search_documents') return runTool(store, name, args)
+  let json: string
+  try {
+    json = JSON.stringify(await rerankedSearch(store, args, opts))
+  } catch (e) {
+    json = JSON.stringify(internalError(name, describeError(e).slice(0, 2_000)))
+  }
+  return json.length > RESPONSE_CHAR_BUDGET ? JSON.stringify(TOO_LARGE) : json
+}
+
+async function rerankedSearch(store: Store, args: unknown, opts: RerankOptions): Promise<Envelope> {
+  const parsed = TOOL_CONTRACT_RERANKED.search_documents.input.safeParse(args === undefined ? {} : args)
+  if (!parsed.success) return invalidArgs('search_documents', parsed.error)
+  const { intent, ...input } = parsed.data
+  const scope = searchScope(store, input)
+  if ('error' in scope) return scope.error
+  const pool = Math.max(input.limit, Math.min(RERANK_POOL, Math.max(1, Math.floor(opts.pool ?? RERANK_POOL))))
+  const rows = searchRows(store, input.query, scope, pool)
+  if (rows.length === 0) return searchEnvelope(input.query, scope, rows)
+
+  const question = intent ?? input.query
+  const terms = queryTerms(question)
+  const maxChars = opts.maxChars ?? RERANK_MAX_CHARS
+  const candidates = rows.map((r) => ({
+    id: `${r.doc_path}#${r.node_id}`,
+    // The path says which document this is; without it, sections of different documents with the same topic look alike.
+    passage: `Document: ${r.doc_path}\nSection: ${r.title_path.join(' > ')}\n\n${bestWindow(store.getLines(r.doc_path, r.start_line, r.end_line).join('\n'), terms, maxChars)}`,
+  }))
+  const scores = await scoreWithin(opts.reranker, question, candidates, opts.timeoutMs ?? RERANK_TIMEOUT_MS)
+  const scored = rows.map((r, i) => (scores[i] === null ? r : { ...r, relevance: Number(scores[i]!.toFixed(4)) }))
+  const kept = orderByScore(scored, scores).slice(0, input.limit)
+  const rerank = { by: opts.reranker.name, candidates: rows.length, scored: scores.filter((x) => x !== null).length }
+  return searchEnvelope(input.query, scope, kept, { rerank })
+}
+
+/**
+ * The reranker's scores, with null for every candidate when it rejects, returns something else than one finite
+ * number or null per candidate, or is still not back shortly after `timeoutMs` (it is told to stop at `timeoutMs`
+ * and may then hand in what it has).
+ */
+async function scoreWithin(reranker: Reranker, question: string, candidates: RerankCandidate[], timeoutMs: number): Promise<(number | null)[]> {
+  const none = candidates.map(() => null)
+  const stop = new AbortController()
+  const timers: NodeJS.Timeout[] = []
+  try {
+    const late = new Promise<null>((resolve) => {
+      timers.push(setTimeout(() => stop.abort(), timeoutMs))
+      timers.push(setTimeout(() => resolve(null), timeoutMs + Math.min(1_000, timeoutMs)))
+    })
+    const out = await Promise.race([reranker.score(question, candidates, { signal: stop.signal }), late])
+    if (!Array.isArray(out) || out.length !== candidates.length) return none
+    return out.map((x) => (typeof x === 'number' && Number.isFinite(x) ? x : null))
+  } catch {
+    return none
+  } finally {
+    for (const t of timers) clearTimeout(t)
+  }
 }

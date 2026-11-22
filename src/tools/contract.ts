@@ -167,6 +167,39 @@ export const TOOL_CONTRACT = {
 
 export type ToolInput<N extends ToolName> = z.output<(typeof TOOL_CONTRACT)[N]['input']>
 
+/** What the adapters need of a contract: `TOOL_CONTRACT` itself or `TOOL_CONTRACT_RERANKED`. */
+export type ToolContract = Record<ToolName, { description: string; input: z.ZodObject }>
+
+const rerankedSearchInput = searchInput.extend({
+  intent: z
+    .string()
+    .min(1)
+    .max(2_000)
+    .optional()
+    .describe(
+      'What you are trying to find out, as one full natural-language question or sentence with the names, dates ' +
+        'and quantities that matter (e.g. "How many days of severance does an employee get after three years?"). ' +
+        'The matching nodes are reranked by how well their text answers it. Keep `query` as keywords.',
+    ),
+})
+
+/**
+ * The contract of a library opened with a reranker: `search_documents` takes an optional `intent` and returns
+ * its hits reranked. The other four tools are the same objects as in `TOOL_CONTRACT`.
+ */
+export const TOOL_CONTRACT_RERANKED = {
+  ...TOOL_CONTRACT,
+  search_documents: {
+    description:
+      TOOL_CONTRACT.search_documents.description +
+      ' The hits are reranked by relevance before they are returned: pass `intent` to say in a full sentence what ' +
+      'you are looking for; each hit then carries a `relevance` between 0 and 1.',
+    input: rerankedSearchInput,
+  },
+} as const satisfies ToolContract
+
+export type RerankedSearchInput = z.output<typeof rerankedSearchInput>
+
 // ── agent instructions (adapted from PageIndex agent_tools.py) ──
 
 const HEADER =

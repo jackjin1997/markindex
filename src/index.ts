@@ -28,10 +28,14 @@ export {
 export { createRateLimiter, rateLimiterFor, type RateLimiter, type RateLimitOptions, type RateLimiterClock } from './llm/rate-limit.js'
 export {
   TOOL_CONTRACT,
+  TOOL_CONTRACT_RERANKED,
   AGENT_INSTRUCTIONS,
   type ToolName,
   type ToolInput,
+  type ToolContract,
 } from './tools/contract.js'
+export type { Reranker, RerankCandidate, RerankOptions } from './rerank/types.js'
+export { jevReranker, jevConfigFromEnv, type JevConfig, type JevRerankerOptions } from './rerank/jev.js'
 export { splitByBudget, type Envelope, type ErrorCode, type NextSteps } from './tools/envelope.js'
 export { openLibrary, defaultDbFile, type Library, type OpenLibraryOptions } from './library.js'
 export { createAiSdkTools } from './adapters/ai-sdk.js'
