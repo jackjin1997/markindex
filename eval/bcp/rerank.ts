@@ -13,6 +13,8 @@
  */
 import { createHash } from 'node:crypto'
 import { appendFileSync, existsSync, readFileSync } from 'node:fs'
+import { JEV_INSTRUCTIONS, buildJevBody, jevConfigFromEnv, parseJevAnswer, type JevConfig } from '../../src/rerank/jev.js'
+import { queryTerms } from '../../src/rerank/passages.js'
 
 export interface Candidate {
   id: string
@@ -36,45 +38,11 @@ export interface Scorer {
   stats(): ScorerStats
 }
 
-// ── passages ──
+// ── passages and ordering (shared with the package's optional reranking of search results) ──
 
-/** Distinct lowercased words of at least four letters or digits: the terms a relevant passage tends to share. */
-export function queryTerms(text: string): string[] {
-  return [...new Set(text.toLowerCase().match(/[\p{L}\p{N}]{4,}/gu) ?? [])]
-}
+export { bestWindow, orderByScore, queryTerms } from '../../src/rerank/passages.js'
 
-/**
- * The stretch of `text` of at most `maxChars` that contains the most distinct `terms` (earliest on a tie).
- * Sections in a web corpus run to tens of thousands of characters; the evidence is rarely at the top.
- */
-export function bestWindow(text: string, terms: string[], maxChars: number): string {
-  if (text.length <= maxChars) return text
-  const lower = text.toLowerCase()
-  const step = Math.max(1, Math.floor(maxChars / 2))
-  let best = 0
-  let bestCount = -1
-  for (let from = 0; from < text.length; from += step) {
-    const win = lower.slice(from, from + maxChars)
-    let count = 0
-    for (const t of terms) if (win.includes(t)) count++
-    if (count > bestCount) {
-      bestCount = count
-      best = from
-    }
-    if (from + maxChars >= text.length) break
-  }
-  return text.slice(best, best + maxChars)
-}
-
-// ── ranking and metrics ──
-
-/** Candidates by score, best first; unscored ones keep their original order after the scored ones. Stable. */
-export function orderByScore<T>(items: T[], scores: (number | null)[]): T[] {
-  return items
-    .map((item, i) => ({ item, i, s: scores[i] ?? null }))
-    .sort((a, b) => (a.s === null ? (b.s === null ? a.i - b.i : 1) : b.s === null ? -1 : b.s - a.s || a.i - b.i))
-    .map((x) => x.item)
-}
+// ── metrics ──
 
 export function recallAt(ranked: string[], relevant: Set<string>, k: number): number {
   if (relevant.size === 0) return 0
@@ -92,43 +60,7 @@ export function ndcgAt(ranked: string[], relevant: Set<string>, k: number): numb
 
 // ── Jev ──
 
-export const JEV_INSTRUCTIONS =
-  'Does `passage` contain information that helps answer `question`, or that confirms one of the facts `question` describes?'
-
-export interface JevConfig {
-  url: string
-  key: string
-  model: string
-  via: 'typesafe' | 'openrouter' | 'custom'
-}
-
-export function jevConfigFromEnv(env: NodeJS.ProcessEnv = process.env): JevConfig {
-  const model = env.JEV_MODEL?.trim()
-  if (env.JEV_BASE_URL?.trim() && env.JEV_API_KEY?.trim()) {
-    return { url: env.JEV_BASE_URL.trim(), key: env.JEV_API_KEY.trim(), model: model || 'jev-latest', via: 'custom' }
-  }
-  if (env.TYPESAFE_API_KEY?.trim()) {
-    return { url: 'https://api.typesafe.ai/v1/systemone', key: env.TYPESAFE_API_KEY.trim(), model: model || 'jev-latest', via: 'typesafe' }
-  }
-  if (env.OPENROUTER_API_KEY?.trim()) {
-    return { url: 'https://openrouter.ai/api/alpha/decisions', key: env.OPENROUTER_API_KEY.trim(), model: model || 'typesafe/jev-1.14', via: 'openrouter' }
-  }
-  throw new Error('No key for the Jev scorer: set TYPESAFE_API_KEY, or OPENROUTER_API_KEY, or JEV_BASE_URL with JEV_API_KEY')
-}
-
-export function buildJevBody(model: string, question: string, passage: string) {
-  return {
-    model,
-    state: { question, passage },
-    questions: { relevant: { type: 'noul', instructions: JEV_INSTRUCTIONS } },
-  }
-}
-
-/** P(yes) of the `relevant` question, or null when the response has another shape. */
-export function parseJevAnswer(body: unknown): number | null {
-  const noul = (body as { answers?: { relevant?: { noul?: unknown } } } | null)?.answers?.relevant?.noul
-  return typeof noul === 'number' && noul >= 0 && noul <= 1 ? noul : null
-}
+export { JEV_INSTRUCTIONS, buildJevBody, jevConfigFromEnv, parseJevAnswer, type JevConfig } from '../../src/rerank/jev.js'
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms))
 
