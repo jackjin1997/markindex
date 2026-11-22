@@ -7,6 +7,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+### Added
+
+- Optional reranking of `search_documents` results, off by default and experimental. `markindex mcp <root> --rerank
+  jev` (or `openLibrary({ rerank: { reranker } })`) has a reranker score the 50 best keyword hits and returns the
+  most relevant; the tool then takes an optional `intent`, a full sentence saying what is being looked for, and
+  each hit carries a `relevance`. The built-in reranker, `jevReranker()`, uses TypeSafe's hosted Jev model and
+  sends the question and the text of the candidate sections to that service; any object with a `score()` method
+  can be used instead. When the reranker fails or takes too long, the keyword order is returned. Without the
+  option nothing changes: same tools, same schemas, no network calls.
+- `Library.contract`: the tool descriptions and input schemas a library serves. `createMcpServer()` and
+  `createAiSdkTools()` read it. New exports: `TOOL_CONTRACT_RERANKED`, `jevReranker`, `jevConfigFromEnv` and the
+  `Reranker`, `RerankOptions`, `ToolContract` types.
+
 ## [0.1.3] - 2026-11-17
 
 ### Fixed

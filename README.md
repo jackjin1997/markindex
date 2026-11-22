@@ -205,6 +205,42 @@ claude mcp add markindex -- npx markindex mcp /path/to/docs
 
 The server sends `AGENT_INSTRUCTIONS` as its MCP instructions and marks all tools read-only.
 
+### Optional: rerank search results (experimental)
+
+Off by default. `search_documents` is a keyword search: it finds sections that share words with the query, in BM25
+order. With `--rerank jev` the server takes the 50 best keyword hits, asks [Jev](https://docs.typesafe.ai/api)
+(a hosted decision model by TypeSafe that answers yes/no questions with a probability and generates no text)
+whether each one helps answer the question, and returns the best. The tool then also takes an optional `intent`:
+the agent says in a full sentence what it is looking for, and the hits are judged against that instead of the
+keywords. Each hit carries a `relevance` between 0 and 1, and the result says how many hits were scored.
+
+```bash
+TYPESAFE_API_KEY=... npx markindex mcp /path/to/docs --rerank jev
+```
+
+- **It sends text to a third party.** Every search sends its question and up to 8,000 characters of each
+  candidate section to the model's endpoint (`TYPESAFE_API_KEY`: api.typesafe.ai; `OPENROUTER_API_KEY`: OpenRouter;
+  `JEV_BASE_URL` + `JEV_API_KEY`: an endpoint of your choice). Leave it off for documents that must not leave the
+  machine. The server prints the endpoint on start.
+- **Cost and time.** One request per candidate: about 1.5 seconds and a quarter of a US cent per search in our
+  runs. If the model fails or takes more than 8 seconds, the keyword order is returned.
+- **What is known about the benefit.** In a 50-question pilot on BrowseComp-Plus (100,195 web documents) an agent
+  with reranked search answered 90% of the questions against 82%, a difference that size cannot confirm
+  (4 questions against 0, p = 0.125). On FinanceBench, where the agent already finds the pages by browsing, better
+  retrieval did not raise accuracy. See [`eval/README.md`](eval/README.md#12-experiments-with-a-decision-model).
+  The option as shipped (the agent writes `intent`; the document path is part of what is judged) has not been
+  benchmarked.
+
+From code, pass any object with a `score()` method, or the built-in one:
+
+```ts
+import { jevReranker, openLibrary } from 'markindex'
+
+const lib = openLibrary({ root: './docs', rerank: { reranker: jevReranker() } }) // key from the environment
+await lib.callTool('search_documents', { query: 'notice period', intent: 'How much notice must an employee give?' })
+// createMcpServer(lib) and createAiSdkTools(lib) serve the tools with `intent`: they read `lib.contract`.
+```
+
 ## Tools
 
 | Tool | What it does |
@@ -231,7 +267,8 @@ transport's own error (an MCP tool error / an AI SDK invalid-tool-input error), 
   the tools return as data, not instructions — especially when the library holds third-party or user-supplied
   files, and when the agent also has tools that act (send, write, execute).
 - Summaries and `retrieve()` send document text to the model provider you configure; indexing alone makes no
-  network calls.
+  network calls. Search makes none either unless you turn on `--rerank`, which sends the text of candidate
+  sections to the reranking service.
 
 ## Design notes
 
