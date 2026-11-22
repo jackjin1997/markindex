@@ -1,0 +1,794 @@
+{
+ "benchmark": "BrowseComp-Plus",
+ "scaffold": "Claude Code headless + MarkIndex MCP (search_documents, get_document_structure, get_node_content); search reranked by jev over a pool of 50 nodes, judged against the question",
+ "model": "haiku",
+ "reference_judge": "sonnet",
+ "queries": 50,
+ "completed": 48,
+ "reference_accuracy": 0.9,
+ "recall": 0.7899761904761905,
+ "search_calls": 15.38,
+ "read_calls": 3.64,
+ "mean_turns": 19.66,
+ "cost_usd": 4.83599426,
+ "agent_cost_usd": 4.366203660000001,
+ "results": [
+  {
+   "query_id": "1",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 3,
+    "get_node_content": 1
+   },
+   "model": "haiku",
+   "turns": 5,
+   "cost_usd": 0.0116022,
+   "agent_cost_usd": 0.0031524000000000005,
+   "recall": 0.75,
+   "reference_judge": "sonnet",
+   "reference_correct": true
+  },
+  {
+   "query_id": "23",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 7,
+    "get_node_content": 1
+   },
+   "model": "haiku",
+   "turns": 9,
+   "cost_usd": 0.01570228,
+   "agent_cost_usd": 0.0069784800000000004,
+   "recall": 0.7777777777777778,
+   "reference_judge": "sonnet",
+   "reference_correct": true
+  },
+  {
+   "query_id": "68",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 2,
+    "get_node_content": 2
+   },
+   "model": "haiku",
+   "turns": 5,
+   "cost_usd": 0.02169558,
+   "agent_cost_usd": 0.004212680000000001,
+   "recall": 0.6666666666666666,
+   "reference_judge": "sonnet",
+   "reference_correct": true
+  },
+  {
+   "query_id": "69",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 4,
+    "get_node_content": 3,
+    "get_document_structure": 1
+   },
+   "model": "haiku",
+   "turns": 9,
+   "cost_usd": 0.01452635,
+   "agent_cost_usd": 0.00544855,
+   "recall": 1,
+   "reference_judge": "sonnet",
+   "reference_correct": true
+  },
+  {
+   "query_id": "107",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 13,
+    "browse_documents": 1,
+    "get_document_structure": 1,
+    "get_node_content": 3
+   },
+   "model": "haiku",
+   "turns": 19,
+   "cost_usd": 0.0292321,
+   "agent_cost_usd": 0.0200883,
+   "recall": 1,
+   "reference_judge": "sonnet",
+   "reference_correct": true
+  },
+  {
+   "query_id": "130",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 4,
+    "get_node_content": 2
+   },
+   "model": "haiku",
+   "turns": 7,
+   "cost_usd": 0.01378747,
+   "agent_cost_usd": 0.0047316699999999995,
+   "recall": 1,
+   "reference_judge": "sonnet",
+   "reference_correct": true
+  },
+  {
+   "query_id": "160",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 6,
+    "get_node_content": 2
+   },
+   "model": "haiku",
+   "turns": 9,
+   "cost_usd": 0.01813314,
+   "agent_cost_usd": 0.00862534,
+   "recall": 0.8571428571428571,
+   "reference_judge": "sonnet",
+   "reference_correct": true
+  },
+  {
+   "query_id": "201",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 5,
+    "get_node_content": 3
+   },
+   "model": "haiku",
+   "turns": 9,
+   "cost_usd": 0.01993015,
+   "agent_cost_usd": 0.010956350000000002,
+   "recall": 1,
+   "reference_judge": "sonnet",
+   "reference_correct": true
+  },
+  {
+   "query_id": "202",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 21,
+    "get_node_content": 5,
+    "get_document_structure": 1
+   },
+   "model": "haiku",
+   "turns": 28,
+   "cost_usd": 0.03843698,
+   "agent_cost_usd": 0.02869518,
+   "recall": 1,
+   "reference_judge": "sonnet",
+   "reference_correct": true
+  },
+  {
+   "query_id": "245",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 14,
+    "get_document_structure": 1,
+    "get_node_content": 4
+   },
+   "model": "haiku",
+   "turns": 20,
+   "cost_usd": 0.03090427,
+   "agent_cost_usd": 0.01955047,
+   "recall": 1,
+   "reference_judge": "sonnet",
+   "reference_correct": true
+  },
+  {
+   "query_id": "265",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 18,
+    "get_document_structure": 3,
+    "get_node_content": 2
+   },
+   "model": "haiku",
+   "turns": 24,
+   "cost_usd": 0.16807924,
+   "agent_cost_usd": 0.15772944,
+   "recall": 1,
+   "reference_judge": "sonnet",
+   "reference_correct": true
+  },
+  {
+   "query_id": "285",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 19,
+    "get_node_content": 5,
+    "get_document_structure": 1
+   },
+   "model": "haiku",
+   "turns": 26,
+   "cost_usd": 0.055187179999999995,
+   "agent_cost_usd": 0.04553537999999999,
+   "recall": 0.8333333333333334,
+   "reference_judge": "sonnet",
+   "reference_correct": true
+  },
+  {
+   "query_id": "324",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 2,
+    "get_node_content": 1
+   },
+   "model": "haiku",
+   "turns": 4,
+   "cost_usd": 0.01467065,
+   "agent_cost_usd": 0.00543485,
+   "recall": 0.3333333333333333,
+   "reference_judge": "sonnet",
+   "reference_correct": true
+  },
+  {
+   "query_id": "327",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 2,
+    "get_node_content": 1
+   },
+   "model": "haiku",
+   "turns": 4,
+   "cost_usd": 0.012641110000000002,
+   "agent_cost_usd": 0.004197310000000001,
+   "recall": 0.125,
+   "reference_judge": "sonnet",
+   "reference_correct": true
+  },
+  {
+   "query_id": "384",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 38,
+    "get_document_structure": 4,
+    "get_node_content": 7
+   },
+   "model": "haiku",
+   "turns": 50,
+   "cost_usd": 0.4905078400000001,
+   "agent_cost_usd": 0.4811960400000001,
+   "recall": 0.9,
+   "reference_judge": "sonnet",
+   "reference_correct": true
+  },
+  {
+   "query_id": "406",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 35,
+    "get_document_structure": 1,
+    "get_node_content": 3
+   },
+   "model": "haiku",
+   "turns": 40,
+   "cost_usd": 0.15689415,
+   "agent_cost_usd": 0.14630635,
+   "recall": 1,
+   "reference_judge": "sonnet",
+   "reference_correct": true
+  },
+  {
+   "query_id": "424",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 3,
+    "get_node_content": 4
+   },
+   "model": "haiku",
+   "turns": 8,
+   "cost_usd": 0.01517101,
+   "agent_cost_usd": 0.00562121,
+   "recall": 0.8333333333333334,
+   "reference_judge": "sonnet",
+   "reference_correct": true
+  },
+  {
+   "query_id": "478",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 11,
+    "get_node_content": 3,
+    "get_document_structure": 2,
+    "browse_documents": 1
+   },
+   "model": "haiku",
+   "turns": 18,
+   "cost_usd": 0.02134398,
+   "agent_cost_usd": 0.01024018,
+   "recall": 0.6,
+   "reference_judge": "sonnet",
+   "reference_correct": false
+  },
+  {
+   "query_id": "480",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 6,
+    "get_node_content": 3
+   },
+   "model": "haiku",
+   "turns": 10,
+   "cost_usd": 0.01778965,
+   "agent_cost_usd": 0.007787850000000001,
+   "recall": 1,
+   "reference_judge": "sonnet",
+   "reference_correct": true
+  },
+  {
+   "query_id": "514",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 3,
+    "get_node_content": 1
+   },
+   "model": "haiku",
+   "turns": 5,
+   "cost_usd": 0.012488520000000001,
+   "agent_cost_usd": 0.00336472,
+   "recall": 0.14285714285714285,
+   "reference_judge": "sonnet",
+   "reference_correct": true
+  },
+  {
+   "query_id": "533",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 7,
+    "get_node_content": 4
+   },
+   "model": "haiku",
+   "turns": 12,
+   "cost_usd": 0.018089730000000002,
+   "agent_cost_usd": 0.009231930000000001,
+   "recall": 1,
+   "reference_judge": "sonnet",
+   "reference_correct": true
+  },
+  {
+   "query_id": "550",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 4,
+    "get_node_content": 3
+   },
+   "model": "haiku",
+   "turns": 8,
+   "cost_usd": 0.016999610000000002,
+   "agent_cost_usd": 0.007887810000000002,
+   "recall": 1,
+   "reference_judge": "sonnet",
+   "reference_correct": true
+  },
+  {
+   "query_id": "590",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 5,
+    "get_node_content": 3
+   },
+   "model": "haiku",
+   "turns": 9,
+   "cost_usd": 0.01596562,
+   "agent_cost_usd": 0.0065038200000000004,
+   "recall": 0.75,
+   "reference_judge": "sonnet",
+   "reference_correct": true
+  },
+  {
+   "query_id": "591",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 7,
+    "get_node_content": 6
+   },
+   "model": "haiku",
+   "turns": 14,
+   "cost_usd": 0.01703437,
+   "agent_cost_usd": 0.00734457,
+   "recall": 1,
+   "reference_judge": "sonnet",
+   "reference_correct": true
+  },
+  {
+   "query_id": "631",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 39,
+    "get_document_structure": 1,
+    "get_node_content": 3
+   },
+   "model": "haiku",
+   "turns": 44,
+   "cost_usd": 0.16429309,
+   "agent_cost_usd": 0.15332129,
+   "recall": 1,
+   "reference_judge": "sonnet",
+   "reference_correct": true
+  },
+  {
+   "query_id": "653",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 23,
+    "get_document_structure": 2,
+    "get_node_content": 6
+   },
+   "model": "haiku",
+   "turns": 32,
+   "cost_usd": 0.09908633,
+   "agent_cost_usd": 0.09012253,
+   "recall": 1,
+   "reference_judge": "sonnet",
+   "reference_correct": true
+  },
+  {
+   "query_id": "675",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 2,
+    "get_node_content": 2
+   },
+   "model": "haiku",
+   "turns": 5,
+   "cost_usd": 0.01244853,
+   "agent_cost_usd": 0.0036887300000000003,
+   "recall": 0.7142857142857143,
+   "reference_judge": "sonnet",
+   "reference_correct": true
+  },
+  {
+   "query_id": "715",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 5,
+    "get_document_structure": 1,
+    "get_node_content": 2
+   },
+   "model": "haiku",
+   "turns": 9,
+   "cost_usd": 0.014620890000000001,
+   "agent_cost_usd": 0.00558109,
+   "recall": 0.5,
+   "reference_judge": "sonnet",
+   "reference_correct": true
+  },
+  {
+   "query_id": "716",
+   "status": "error",
+   "tool_call_counts": {
+    "search_documents": 73,
+    "browse_documents": 1,
+    "get_document_structure": 6,
+    "get_node_content": 14
+   },
+   "model": "haiku",
+   "turns": 61,
+   "cost_usd": 0.72730375,
+   "agent_cost_usd": 0.72730375,
+   "recall": 0,
+   "reference_judge": "sonnet",
+   "reference_correct": null
+  },
+  {
+   "query_id": "751",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 10,
+    "get_node_content": 3
+   },
+   "model": "haiku",
+   "turns": 14,
+   "cost_usd": 0.020011960000000002,
+   "agent_cost_usd": 0.010656160000000001,
+   "recall": 0.8571428571428571,
+   "reference_judge": "sonnet",
+   "reference_correct": true
+  },
+  {
+   "query_id": "772",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 7,
+    "get_node_content": 1
+   },
+   "model": "haiku",
+   "turns": 9,
+   "cost_usd": 0.01599764,
+   "agent_cost_usd": 0.00648784,
+   "recall": 1,
+   "reference_judge": "sonnet",
+   "reference_correct": true
+  },
+  {
+   "query_id": "790",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 5,
+    "get_node_content": 2,
+    "get_document_structure": 1
+   },
+   "model": "haiku",
+   "turns": 9,
+   "cost_usd": 0.01631246,
+   "agent_cost_usd": 0.00701066,
+   "recall": 1,
+   "reference_judge": "sonnet",
+   "reference_correct": true
+  },
+  {
+   "query_id": "828",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 81,
+    "get_document_structure": 2,
+    "get_node_content": 7
+   },
+   "model": "haiku",
+   "turns": 91,
+   "cost_usd": 0.7443329400000002,
+   "agent_cost_usd": 0.7342591400000001,
+   "recall": 0.375,
+   "reference_judge": "sonnet",
+   "reference_correct": false
+  },
+  {
+   "query_id": "830",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 6,
+    "get_node_content": 2
+   },
+   "model": "haiku",
+   "turns": 9,
+   "cost_usd": 0.017946629999999998,
+   "agent_cost_usd": 0.0076668299999999995,
+   "recall": 0.8333333333333334,
+   "reference_judge": "sonnet",
+   "reference_correct": true
+  },
+  {
+   "query_id": "875",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 29,
+    "get_node_content": 4,
+    "get_document_structure": 1
+   },
+   "model": "haiku",
+   "turns": 35,
+   "cost_usd": 0.17539300000000002,
+   "agent_cost_usd": 0.16592120000000002,
+   "recall": 0,
+   "reference_judge": "sonnet",
+   "reference_correct": false
+  },
+  {
+   "query_id": "904",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 10,
+    "get_node_content": 2
+   },
+   "model": "haiku",
+   "turns": 13,
+   "cost_usd": 0.019807770000000002,
+   "agent_cost_usd": 0.010935970000000001,
+   "recall": 1,
+   "reference_judge": "sonnet",
+   "reference_correct": true
+  },
+  {
+   "query_id": "923",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 3,
+    "get_node_content": 2
+   },
+   "model": "haiku",
+   "turns": 6,
+   "cost_usd": 0.01372183,
+   "agent_cost_usd": 0.004594030000000001,
+   "recall": 0.6666666666666666,
+   "reference_judge": "sonnet",
+   "reference_correct": true
+  },
+  {
+   "query_id": "970",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 27,
+    "get_node_content": 10,
+    "get_document_structure": 1
+   },
+   "model": "haiku",
+   "turns": 39,
+   "cost_usd": 0.26989135000000003,
+   "agent_cost_usd": 0.26009755,
+   "recall": 0.8888888888888888,
+   "reference_judge": "sonnet",
+   "reference_correct": true
+  },
+  {
+   "query_id": "971",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 6,
+    "get_node_content": 4,
+    "get_document_structure": 2
+   },
+   "model": "haiku",
+   "turns": 13,
+   "cost_usd": 0.0199975,
+   "agent_cost_usd": 0.0096937,
+   "recall": 0.8571428571428571,
+   "reference_judge": "sonnet",
+   "reference_correct": true
+  },
+  {
+   "query_id": "1016",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 5,
+    "get_node_content": 2
+   },
+   "model": "haiku",
+   "turns": 8,
+   "cost_usd": 0.01530337,
+   "agent_cost_usd": 0.0058975699999999995,
+   "recall": 0.8,
+   "reference_judge": "sonnet",
+   "reference_correct": true
+  },
+  {
+   "query_id": "1034",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 8,
+    "get_node_content": 5
+   },
+   "model": "haiku",
+   "turns": 14,
+   "cost_usd": 0.0294022,
+   "agent_cost_usd": 0.0125813,
+   "recall": 1,
+   "reference_judge": "sonnet",
+   "reference_correct": true
+  },
+  {
+   "query_id": "1047",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 4,
+    "get_node_content": 2
+   },
+   "model": "haiku",
+   "turns": 7,
+   "cost_usd": 0.0140692,
+   "agent_cost_usd": 0.0052754,
+   "recall": 0.7142857142857143,
+   "reference_judge": "sonnet",
+   "reference_correct": true
+  },
+  {
+   "query_id": "1090",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 12,
+    "get_document_structure": 2,
+    "get_node_content": 3
+   },
+   "model": "haiku",
+   "turns": 18,
+   "cost_usd": 0.03047563,
+   "agent_cost_usd": 0.02078783,
+   "recall": 1,
+   "reference_judge": "sonnet",
+   "reference_correct": true
+  },
+  {
+   "query_id": "1091",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 54,
+    "browse_documents": 1,
+    "get_node_content": 5,
+    "get_document_structure": 1
+   },
+   "model": "haiku",
+   "turns": 62,
+   "cost_usd": 0.23934213000000001,
+   "agent_cost_usd": 0.23051033,
+   "recall": 0.7142857142857143,
+   "reference_judge": "sonnet",
+   "reference_correct": true
+  },
+  {
+   "query_id": "1131",
+   "status": "error",
+   "tool_call_counts": {
+    "search_documents": 78,
+    "get_node_content": 10
+   },
+   "model": "haiku",
+   "turns": 61,
+   "cost_usd": 0.8222727000000001,
+   "agent_cost_usd": 0.8222727000000001,
+   "recall": 0.625,
+   "reference_judge": "sonnet",
+   "reference_correct": null
+  },
+  {
+   "query_id": "1155",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 5,
+    "get_node_content": 4
+   },
+   "model": "haiku",
+   "turns": 10,
+   "cost_usd": 0.015794040000000002,
+   "agent_cost_usd": 0.00644824,
+   "recall": 1,
+   "reference_judge": "sonnet",
+   "reference_correct": true
+  },
+  {
+   "query_id": "1182",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 6,
+    "get_node_content": 3,
+    "get_document_structure": 1
+   },
+   "model": "haiku",
+   "turns": 11,
+   "cost_usd": 0.01710019,
+   "agent_cost_usd": 0.00754839,
+   "recall": 1,
+   "reference_judge": "sonnet",
+   "reference_correct": true
+  },
+  {
+   "query_id": "1216",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 16,
+    "get_document_structure": 3,
+    "get_node_content": 5
+   },
+   "model": "haiku",
+   "turns": 25,
+   "cost_usd": 0.03823889,
+   "agent_cost_usd": 0.02925309,
+   "recall": 1,
+   "reference_judge": "sonnet",
+   "reference_correct": true
+  },
+  {
+   "query_id": "1217",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 8,
+    "get_node_content": 4
+   },
+   "model": "haiku",
+   "turns": 13,
+   "cost_usd": 0.016925850000000003,
+   "agent_cost_usd": 0.007434050000000001,
+   "recall": 0.5833333333333334,
+   "reference_judge": "sonnet",
+   "reference_correct": true
+  },
+  {
+   "query_id": "1248",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 8,
+    "get_node_content": 3,
+    "get_document_structure": 1
+   },
+   "model": "haiku",
+   "turns": 13,
+   "cost_usd": 0.019091209999999997,
+   "agent_cost_usd": 0.01003341,
+   "recall": 0.8,
+   "reference_judge": "sonnet",
+   "reference_correct": true
+  }
+ ]
+}
