@@ -2,10 +2,11 @@
  * MarkIndex's MCP server plus one tool, `locate_sections`, for evaluation only.
  *
  *   node --import <tsx loader> eval/financebench/toc_server.ts <root> --db <index.db> \
- *     [--cache <answers.jsonl>] [--log <calls.jsonl>]
+ *     [--cache <answers.jsonl>] [--log <calls.jsonl>] [--sections isolated|joint]
  *
  * `locate_sections(question)` runs the steps of toc_route.ts: a decision model (TypeSafe Jev) picks the filing
- * from folder and filing names, then judges every section title of it, and the tool returns the sections most
+ * from folder and filing names, then judges every section title of it (one request per title, or with
+ * `--sections joint` all titles of the filing in one request), and the tool returns the sections most
  * likely to hold the answer in the shape of search_documents() hits. The agent supplies the question itself; the
  * server is not told what is being asked. The five MarkIndex tools are served unchanged. run.ts starts this
  * server with `--toc`.
@@ -19,7 +20,7 @@ import { z } from 'zod'
 import { openLibrary } from '../../src/library.js'
 import { AGENT_INSTRUCTIONS, TOOL_CONTRACT, type ToolName } from '../../src/tools/contract.js'
 import { jevClient } from '../lib/jev.js'
-import { loadDocs, loadTree, routeFilings, scoreSections, type Doc } from './toc_route.js'
+import { loadDocs, loadTree, routeFilings, scoreSections, scoreSectionsJointly, type Doc } from './toc_route.js'
 
 export const TOC_TOOL = 'locate_sections'
 
@@ -32,9 +33,11 @@ function main() {
   const { values: v, positionals } = parseArgs({
     args: process.argv.slice(2),
     allowPositionals: true,
-    options: { db: { type: 'string' }, cache: { type: 'string' }, log: { type: 'string' } },
+    options: { db: { type: 'string' }, cache: { type: 'string' }, log: { type: 'string' }, sections: { type: 'string', default: 'isolated' } },
   })
-  if (!positionals[0]) throw new Error('usage: toc_server.ts <root> [--db <index.db>] [--cache <answers.jsonl>] [--log <calls.jsonl>]')
+  if (!positionals[0]) throw new Error('usage: toc_server.ts <root> [--db <index.db>] [--cache <answers.jsonl>] [--log <calls.jsonl>] [--sections isolated|joint]')
+  if (v.sections !== 'isolated' && v.sections !== 'joint') throw new Error('--sections is isolated or joint')
+  const score = v.sections === 'joint' ? scoreSectionsJointly : scoreSections
   const lib = openLibrary({ root: positionals[0], dbFile: v.db ? resolve(v.db) : undefined })
   const jev = jevClient({ cacheFile: v.cache ? resolve(v.cache) : undefined })
   const { docs, folders } = loadDocs(lib.store)
@@ -42,7 +45,7 @@ function main() {
   const note = (o: object) => {
     if (logFile) appendFileSync(logFile, `${JSON.stringify({ at: new Date().toISOString(), pid: process.pid, ...o })}\n`)
   }
-  note({ event: 'start', model: jev.model, docs: docs.length, folders: folders.length })
+  note({ event: 'start', model: jev.model, sections: v.sections, docs: docs.length, folders: folders.length })
 
   const envelope = (body: object) => ({ content: [{ type: 'text' as const, text: JSON.stringify(body) }], isError: (body as { success?: boolean }).success !== true })
   const fallback = [
@@ -68,7 +71,7 @@ function main() {
       return envelope({ success: false, code: 'NOT_FOUND', error: 'No document could be chosen for this question.', next_steps: { summary: 'Use the other tools.', options: fallback } })
     }
     // The first document gets the full `limit`, a second candidate half of it.
-    const perDoc = await Promise.all(chosen.map((d) => scoreSections(jev, lib.store, args.question, d, loadTree(lib.store, d.path).all)))
+    const perDoc = await Promise.all(chosen.map((d) => score(jev, lib.store, args.question, d, loadTree(lib.store, d.path).all)))
     const results = perDoc.flatMap((ranked, i) =>
       ranked
         .filter((x) => x.p >= 0)
