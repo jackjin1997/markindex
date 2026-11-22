@@ -112,3 +112,50 @@ export async function scoreSections(jev: JevClient, store: Store, question: stri
     .sort((a, b) => b.p - a.p || a.i - b.i)
     .map(({ sec, p }) => ({ sec, p }))
 }
+
+/** Rough size limits for one joint request, in characters (the model allows 32k tokens for the state and one question). */
+const JOINT_STATE_CHARS = 60_000
+const JOINT_QUESTION_CHARS = 60_000
+
+/**
+ * The same ranking as scoreSections(), scored jointly: the model reads the titles of all sections of the filing
+ * in one state and answers one yes/no question per section against it, so every section is judged with its
+ * neighbours in view. A few requests per filing instead of one per section. A filing whose outline is too long
+ * for one state is cut into runs of consecutive sections.
+ */
+export async function scoreSectionsJointly(jev: JevClient, store: Store, question: string, doc: Doc, all: Sec[], previewChars = 0): Promise<{ sec: Sec; p: number }[]> {
+  const names = all.map((s) => describeSection(store, doc.path, s, previewChars))
+  const windows: number[][] = []
+  let size = JOINT_STATE_CHARS
+  for (let i = 0; i < all.length; i++) {
+    if (size + names[i]!.length > JOINT_STATE_CHARS) {
+      windows.push([])
+      size = 0
+    }
+    windows.at(-1)!.push(i)
+    size += names[i]!.length + 12
+  }
+  const p = new Array<number>(all.length).fill(-1)
+  await Promise.all(
+    windows.map(async (win) => {
+      const state = { question, filing: doc.label, sections: Object.fromEntries(win.map((i) => [`s${i + 1}`, names[i]!])) }
+      const ask = (i: number) => ({
+        type: 'noul' as const,
+        instructions: `\`sections\` lists the sections of \`filing\`. Is section \`s${i + 1}\` the part of \`filing\` where the information needed to answer \`question\` is reported?`,
+      })
+      const perRequest = Math.max(1, Math.floor(JOINT_QUESTION_CHARS / ask(win[0]!).instructions.length))
+      const batches: number[][] = []
+      for (let at = 0; at < win.length; at += perRequest) batches.push(win.slice(at, at + perRequest))
+      await Promise.all(
+        batches.map(async (batch) => {
+          const answers = await jev.askMany(state, Object.fromEntries(batch.map((i) => [`s${i + 1}`, ask(i)])))
+          for (const i of batch) p[i] = answers?.[`s${i + 1}`]?.noul ?? -1
+        }),
+      )
+    }),
+  )
+  return all
+    .map((sec, i) => ({ sec, i, p: p[i]! }))
+    .sort((a, b) => b.p - a.p || a.i - b.i)
+    .map(({ sec, p }) => ({ sec, p }))
+}

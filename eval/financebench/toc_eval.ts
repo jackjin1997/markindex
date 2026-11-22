@@ -3,7 +3,7 @@
  *
  *   npx tsx eval/financebench/toc_eval.ts --db eval/financebench/runs/lib368.db --out eval/financebench/runs/toc-jev.json \
  *     [--limit 10 | --ids id1,id2] [--mode both|flat|beam] [--beam 3] [--preview 0] [--cache <answers.jsonl>] \\
- *     [--retrieval-out <pages.json>]
+ *     [--sections isolated|joint] [--retrieval-out <pages.json>]
  *
  * The model (TypeSafe Jev, see ../lib/jev.ts) only ever sees the question and names: folder names, filing titles
  * and section titles from MarkIndex's tree. Three steps:
@@ -11,8 +11,10 @@
  *      winner to get a ranking);
  *   2. sections, `beam`: at each level of the filing's tree a choice among the children, keeping `--beam` of them,
  *      down to the leaves (tens of calls);
- *   3. sections, `flat`: one yes/no question per section of the filing, ranked by the probability of yes
- *      (hundreds of calls).
+ *   3. sections, `flat`: one yes/no question per section of the filing, ranked by the probability of yes.
+ *      `--sections isolated` (default) sends one request per section, which then sees its own title path only
+ *      (hundreds of calls); `--sections joint` puts all title paths of the filing in one state and asks the
+ *      questions against it (a few calls).
  * Sections are scored twice: in the filing the model picked (end to end) and in the right filing (oracle), which
  * separates the two steps.
  *
@@ -31,7 +33,7 @@ import { join, resolve } from 'node:path'
 import { parseArgs } from 'node:util'
 import { openStore } from '../../src/store/db.js'
 import { jevClient } from '../lib/jev.js'
-import { describeSection, loadDocs, loadTree, rankByChoice, routeFilings, scoreSections, type Doc, type Sec } from './toc_route.js'
+import { describeSection, loadDocs, loadTree, rankByChoice, routeFilings, scoreSections, scoreSectionsJointly, type Doc, type Sec } from './toc_route.js'
 
 const HERE = import.meta.dirname
 const log = (s: string) => process.stderr.write(`${s}\n`)
@@ -58,6 +60,7 @@ async function main() {
       beam: { type: 'string', default: '3' },
       preview: { type: 'string', default: '0' },
       cache: { type: 'string' },
+      sections: { type: 'string', default: 'isolated' },
       'retrieval-out': { type: 'string' },
       out: { type: 'string' },
     },
@@ -66,6 +69,8 @@ async function main() {
   const beam = Number(v.beam)
   const previewChars = Number(v.preview)
   const doFlat = v.mode !== 'beam'
+  if (v.sections !== 'isolated' && v.sections !== 'joint') throw new Error('--sections is isolated or joint')
+  const scoreFn = v.sections === 'joint' ? scoreSectionsJointly : scoreSections
   const doBeam = v.mode !== 'flat'
   let questions = readFileSync(resolve(v.questions!), 'utf8').trim().split('\n').map((l) => JSON.parse(l) as Question)
   if (v.ids) {
@@ -80,7 +85,7 @@ async function main() {
   const jev = jevClient({ cacheFile: v.cache ? resolve(v.cache) : undefined })
   const { docs, folders } = loadDocs(store)
   const pathOf = new Map(docs.map((d) => [d.path.split('/').pop()!.replace(/\.md$/, ''), d.path]))
-  log(`${questions.length} questions, ${docs.length} filings in ${folders.length} folders, model ${jev.model}, mode ${v.mode}, beam ${beam}, preview ${previewChars}`)
+  log(`${questions.length} questions, ${docs.length} filings in ${folders.length} folders, model ${jev.model}, mode ${v.mode}, sections ${v.sections}, beam ${beam}, preview ${previewChars}`)
 
   const trees = new Map<string, ReturnType<typeof loadTree>>()
   const treeOf = (docPath: string) => {
@@ -103,7 +108,7 @@ async function main() {
   const describe = (docPath: string, s: Sec) => describeSection(store, docPath, s, previewChars)
 
   const flatRank = async (q: Question, doc: Doc): Promise<Pick[]> =>
-    (await scoreSections(jev, store, q.question, doc, treeOf(doc.path).all, previewChars)).map((x) => ({ start: x.sec.start, end: x.sec.ownEnd }))
+    (await scoreFn(jev, store, q.question, doc, treeOf(doc.path).all, previewChars)).map((x) => ({ start: x.sec.start, end: x.sec.ownEnd }))
 
   const beamRank = async (q: Question, doc: Doc): Promise<Pick[]> => {
     const { roots } = treeOf(doc.path)
@@ -193,6 +198,7 @@ async function main() {
     questions: n,
     beam,
     preview_chars: previewChars,
+    section_scoring: v.sections,
     right_filing: { '@1': rate((r) => r.filing_rank === 1), '@3': rate((r) => r.filing_rank >= 1 && r.filing_rank <= 3), ranked: rate((r) => r.filing_rank >= 1) },
     mean_route_ms: mean(rows.map((r) => r.route_ms)),
     ...(doBeam ? { beam_oracle_filing: block((r) => r.beam?.oracle), beam_end_to_end: block((r) => r.beam?.e2e), beam_mean_ms: mean(rows.map((r) => r.beam?.ms ?? 0)) } : {}),
@@ -206,7 +212,7 @@ async function main() {
     const recall = (m: Record<string, number>) => Object.fromEntries(Object.entries(m).map(([k, x]) => [k, Math.round(x * 100) / 10000]))
     const out = {
       summary: {
-        method: 'toc-jev',
+        method: v.sections === 'joint' ? 'toc-jev-joint' : 'toc-jev',
         model: summary.model,
         subset: 'all',
         questions: n,
