@@ -19,14 +19,19 @@
  * context (`--disallowedTools`). Prompt, server and server instructions are unchanged.
  * `--flat-chunks <chunks.db>` is the agentic baseline: the same loop, prompt and judge, but the agent's tools come
  * from flat_server.ts (BM25 over the flat page chunks of baseline_retrieve.py, reading by page) instead of MarkIndex.
+ * `--toc` serves the five MarkIndex tools plus `locate_sections` from toc_server.ts (a decision model picks the
+ * filing and ranks its section titles; ../lib/jev.ts says which key it reads from the environment). Its answers are
+ * cached in `--toc-cache`, and one line per call goes to `<out>.toc.jsonl`.
  */
 import { spawn } from 'node:child_process'
 import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join, resolve } from 'node:path'
+import { pathToFileURL } from 'node:url'
 import { parseArgs } from 'node:util'
 import { mcpConfigFor, parseClaudeOutput, type ClaudeOutput } from '../lib/claude-code.js'
 import { FLAT_TOOLS } from './flat_server.js'
+import { TOC_TOOL } from './toc_server.js'
 
 const HERE = import.meta.dirname
 const KILL_GRACE_MS = 10_000
@@ -200,6 +205,8 @@ async function main() {
       cli: { type: 'string' },
       'only-tools': { type: 'string' },
       'flat-chunks': { type: 'string' },
+      toc: { type: 'boolean' },
+      'toc-cache': { type: 'string' },
       base: { type: 'string', default: HERE },
     },
   })
@@ -215,8 +222,9 @@ async function main() {
   if (flat && (v['only-tools'] || v.db)) throw new Error('--flat-chunks cannot be combined with --only-tools or --db')
   if (flat ? !existsSync(flat) : !existsSync(cli)) throw new Error(flat ? `${flat} not found: run baseline_retrieve.py chunk` : `${cli} not found: run npm run build`)
   const serverName = flat ? 'chunksearch' : 'markindex'
-  const tools = flat ? FLAT_TOOLS : v['only-tools'] ? v['only-tools'].split(',').map((t) => t.trim()) : MARKINDEX_TOOLS
-  const unknown = flat ? [] : tools.filter((t) => !MARKINDEX_TOOLS.includes(t))
+  if (v.toc && (flat || v['only-tools'])) throw new Error('--toc cannot be combined with --flat-chunks or --only-tools')
+  const tools = flat ? FLAT_TOOLS : v['only-tools'] ? v['only-tools'].split(',').map((t) => t.trim()) : v.toc ? [TOC_TOOL, ...MARKINDEX_TOOLS] : MARKINDEX_TOOLS
+  const unknown = flat ? [] : tools.filter((t) => !MARKINDEX_TOOLS.includes(t) && t !== TOC_TOOL)
   if (unknown.length || !tools.length) throw new Error(`--only-tools: unknown tool ${unknown.join(', ')}; known: ${MARKINDEX_TOOLS.join(', ')}`)
   const removed = flat ? [] : MARKINDEX_TOOLS.filter((t) => !tools.includes(t)).map((t) => `mcp__markindex__${t}`)
 
@@ -268,7 +276,21 @@ async function main() {
       },
     },
   })
-  writeFileSync(mcpConfig, JSON.stringify(flat ? flatConfig() : mcpConfigFor(cli, root, v.db ? resolve(v.db) : undefined)))
+  // The decision model's key is passed by reference (`${NAME:-}` is expanded by Claude Code), so it is never written.
+  const tocConfig = () => ({
+    mcpServers: {
+      markindex: {
+        command: process.execPath,
+        args: [
+          '--import', pathToFileURL(join(HERE, '..', '..', 'node_modules', 'tsx', 'dist', 'loader.mjs')).href,
+          join(HERE, 'toc_server.ts'), root, ...(v.db ? ['--db', resolve(v.db)] : []),
+          ...(v['toc-cache'] ? ['--cache', resolve(v['toc-cache'])] : []), '--log', `${out}.toc.jsonl`,
+        ],
+        env: Object.fromEntries(['TYPESAFE_API_KEY', 'OPENROUTER_API_KEY', 'JEV_BASE_URL', 'JEV_API_KEY', 'JEV_MODEL', 'JEV_CONCURRENCY'].map((k) => [k, `\${${k}:-}`])),
+      },
+    },
+  })
+  writeFileSync(mcpConfig, JSON.stringify(flat ? flatConfig() : v.toc ? tocConfig() : mcpConfigFor(cli, root, v.db ? resolve(v.db) : undefined)))
   const timeoutMs = Number(v['timeout-sec']) * 1000
   const order = new Map(all.map((q, i) => [q.financebench_id, i]))
   const save = () => {
@@ -278,7 +300,7 @@ async function main() {
       protocol: 'Mafin2.5: single library, judge prompt from VectifyAI/Mafin2.5-FinanceBench eval.py',
       model: v.model,
       judge_model: v['judge-model'],
-      server: serverName,
+      server: v.toc ? 'markindex + locate_sections (toc_server.ts)' : serverName,
       tools,
       created_at: new Date().toISOString(),
       summary: summarize(results),

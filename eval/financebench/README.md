@@ -97,6 +97,52 @@ is an MCP server over the same chunks with two tools, `search_chunks` and `get_p
 snippet length and response budget, and `run.ts --flat-chunks` runs the same agent loop, prompt and judge over it.
 `run.ts --only-tools` removes MarkIndex tools from the model's context.
 
+### Navigating by section titles with a decision model
+
+Can the section tree find the evidence without any text search? In [`toc_eval.ts`](toc_eval.ts) a decision model
+([Jev](https://docs.typesafe.ai/api) by TypeSafe, `jev-1.14.0`: it returns a typed answer with probabilities and
+generates no text) sees only the question and names. It picks the company folder and the filing, then answers one
+yes/no question for every section title of that filing; pages are taken in the order of the ranked sections.
+Runs of 2026-11-22, all 150 questions, 367 filings.
+
+| Retrieval, question as the only input | Right filing first | Evidence page in the first 1 / 3 / 5 / 10 / 20 pages |
+|---|---:|---:|
+| BM25 over page chunks | 13.3% | 6.0 / 8.0 / 10.0 / 14.0 / 18.0% |
+| Dense (bge-base-en-v1.5) over page chunks | 28.0% | 10.0 / 18.7 / 26.0 / 34.0 / 47.3% |
+| **Titles only, decision model** | **82.0%** | **28.0 / 51.3 / 60.7 / 66.7 / 72.0%** |
+| Titles only, right filing given | | 34.0 / 62.7 / 74.0 / 84.0 / 89.3% |
+
+About 340 model calls, 8 seconds and under one cent per question. Choosing level by level instead (a choice among
+the children of each node, three kept) reaches only 23.3% at ten pages: the model's choice probabilities are close
+to one-hot, and a wrong turn near the root cannot be undone.
+
+What this retrieval is worth for answering, with the same answer model and judge as above:
+
+| Setup | Model | Accuracy | Cost |
+|---|---|---:|---:|
+| Single shot, dense, top-10 pages | Sonnet 5.5 | 53.3% | $11.88 |
+| Single shot, dense, top-20 pages | Sonnet 5.5 | 67.3% | $21.35 |
+| **Single shot, titles + decision model, top-10 pages** | Sonnet 5.5 | **72.0%** | $10.93 |
+| Agent, MarkIndex, five tools | Sonnet 5.5 | 88.0% | $8.45 |
+| Agent, MarkIndex, five tools | Haiku 5.5 | 90.7% | $1.69 |
+| Agent, MarkIndex, five tools + `locate_sections` | Haiku 5.5 | 86.7% | $1.62 + $1.21 |
+
+- **As a retriever it beats dense retrieval at the same page budget** (43 questions against 15, exact McNemar
+  p = 0.0003) and matches twice the pages (26 against 19, p = 0.37). When an evidence page is among the ten pages
+  the answer is right 88% of the time, as often as the agent's; when it is not, 40%.
+- **It does not reach the agent** (3 questions against 27), and one prompt of ten whole pages costs more than an
+  agent that reads selectively.
+- **Given to the agent as a tool it does not help.** [`toc_server.ts`](toc_server.ts) adds `locate_sections(question)`
+  to the five tools. Every question used it, the mean number of turns fell from 6.4 to 5.6, and accuracy did not
+  rise (1 question against 7, p = 0.07). The agent already finds the pages (it cites an evidence page on 78.7%
+  of the questions without the tool, 77.3% with it); what is left are reading and calculation errors.
+
+This is the first comparison here in which the section tree does something flat chunks cannot: there are no title
+paths to judge without it. It is also a best case. 10-K filings share one outline, and the questions name the
+company and the year. The model's scores vary by 0.01-0.03 between identical calls, which moves the recall figures
+by one to two points. Per-question files: [`results/toc-routing-jev.json`](results/toc-routing-jev.json),
+`results/single-toc-jev-top10-sonnet.json`, `results/agent-markindex-toc-haiku.json`.
+
 ### Context: other results on the same 150 questions
 
 | System | Accuracy | Graded by | Source |
@@ -212,3 +258,13 @@ python3 eval/financebench/publish.py eval/financebench/runs/agent-flat.json eval
 
 `baseline.ts --dry-run` builds every prompt and prints their sizes without calling a model. Add `--model haiku` to
 `run.ts` for the Haiku rows.
+
+The title-navigation runs need a Jev key in the environment (`TYPESAFE_API_KEY`, or `OPENROUTER_API_KEY`); answers
+are cached in the file given with `--cache`, so a re-run is free:
+
+```bash
+npx tsx eval/financebench/toc_eval.ts --db eval/financebench/runs/lib.db --cache eval/financebench/runs/jev-cache.jsonl \
+  --out eval/financebench/runs/toc-jev.json --retrieval-out eval/financebench/runs/baseline/retrieval-toc-jev.json
+npx tsx eval/financebench/baseline.ts --retrieval eval/financebench/runs/baseline/retrieval-toc-jev.json --top-k 10 --all --out eval/financebench/runs/single-toc-jev-top10.json
+npx tsx eval/financebench/run.ts --root eval/financebench/md --db eval/financebench/runs/lib.db --toc --toc-cache eval/financebench/runs/jev-cache.jsonl --model haiku --all --out eval/financebench/runs/haiku-toc.json
+```

@@ -15,6 +15,7 @@ you can run it on any library — in particular on your own internal documents f
 - [9. Calibration of the defaults](#9-calibration-of-the-defaults)
 - [10. Issues found while evaluating](#10-issues-found-while-evaluating)
 - [11. Public benchmark: FinanceBench](#11-public-benchmark-financebench)
+- [12. Experiments with a decision model](#12-experiments-with-a-decision-model)
 
 ## 1. Running an evaluation on your own documents
 
@@ -462,3 +463,17 @@ to the five MarkIndex MCP tools and all 367 filings of the FinanceBench reposito
 Mafin2.5 / PageIndex's protocol: **92.0%** correct after adjudication, 88.7% by a three-judge majority, 88.0% with
 Mafin2.5's judge prompt alone. Method, judges, per-question results, failure analysis and the caveats of comparing
 with other systems are in [financebench/README.md](financebench/README.md).
+
+## 12. Experiments with a decision model
+
+Four tests of 2026-11-22 with a non-generative decision model (TypeSafe's Jev) placed in front of or inside the
+retrieval. None of it is part of the package; the code lives under `eval/`.
+
+| Test | Result | Where |
+|---|---|---|
+| Rerank the agent's search results (BrowseComp-Plus, 50 questions) | 82% to 90% correct, not significant at this size | [bcp/README.md](bcp/README.md) |
+| Pick the filing and the sections from titles alone (FinanceBench) | evidence page in the first ten pages 66.7%, against 34.0% for dense retrieval | [financebench/README.md](financebench/README.md#navigating-by-section-titles-with-a-decision-model) |
+| Answer in one call from those pages | 72.0%, against 53.3% for dense retrieval and 88.0% for the agent | same |
+| Give the agent the same routing as a tool | 86.7% against 90.7% without it, 0.8 fewer turns | same |
+
+The model helps where finding the evidence is the bottleneck, and not where the agent already finds it.
