@@ -3,7 +3,13 @@
  *
  *   npx tsx eval/bcp/run.ts --root eval/bcp/md --db eval/bcp/runs/lib.db --run-dir eval/bcp/runs/<name> \
  *     (--all | --sample <n> | --ids id1,id2) [--model haiku] [--judge-model sonnet] [--no-judge] \
- *     [--max-turns 60] [--timeout-sec 1500] [--concurrency 3] [--rerank jev|overlap] [--rerank-pool 50]
+ *     [--max-turns 60] [--timeout-sec 1500] [--concurrency 3] [--rerank jev|overlap] [--rerank-pool 50] \
+ *     [--product-rerank jev]
+ *
+ * `--product-rerank jev` starts the built CLI with its own option, `markindex mcp --rerank jev`: the package's
+ * optional reranking as a user gets it. The server is not told the question; the agent may pass `intent` to
+ * search_documents, and the hits are judged against that (else against the keywords). How often it did is
+ * recorded per question as `intent_calls`, next to `reranked_searches` (searches that came back scored).
  *
  * `--rerank <scorer>` serves the tools from rerank_server.ts instead of the built CLI: every search fetches
  * `--rerank-pool` nodes and returns the ones the scorer judges most relevant to the question (see rerank.ts for
@@ -69,14 +75,14 @@ correct: Answer 'yes' if extracted_final_answer matches the [correct_answer] giv
 
 confidence: The extracted confidence score between 0|\\%| and 100|\\%| from [response]. Put 100 if there is no confidence score available.`
 
-interface Trace { calls: Record<string, number>; docids: Set<string>; result: string; ok: boolean; isError: boolean; turns: number; cost: number; raw: string }
+interface Trace { calls: Record<string, number>; docids: Set<string>; result: string; ok: boolean; isError: boolean; turns: number; cost: number; raw: string; intents: number; reranked: number }
 
 const docidOf = (docPath: string) => docPath.split('/').pop()!.replace(/\.md$/, '')
 
 /** One agent session with stream-json output: tool calls are counted and every doc_path in a tool result is kept. */
 function runAgent(args: string[], cwd: string, timeoutMs: number): Promise<Trace> {
   return new Promise((done) => {
-    const t: Trace = { calls: {}, docids: new Set(), result: '', ok: false, isError: false, turns: 0, cost: 0, raw: '' }
+    const t: Trace = { calls: {}, docids: new Set(), result: '', ok: false, isError: false, turns: 0, cost: 0, raw: '', intents: 0, reranked: 0 }
     const p = spawn('claude', args, { cwd, stdio: ['ignore', 'pipe', 'pipe'] })
     let buf = ''
     let err = ''
@@ -93,6 +99,7 @@ function runAgent(args: string[], cwd: string, timeoutMs: number): Promise<Trace
           if (c.type === 'tool_use') {
             const name = String(c.name).replace('mcp__markindex__', '')
             t.calls[name] = (t.calls[name] ?? 0) + 1
+            if (name === 'search_documents' && typeof c.input?.intent === 'string') t.intents++
             const dp = c.input?.doc_path
             if (typeof dp === 'string') t.docids.add(docidOf(dp))
           }
@@ -102,6 +109,9 @@ function runAgent(args: string[], cwd: string, timeoutMs: number): Promise<Trace
           if (c.type !== 'tool_result') continue
           const text = Array.isArray(c.content) ? c.content.map((x: any) => x.text ?? '').join('\n') : String(c.content ?? '')
           for (const m of text.matchAll(/"doc_path"\s*:\s*"([^"]+)"/g)) t.docids.add(docidOf(m[1]!))
+          // the package's reranking reports itself in the search result: {"rerank":{"by":…,"candidates":…,"scored":N}}
+          const scored = /"rerank"\s*:\s*\{[^}]*"scored"\s*:\s*(\d+)/.exec(text)
+          if (scored && Number(scored[1]) > 0) t.reranked++
         }
       } else if (ev.type === 'result') {
         t.ok = true
@@ -162,6 +172,7 @@ async function main() {
       'rerank-pool': { type: 'string', default: '50' },
       'rerank-max-chars': { type: 'string', default: '8000' },
       'rerank-cache': { type: 'string' },
+      'product-rerank': { type: 'string' },
     },
   })
   if (!v.root || !v.db || !v['run-dir']) throw new Error('--root, --db and --run-dir are required')
@@ -169,6 +180,7 @@ async function main() {
   const runDir = resolve(v['run-dir'])
   const cli = v.cli ? resolve(v.cli) : join(HERE, '..', '..', 'dist', 'cli.js')
   if (!existsSync(cli)) throw new Error(`${cli} not found: run npm run build`)
+  if (v.rerank && v['product-rerank']) throw new Error('--rerank and --product-rerank cannot be combined')
   mkdirSync(runDir, { recursive: true })
 
   const all = readFileSync(resolve(v.queries!), 'utf8').trim().split('\n').map((l) => JSON.parse(l) as Query)
@@ -189,7 +201,11 @@ async function main() {
 
   const work = mkdtempSync(join(tmpdir(), 'markindex-bcp-'))
   const mcpConfig = join(work, 'mcp.json')
-  writeFileSync(mcpConfig, JSON.stringify(mcpConfigFor(cli, root, resolve(v.db))))
+  const plain = mcpConfigFor(cli, root, resolve(v.db))
+  const KEY_VARS = ['TYPESAFE_API_KEY', 'OPENROUTER_API_KEY', 'JEV_BASE_URL', 'JEV_API_KEY', 'JEV_MODEL']
+  // The keys are passed by reference (`${NAME:-}` is expanded by Claude Code), so they are never written.
+  const product = { mcpServers: { markindex: { ...plain.mcpServers.markindex, args: [...plain.mcpServers.markindex.args, '--rerank', v['product-rerank'] ?? '', '--rerank-pool', v['rerank-pool']!], env: Object.fromEntries(KEY_VARS.map((k) => [k, `\${${k}:-}`])) } } }
+  writeFileSync(mcpConfig, JSON.stringify(v['product-rerank'] ? product : plain))
   // With --rerank every question gets its own server process and config, because the server is told the question.
   // The scorer's keys are passed by reference (`${NAME:-}` is expanded by Claude Code), so they are never written.
   const repo = join(HERE, '..', '..')
@@ -257,7 +273,7 @@ async function main() {
       retrieved_docids: retrieved,
       result: [{ type: 'output_text', output: t.result }],
       // our own bookkeeping; the benchmark's script ignores extra fields
-      markindex: { model: v.model, turns: t.turns, cost_usd: t.cost + judgeCost, agent_cost_usd: t.cost, recall, reference_judge: v['no-judge'] ? null : v['judge-model'], reference_correct: correct, judge_raw: judgeRaw, error: t.ok ? undefined : t.raw },
+      markindex: { model: v.model, turns: t.turns, cost_usd: t.cost + judgeCost, agent_cost_usd: t.cost, recall, ...(v['product-rerank'] ? { intent_calls: t.intents, reranked_searches: t.reranked } : {}), reference_judge: v['no-judge'] ? null : v['judge-model'], reference_correct: correct, judge_raw: judgeRaw, error: t.ok ? undefined : t.raw },
     }
     writeFileSync(fileOf(q.query_id), `${JSON.stringify(record, null, 1)}\n`)
     return record
@@ -284,7 +300,7 @@ async function main() {
   const mean = (xs: number[]) => (xs.length ? xs.reduce((a, b) => a + b, 0) / xs.length : 0)
   const summary = {
     benchmark: 'BrowseComp-Plus',
-    scaffold: `Claude Code headless + MarkIndex MCP (search_documents, get_document_structure, get_node_content)${v.rerank ? `; search reranked by ${v.rerank} over a pool of ${v['rerank-pool']} nodes, judged against the question` : ''}`,
+    scaffold: `Claude Code headless + MarkIndex MCP (search_documents, get_document_structure, get_node_content)${v.rerank ? `; search reranked by ${v.rerank} over a pool of ${v['rerank-pool']} nodes, judged against the question` : ''}${v['product-rerank'] ? `; markindex mcp --rerank ${v['product-rerank']} over a pool of ${v['rerank-pool']} nodes, judged against the agent's intent or query` : ''}`,
     model: v.model,
     reference_judge: v['no-judge'] ? null : v['judge-model'],
     queries: records.length,
@@ -293,6 +309,7 @@ async function main() {
     recall: mean(records.map((r) => r.markindex.recall)),
     search_calls: mean(records.map((r) => r.tool_call_counts.search_documents ?? 0)),
     read_calls: mean(records.map((r) => r.tool_call_counts.get_node_content ?? 0)),
+    ...(v['product-rerank'] ? { intent_calls: mean(records.map((r) => (r.markindex as { intent_calls?: number }).intent_calls ?? 0)), reranked_searches: mean(records.map((r) => (r.markindex as { reranked_searches?: number }).reranked_searches ?? 0)) } : {}),
     mean_turns: mean(records.map((r) => r.markindex.turns)),
     cost_usd: records.reduce((s, r) => s + r.markindex.cost_usd, 0),
     agent_cost_usd: records.reduce((s, r) => s + r.markindex.agent_cost_usd, 0),

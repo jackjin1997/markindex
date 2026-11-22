@@ -10,12 +10,13 @@
 ## Results
 
 Haiku 5.5 agent with `search_documents`, `get_document_structure` and `get_node_content`, the same 50 questions
-in every row, runs of 2026-11-16 and 2026-11-22:
+in every row, runs of 2026-11-16, 2026-11-22 and 2026-11-23:
 
 | Setup | Correct | Evidence recall | Searches per question | Cost |
 |---|---:|---:|---:|---:|
 | MarkIndex search | 41 / 50 (82%) | 73.7% | 16.0 | $3.86 |
 | MarkIndex search, results reranked by a decision model | 45 / 50 (90%) | 79.0% | 15.4 | $4.84 + $2.00 |
+| The package's own option, `markindex mcp --rerank jev` | 44 / 50 (88%) | 76.4% | 11.3 | $3.07 + about $1.50 |
 
 Four questions are right only with reranking and none only without it (exact McNemar p = 0.125), so at this size
 the difference is not significant. Two identical runs of the first row earlier differed on five questions. The
@@ -25,6 +26,15 @@ Reranking ([`rerank_server.ts`](rerank_server.ts)): each search fetches 50 secti
 (TypeSafe's decision model, `jev-1.14.0`) answers one yes/no question per node about a passage of at most 8,000
 characters, and the ten most likely nodes are returned. The passage is judged against the question, which the
 runner passes to the server; a product version would take it as a tool argument.
+
+The third row is that product version (`run.ts --product-rerank jev`): the server is not told the question, the
+agent may pass `intent` to `search_documents`, and every passage names its document. The agent passed `intent`
+in 76% of its searches (431 of 566), on 44 of the 50 questions. Against no reranking it is right on four more
+questions and wrong on one (p = 0.375), and against the row above on two more and three fewer (p = 1.0): the
+three settings cannot be told apart on accuracy at this size. What does differ is the work: 11.3 searches per
+question instead of 16.0 (paired sign-flip test p = 0.007) and 16.6 turns instead of 20.5 (p = 0.04). The agent's
+own cost is lower by a quarter, which is within chance (p = 0.29), and the reranker's cost was not measured in
+this run: about $1.50 if a search costs what it did in the row above.
 
 Without an agent ([`rerank_eval.ts`](rerank_eval.ts)): one BM25 search with the question as the query, 200 nodes,
 reranked the same way, measured against the benchmark's evidence documents.
@@ -66,6 +76,10 @@ npx tsx eval/bcp/run.ts --root eval/bcp/md --db eval/bcp/runs/lib.db --run-dir e
 npx tsx eval/bcp/rerank_eval.ts --db eval/bcp/runs/lib.db --scorer jev --ids-from eval/bcp/runs/pilot --pool 200 \
   --out eval/bcp/runs/rerank-jev.json
 python3 eval/bcp/publish.py eval/bcp/runs/pilot-jev eval/bcp/results/agent-haiku-jev-rerank.json   # shareable copy
+
+# the package's own option instead of the evaluation server
+npx tsx eval/bcp/run.ts --root eval/bcp/md --db eval/bcp/runs/lib.db --run-dir eval/bcp/runs/pilot-product \
+  --ids <ids> --model haiku --product-rerank jev
 ```
 
 `--rerank overlap` and `--scorer overlap` use a term-overlap scorer with no network access, for testing the

@@ -472,6 +472,7 @@ retrieval. None of it is part of the package; the code lives under `eval/`.
 | Test | Result | Where |
 |---|---|---|
 | Rerank the agent's search results (BrowseComp-Plus, 50 questions) | 82% to 90% correct, not significant at this size | [bcp/README.md](bcp/README.md) |
+| The same as the package's option, `markindex mcp --rerank jev`, with the agent writing `intent` | 88% correct (not significant), 11.3 searches per question instead of 16.0 | same |
 | Pick the filing and the sections from titles alone (FinanceBench) | evidence page in the first ten pages 66.7%, against 34.0% for dense retrieval | [financebench/README.md](financebench/README.md#navigating-by-section-titles-with-a-decision-model) |
 | Answer in one call from those pages | 72.0%, against 53.3% for dense retrieval and 88.0% for the agent | same |
 | Give the agent the same routing as a tool | 86.7% against 90.7% without it, 0.8 fewer turns | same |

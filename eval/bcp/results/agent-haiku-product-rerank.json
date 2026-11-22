@@ -1,0 +1,892 @@
+{
+ "benchmark": "BrowseComp-Plus",
+ "scaffold": "Claude Code headless + MarkIndex MCP (search_documents, get_document_structure, get_node_content); markindex mcp --rerank jev over a pool of 50 nodes, judged against the agent's intent or query",
+ "model": "haiku",
+ "reference_judge": "sonnet",
+ "queries": 50,
+ "completed": 50,
+ "reference_accuracy": 0.88,
+ "recall": 0.7641111111111111,
+ "search_calls": 11.32,
+ "read_calls": 3.56,
+ "intent_calls": 8.62,
+ "reranked_searches": 11.22,
+ "mean_turns": 16.56,
+ "cost_usd": 3.0743014299999993,
+ "agent_cost_usd": 2.5880323300000003,
+ "results": [
+  {
+   "query_id": "1",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 3,
+    "get_node_content": 2
+   },
+   "model": "haiku",
+   "turns": 6,
+   "cost_usd": 0.013260540000000001,
+   "agent_cost_usd": 0.004772740000000001,
+   "recall": 0.75,
+   "reference_judge": "sonnet",
+   "reference_correct": true,
+   "intent_calls": 3,
+   "reranked_searches": 3
+  },
+  {
+   "query_id": "23",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 9,
+    "get_document_structure": 2,
+    "get_node_content": 2
+   },
+   "model": "haiku",
+   "turns": 14,
+   "cost_usd": 0.024231250000000003,
+   "agent_cost_usd": 0.01497145,
+   "recall": 0.8888888888888888,
+   "reference_judge": "sonnet",
+   "reference_correct": true,
+   "intent_calls": 9,
+   "reranked_searches": 9
+  },
+  {
+   "query_id": "68",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 2,
+    "get_node_content": 2
+   },
+   "model": "haiku",
+   "turns": 5,
+   "cost_usd": 0.02240553,
+   "agent_cost_usd": 0.00444063,
+   "recall": 0.6666666666666666,
+   "reference_judge": "sonnet",
+   "reference_correct": true,
+   "intent_calls": 2,
+   "reranked_searches": 2
+  },
+  {
+   "query_id": "69",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 4,
+    "get_node_content": 3
+   },
+   "model": "haiku",
+   "turns": 8,
+   "cost_usd": 0.013900210000000001,
+   "agent_cost_usd": 0.004898410000000001,
+   "recall": 1,
+   "reference_judge": "sonnet",
+   "reference_correct": true,
+   "intent_calls": 0,
+   "reranked_searches": 4
+  },
+  {
+   "query_id": "107",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 8,
+    "get_node_content": 4
+   },
+   "model": "haiku",
+   "turns": 13,
+   "cost_usd": 0.02141049,
+   "agent_cost_usd": 0.01207269,
+   "recall": 0.8333333333333334,
+   "reference_judge": "sonnet",
+   "reference_correct": true,
+   "intent_calls": 8,
+   "reranked_searches": 8
+  },
+  {
+   "query_id": "130",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 4,
+    "get_node_content": 2
+   },
+   "model": "haiku",
+   "turns": 7,
+   "cost_usd": 0.01315291,
+   "agent_cost_usd": 0.00464911,
+   "recall": 1,
+   "reference_judge": "sonnet",
+   "reference_correct": true,
+   "intent_calls": 4,
+   "reranked_searches": 4
+  },
+  {
+   "query_id": "160",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 6,
+    "get_node_content": 4,
+    "get_document_structure": 1
+   },
+   "model": "haiku",
+   "turns": 12,
+   "cost_usd": 0.01964673,
+   "agent_cost_usd": 0.010132930000000002,
+   "recall": 0.8571428571428571,
+   "reference_judge": "sonnet",
+   "reference_correct": true,
+   "intent_calls": 6,
+   "reranked_searches": 6
+  },
+  {
+   "query_id": "201",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 5,
+    "get_node_content": 3
+   },
+   "model": "haiku",
+   "turns": 9,
+   "cost_usd": 0.01944181,
+   "agent_cost_usd": 0.00997201,
+   "recall": 1,
+   "reference_judge": "sonnet",
+   "reference_correct": true,
+   "intent_calls": 5,
+   "reranked_searches": 5
+  },
+  {
+   "query_id": "202",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 22,
+    "browse_documents": 1,
+    "get_node_content": 4,
+    "get_document_structure": 1
+   },
+   "model": "haiku",
+   "turns": 29,
+   "cost_usd": 0.061456340000000005,
+   "agent_cost_usd": 0.051722540000000004,
+   "recall": 1,
+   "reference_judge": "sonnet",
+   "reference_correct": true,
+   "intent_calls": 5,
+   "reranked_searches": 22
+  },
+  {
+   "query_id": "245",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 13,
+    "get_node_content": 4,
+    "get_document_structure": 2
+   },
+   "model": "haiku",
+   "turns": 20,
+   "cost_usd": 0.03339696,
+   "agent_cost_usd": 0.02197516,
+   "recall": 1,
+   "reference_judge": "sonnet",
+   "reference_correct": true,
+   "intent_calls": 6,
+   "reranked_searches": 13
+  },
+  {
+   "query_id": "265",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 23,
+    "get_node_content": 4
+   },
+   "model": "haiku",
+   "turns": 28,
+   "cost_usd": 0.12690792,
+   "agent_cost_usd": 0.11676412,
+   "recall": 1,
+   "reference_judge": "sonnet",
+   "reference_correct": true,
+   "intent_calls": 2,
+   "reranked_searches": 23
+  },
+  {
+   "query_id": "285",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 14,
+    "get_document_structure": 1,
+    "get_node_content": 4
+   },
+   "model": "haiku",
+   "turns": 20,
+   "cost_usd": 0.037256529999999996,
+   "agent_cost_usd": 0.02768673,
+   "recall": 0.8333333333333334,
+   "reference_judge": "sonnet",
+   "reference_correct": true,
+   "intent_calls": 14,
+   "reranked_searches": 14
+  },
+  {
+   "query_id": "324",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 5,
+    "get_node_content": 3
+   },
+   "model": "haiku",
+   "turns": 9,
+   "cost_usd": 0.019811560000000002,
+   "agent_cost_usd": 0.009797760000000003,
+   "recall": 0.6666666666666666,
+   "reference_judge": "sonnet",
+   "reference_correct": true,
+   "intent_calls": 5,
+   "reranked_searches": 5
+  },
+  {
+   "query_id": "327",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 2,
+    "get_node_content": 2
+   },
+   "model": "haiku",
+   "turns": 5,
+   "cost_usd": 0.01423552,
+   "agent_cost_usd": 0.004919720000000001,
+   "recall": 0.25,
+   "reference_judge": "sonnet",
+   "reference_correct": true,
+   "intent_calls": 2,
+   "reranked_searches": 2
+  },
+  {
+   "query_id": "384",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 40,
+    "get_node_content": 9,
+    "get_document_structure": 2
+   },
+   "model": "haiku",
+   "turns": 52,
+   "cost_usd": 0.4803888499999999,
+   "agent_cost_usd": 0.4710950499999999,
+   "recall": 0.8,
+   "reference_judge": "sonnet",
+   "reference_correct": true,
+   "intent_calls": 40,
+   "reranked_searches": 38
+  },
+  {
+   "query_id": "406",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 19,
+    "get_document_structure": 1,
+    "get_node_content": 4
+   },
+   "model": "haiku",
+   "turns": 25,
+   "cost_usd": 0.03587788,
+   "agent_cost_usd": 0.02473008,
+   "recall": 1,
+   "reference_judge": "sonnet",
+   "reference_correct": false,
+   "intent_calls": 0,
+   "reranked_searches": 19
+  },
+  {
+   "query_id": "424",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 4,
+    "get_node_content": 4
+   },
+   "model": "haiku",
+   "turns": 9,
+   "cost_usd": 0.01582721,
+   "agent_cost_usd": 0.00632541,
+   "recall": 0.8333333333333334,
+   "reference_judge": "sonnet",
+   "reference_correct": true,
+   "intent_calls": 4,
+   "reranked_searches": 4
+  },
+  {
+   "query_id": "478",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 10,
+    "get_node_content": 3,
+    "get_document_structure": 3,
+    "browse_documents": 1
+   },
+   "model": "haiku",
+   "turns": 18,
+   "cost_usd": 0.02016673,
+   "agent_cost_usd": 0.009618930000000001,
+   "recall": 0.6,
+   "reference_judge": "sonnet",
+   "reference_correct": false,
+   "intent_calls": 10,
+   "reranked_searches": 10
+  },
+  {
+   "query_id": "480",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 2,
+    "get_node_content": 2
+   },
+   "model": "haiku",
+   "turns": 5,
+   "cost_usd": 0.01434906,
+   "agent_cost_usd": 0.00411726,
+   "recall": 1,
+   "reference_judge": "sonnet",
+   "reference_correct": true,
+   "intent_calls": 2,
+   "reranked_searches": 2
+  },
+  {
+   "query_id": "514",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 3,
+    "get_node_content": 1
+   },
+   "model": "haiku",
+   "turns": 5,
+   "cost_usd": 0.013225250000000001,
+   "agent_cost_usd": 0.00349345,
+   "recall": 0.14285714285714285,
+   "reference_judge": "sonnet",
+   "reference_correct": true,
+   "intent_calls": 0,
+   "reranked_searches": 3
+  },
+  {
+   "query_id": "533",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 6,
+    "get_node_content": 4
+   },
+   "model": "haiku",
+   "turns": 11,
+   "cost_usd": 0.01778371,
+   "agent_cost_usd": 0.008839910000000001,
+   "recall": 1,
+   "reference_judge": "sonnet",
+   "reference_correct": true,
+   "intent_calls": 6,
+   "reranked_searches": 6
+  },
+  {
+   "query_id": "550",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 5,
+    "get_node_content": 2
+   },
+   "model": "haiku",
+   "turns": 8,
+   "cost_usd": 0.016429560000000003,
+   "agent_cost_usd": 0.007375760000000001,
+   "recall": 1,
+   "reference_judge": "sonnet",
+   "reference_correct": true,
+   "intent_calls": 1,
+   "reranked_searches": 5
+  },
+  {
+   "query_id": "590",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 7,
+    "get_node_content": 4
+   },
+   "model": "haiku",
+   "turns": 12,
+   "cost_usd": 0.01805821,
+   "agent_cost_usd": 0.00879441,
+   "recall": 0.625,
+   "reference_judge": "sonnet",
+   "reference_correct": true,
+   "intent_calls": 7,
+   "reranked_searches": 7
+  },
+  {
+   "query_id": "591",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 7,
+    "get_node_content": 5
+   },
+   "model": "haiku",
+   "turns": 13,
+   "cost_usd": 0.01654713,
+   "agent_cost_usd": 0.00717333,
+   "recall": 1,
+   "reference_judge": "sonnet",
+   "reference_correct": true,
+   "intent_calls": 2,
+   "reranked_searches": 7
+  },
+  {
+   "query_id": "631",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 18,
+    "get_node_content": 4,
+    "get_document_structure": 2
+   },
+   "model": "haiku",
+   "turns": 25,
+   "cost_usd": 0.06288568,
+   "agent_cost_usd": 0.05176588,
+   "recall": 1,
+   "reference_judge": "sonnet",
+   "reference_correct": true,
+   "intent_calls": 18,
+   "reranked_searches": 18
+  },
+  {
+   "query_id": "653",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 4,
+    "get_node_content": 3
+   },
+   "model": "haiku",
+   "turns": 8,
+   "cost_usd": 0.01454439,
+   "agent_cost_usd": 0.00638459,
+   "recall": 1,
+   "reference_judge": "sonnet",
+   "reference_correct": true,
+   "intent_calls": 4,
+   "reranked_searches": 4
+  },
+  {
+   "query_id": "675",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 2,
+    "get_node_content": 2
+   },
+   "model": "haiku",
+   "turns": 5,
+   "cost_usd": 0.012901950000000002,
+   "agent_cost_usd": 0.0038341500000000006,
+   "recall": 0.7142857142857143,
+   "reference_judge": "sonnet",
+   "reference_correct": true,
+   "intent_calls": 2,
+   "reranked_searches": 2
+  },
+  {
+   "query_id": "715",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 2,
+    "browse_documents": 1,
+    "get_document_structure": 1,
+    "get_node_content": 2
+   },
+   "model": "haiku",
+   "turns": 7,
+   "cost_usd": 0.015571100000000001,
+   "agent_cost_usd": 0.0068333000000000005,
+   "recall": 0.5,
+   "reference_judge": "sonnet",
+   "reference_correct": true,
+   "intent_calls": 0,
+   "reranked_searches": 2
+  },
+  {
+   "query_id": "716",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 36,
+    "get_node_content": 8,
+    "get_document_structure": 3
+   },
+   "model": "haiku",
+   "turns": 48,
+   "cost_usd": 0.2547958,
+   "agent_cost_usd": 0.244488,
+   "recall": 0,
+   "reference_judge": "sonnet",
+   "reference_correct": false,
+   "intent_calls": 2,
+   "reranked_searches": 36
+  },
+  {
+   "query_id": "751",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 9,
+    "get_node_content": 4
+   },
+   "model": "haiku",
+   "turns": 14,
+   "cost_usd": 0.02358238,
+   "agent_cost_usd": 0.013838580000000001,
+   "recall": 0.7142857142857143,
+   "reference_judge": "sonnet",
+   "reference_correct": true,
+   "intent_calls": 9,
+   "reranked_searches": 9
+  },
+  {
+   "query_id": "772",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 4,
+    "get_node_content": 4
+   },
+   "model": "haiku",
+   "turns": 9,
+   "cost_usd": 0.01606086,
+   "agent_cost_usd": 0.00622106,
+   "recall": 1,
+   "reference_judge": "sonnet",
+   "reference_correct": true,
+   "intent_calls": 4,
+   "reranked_searches": 4
+  },
+  {
+   "query_id": "790",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 3,
+    "get_node_content": 2,
+    "get_document_structure": 1
+   },
+   "model": "haiku",
+   "turns": 7,
+   "cost_usd": 0.01459983,
+   "agent_cost_usd": 0.0055600300000000005,
+   "recall": 1,
+   "reference_judge": "sonnet",
+   "reference_correct": true,
+   "intent_calls": 3,
+   "reranked_searches": 3
+  },
+  {
+   "query_id": "828",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 34,
+    "browse_documents": 1,
+    "get_node_content": 8,
+    "get_document_structure": 2
+   },
+   "model": "haiku",
+   "turns": 46,
+   "cost_usd": 0.25518271,
+   "agent_cost_usd": 0.24560490999999998,
+   "recall": 0.875,
+   "reference_judge": "sonnet",
+   "reference_correct": true,
+   "intent_calls": 34,
+   "reranked_searches": 34
+  },
+  {
+   "query_id": "830",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 5,
+    "get_node_content": 1
+   },
+   "model": "haiku",
+   "turns": 7,
+   "cost_usd": 0.01738125,
+   "agent_cost_usd": 0.00648345,
+   "recall": 0.8333333333333334,
+   "reference_judge": "sonnet",
+   "reference_correct": true,
+   "intent_calls": 5,
+   "reranked_searches": 5
+  },
+  {
+   "query_id": "875",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 21,
+    "get_node_content": 7,
+    "get_document_structure": 1
+   },
+   "model": "haiku",
+   "turns": 30,
+   "cost_usd": 0.1832877,
+   "agent_cost_usd": 0.1735739,
+   "recall": 1,
+   "reference_judge": "sonnet",
+   "reference_correct": true,
+   "intent_calls": 21,
+   "reranked_searches": 21
+  },
+  {
+   "query_id": "904",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 21,
+    "get_node_content": 3
+   },
+   "model": "haiku",
+   "turns": 25,
+   "cost_usd": 0.033623480000000004,
+   "agent_cost_usd": 0.02435968,
+   "recall": 1,
+   "reference_judge": "sonnet",
+   "reference_correct": true,
+   "intent_calls": 21,
+   "reranked_searches": 20
+  },
+  {
+   "query_id": "923",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 6,
+    "get_node_content": 2,
+    "get_document_structure": 1
+   },
+   "model": "haiku",
+   "turns": 10,
+   "cost_usd": 0.01663969,
+   "agent_cost_usd": 0.007449890000000001,
+   "recall": 1,
+   "reference_judge": "sonnet",
+   "reference_correct": true,
+   "intent_calls": 6,
+   "reranked_searches": 6
+  },
+  {
+   "query_id": "970",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 9
+   },
+   "model": "haiku",
+   "turns": 10,
+   "cost_usd": 0.0187619,
+   "agent_cost_usd": 0.0094441,
+   "recall": 0.1111111111111111,
+   "reference_judge": "sonnet",
+   "reference_correct": false,
+   "intent_calls": 9,
+   "reranked_searches": 9
+  },
+  {
+   "query_id": "971",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 4,
+    "get_node_content": 4
+   },
+   "model": "haiku",
+   "turns": 9,
+   "cost_usd": 0.01780516,
+   "agent_cost_usd": 0.007447360000000001,
+   "recall": 0.8571428571428571,
+   "reference_judge": "sonnet",
+   "reference_correct": true,
+   "intent_calls": 4,
+   "reranked_searches": 4
+  },
+  {
+   "query_id": "1016",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 4,
+    "get_node_content": 4
+   },
+   "model": "haiku",
+   "turns": 9,
+   "cost_usd": 0.01522706,
+   "agent_cost_usd": 0.00573126,
+   "recall": 0.7,
+   "reference_judge": "sonnet",
+   "reference_correct": true,
+   "intent_calls": 4,
+   "reranked_searches": 4
+  },
+  {
+   "query_id": "1034",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 5,
+    "get_node_content": 4
+   },
+   "model": "haiku",
+   "turns": 10,
+   "cost_usd": 0.01623332,
+   "agent_cost_usd": 0.00679352,
+   "recall": 1,
+   "reference_judge": "sonnet",
+   "reference_correct": true,
+   "intent_calls": 5,
+   "reranked_searches": 5
+  },
+  {
+   "query_id": "1047",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 3,
+    "browse_documents": 1,
+    "get_node_content": 3
+   },
+   "model": "haiku",
+   "turns": 8,
+   "cost_usd": 0.01367732,
+   "agent_cost_usd": 0.00472152,
+   "recall": 0.7142857142857143,
+   "reference_judge": "sonnet",
+   "reference_correct": true,
+   "intent_calls": 0,
+   "reranked_searches": 3
+  },
+  {
+   "query_id": "1090",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 10,
+    "browse_documents": 1,
+    "get_node_content": 3
+   },
+   "model": "haiku",
+   "turns": 15,
+   "cost_usd": 0.02667421,
+   "agent_cost_usd": 0.01695441,
+   "recall": 1,
+   "reference_judge": "sonnet",
+   "reference_correct": true,
+   "intent_calls": 10,
+   "reranked_searches": 10
+  },
+  {
+   "query_id": "1091",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 47,
+    "get_node_content": 1
+   },
+   "model": "haiku",
+   "turns": 49,
+   "cost_usd": 0.27361106,
+   "agent_cost_usd": 0.26442326,
+   "recall": 0,
+   "reference_judge": "sonnet",
+   "reference_correct": false,
+   "intent_calls": 45,
+   "reranked_searches": 45
+  },
+  {
+   "query_id": "1131",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 51,
+    "get_node_content": 10,
+    "get_document_structure": 1
+   },
+   "model": "haiku",
+   "turns": 63,
+   "cost_usd": 0.54032022,
+   "agent_cost_usd": 0.53044442,
+   "recall": 0.5,
+   "reference_judge": "sonnet",
+   "reference_correct": false,
+   "intent_calls": 51,
+   "reranked_searches": 51
+  },
+  {
+   "query_id": "1155",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 2,
+    "get_node_content": 3
+   },
+   "model": "haiku",
+   "turns": 6,
+   "cost_usd": 0.01388726,
+   "agent_cost_usd": 0.004593460000000001,
+   "recall": 0.5,
+   "reference_judge": "sonnet",
+   "reference_correct": true,
+   "intent_calls": 0,
+   "reranked_searches": 2
+  },
+  {
+   "query_id": "1182",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 19,
+    "get_node_content": 7,
+    "get_document_structure": 2
+   },
+   "model": "haiku",
+   "turns": 29,
+   "cost_usd": 0.06064006000000001,
+   "agent_cost_usd": 0.050292260000000005,
+   "recall": 0.8888888888888888,
+   "reference_judge": "sonnet",
+   "reference_correct": true,
+   "intent_calls": 19,
+   "reranked_searches": 19
+  },
+  {
+   "query_id": "1216",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 17,
+    "get_node_content": 2,
+    "get_document_structure": 1
+   },
+   "model": "haiku",
+   "turns": 21,
+   "cost_usd": 0.038283000000000005,
+   "agent_cost_usd": 0.029605200000000005,
+   "recall": 0.4,
+   "reference_judge": "sonnet",
+   "reference_correct": true,
+   "intent_calls": 5,
+   "reranked_searches": 17
+  },
+  {
+   "query_id": "1217",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 5,
+    "get_node_content": 4
+   },
+   "model": "haiku",
+   "turns": 10,
+   "cost_usd": 0.01625554,
+   "agent_cost_usd": 0.00709374,
+   "recall": 0.75,
+   "reference_judge": "sonnet",
+   "reference_correct": true,
+   "intent_calls": 5,
+   "reranked_searches": 5
+  },
+  {
+   "query_id": "1248",
+   "status": "completed",
+   "tool_call_counts": {
+    "search_documents": 2,
+    "get_node_content": 2
+   },
+   "model": "haiku",
+   "turns": 5,
+   "cost_usd": 0.012700610000000001,
+   "agent_cost_usd": 0.0037508100000000003,
+   "recall": 0.4,
+   "reference_judge": "sonnet",
+   "reference_correct": true,
+   "intent_calls": 2,
+   "reranked_searches": 2
+  }
+ ]
+}

@@ -12,7 +12,7 @@ import json
 import sys
 from pathlib import Path
 
-KEEP = ("model", "turns", "cost_usd", "agent_cost_usd", "recall", "reference_judge", "reference_correct")
+KEEP = ("model", "turns", "cost_usd", "agent_cost_usd", "recall", "reference_judge", "reference_correct", "intent_calls", "reranked_searches")
 
 
 def main() -> None:
@@ -23,7 +23,7 @@ def main() -> None:
     for f in sorted(src.glob("*.json"), key=lambda p: int(p.stem)):
         r = json.loads(f.read_text())
         m = r.get("markindex", {})
-        rows.append({"query_id": r["query_id"], "status": r["status"], "tool_call_counts": r["tool_call_counts"], **{k: m.get(k) for k in KEEP}})
+        rows.append({"query_id": r["query_id"], "status": r["status"], "tool_call_counts": r["tool_call_counts"], **{k: m.get(k) for k in KEEP if k in m or k not in KEEP[-2:]}})
     report_file = src.with_name(src.name + ".report.json")
     report = json.loads(report_file.read_text()) if report_file.exists() else {}
     dst.parent.mkdir(parents=True, exist_ok=True)

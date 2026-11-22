@@ -131,7 +131,7 @@ TYPESAFE_API_KEY=... npx markindex mcp /path/to/docs --rerank jev
 
 - **会把文本发给第三方**：每次搜索会把问题和每个候选章节最多 8000 字符的文本发到模型服务（`TYPESAFE_API_KEY`：api.typesafe.ai；`OPENROUTER_API_KEY`：OpenRouter；`JEV_BASE_URL` + `JEV_API_KEY`：自定义地址）。不能离开本机的文档不要开启。server 启动时会打印目标地址。
 - **耗时与费用**：每个候选一次请求，我们的测试中每次搜索约 1.5 秒、四分之一美分。模型失败或超过 8 秒时，返回关键词原始排序。
-- **目前对效果的了解**：在 BrowseComp-Plus（100,195 篇网页）的 50 题试点中，Agent 用重排后的搜索答对 90%，不重排是 82%，这个样本量下差异不显著（4 题对 0 题，p = 0.125）。在 FinanceBench 上，Agent 靠浏览目录已能找到页面，检索更准并没有提高正确率。详见 [`eval/README.md`](eval/README.md#12-experiments-with-a-decision-model)。当前发布的形态（由 Agent 填写 `intent`，判断时带上文档路径）尚未做过基准评测。
+- **目前对效果的了解**：在 BrowseComp-Plus（100,195 篇网页）的 50 道题上，Haiku Agent 开启本选项后答对 88%，不开启是 82%，这个样本量下差异不显著（4 题对 1 题，p = 0.375）。搜索次数减少：每题 11.3 次，不开启是 16.0 次；四分之三的搜索带了 `intent`。在 FinanceBench 上，Agent 靠浏览目录已能找到页面，检索更准并没有提高正确率。详见 [`eval/bcp/README.md`](eval/bcp/README.md)。
 
 库 API 中可传入任何带 `score()` 方法的对象，或用内置的：
 

@@ -224,12 +224,11 @@ TYPESAFE_API_KEY=... npx markindex mcp /path/to/docs --rerank jev
   machine. The server prints the endpoint on start.
 - **Cost and time.** One request per candidate: about 1.5 seconds and a quarter of a US cent per search in our
   runs. If the model fails or takes more than 8 seconds, the keyword order is returned.
-- **What is known about the benefit.** In a 50-question pilot on BrowseComp-Plus (100,195 web documents) an agent
-  with reranked search answered 90% of the questions against 82%, a difference that size cannot confirm
-  (4 questions against 0, p = 0.125). On FinanceBench, where the agent already finds the pages by browsing, better
-  retrieval did not raise accuracy. See [`eval/README.md`](eval/README.md#12-experiments-with-a-decision-model).
-  The option as shipped (the agent writes `intent`; the document path is part of what is judged) has not been
-  benchmarked.
+- **What is known about the benefit.** On 50 BrowseComp-Plus questions (100,195 web documents) a Haiku agent
+  with this option answered 88% against 82% without it, a difference that size cannot confirm (4 questions
+  against 1, p = 0.375). It needed fewer searches, 11.3 per question instead of 16.0, and passed `intent` in three
+  searches out of four. On FinanceBench, where the agent already finds the pages by browsing, better retrieval
+  did not raise accuracy. See [`eval/bcp/README.md`](eval/bcp/README.md).
 
 From code, pass any object with a `score()` method, or the built-in one:
 
