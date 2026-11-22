@@ -6,8 +6,8 @@ and the top pages go to the model in one prompt (baseline.ts). No model is calle
 
     .venv/bin/python -I baseline_retrieve.py chunk                      # md/ + md-pages/ -> runs/baseline/chunks.db
     .venv/bin/python -I baseline_retrieve.py embed [--model-dir ...]    # -> runs/baseline/emb-<model>.npy (resumable)
-    .venv/bin/python -I baseline_retrieve.py search --method dense|bm25|hybrid [--subset 84]
-                                                                        # -> runs/baseline/retrieval-<method>[-84].json
+    .venv/bin/python -I baseline_retrieve.py search --method dense|bm25|hybrid [--subset 84] [--top-k 100]
+                                                                        # -> runs/baseline/retrieval-<method>[-84][-top100].json
 
 Chunks never cross a page, carry their 1-based line range in the converted file, and are embedded / indexed with a
 one-line header (company, document type, period) so that a shared store can tell the filings of different companies
@@ -174,6 +174,9 @@ def cmd_search(a: argparse.Namespace) -> None:
     meta = db.execute("select id, doc_path, doc_name, page, start_line, end_line from chunks order by id").fetchall()
     row_of = {m[0]: i for i, m in enumerate(meta)}
     questions = load_questions()
+    top_k = a.top_k
+    # A deeper page list needs more chunks: a page holds about three of them. The first 20 pages do not change.
+    candidates = max(CANDIDATES, top_k * 10)
     allowed = None
     if a.subset == "84":
         used = {e["doc_name"] for q in questions for e in q["evidence"]} | {q["doc_name"] for q in questions}
@@ -187,17 +190,17 @@ def cmd_search(a: argparse.Namespace) -> None:
         scores = np.asarray(qv, dtype=np.float32) @ emb.T
         if allowed is not None:
             scores[:, ~allowed] = -1e9
-        top = np.argsort(-scores, axis=1)[:, :CANDIDATES]
+        top = np.argsort(-scores, axis=1)[:, :candidates]
         return [[int(i) for i in row] for row in top]
 
     def bm25_ranks() -> list[list[int]]:
         out = []
         for q in questions:
-            hits = db.execute("select rowid from fts where fts match ? order by bm25(fts) limit ?", (fts_query(q["question"]), CANDIDATES * 20)).fetchall()
+            hits = db.execute("select rowid from fts where fts match ? order by bm25(fts) limit ?", (fts_query(q["question"]), candidates * 20)).fetchall()
             rows = [row_of[h[0]] for h in hits]
             if allowed is not None:
                 rows = [r for r in rows if allowed[r]]
-            out.append(rows[:CANDIDATES])
+            out.append(rows[:candidates])
         return out
 
     if a.method == "dense":
@@ -212,7 +215,7 @@ def cmd_search(a: argparse.Namespace) -> None:
             for lst in (dr, sr):
                 for rank, row in enumerate(lst):
                     score[row] = score.get(row, 0.0) + 1.0 / (RRF_K + rank + 1)
-            ranked.append(sorted(score, key=lambda r: -score[r])[:CANDIDATES])
+            ranked.append(sorted(score, key=lambda r: -score[r])[:candidates])
 
     # chunks -> pages: a page ranks where its best chunk ranks
     page_range: dict[tuple[str, int], list[int]] = {}
@@ -221,7 +224,7 @@ def cmd_search(a: argparse.Namespace) -> None:
         r[0], r[1] = min(r[0], s), max(r[1], e)
     path_of = {m[2]: m[1] for m in meta}
     results = {}
-    ks = (1, 3, 5, 10, 20)
+    ks = tuple(k for k in (1, 3, 5, 10, 20, 50, 100) if k <= max(top_k, 20))
     page_hits = {k: 0 for k in ks}
     doc_hits = {k: 0 for k in ks}
     for q, rows in zip(questions, ranked):
@@ -230,7 +233,7 @@ def cmd_search(a: argparse.Namespace) -> None:
             key = (meta[row][1], meta[row][3])
             if key not in pages:
                 pages.append(key)
-            if len(pages) == TOP_K:
+            if len(pages) == top_k:
                 break
         gold_pages = {(path_of[e["doc_name"]], int(e["evidence_page_num"])) for e in q["evidence"]}
         gold_docs = {p for p, _ in gold_pages}
@@ -250,7 +253,7 @@ def cmd_search(a: argparse.Namespace) -> None:
         "evidence_page_recall": {f"@{k}": round(page_hits[k] / n, 4) for k in ks},
         "right_filing_recall": {f"@{k}": round(doc_hits[k] / n, 4) for k in ks},
     }
-    name = f"retrieval-{a.method}{'-84' if a.subset == '84' else ''}.json"
+    name = f"retrieval-{a.method}{'-84' if a.subset == '84' else ''}{'' if top_k == TOP_K else f'-top{top_k}'}.json"
     (OUT / name).write_text(json.dumps({"summary": summary, "results": results}, indent=1) + "\n")
     print(json.dumps(summary, indent=2))
     log(f"-> {OUT / name}")
@@ -273,6 +276,7 @@ def main() -> None:
     s.add_argument("--model", default=DEFAULT_MODEL)
     s.add_argument("--model-dir", default=None)
     s.add_argument("--subset", choices=["84"], default=None)
+    s.add_argument("--top-k", type=int, default=TOP_K, help="ranked pages kept per question (default 20); another value adds -top<k> to the file name")
     s.set_defaults(fn=cmd_search)
     a = p.parse_args()
     if a.base:

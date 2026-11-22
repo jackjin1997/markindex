@@ -137,11 +137,48 @@ What this retrieval is worth for answering, with the same answer model and judge
   rise (1 question against 7, p = 0.07). The agent already finds the pages (it cites an evidence page on 78.7%
   of the questions without the tool, 77.3% with it); what is left are reading and calculation errors.
 
-This is the first comparison here in which the section tree does something flat chunks cannot: there are no title
-paths to judge without it. It is also a best case. 10-K filings share one outline, and the questions name the
-company and the year. The model's scores vary by 0.01-0.03 between identical calls, which moves the recall figures
-by one to two points. Per-question files: [`results/toc-routing-jev.json`](results/toc-routing-jev.json),
+10-K filings are a best case for this: they share one outline, and the questions name the company and the year.
+The model's scores vary by 0.01-0.03 between identical calls, which moves the recall figures by one to two points.
+Per-question files: [`results/toc-routing-jev.json`](results/toc-routing-jev.json),
 `results/single-toc-jev-top10-sonnet.json`, `results/agent-markindex-toc-haiku.json`.
+
+**Two controls.** Navigating a document tree with this model is the method of DecisionRAG
+([arXiv 2610.35868](https://arxiv.org/abs/2610.35868)), which scores the candidates of a level in one shared
+context and also compares navigation with the same model used as a plain reranker. Both were missing above.
+Runs of 2026-11-22, all 150 questions.
+
+| Retrieval | Evidence page in the first 1 / 3 / 5 / 10 / 20 pages | Model requests per question | Model cost, 150 questions |
+|---|---:|---:|---:|
+| Titles only, one request per section (as above) | 28.0 / 51.3 / 60.7 / 66.7 / 72.0% | about 340 | $0.94 |
+| **Titles only, all titles of the filing in one request** | **49.3 / 66.0 / 69.3 / 71.3 / 75.3%** | under 10 | $0.20 plus routing |
+| ... right filing given | 58.7 / 80.0 / 84.0 / 88.0 / 92.7% | 1 | |
+| Dense top-100 pages, reranked on their full text | 32.0 / 59.3 / 67.3 / 73.3 / 76.7% | 100 | $0.86 |
+| BM25 top-50 pages, reranked on their full text | 16.0 / 22.0 / 22.7 / 24.0 / 24.0% | 50 | $0.33 |
+
+- **Scoring the titles together is better and far cheaper** ([`toc_eval.ts --sections joint`](toc_eval.ts)). With
+  every title path of the filing in one state, the right page comes first on 49.3% of the questions instead of
+  28.0% (35 questions against 3, exact McNemar p < 0.0001) and is among the first five on 69.3% instead of 60.7%
+  (15 against 2, p = 0.002). At ten pages the difference is not significant (9 against 2, p = 0.07). A filing
+  takes one or two requests and half a second instead of about 340 requests and 5.5 seconds. The wording was
+  not tuned: this is the first one tried. DecisionRAG reports that the gain levels off near 50 candidates per
+  request; a filing here has 368 sections on average and was not split.
+- **Reranking dense retrieval with the same model finds the evidence as often as the titles do**
+  ([`page_rerank.ts`](page_rerank.ts)). The pool holds an evidence page for 78.0% of the questions, and after
+  reranking it is among the first ten for 73.3%, against 71.3% for joint title scoring (30 questions against 27,
+  p = 0.79) and 66.7% for isolated title scoring (34 against 24, p = 0.24). The gain over dense retrieval
+  therefore comes from the model as a judge, not from the tree. What the tree changes is the price and the first
+  rank: no embedding index, titles instead of 136,000 tokens of page text per question, and the right page first
+  more often (52 questions against 26, p = 0.004).
+- **The two find different questions.** Five pages from each (ten at most) contain an evidence page for 89.3% of
+  the questions, against 71.3% and 73.3% for ten pages from either one (27 questions against 0, and 27 against 3).
+  Title navigation loses most when it picks the wrong filing (18% of the questions); the dense pool always holds
+  the right filing. No answering run has used the combined list yet.
+- **BM25 stays limited by its pool.** Reranking lifts it to the pool's ceiling (24.0% at depth 50; 29.3% of the
+  questions have an evidence page in the top 100) and no further.
+
+Per-question files: [`results/toc-routing-jev-joint.json`](results/toc-routing-jev-joint.json),
+[`results/page-rerank-dense-top100-jev.json`](results/page-rerank-dense-top100-jev.json),
+[`results/page-rerank-bm25-top50-jev.json`](results/page-rerank-bm25-top50-jev.json).
 
 ### Context: other results on the same 150 questions
 
@@ -267,4 +304,14 @@ npx tsx eval/financebench/toc_eval.ts --db eval/financebench/runs/lib.db --cache
   --out eval/financebench/runs/toc-jev.json --retrieval-out eval/financebench/runs/baseline/retrieval-toc-jev.json
 npx tsx eval/financebench/baseline.ts --retrieval eval/financebench/runs/baseline/retrieval-toc-jev.json --top-k 10 --all --out eval/financebench/runs/single-toc-jev-top10.json
 npx tsx eval/financebench/run.ts --root eval/financebench/md --db eval/financebench/runs/lib.db --toc --toc-cache eval/financebench/runs/jev-cache.jsonl --model haiku --all --out eval/financebench/runs/haiku-toc.json
+```
+
+The two controls (joint title scoring, and the model as a reranker of retrieved pages):
+
+```bash
+npx tsx eval/financebench/toc_eval.ts --db eval/financebench/runs/lib.db --mode flat --sections joint --cache eval/financebench/runs/jev-cache.jsonl \
+  --out eval/financebench/runs/toc-jev-joint.json
+.venv/bin/python -I baseline_retrieve.py search --method dense --top-k 100   # runs/baseline/retrieval-dense-top100.json
+npx tsx eval/financebench/page_rerank.ts --db eval/financebench/runs/lib.db --pool eval/financebench/runs/baseline/retrieval-dense-top100.json \
+  --cache eval/financebench/runs/jev-page-cache.jsonl --out eval/financebench/runs/rerank-dense-top100.json
 ```

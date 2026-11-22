@@ -1,0 +1,3638 @@
+{
+ "benchmark": "FinanceBench open-source (150)",
+ "test": "decision model as a reranker of retrieved pages (full page text, one yes/no question per page)",
+ "model": "jev-1.14.0",
+ "pool": {
+  "method": "bm25",
+  "model": null,
+  "depth": 50
+ },
+ "questions": 150,
+ "evidence_page_recall_before": {
+  "@1": 6,
+  "@3": 8,
+  "@5": 10,
+  "@10": 14,
+  "@20": 18
+ },
+ "evidence_page_recall_after": {
+  "@1": 16,
+  "@3": 22,
+  "@5": 22.67,
+  "@10": 24,
+  "@20": 24
+ },
+ "pool_ceiling": 24,
+ "mean_ms": 1420,
+ "jev": {
+  "calls": 5945,
+  "cached": 1530,
+  "failed": 0,
+  "inputTokens": 7917960,
+  "callMs": 1993816,
+  "model": "jev-1.14.0"
+ },
+ "results": [
+  {
+   "id": "financebench_id_03029",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1835,
+   "calls": 44,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_04672",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1279,
+   "calls": 44,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00499",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1491,
+   "calls": 39,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_01226",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1320,
+   "calls": 44,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_01865",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1334,
+   "calls": 42,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00807",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1468,
+   "calls": 46,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00941",
+   "pool": 50,
+   "pool_hit": true,
+   "before": {
+    "1": true,
+    "3": true,
+    "5": true,
+    "10": true,
+    "20": true
+   },
+   "after": {
+    "1": true,
+    "3": true,
+    "5": true,
+    "10": true,
+    "20": true
+   },
+   "gold_rank_before": 1,
+   "gold_rank_after": 1,
+   "ms": 1725,
+   "calls": 45,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_01858",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1329,
+   "calls": 41,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_02987",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1485,
+   "calls": 50,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_07966",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1401,
+   "calls": 47,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_04735",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1333,
+   "calls": 45,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_07507",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1484,
+   "calls": 50,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_03856",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1558,
+   "calls": 47,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00438",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1563,
+   "calls": 49,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00591",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1486,
+   "calls": 49,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_01319",
+   "pool": 50,
+   "pool_hit": true,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": true,
+    "20": true
+   },
+   "after": {
+    "1": true,
+    "3": true,
+    "5": true,
+    "10": true,
+    "20": true
+   },
+   "gold_rank_before": 10,
+   "gold_rank_after": 1,
+   "ms": 977,
+   "calls": 29,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00540",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1509,
+   "calls": 50,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_10420",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 657,
+   "calls": 24,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_06655",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1558,
+   "calls": 46,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_08135",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1556,
+   "calls": 50,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_08286",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1571,
+   "calls": 50,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_03882",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1440,
+   "calls": 48,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_01935",
+   "pool": 50,
+   "pool_hit": true,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": true
+   },
+   "after": {
+    "1": false,
+    "3": true,
+    "5": true,
+    "10": true,
+    "20": true
+   },
+   "gold_rank_before": 15,
+   "gold_rank_after": 2,
+   "ms": 1203,
+   "calls": 32,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00799",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1380,
+   "calls": 48,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_01079",
+   "pool": 50,
+   "pool_hit": true,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": true,
+    "20": true
+   },
+   "after": {
+    "1": true,
+    "3": true,
+    "5": true,
+    "10": true,
+    "20": true
+   },
+   "gold_rank_before": 10,
+   "gold_rank_after": 1,
+   "ms": 1531,
+   "calls": 44,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_01148",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1324,
+   "calls": 43,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00684",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1325,
+   "calls": 47,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_01936",
+   "pool": 50,
+   "pool_hit": true,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": true
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": true,
+    "10": true,
+    "20": true
+   },
+   "gold_rank_before": 14,
+   "gold_rank_after": 4,
+   "ms": 1229,
+   "calls": 34,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_01928",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1567,
+   "calls": 42,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_01930",
+   "pool": 50,
+   "pool_hit": true,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": true
+   },
+   "after": {
+    "1": false,
+    "3": true,
+    "5": true,
+    "10": true,
+    "20": true
+   },
+   "gold_rank_before": 17,
+   "gold_rank_after": 2,
+   "ms": 1524,
+   "calls": 43,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_03069",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1567,
+   "calls": 49,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00222",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1525,
+   "calls": 50,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00995",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1802,
+   "calls": 49,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_01198",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1303,
+   "calls": 47,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00917",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1818,
+   "calls": 50,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_01279",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1448,
+   "calls": 43,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00563",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1220,
+   "calls": 28,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00757",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1492,
+   "calls": 47,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00476",
+   "pool": 50,
+   "pool_hit": true,
+   "before": {
+    "1": true,
+    "3": true,
+    "5": true,
+    "10": true,
+    "20": true
+   },
+   "after": {
+    "1": true,
+    "3": true,
+    "5": true,
+    "10": true,
+    "20": true
+   },
+   "gold_rank_before": 1,
+   "gold_rank_after": 1,
+   "ms": 1234,
+   "calls": 38,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_01028",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 646,
+   "calls": 19,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00723",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1750,
+   "calls": 48,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00720",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1393,
+   "calls": 39,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_01351",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1300,
+   "calls": 40,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_01964",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1256,
+   "calls": 35,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_01981",
+   "pool": 50,
+   "pool_hit": true,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": true,
+    "3": true,
+    "5": true,
+    "10": true,
+    "20": true
+   },
+   "gold_rank_before": 25,
+   "gold_rank_after": 1,
+   "ms": 844,
+   "calls": 16,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_05718",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1348,
+   "calls": 31,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_04254",
+   "pool": 50,
+   "pool_hit": true,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": true,
+    "10": true,
+    "20": true
+   },
+   "after": {
+    "1": false,
+    "3": true,
+    "5": true,
+    "10": true,
+    "20": true
+   },
+   "gold_rank_before": 4,
+   "gold_rank_after": 2,
+   "ms": 806,
+   "calls": 22,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00070",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1478,
+   "calls": 45,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_02608",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1492,
+   "calls": 37,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_04417",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1557,
+   "calls": 44,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00685",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1601,
+   "calls": 47,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_01077",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1197,
+   "calls": 36,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_01275",
+   "pool": 50,
+   "pool_hit": true,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": true
+   },
+   "after": {
+    "1": false,
+    "3": true,
+    "5": true,
+    "10": true,
+    "20": true
+   },
+   "gold_rank_before": 17,
+   "gold_rank_after": 3,
+   "ms": 1011,
+   "calls": 28,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00288",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 2007,
+   "calls": 47,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00460",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1191,
+   "calls": 31,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_01902",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 927,
+   "calls": 25,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_04660",
+   "pool": 50,
+   "pool_hit": true,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": true,
+    "3": true,
+    "5": true,
+    "10": true,
+    "20": true
+   },
+   "gold_rank_before": 48,
+   "gold_rank_after": 1,
+   "ms": 986,
+   "calls": 29,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_03838",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1353,
+   "calls": 44,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_07661",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1502,
+   "calls": 47,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_10285",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1520,
+   "calls": 49,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00517",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1625,
+   "calls": 49,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_01091",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 2164,
+   "calls": 48,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00678",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1552,
+   "calls": 44,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_01290",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1304,
+   "calls": 43,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00464",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1187,
+   "calls": 33,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00494",
+   "pool": 50,
+   "pool_hit": true,
+   "before": {
+    "1": false,
+    "3": true,
+    "5": true,
+    "10": true,
+    "20": true
+   },
+   "after": {
+    "1": true,
+    "3": true,
+    "5": true,
+    "10": true,
+    "20": true
+   },
+   "gold_rank_before": 2,
+   "gold_rank_after": 1,
+   "ms": 604,
+   "calls": 14,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00585",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1267,
+   "calls": 41,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_03473",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1244,
+   "calls": 38,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_09724",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1816,
+   "calls": 40,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_06272",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1590,
+   "calls": 49,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_10130",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1566,
+   "calls": 44,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_02981",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1763,
+   "calls": 49,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_01346",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 4354,
+   "calls": 40,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00005",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1514,
+   "calls": 46,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_04209",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1264,
+   "calls": 44,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_05915",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1803,
+   "calls": 49,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00790",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1498,
+   "calls": 40,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_01107",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 998,
+   "calls": 35,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_01244",
+   "pool": 50,
+   "pool_hit": true,
+   "before": {
+    "1": false,
+    "3": true,
+    "5": true,
+    "10": true,
+    "20": true
+   },
+   "after": {
+    "1": false,
+    "3": true,
+    "5": true,
+    "10": true,
+    "20": true
+   },
+   "gold_rank_before": 3,
+   "gold_rank_after": 2,
+   "ms": 1278,
+   "calls": 15,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00839",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1078,
+   "calls": 21,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00822",
+   "pool": 50,
+   "pool_hit": true,
+   "before": {
+    "1": false,
+    "3": true,
+    "5": true,
+    "10": true,
+    "20": true
+   },
+   "after": {
+    "1": true,
+    "3": true,
+    "5": true,
+    "10": true,
+    "20": true
+   },
+   "gold_rank_before": 2,
+   "gold_rank_after": 1,
+   "ms": 699,
+   "calls": 19,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_04103",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1440,
+   "calls": 40,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_03471",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1011,
+   "calls": 33,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_04854",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 900,
+   "calls": 22,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_10136",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1039,
+   "calls": 36,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00956",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 945,
+   "calls": 28,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00669",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1293,
+   "calls": 38,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00711",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1581,
+   "calls": 49,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00651",
+   "pool": 50,
+   "pool_hit": true,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": true,
+    "20": true
+   },
+   "after": {
+    "1": true,
+    "3": true,
+    "5": true,
+    "10": true,
+    "20": true
+   },
+   "gold_rank_before": 9,
+   "gold_rank_after": 1,
+   "ms": 1258,
+   "calls": 38,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_01484",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1213,
+   "calls": 38,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_01488",
+   "pool": 50,
+   "pool_hit": true,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": true,
+    "10": true,
+    "20": true
+   },
+   "after": {
+    "1": true,
+    "3": true,
+    "5": true,
+    "10": true,
+    "20": true
+   },
+   "gold_rank_before": 4,
+   "gold_rank_after": 1,
+   "ms": 1269,
+   "calls": 43,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_01490",
+   "pool": 50,
+   "pool_hit": true,
+   "before": {
+    "1": true,
+    "3": true,
+    "5": true,
+    "10": true,
+    "20": true
+   },
+   "after": {
+    "1": true,
+    "3": true,
+    "5": true,
+    "10": true,
+    "20": true
+   },
+   "gold_rank_before": 1,
+   "gold_rank_after": 1,
+   "ms": 937,
+   "calls": 26,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_01491",
+   "pool": 50,
+   "pool_hit": true,
+   "before": {
+    "1": true,
+    "3": true,
+    "5": true,
+    "10": true,
+    "20": true
+   },
+   "after": {
+    "1": true,
+    "3": true,
+    "5": true,
+    "10": true,
+    "20": true
+   },
+   "gold_rank_before": 1,
+   "gold_rank_after": 1,
+   "ms": 1259,
+   "calls": 33,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_01487",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1313,
+   "calls": 44,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00299",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1463,
+   "calls": 42,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_02119",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1598,
+   "calls": 48,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00206",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1627,
+   "calls": 50,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00394",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1559,
+   "calls": 49,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_02049",
+   "pool": 50,
+   "pool_hit": true,
+   "before": {
+    "1": true,
+    "3": true,
+    "5": true,
+    "10": true,
+    "20": true
+   },
+   "after": {
+    "1": true,
+    "3": true,
+    "5": true,
+    "10": true,
+    "20": true
+   },
+   "gold_rank_before": 1,
+   "gold_rank_after": 1,
+   "ms": 1031,
+   "calls": 36,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_10499",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1580,
+   "calls": 50,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_04412",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1285,
+   "calls": 46,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_03031",
+   "pool": 50,
+   "pool_hit": true,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": true,
+    "5": true,
+    "10": true,
+    "20": true
+   },
+   "gold_rank_before": 41,
+   "gold_rank_after": 2,
+   "ms": 918,
+   "calls": 28,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_03718",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1423,
+   "calls": 48,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_04171",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1300,
+   "calls": 41,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_03849",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1726,
+   "calls": 36,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_01254",
+   "pool": 50,
+   "pool_hit": true,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": true,
+    "20": true
+   },
+   "after": {
+    "1": true,
+    "3": true,
+    "5": true,
+    "10": true,
+    "20": true
+   },
+   "gold_rank_before": 10,
+   "gold_rank_after": 1,
+   "ms": 672,
+   "calls": 20,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00382",
+   "pool": 50,
+   "pool_hit": true,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": true,
+    "5": true,
+    "10": true,
+    "20": true
+   },
+   "gold_rank_before": 32,
+   "gold_rank_after": 2,
+   "ms": 652,
+   "calls": 15,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_01911",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1564,
+   "calls": 42,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_01912",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1674,
+   "calls": 49,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00407",
+   "pool": 50,
+   "pool_hit": true,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": true,
+    "3": true,
+    "5": true,
+    "10": true,
+    "20": true
+   },
+   "gold_rank_before": 29,
+   "gold_rank_after": 1,
+   "ms": 1568,
+   "calls": 47,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_04700",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1592,
+   "calls": 48,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00552",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1565,
+   "calls": 50,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_04458",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1004,
+   "calls": 34,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_03282",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1512,
+   "calls": 50,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_04302",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 2165,
+   "calls": 46,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_03531",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 7418,
+   "calls": 45,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_04080",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 2484,
+   "calls": 47,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_01163",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1581,
+   "calls": 50,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00080",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1477,
+   "calls": 46,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_04980",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1686,
+   "calls": 50,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_01009",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1557,
+   "calls": 50,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00735",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1540,
+   "calls": 47,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_01328",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1235,
+   "calls": 42,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_03620",
+   "pool": 50,
+   "pool_hit": true,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": true,
+    "3": true,
+    "5": true,
+    "10": true,
+    "20": true
+   },
+   "gold_rank_before": 25,
+   "gold_rank_after": 1,
+   "ms": 1308,
+   "calls": 46,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_04481",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1829,
+   "calls": 50,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_01482",
+   "pool": 50,
+   "pool_hit": true,
+   "before": {
+    "1": true,
+    "3": true,
+    "5": true,
+    "10": true,
+    "20": true
+   },
+   "after": {
+    "1": true,
+    "3": true,
+    "5": true,
+    "10": true,
+    "20": true
+   },
+   "gold_rank_before": 1,
+   "gold_rank_after": 1,
+   "ms": 1357,
+   "calls": 47,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00705",
+   "pool": 50,
+   "pool_hit": true,
+   "before": {
+    "1": true,
+    "3": true,
+    "5": true,
+    "10": true,
+    "20": true
+   },
+   "after": {
+    "1": true,
+    "3": true,
+    "5": true,
+    "10": true,
+    "20": true
+   },
+   "gold_rank_before": 1,
+   "gold_rank_after": 1,
+   "ms": 1160,
+   "calls": 30,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00882",
+   "pool": 50,
+   "pool_hit": true,
+   "before": {
+    "1": true,
+    "3": true,
+    "5": true,
+    "10": true,
+    "20": true
+   },
+   "after": {
+    "1": true,
+    "3": true,
+    "5": true,
+    "10": true,
+    "20": true
+   },
+   "gold_rank_before": 1,
+   "gold_rank_after": 1,
+   "ms": 1323,
+   "calls": 34,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_01474",
+   "pool": 50,
+   "pool_hit": true,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": true
+   },
+   "after": {
+    "1": true,
+    "3": true,
+    "5": true,
+    "10": true,
+    "20": true
+   },
+   "gold_rank_before": 11,
+   "gold_rank_after": 1,
+   "ms": 1231,
+   "calls": 39,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_01476",
+   "pool": 50,
+   "pool_hit": true,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": true,
+    "10": true,
+    "20": true
+   },
+   "after": {
+    "1": true,
+    "3": true,
+    "5": true,
+    "10": true,
+    "20": true
+   },
+   "gold_rank_before": 4,
+   "gold_rank_after": 1,
+   "ms": 989,
+   "calls": 34,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00302",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1878,
+   "calls": 50,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00702",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1406,
+   "calls": 46,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_02416",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1607,
+   "calls": 49,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00283",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1169,
+   "calls": 15,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00724",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1485,
+   "calls": 44,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_02419",
+   "pool": 50,
+   "pool_hit": true,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": true,
+    "3": true,
+    "5": true,
+    "10": true,
+    "20": true
+   },
+   "gold_rank_before": 32,
+   "gold_rank_after": 1,
+   "ms": 1432,
+   "calls": 36,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00746",
+   "pool": 50,
+   "pool_hit": true,
+   "before": {
+    "1": true,
+    "3": true,
+    "5": true,
+    "10": true,
+    "20": true
+   },
+   "after": {
+    "1": true,
+    "3": true,
+    "5": true,
+    "10": true,
+    "20": true
+   },
+   "gold_rank_before": 1,
+   "gold_rank_after": 1,
+   "ms": 792,
+   "calls": 13,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00521",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 627,
+   "calls": 17,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00601",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 955,
+   "calls": 26,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00603",
+   "pool": 50,
+   "pool_hit": true,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": true,
+    "20": true
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": true,
+    "20": true
+   },
+   "gold_rank_before": 6,
+   "gold_rank_after": 10,
+   "ms": 534,
+   "calls": 5,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00605",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 652,
+   "calls": 21,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00606",
+   "pool": 50,
+   "pool_hit": true,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": true,
+    "20": true
+   },
+   "gold_rank_before": 28,
+   "gold_rank_after": 9,
+   "ms": 624,
+   "calls": 15,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00859",
+   "pool": 50,
+   "pool_hit": true,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": true,
+    "20": true
+   },
+   "after": {
+    "1": true,
+    "3": true,
+    "5": true,
+    "10": true,
+    "20": true
+   },
+   "gold_rank_before": 8,
+   "gold_rank_after": 1,
+   "ms": 1481,
+   "calls": 26,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_02024",
+   "pool": 50,
+   "pool_hit": true,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": true,
+    "5": true,
+    "10": true,
+    "20": true
+   },
+   "gold_rank_before": 30,
+   "gold_rank_after": 2,
+   "ms": 1437,
+   "calls": 41,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00216",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1529,
+   "calls": 50,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00215",
+   "pool": 50,
+   "pool_hit": true,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": true
+   },
+   "after": {
+    "1": false,
+    "3": true,
+    "5": true,
+    "10": true,
+    "20": true
+   },
+   "gold_rank_before": 18,
+   "gold_rank_after": 3,
+   "ms": 1398,
+   "calls": 37,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00566",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1327,
+   "calls": 45,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_06247",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1557,
+   "calls": 50,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_04784",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1562,
+   "calls": 49,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_06741",
+   "pool": 50,
+   "pool_hit": false,
+   "before": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "after": {
+    "1": false,
+    "3": false,
+    "5": false,
+    "10": false,
+    "20": false
+   },
+   "gold_rank_before": 0,
+   "gold_rank_after": 0,
+   "ms": 1194,
+   "calls": 37,
+   "failed": 0
+  }
+ ],
+ "cost_note": "1,530 pages were also in the dense pool and read from the cache; the jev block counts the other 5,945 requests."
+}
