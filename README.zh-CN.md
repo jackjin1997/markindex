@@ -121,6 +121,28 @@ const { evidence } = await retrieve(lib, '员工辞职需要提前多久通知�
 { "mcpServers": { "markindex": { "command": "npx", "args": ["markindex", "mcp", "/path/to/docs"] } } }
 ```
 
+### 可选：重排搜索结果（实验性）
+
+默认关闭。`search_documents` 是关键词搜索，按 BM25 排序。加上 `--rerank jev` 后，server 取关键词命中的前 50 条，让 [Jev](https://docs.typesafe.ai/api)（TypeSafe 的托管决策模型，只回答是非题并给出概率，不生成文本）逐条判断是否有助于回答问题，再返回最相关的几条。此时工具多一个可选参数 `intent`：Agent 用一句完整的话说明要找什么，重排按这句话判断，而不是按关键词。每条结果带 0 到 1 的 `relevance`，结果里注明打了多少条分。
+
+```bash
+TYPESAFE_API_KEY=... npx markindex mcp /path/to/docs --rerank jev
+```
+
+- **会把文本发给第三方**：每次搜索会把问题和每个候选章节最多 8000 字符的文本发到模型服务（`TYPESAFE_API_KEY`：api.typesafe.ai；`OPENROUTER_API_KEY`：OpenRouter；`JEV_BASE_URL` + `JEV_API_KEY`：自定义地址）。不能离开本机的文档不要开启。server 启动时会打印目标地址。
+- **耗时与费用**：每个候选一次请求，我们的测试中每次搜索约 1.5 秒、四分之一美分。模型失败或超过 8 秒时，返回关键词原始排序。
+- **目前对效果的了解**：在 BrowseComp-Plus（100,195 篇网页）的 50 题试点中，Agent 用重排后的搜索答对 90%，不重排是 82%，这个样本量下差异不显著（4 题对 0 题，p = 0.125）。在 FinanceBench 上，Agent 靠浏览目录已能找到页面，检索更准并没有提高正确率。详见 [`eval/README.md`](eval/README.md#12-experiments-with-a-decision-model)。当前发布的形态（由 Agent 填写 `intent`，判断时带上文档路径）尚未做过基准评测。
+
+库 API 中可传入任何带 `score()` 方法的对象，或用内置的：
+
+```ts
+import { jevReranker, openLibrary } from 'markindex'
+
+const lib = openLibrary({ root: './docs', rerank: { reranker: jevReranker() } }) // 密钥取自环境变量
+await lib.callTool('search_documents', { query: '离职 通知期', intent: '员工辞职需要提前多久通知？' })
+// createMcpServer(lib) 与 createAiSdkTools(lib) 读取 `lib.contract`，会带上 `intent`。
+```
+
 ## 工具
 
 `browse_documents`（按文件夹浏览，默认发现入口）、`get_document`（元数据与是否需要先看结构）、
@@ -135,7 +157,7 @@ const { evidence } = await retrieve(lib, '员工辞职需要提前多久通知�
 
 - **只读、限定在文档库内**：工具只读取你指定的那个文档库的索引，从不读取库外文件、不写入、不访问网络；路径与节点 id 都在索引中查找，而不是直接访问磁盘。
 - **文档是不可信输入**：工具输出是文档原文，LLM 摘要 / 描述也由原文生成。文档中可能含有试图操纵 Agent 的文字（提示词注入）。请把工具返回的一切当作数据而非指令——尤其当文档库包含第三方或用户提交的文件，且 Agent 同时拥有发送、写入、执行等有副作用的工具时。
-- 摘要与 `retrieve()` 会把文档内容发送给你配置的模型服务商；单纯建索引不产生任何网络请求。
+- 摘要与 `retrieve()` 会把文档内容发送给你配置的模型服务商；单纯建索引不产生任何网络请求。搜索默认也不产生网络请求；开启 `--rerank` 后，候选章节的文本会发送给重排服务。
 
 ## 设计要点
 
