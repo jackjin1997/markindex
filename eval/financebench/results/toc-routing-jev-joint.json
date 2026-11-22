@@ -1,0 +1,6508 @@
+{
+ "benchmark": "FinanceBench open-source (150)",
+ "test": "table-of-contents navigation by a decision model: folder -> filing -> sections, titles only",
+ "model": "jev-1.14.0",
+ "questions": 150,
+ "beam": 3,
+ "preview_chars": 0,
+ "section_scoring": "joint",
+ "right_filing": {
+  "@1": 82,
+  "@3": 93.33,
+  "ranked": 93.33
+ },
+ "mean_route_ms": 0,
+ "flat_oracle_filing": {
+  "evidence_page_recall": {
+   "@1": 58.67,
+   "@3": 80,
+   "@5": 84,
+   "@10": 88,
+   "@20": 92.67
+  },
+  "evidence_in_top_sections": {
+   "@1": 62,
+   "@3": 82,
+   "@5": 85.33,
+   "@10": 88
+  }
+ },
+ "flat_end_to_end": {
+  "evidence_page_recall": {
+   "@1": 49.33,
+   "@3": 66,
+   "@5": 69.33,
+   "@10": 71.33,
+   "@20": 75.33
+  },
+  "evidence_in_top_sections": {
+   "@1": 52,
+   "@3": 68.67,
+   "@5": 70,
+   "@10": 72
+  }
+ },
+ "flat_mean_ms": 511,
+ "mean_sections_per_filing": 295,
+ "jev": {
+  "calls": 218,
+  "cached": 1334,
+  "failed": 0,
+  "inputTokens": 4861419,
+  "callMs": 108120,
+  "model": "jev-1.14.0"
+ },
+ "results": [
+  {
+   "id": "financebench_id_03029",
+   "filing_rank": 1,
+   "route_ms": 1,
+   "sections": 306,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 306
+    },
+    "e2e": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 306
+    },
+    "ms": 925
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_04672",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 306,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 306
+    },
+    "e2e": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 306
+    },
+    "ms": 504
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00499",
+   "filing_rank": 1,
+   "route_ms": 1,
+   "sections": 719,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 719
+    },
+    "e2e": {
+     "page": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 719
+    },
+    "ms": 857
+   },
+   "calls": 3,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_01226",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 719,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 719
+    },
+    "e2e": {
+     "page": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 719
+    },
+    "ms": 600
+   },
+   "calls": 3,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_01865",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 719,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 719
+    },
+    "e2e": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 719
+    },
+    "ms": 707
+   },
+   "calls": 3,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00807",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 188,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 188
+    },
+    "e2e": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 188
+    },
+    "ms": 397
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00941",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 188,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false,
+      "20": false
+     },
+     "node": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false
+     },
+     "ranked": 188
+    },
+    "e2e": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false,
+      "20": false
+     },
+     "node": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false
+     },
+     "ranked": 188
+    },
+    "ms": 521
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_01858",
+   "filing_rank": 0,
+   "route_ms": 0,
+   "sections": 188,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false
+     },
+     "ranked": 188
+    },
+    "e2e": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false,
+      "20": false
+     },
+     "node": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false
+     },
+     "ranked": 719
+    },
+    "ms": 474
+   },
+   "calls": 4,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_02987",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 475,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 475
+    },
+    "e2e": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 475
+    },
+    "ms": 575
+   },
+   "calls": 2,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_07966",
+   "filing_rank": 1,
+   "route_ms": 1,
+   "sections": 475,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 475
+    },
+    "e2e": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 475
+    },
+    "ms": 604
+   },
+   "calls": 2,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_04735",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 359,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 359
+    },
+    "e2e": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 359
+    },
+    "ms": 531
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_07507",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 349,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 349
+    },
+    "e2e": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 349
+    },
+    "ms": 511
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_03856",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 343,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 343
+    },
+    "e2e": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 343
+    },
+    "ms": 510
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00438",
+   "filing_rank": 1,
+   "route_ms": 1,
+   "sections": 352,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 352
+    },
+    "e2e": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 352
+    },
+    "ms": 516
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00591",
+   "filing_rank": 1,
+   "route_ms": 1,
+   "sections": 352,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 352
+    },
+    "e2e": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 352
+    },
+    "ms": 462
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_01319",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 258,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 258
+    },
+    "e2e": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 258
+    },
+    "ms": 417
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00540",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 258,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 258
+    },
+    "e2e": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 258
+    },
+    "ms": 558
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_10420",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 258,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 258
+    },
+    "e2e": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 258
+    },
+    "ms": 611
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_06655",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 210,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 210
+    },
+    "e2e": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 210
+    },
+    "ms": 523
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_08135",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 210,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 210
+    },
+    "e2e": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 210
+    },
+    "ms": 370
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_08286",
+   "filing_rank": 1,
+   "route_ms": 1,
+   "sections": 210,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 210
+    },
+    "e2e": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 210
+    },
+    "ms": 428
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_03882",
+   "filing_rank": 1,
+   "route_ms": 1,
+   "sections": 303,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 303
+    },
+    "e2e": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 303
+    },
+    "ms": 461
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_01935",
+   "filing_rank": 0,
+   "route_ms": 1,
+   "sections": 32,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 32
+    },
+    "e2e": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false,
+      "20": false
+     },
+     "node": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false
+     },
+     "ranked": 94
+    },
+    "ms": 310
+   },
+   "calls": 2,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00799",
+   "filing_rank": 1,
+   "route_ms": 1,
+   "sections": 304,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 304
+    },
+    "e2e": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 304
+    },
+    "ms": 459
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_01079",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 304,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 304
+    },
+    "e2e": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 304
+    },
+    "ms": 465
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_01148",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 304,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 304
+    },
+    "e2e": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 304
+    },
+    "ms": 477
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00684",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 304,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": false,
+      "5": true,
+      "10": true
+     },
+     "ranked": 304
+    },
+    "e2e": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": false,
+      "5": true,
+      "10": true
+     },
+     "ranked": 304
+    },
+    "ms": 482
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_01936",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 103,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 103
+    },
+    "e2e": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 103
+    },
+    "ms": 388
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_01928",
+   "filing_rank": 2,
+   "route_ms": 0,
+   "sections": 32,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 32
+    },
+    "e2e": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false,
+      "20": false
+     },
+     "node": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false
+     },
+     "ranked": 304
+    },
+    "ms": 332
+   },
+   "calls": 2,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_01930",
+   "filing_rank": 2,
+   "route_ms": 0,
+   "sections": 32,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 32
+    },
+    "e2e": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false,
+      "20": false
+     },
+     "node": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false
+     },
+     "ranked": 304
+    },
+    "ms": 328
+   },
+   "calls": 2,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_03069",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 477,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 477
+    },
+    "e2e": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 477
+    },
+    "ms": 1016
+   },
+   "calls": 2,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00222",
+   "filing_rank": 1,
+   "route_ms": 1,
+   "sections": 270,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 270
+    },
+    "e2e": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 270
+    },
+    "ms": 518
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00995",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 270,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 270
+    },
+    "e2e": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 270
+    },
+    "ms": 467
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_01198",
+   "filing_rank": 1,
+   "route_ms": 1,
+   "sections": 270,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 270
+    },
+    "e2e": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 270
+    },
+    "ms": 476
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00917",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 270,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 270
+    },
+    "e2e": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 270
+    },
+    "ms": 472
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_01279",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 270,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 270
+    },
+    "e2e": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 270
+    },
+    "ms": 425
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00563",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 270,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 270
+    },
+    "e2e": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 270
+    },
+    "ms": 421
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00757",
+   "filing_rank": 1,
+   "route_ms": 1,
+   "sections": 270,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 270
+    },
+    "e2e": {
+     "page": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 270
+    },
+    "ms": 476
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00476",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 480,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false,
+      "20": false
+     },
+     "node": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false
+     },
+     "ranked": 480
+    },
+    "e2e": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false,
+      "20": false
+     },
+     "node": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false
+     },
+     "ranked": 480
+    },
+    "ms": 594
+   },
+   "calls": 2,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_01028",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 480,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 480
+    },
+    "e2e": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 480
+    },
+    "ms": 615
+   },
+   "calls": 2,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00723",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 480,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 480
+    },
+    "e2e": {
+     "page": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 480
+    },
+    "ms": 584
+   },
+   "calls": 2,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00720",
+   "filing_rank": 1,
+   "route_ms": 1,
+   "sections": 480,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 480
+    },
+    "e2e": {
+     "page": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 480
+    },
+    "ms": 584
+   },
+   "calls": 2,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_01351",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 480,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false,
+      "20": false
+     },
+     "node": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false
+     },
+     "ranked": 480
+    },
+    "e2e": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false,
+      "20": false
+     },
+     "node": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false
+     },
+     "ranked": 480
+    },
+    "ms": 539
+   },
+   "calls": 2,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_01964",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 480,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 480
+    },
+    "e2e": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 480
+    },
+    "ms": 617
+   },
+   "calls": 2,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_01981",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 480,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false
+     },
+     "ranked": 480
+    },
+    "e2e": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false
+     },
+     "ranked": 480
+    },
+    "ms": 598
+   },
+   "calls": 2,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_05718",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 306,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 306
+    },
+    "e2e": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 306
+    },
+    "ms": 452
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_04254",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 324,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 324
+    },
+    "e2e": {
+     "page": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 324
+    },
+    "ms": 488
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00070",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 498,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 498
+    },
+    "e2e": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 498
+    },
+    "ms": 712
+   },
+   "calls": 2,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_02608",
+   "filing_rank": 1,
+   "route_ms": 1,
+   "sections": 259,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 259
+    },
+    "e2e": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 259
+    },
+    "ms": 426
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_04417",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 290,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 290
+    },
+    "e2e": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 290
+    },
+    "ms": 446
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00685",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 253,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 253
+    },
+    "e2e": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 253
+    },
+    "ms": 482
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_01077",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 253,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 253
+    },
+    "e2e": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 253
+    },
+    "ms": 720
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_01275",
+   "filing_rank": 1,
+   "route_ms": 1,
+   "sections": 253,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 253
+    },
+    "e2e": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 253
+    },
+    "ms": 444
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00288",
+   "filing_rank": 0,
+   "route_ms": 0,
+   "sections": 80,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": false,
+      "5": true,
+      "10": true
+     },
+     "ranked": 80
+    },
+    "e2e": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false,
+      "20": false
+     },
+     "node": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false
+     },
+     "ranked": 100
+    },
+    "ms": 340
+   },
+   "calls": 2,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00460",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 80,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 80
+    },
+    "e2e": {
+     "page": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 80
+    },
+    "ms": 340
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_01902",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 80,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 80
+    },
+    "e2e": {
+     "page": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 80
+    },
+    "ms": 1085
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_04660",
+   "filing_rank": 1,
+   "route_ms": 1,
+   "sections": 243,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 243
+    },
+    "e2e": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 243
+    },
+    "ms": 441
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_03838",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 306,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 306
+    },
+    "e2e": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 306
+    },
+    "ms": 456
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_07661",
+   "filing_rank": 1,
+   "route_ms": 1,
+   "sections": 306,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 306
+    },
+    "e2e": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 306
+    },
+    "ms": 472
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_10285",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 302,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 302
+    },
+    "e2e": {
+     "page": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 302
+    },
+    "ms": 492
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00517",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 397,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 397
+    },
+    "e2e": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 397
+    },
+    "ms": 688
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_01091",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 397,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 397
+    },
+    "e2e": {
+     "page": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 397
+    },
+    "ms": 534
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00678",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 397,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 397
+    },
+    "e2e": {
+     "page": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 397
+    },
+    "ms": 493
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_01290",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 397,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": false,
+      "5": true,
+      "10": true
+     },
+     "ranked": 397
+    },
+    "e2e": {
+     "page": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": false,
+      "5": true,
+      "10": true
+     },
+     "ranked": 397
+    },
+    "ms": 492
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00464",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 397,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 397
+    },
+    "e2e": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 397
+    },
+    "ms": 533
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00494",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 397,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false,
+      "20": false
+     },
+     "node": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false
+     },
+     "ranked": 397
+    },
+    "e2e": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false,
+      "20": false
+     },
+     "node": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false
+     },
+     "ranked": 397
+    },
+    "ms": 532
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00585",
+   "filing_rank": 1,
+   "route_ms": 1,
+   "sections": 397,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false
+     },
+     "ranked": 397
+    },
+    "e2e": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false
+     },
+     "ranked": 397
+    },
+    "ms": 504
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_03473",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 326,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 326
+    },
+    "e2e": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 326
+    },
+    "ms": 485
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_09724",
+   "filing_rank": 1,
+   "route_ms": 1,
+   "sections": 354,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 354
+    },
+    "e2e": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 354
+    },
+    "ms": 475
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_06272",
+   "filing_rank": 1,
+   "route_ms": 1,
+   "sections": 335,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 335
+    },
+    "e2e": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 335
+    },
+    "ms": 541
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_10130",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 301,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 301
+    },
+    "e2e": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 301
+    },
+    "ms": 459
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_02981",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 321,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false,
+      "20": false
+     },
+     "node": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false
+     },
+     "ranked": 321
+    },
+    "e2e": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false,
+      "20": false
+     },
+     "node": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false
+     },
+     "ranked": 321
+    },
+    "ms": 469
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_01346",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 370,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": true
+     },
+     "ranked": 370
+    },
+    "e2e": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": true
+     },
+     "ranked": 370
+    },
+    "ms": 530
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00005",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 370,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false,
+      "20": false
+     },
+     "node": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false
+     },
+     "ranked": 370
+    },
+    "e2e": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false,
+      "20": false
+     },
+     "node": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false
+     },
+     "ranked": 370
+    },
+    "ms": 489
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_04209",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 202,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 202
+    },
+    "e2e": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 202
+    },
+    "ms": 369
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_05915",
+   "filing_rank": 1,
+   "route_ms": 1,
+   "sections": 665,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 665
+    },
+    "e2e": {
+     "page": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 665
+    },
+    "ms": 954
+   },
+   "calls": 2,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00790",
+   "filing_rank": 1,
+   "route_ms": 1,
+   "sections": 462,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 462
+    },
+    "e2e": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 462
+    },
+    "ms": 573
+   },
+   "calls": 2,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_01107",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 462,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 462
+    },
+    "e2e": {
+     "page": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 462
+    },
+    "ms": 582
+   },
+   "calls": 2,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_01244",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 462,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 462
+    },
+    "e2e": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 462
+    },
+    "ms": 570
+   },
+   "calls": 2,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00839",
+   "filing_rank": 2,
+   "route_ms": 0,
+   "sections": 16,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 16
+    },
+    "e2e": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false,
+      "20": false
+     },
+     "node": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false
+     },
+     "ranked": 9
+    },
+    "ms": 409
+   },
+   "calls": 2,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00822",
+   "filing_rank": 0,
+   "route_ms": 0,
+   "sections": 9,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 9
+    },
+    "e2e": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false,
+      "20": false
+     },
+     "node": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false
+     },
+     "ranked": 261
+    },
+    "ms": 311
+   },
+   "calls": 2,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_04103",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 254,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 254
+    },
+    "e2e": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 254
+    },
+    "ms": 412
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_03471",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 235,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 235
+    },
+    "e2e": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 235
+    },
+    "ms": 431
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_04854",
+   "filing_rank": 1,
+   "route_ms": 1,
+   "sections": 235,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 235
+    },
+    "e2e": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 235
+    },
+    "ms": 421
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_10136",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 139,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false,
+      "20": false
+     },
+     "node": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false
+     },
+     "ranked": 139
+    },
+    "e2e": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false,
+      "20": false
+     },
+     "node": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false
+     },
+     "ranked": 139
+    },
+    "ms": 361
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00956",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 240,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 240
+    },
+    "e2e": {
+     "page": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 240
+    },
+    "ms": 478
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00669",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 240,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 240
+    },
+    "e2e": {
+     "page": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 240
+    },
+    "ms": 424
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00711",
+   "filing_rank": 1,
+   "route_ms": 1,
+   "sections": 240,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 240
+    },
+    "e2e": {
+     "page": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 240
+    },
+    "ms": 449
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00651",
+   "filing_rank": 0,
+   "route_ms": 0,
+   "sections": 35,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 35
+    },
+    "e2e": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false,
+      "20": false
+     },
+     "node": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false
+     },
+     "ranked": 240
+    },
+    "ms": 389
+   },
+   "calls": 2,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_01484",
+   "filing_rank": 2,
+   "route_ms": 1,
+   "sections": 35,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 35
+    },
+    "e2e": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false,
+      "20": false
+     },
+     "node": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false
+     },
+     "ranked": 240
+    },
+    "ms": 417
+   },
+   "calls": 2,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_01488",
+   "filing_rank": 2,
+   "route_ms": 1,
+   "sections": 37,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 37
+    },
+    "e2e": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false,
+      "20": false
+     },
+     "node": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false
+     },
+     "ranked": 7
+    },
+    "ms": 297
+   },
+   "calls": 2,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_01490",
+   "filing_rank": 2,
+   "route_ms": 0,
+   "sections": 37,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": false,
+      "5": true,
+      "10": true
+     },
+     "ranked": 37
+    },
+    "e2e": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false,
+      "20": false
+     },
+     "node": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false
+     },
+     "ranked": 7
+    },
+    "ms": 300
+   },
+   "calls": 2,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_01491",
+   "filing_rank": 2,
+   "route_ms": 1,
+   "sections": 37,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 37
+    },
+    "e2e": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false,
+      "20": false
+     },
+     "node": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false
+     },
+     "ranked": 7
+    },
+    "ms": 313
+   },
+   "calls": 2,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_01487",
+   "filing_rank": 2,
+   "route_ms": 0,
+   "sections": 35,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 35
+    },
+    "e2e": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false,
+      "20": false
+     },
+     "node": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false
+     },
+     "ranked": 26
+    },
+    "ms": 318
+   },
+   "calls": 2,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00299",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 366,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false
+     },
+     "ranked": 366
+    },
+    "e2e": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false
+     },
+     "ranked": 366
+    },
+    "ms": 539
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_02119",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 366,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": true
+     },
+     "ranked": 366
+    },
+    "e2e": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": true
+     },
+     "ranked": 366
+    },
+    "ms": 531
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00206",
+   "filing_rank": 1,
+   "route_ms": 1,
+   "sections": 904,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false,
+      "20": false
+     },
+     "node": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false
+     },
+     "ranked": 904
+    },
+    "e2e": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false,
+      "20": false
+     },
+     "node": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false
+     },
+     "ranked": 904
+    },
+    "ms": 932
+   },
+   "calls": 3,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00394",
+   "filing_rank": 2,
+   "route_ms": 0,
+   "sections": 386,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false
+     },
+     "ranked": 386
+    },
+    "e2e": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false,
+      "20": false
+     },
+     "node": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false
+     },
+     "ranked": 369
+    },
+    "ms": 470
+   },
+   "calls": 2,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_02049",
+   "filing_rank": 2,
+   "route_ms": 0,
+   "sections": 413,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 413
+    },
+    "e2e": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false,
+      "20": false
+     },
+     "node": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false
+     },
+     "ranked": 370
+    },
+    "ms": 526
+   },
+   "calls": 2,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_10499",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 326,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 326
+    },
+    "e2e": {
+     "page": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 326
+    },
+    "ms": 553
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_04412",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 243,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 243
+    },
+    "e2e": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 243
+    },
+    "ms": 432
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_03031",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 268,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 268
+    },
+    "e2e": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 268
+    },
+    "ms": 442
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_03718",
+   "filing_rank": 1,
+   "route_ms": 1,
+   "sections": 252,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 252
+    },
+    "e2e": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 252
+    },
+    "ms": 450
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_04171",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 221,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 221
+    },
+    "e2e": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 221
+    },
+    "ms": 394
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_03849",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 216,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 216
+    },
+    "e2e": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 216
+    },
+    "ms": 526
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_01254",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 457,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 457
+    },
+    "e2e": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 457
+    },
+    "ms": 1743
+   },
+   "calls": 2,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00382",
+   "filing_rank": 3,
+   "route_ms": 0,
+   "sections": 37,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 37
+    },
+    "e2e": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false,
+      "20": false
+     },
+     "node": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false
+     },
+     "ranked": 457
+    },
+    "ms": 374
+   },
+   "calls": 3,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_01911",
+   "filing_rank": 2,
+   "route_ms": 1,
+   "sections": 37,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": false,
+      "5": true,
+      "10": true
+     },
+     "ranked": 37
+    },
+    "e2e": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false,
+      "20": false
+     },
+     "node": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false
+     },
+     "ranked": 457
+    },
+    "ms": 323
+   },
+   "calls": 3,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_01912",
+   "filing_rank": 3,
+   "route_ms": 0,
+   "sections": 37,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 37
+    },
+    "e2e": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false,
+      "20": false
+     },
+     "node": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false
+     },
+     "ranked": 457
+    },
+    "ms": 331
+   },
+   "calls": 3,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00407",
+   "filing_rank": 1,
+   "route_ms": 1,
+   "sections": 97,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": true
+     },
+     "ranked": 97
+    },
+    "e2e": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": true
+     },
+     "ranked": 97
+    },
+    "ms": 324
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_04700",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 465,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 465
+    },
+    "e2e": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 465
+    },
+    "ms": 583
+   },
+   "calls": 2,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00552",
+   "filing_rank": 1,
+   "route_ms": 1,
+   "sections": 452,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 452
+    },
+    "e2e": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 452
+    },
+    "ms": 525
+   },
+   "calls": 2,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_04458",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 172,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 172
+    },
+    "e2e": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 172
+    },
+    "ms": 424
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_03282",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 177,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 177
+    },
+    "e2e": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 177
+    },
+    "ms": 370
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_04302",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 242,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 242
+    },
+    "e2e": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 242
+    },
+    "ms": 398
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_03531",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 244,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 244
+    },
+    "e2e": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 244
+    },
+    "ms": 438
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_04080",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 235,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 235
+    },
+    "e2e": {
+     "page": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 235
+    },
+    "ms": 484
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_01163",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 253,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 253
+    },
+    "e2e": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 253
+    },
+    "ms": 500
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00080",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 387,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 387
+    },
+    "e2e": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 387
+    },
+    "ms": 568
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_04980",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 460,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 460
+    },
+    "e2e": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 460
+    },
+    "ms": 541
+   },
+   "calls": 2,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_01009",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 598,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 598
+    },
+    "e2e": {
+     "page": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 598
+    },
+    "ms": 601
+   },
+   "calls": 2,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00735",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 598,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 598
+    },
+    "e2e": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 598
+    },
+    "ms": 581
+   },
+   "calls": 2,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_01328",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 598,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 598
+    },
+    "e2e": {
+     "page": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 598
+    },
+    "ms": 653
+   },
+   "calls": 2,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_03620",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 598,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 598
+    },
+    "e2e": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 598
+    },
+    "ms": 565
+   },
+   "calls": 2,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_04481",
+   "filing_rank": 1,
+   "route_ms": 1,
+   "sections": 598,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 598
+    },
+    "e2e": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 598
+    },
+    "ms": 586
+   },
+   "calls": 2,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_01482",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 9,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 9
+    },
+    "e2e": {
+     "page": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 9
+    },
+    "ms": 312
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00705",
+   "filing_rank": 2,
+   "route_ms": 0,
+   "sections": 210,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 210
+    },
+    "e2e": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false,
+      "20": false
+     },
+     "node": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false
+     },
+     "ranked": 9
+    },
+    "ms": 388
+   },
+   "calls": 2,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00882",
+   "filing_rank": 0,
+   "route_ms": 1,
+   "sections": 210,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": true
+     },
+     "ranked": 210
+    },
+    "e2e": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false,
+      "20": false
+     },
+     "node": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false
+     },
+     "ranked": 598
+    },
+    "ms": 536
+   },
+   "calls": 3,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_01474",
+   "filing_rank": 1,
+   "route_ms": 1,
+   "sections": 37,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 37
+    },
+    "e2e": {
+     "page": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 37
+    },
+    "ms": 404
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_01476",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 37,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 37
+    },
+    "e2e": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 37
+    },
+    "ms": 407
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00302",
+   "filing_rank": 1,
+   "route_ms": 1,
+   "sections": 385,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false
+     },
+     "ranked": 385
+    },
+    "e2e": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false
+     },
+     "ranked": 385
+    },
+    "ms": 613
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00702",
+   "filing_rank": 0,
+   "route_ms": 0,
+   "sections": 385,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false,
+      "20": false
+     },
+     "node": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false
+     },
+     "ranked": 385
+    },
+    "e2e": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false,
+      "20": false
+     },
+     "node": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false
+     },
+     "ranked": 475
+    },
+    "ms": 528
+   },
+   "calls": 3,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_02416",
+   "filing_rank": 2,
+   "route_ms": 1,
+   "sections": 385,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 385
+    },
+    "e2e": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false,
+      "20": false
+     },
+     "node": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false
+     },
+     "ranked": 350
+    },
+    "ms": 498
+   },
+   "calls": 2,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00283",
+   "filing_rank": 0,
+   "route_ms": 0,
+   "sections": 183,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 183
+    },
+    "e2e": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false,
+      "20": false
+     },
+     "node": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false
+     },
+     "ranked": 385
+    },
+    "ms": 398
+   },
+   "calls": 2,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00724",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 183,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 183
+    },
+    "e2e": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 183
+    },
+    "ms": 395
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_02419",
+   "filing_rank": 1,
+   "route_ms": 1,
+   "sections": 183,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 183
+    },
+    "e2e": {
+     "page": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 183
+    },
+    "ms": 432
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00746",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 241,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false,
+      "20": false
+     },
+     "node": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false
+     },
+     "ranked": 241
+    },
+    "e2e": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false,
+      "20": false
+     },
+     "node": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false
+     },
+     "ranked": 241
+    },
+    "ms": 720
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00521",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 241,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false
+     },
+     "ranked": 241
+    },
+    "e2e": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false
+     },
+     "ranked": 241
+    },
+    "ms": 418
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00601",
+   "filing_rank": 0,
+   "route_ms": 0,
+   "sections": 18,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 18
+    },
+    "e2e": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false,
+      "20": false
+     },
+     "node": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false
+     },
+     "ranked": 450
+    },
+    "ms": 289
+   },
+   "calls": 3,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00603",
+   "filing_rank": 3,
+   "route_ms": 1,
+   "sections": 18,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 18
+    },
+    "e2e": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false,
+      "20": false
+     },
+     "node": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false
+     },
+     "ranked": 241
+    },
+    "ms": 351
+   },
+   "calls": 2,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00605",
+   "filing_rank": 0,
+   "route_ms": 0,
+   "sections": 18,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 18
+    },
+    "e2e": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false,
+      "20": false
+     },
+     "node": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false
+     },
+     "ranked": 241
+    },
+    "ms": 557
+   },
+   "calls": 2,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00606",
+   "filing_rank": 3,
+   "route_ms": 1,
+   "sections": 18,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 18
+    },
+    "e2e": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false,
+      "20": false
+     },
+     "node": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false
+     },
+     "ranked": 241
+    },
+    "ms": 295
+   },
+   "calls": 2,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00859",
+   "filing_rank": 1,
+   "route_ms": 1,
+   "sections": 334,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 334
+    },
+    "e2e": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 334
+    },
+    "ms": 563
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_02024",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 334,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 334
+    },
+    "e2e": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 334
+    },
+    "ms": 527
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00216",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 335,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 335
+    },
+    "e2e": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 335
+    },
+    "ms": 539
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00215",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 335,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 335
+    },
+    "e2e": {
+     "page": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 335
+    },
+    "ms": 836
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_00566",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 335,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false,
+      "20": false
+     },
+     "node": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false
+     },
+     "ranked": 335
+    },
+    "e2e": {
+     "page": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false,
+      "20": false
+     },
+     "node": {
+      "1": false,
+      "3": false,
+      "5": false,
+      "10": false
+     },
+     "ranked": 335
+    },
+    "ms": 512
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_06247",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 581,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 581
+    },
+    "e2e": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 581
+    },
+    "ms": 804
+   },
+   "calls": 2,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_04784",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 235,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 235
+    },
+    "e2e": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 235
+    },
+    "ms": 556
+   },
+   "calls": 1,
+   "failed": 0
+  },
+  {
+   "id": "financebench_id_06741",
+   "filing_rank": 1,
+   "route_ms": 0,
+   "sections": 364,
+   "flat": {
+    "oracle": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 364
+    },
+    "e2e": {
+     "page": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true,
+      "20": true
+     },
+     "node": {
+      "1": true,
+      "3": true,
+      "5": true,
+      "10": true
+     },
+     "ranked": 364
+    },
+    "ms": 630
+   },
+   "calls": 1,
+   "failed": 0
+  }
+ ],
+ "timing_note": "Filing routing was read from the cache of the first run (results/toc-routing-jev.json: mean_route_ms 2175), so mean_route_ms and route_ms are 0 here. flat_mean_ms is the time to score one filing's sections in this run; the jev block counts the section-scoring requests only."
+}
