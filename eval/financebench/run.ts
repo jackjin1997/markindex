@@ -207,6 +207,7 @@ async function main() {
       'flat-chunks': { type: 'string' },
       toc: { type: 'boolean' },
       'toc-cache': { type: 'string' },
+      'toc-sections': { type: 'string' },
       base: { type: 'string', default: HERE },
     },
   })
@@ -284,7 +285,7 @@ async function main() {
         args: [
           '--import', pathToFileURL(join(HERE, '..', '..', 'node_modules', 'tsx', 'dist', 'loader.mjs')).href,
           join(HERE, 'toc_server.ts'), root, ...(v.db ? ['--db', resolve(v.db)] : []),
-          ...(v['toc-cache'] ? ['--cache', resolve(v['toc-cache'])] : []), '--log', `${out}.toc.jsonl`,
+          ...(v['toc-cache'] ? ['--cache', resolve(v['toc-cache'])] : []), ...(v['toc-sections'] ? ['--sections', v['toc-sections']] : []), '--log', `${out}.toc.jsonl`,
         ],
         env: Object.fromEntries(['TYPESAFE_API_KEY', 'OPENROUTER_API_KEY', 'JEV_BASE_URL', 'JEV_API_KEY', 'JEV_MODEL', 'JEV_CONCURRENCY'].map((k) => [k, `\${${k}:-}`])),
       },
@@ -300,7 +301,7 @@ async function main() {
       protocol: 'Mafin2.5: single library, judge prompt from VectifyAI/Mafin2.5-FinanceBench eval.py',
       model: v.model,
       judge_model: v['judge-model'],
-      server: v.toc ? 'markindex + locate_sections (toc_server.ts)' : serverName,
+      server: v.toc ? `markindex + locate_sections (toc_server.ts${v['toc-sections'] ? `, sections ${v['toc-sections']}` : ''})` : serverName,
       tools,
       created_at: new Date().toISOString(),
       summary: summarize(results),

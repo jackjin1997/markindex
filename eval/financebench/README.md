@@ -126,6 +126,7 @@ What this retrieval is worth for answering, with the same answer model and judge
 | Agent, MarkIndex, five tools | Sonnet 5.5 | 88.0% | $8.45 |
 | Agent, MarkIndex, five tools | Haiku 5.5 | 90.7% | $1.69 |
 | Agent, MarkIndex, five tools + `locate_sections` | Haiku 5.5 | 86.7% | $1.62 + $1.21 |
+| Agent, MarkIndex, five tools + `locate_sections`, joint title scoring | Haiku 5.5 | 86.0% | $1.57 + $0.37 |
 
 - **As a retriever it beats dense retrieval at the same page budget** (43 questions against 15, exact McNemar
   p = 0.0003) and matches twice the pages (26 against 19, p = 0.37). When an evidence page is among the ten pages
@@ -136,11 +137,19 @@ What this retrieval is worth for answering, with the same answer model and judge
   to the five tools. Every question used it, the mean number of turns fell from 6.4 to 5.6, and accuracy did not
   rise (1 question against 7, p = 0.07). The agent already finds the pages (it cites an evidence page on 78.7%
   of the questions without the tool, 77.3% with it); what is left are reading and calculation errors.
+- **A faster and better tool does not change that.** With joint title scoring (see the controls below;
+  `run.ts --toc --toc-sections joint`) a call takes 2.5 seconds instead of 11 and the right page comes first far
+  more often, yet the agent answers 129 of 150 questions, against 136 without the tool (0 questions against 7,
+  p = 0.016). It cites an evidence page as often (80.0% against 78.7%) and takes 1.3 fewer turns. One of the
+  seven is an answer the harness could not parse, and five of them are also lost with the slower tool: answers
+  that use another definition or period than the reference. Each setting was run once, so the run-to-run
+  variation of the agent is not known.
 
 10-K filings are a best case for this: they share one outline, and the questions name the company and the year.
 The model's scores vary by 0.01-0.03 between identical calls, which moves the recall figures by one to two points.
 Per-question files: [`results/toc-routing-jev.json`](results/toc-routing-jev.json),
-`results/single-toc-jev-top10-sonnet.json`, `results/agent-markindex-toc-haiku.json`.
+`results/single-toc-jev-top10-sonnet.json`, `results/agent-markindex-toc-haiku.json`,
+`results/agent-markindex-toc-joint-haiku.json`.
 
 **Two controls.** Navigating a document tree with this model is the method of DecisionRAG
 ([arXiv 2610.35868](https://arxiv.org/abs/2610.35868)), which scores the candidates of a level in one shared
