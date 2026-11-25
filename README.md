@@ -39,9 +39,10 @@ FinanceBench, 150 questions about SEC filings, all 367 filings in one library, t
 
 ## Why
 
-- **Structure-first, not chunk-first.** Long professional documents (filings, guidelines, laws, manuals) are
-  already organized by their authors. Navigating that outline keeps context intact and makes answers explainable
-  and citable; arbitrary chunks + vector similarity cut sections apart.
+- **Reads documents the way their authors organized them.** Long professional documents (filings, guidelines,
+  laws, manuals) already have an outline. Sections, not arbitrary chunks, are the unit an agent browses and
+  cites. On our benchmarks this does not raise accuracy over flat chunks (see Results); it gives the agent an
+  outline to read and every answer a line range to point at.
 - **Deterministic and LLM-free indexing.** Parsing (mdast, not regex), tree building and the token-cost tree
   optimization never call a model; the same input always produces the same tree. LLMs are optional and only used
   for node summaries, document descriptions and the built-in `retrieve()` loop.
