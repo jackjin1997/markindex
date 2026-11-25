@@ -17,6 +17,26 @@ cited back as `[doc_path, L<start>-<end>]`.
 
 中文说明：[README.zh-CN.md](README.zh-CN.md)
 
+## Results
+
+FinanceBench, 150 questions about SEC filings, all 367 filings in one library, the same judge for every row
+([method, tables and paired tests](eval/financebench/README.md#controlled-baselines-same-model-same-judge)):
+
+| Setup | Accuracy | Cost of the whole run |
+|---|---:|---:|
+| Dense retrieval, top-20 pages, one model call (Sonnet 5.5) | 67.3% | $21.35 |
+| **Agent with MarkIndex (Sonnet 5.5)** | **88.0%** | **$8.45** |
+| **Agent with MarkIndex (Haiku 5.5)** | **90.7%** | **$1.69** |
+| Agent over flat page chunks with BM25 (Sonnet 5.5) | 89.3% | $7.07 |
+
+- **An agent over a keyword index beats dense retrieval** by 20.7 points at 40% of the cost, and a small model
+  does it for about one cent per question.
+- **The section tree is not what wins.** An agent over flat chunks scores the same, so the gain comes from
+  letting the model search, read and search again. We report that instead of hiding it; on QASPER, where one
+  retrieval already finds the evidence, the three setups do not differ at all.
+- **The index costs nothing to build**: a few minutes on a laptop CPU for these 367 filings (1.8 million lines),
+  with no model call and no embedding step.
+
 ## Why
 
 - **Structure-first, not chunk-first.** Long professional documents (filings, guidelines, laws, manuals) are
