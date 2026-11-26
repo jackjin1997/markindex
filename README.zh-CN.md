@@ -136,6 +136,31 @@ const { evidence } = await retrieve(lib, '员工辞职需要提前多久通知�
 { "mcpServers": { "markindex": { "command": "npx", "args": ["markindex", "mcp", "/path/to/docs"] } } }
 ```
 
+### 用在 Obsidian 笔记库上
+
+笔记库本身就是一个 Markdown 文件夹，可以直接当作文档库：
+
+```bash
+npx markindex index ~/vault
+claude mcp add vault -- npx markindex mcp ~/vault --reindex-on-start
+```
+
+`--reindex-on-start` 会在每次启动时更新上次之后改过的笔记，没改的跳过。在官方的 [Obsidian Help 库](https://github.com/obsidianmd/obsidian-help)（181 篇英文笔记，1.8 万行）上，笔记本电脑首次建索引约 3 秒，没有改动时启动不到 1 秒。
+
+MarkIndex 不会改动你的笔记。它只生成一个索引文件，默认在 `<vault>/.markindex/index.db`；两条命令都加 `--db <file>` 可以把它放到库外面，库如果用 git 管理，把 `.markindex/` 加进 `.gitignore`。不想让 agent 读到的文件夹（比如日记），写进库根目录的 `.markindexignore`，语法同 gitignore。
+
+Obsidian 自己的语法会怎样：
+
+| 笔记库里 | MarkIndex 里 |
+| --- | --- |
+| 标题 | 变成 agent 浏览的章节树，引用时带行号范围 |
+| 正文里的 `[[双链]]`、`![[嵌入]]`、callout、`#标签` | 作为文字保留，可以搜到；不会顺着链接跳转，不展开嵌入，没有反向链接图 |
+| 属性（YAML front matter） | 由 `get_document` 随笔记元数据返回，不参与搜索 |
+| `.canvas`、`.base`、PDF、图片 | 不索引，只处理 Markdown |
+| Dataview 等插件查询 | 保留为代码块，不执行 |
+
+搜索按关键词匹配，不按语义：能找到和查询有相同词的笔记，中文、英文或混排都可以。agent 会通过换词重搜和浏览文件夹来弥补，所以文件夹和笔记的名字起得清楚会有帮助。
+
 ### 可选：重排搜索结果（实验性）
 
 默认关闭。`search_documents` 是关键词搜索，按 BM25 排序。加上 `--rerank jev` 后，server 取关键词命中的前 50 条，让 [Jev](https://docs.typesafe.ai/api)（TypeSafe 的托管决策模型，只回答是非题并给出概率，不生成文本）逐条判断是否有助于回答问题，再返回最相关的几条。此时工具多一个可选参数 `intent`：Agent 用一句完整的话说明要找什么，重排按这句话判断，而不是按关键词。每条结果带 0 到 1 的 `relevance`，结果里注明打了多少条分。

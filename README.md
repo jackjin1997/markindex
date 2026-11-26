@@ -226,6 +226,37 @@ claude mcp add markindex -- npx markindex mcp /path/to/docs
 
 The server sends `AGENT_INSTRUCTIONS` as its MCP instructions and marks all tools read-only.
 
+### On an Obsidian vault
+
+A vault is a folder of Markdown, so it works as a library as it is:
+
+```bash
+npx markindex index ~/vault
+claude mcp add vault -- npx markindex mcp ~/vault --reindex-on-start
+```
+
+`--reindex-on-start` picks up the notes changed since the last session and skips the rest. On the official
+[Obsidian Help vault](https://github.com/obsidianmd/obsidian-help) (181 English notes, 18,000 lines) the first index
+takes about 3 seconds on a laptop, and a start with nothing changed takes under 1 second.
+
+MarkIndex never writes to your notes. The only file it creates is the index, `<vault>/.markindex/index.db` by
+default; pass `--db <file>` to both commands to keep it outside the vault, or add `.markindex/` to `.gitignore` if
+the vault is a git repository. To keep a folder away from the agent (a journal, say), list it in a
+`.markindexignore` file at the vault root, in gitignore syntax.
+
+What happens to Obsidian's own syntax:
+
+| In the vault | In MarkIndex |
+| --- | --- |
+| Headings | The section tree the agent browses and cites by line range. |
+| `[[Wikilinks]]`, `![[embeds]]`, callouts, `#tags` in the text | Kept as text and searchable. Links are not followed, embeds are not expanded, and there is no backlink graph. |
+| Properties (YAML front matter) | Returned with the note's metadata by `get_document`. Not searched. |
+| `.canvas`, `.base`, PDFs, images | Not indexed. Markdown only. |
+| Dataview and other plugin queries | Left as code blocks. Nothing is evaluated. |
+
+Search is by keyword, not by meaning: it finds notes that share words with the query, in Chinese, English or a mix.
+An agent makes up for that by rewording its query and by browsing folders, so clear folder and note names help.
+
 ### Optional: rerank search results (experimental)
 
 Off by default. `search_documents` is a keyword search: it finds sections that share words with the query, in BM25

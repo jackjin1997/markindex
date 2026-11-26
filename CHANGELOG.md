@@ -11,6 +11,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 - README (English and Chinese) shows the FinanceBench comparison near the top, including the result that an agent
   over flat chunks does as well as one over the section tree.
+- README (English and Chinese) has a section on using MarkIndex on an Obsidian vault: the two commands, where the
+  index file goes, and what happens to wikilinks, embeds, properties and non-Markdown files.
 
 ## [0.2.0] - 2026-11-23
 
